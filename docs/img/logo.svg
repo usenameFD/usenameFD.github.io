@@ -1,0 +1,14 @@
+<!-- SVG Concept for "Lorenz Attractor" -->
+<svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3E0097" />
+      <stop offset="100%" stop-color="#667EEA" />
+    </linearGradient>
+  </defs>
+  <!-- Abstracted Lorenz Attractor curve -->
+  <path d="M 30 50 C 50 20, 70 80, 90 50 C 110 20, 130 80, 150 50" stroke="url(#grad2)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Text -->
+  <text x="100" y="95" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="bold" fill="#2E2E2E" text-anchor="middle">FDDW</text>
+  <text x="100" y="110" font-family="Helvetica, Arial, sans-serif" font-size="8" fill="#666" letter-spacing="1" text-anchor="middle">QUANT RESEARCH</text>
+</svg>
