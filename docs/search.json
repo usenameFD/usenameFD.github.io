@@ -9,8 +9,29 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "Franck Deba",
     "section": "",
-    "text": "About this site"
+    "text": "Quantitative Researcher & Data Science Engineer specializing in financial engineering, stochastic modeling, and machine learning. Passionate about developing innovative quantitative strategies and risk management solutions in dynamic financial markets."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Franck Deba",
+    "section": "Education",
+    "text": "Education\nUniversité Paris Cité | Paris, France\nMaster 2 in Quantitative Finance (M2MO) | Sept 2025 - Present\nWorldQuant University | Online\nMSc in Financial Engineering | Oct 2024 - Present\nENSAI | Rennes, France\nMSc in Data Science and Risk Management | Aug 2023 - Dec 2025\nISSEA - CEMAC | Yaoundé, Cameroon\nMSc in Statistics applied to Economics | Sept 2021 - Aug 2023"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Franck Deba",
+    "section": "Experience",
+    "text": "Experience\nCrédit Agricole | Quantitative Risk Analyst Intern | April 2025 - Sept 2025\n- Developed climate stress-testing methodologies and risk assessment frameworks - Engineered automated BackTesting tools in Python for PD model validation - Migrated statistical models from SAS to cloud-based Python platforms\nEY | Quantitative Risk Analyst | Nov 2024 - Mar 2025\n- Designed rating grades using machine learning (XGBoost) and traditional techniques - Challenged bootstrap methodologies for estimating Model Uncertainty and Margin of Conservatism - Contributed to PD model validation in Credit Risk Framework\nGroupe VYV - Harmonie Mutuelle | Quantitative Modeling Intern | June 2024 - Aug 2024\n- Applied unsupervised learning (K-Means) to segment insured populations - Implemented survival analysis models (Cox PH) to quantify risk exposure - Modeled treatment costs using generalized linear models"
+  },
+  {
+    "objectID": "about.html#technical-skills",
+    "href": "about.html#technical-skills",
+    "title": "Franck Deba",
+    "section": "Technical Skills",
+    "text": "Technical Skills\nQuantitative Finance: Stochastic Calculus, Options Pricing, Risk Metrics (VaR, ES), Portfolio Optimization, Yield Curve Bootstrapping\nProgramming: Python (NumPy, Pandas, Scikit-learn, TensorFlow), C++, R, SQL, SAS\nModeling: Time Series Analysis, Monte Carlo Simulation, Machine Learning, Survival Analysis"
   }
 ]

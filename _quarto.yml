@@ -8,21 +8,22 @@ website:
   navbar:
     background: "white"
     logo: img/logo.svg
-    logo-alt: "FDDW Quantitative Research"  # Important for accessibility
+    logo-alt: "FDDW Quant Research"  # Important for accessibility
     logo-height: "40px"  # Adjust based on your logo dimensions
     left:
       - href: index.qmd
         text: Home
+      - href: about.qmd
+        text: About
       - href: finance.qmd
         text: Quantitative Finance
       - href: risk-regulation.qmd
         text: Risk & Regulation
-      - href: data-science-ml.qmd
-        text: Data Science & ML
+      - href: data-science.qmd
+        text: Data Science
       - href: articles-ressources.qmd
         text: Resources
-      - href: contact.qmd
-        text: Contact
+
     right:
       - icon: linkedin
         href: https://linkedin.com/in/deba-franck
