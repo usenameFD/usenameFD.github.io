@@ -1,40 +1,47 @@
 project:
   type: website
   output-dir: docs
-
+  resources: img
+  render:
+    - "*.qmd" # Render all .qmd files
+    - "!ignored-dir/" # Ignore a specific directory
+execute:
+  cache: true
+  freeze: auto 
+  
 website:
-  title: "Franck Deba - Quant"
-  site-url: https://usenamefd.github.io/  # Optional but recommended
+  title: ""
+  favicon: img/logo-bg.png
+  back-to-top-navigation: true
   navbar:
-    background: "white"
-    logo: img/logo.svg
-    logo-alt: "FDDW Quant Research"  # Important for accessibility
-    logo-height: "40px"  # Adjust based on your logo dimensions
+    logo: img/logo-bg.png
     left:
       - href: index.qmd
-        text: Home
+        text: Accueil
+      - href: index_stat.qmd
+        text: Modélisation stat.
+      # - text: Gestion des risques
+        # menu:
+      - href: index_gdr.qmd
+        text: Gestion des risques
       - href: about.qmd
-        text: About
-      - href: finance.qmd
-        text: Quantitative Finance
-      - href: risk-regulation.qmd
-        text: Risk & Regulation
-      - href: data-science.qmd
-        text: Data Science
-      - href: articles-ressources.qmd
-        text: Resources
+        text: À propos
 
-    right:
-      - icon: linkedin
-        href: https://linkedin.com/in/deba-franck
-      - icon: github
-        href: https://github.com/usernameFD
-      - icon: envelope
-        href: mailto:debafranck@gmail.com
+
 
 format:
   html:
-    theme: cosmo
+    page-layout: full
+    code-fold: false
+    code-summary: "Show the code"
+    theme:
+      light: flat
+      dark: superhero
     css: styles.css
     toc: true
-    toc-depth: 2
+    toc-location: left
+    toc-title: "Sommaire"
+    df-print: kable    
+  ipynb: default
+  # pdf: default
+

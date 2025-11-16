@@ -1,8 +1,12 @@
 ---
-title: "Franck Deba"
-subtitle: "Quantitative Finance | Stochatic Modeling | Risk Management | Data Science"
+title: ""
+listing:
+  contents: 
+    - 3A/**/*.qmd
+    - 2A/**/*.qmd
+  type: grid
+  sort: "date desc"
+  image-placeholder: img/placeholder.jpg
+  fields: [image, date, title, author, reading-time,description]
+  categories: false
 ---
-
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.

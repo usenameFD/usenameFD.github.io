@@ -1,51 +1,27 @@
 ---
-title: "Franck Deba"
+title: "Franck DEBA"
 about:
   template: trestles
   image: img/profile.jpg
   links:
-    - icon: linkedin
-      text: LinkedIn
-      href: https://linkedin.com/in/deba-franck
-    - icon: github
-      text: GitHub
-      href: https://github.com/usernameFD
-    - icon: envelope
+    - icon: mailbox-flag
       text: Email
       href: mailto:debafranck@gmail.com
+    - icon: github
+      text: Github
+      href: https://github.com/usernameFD
+    - icon: linkedin
+      text: Linkedin
+      href: https://linkedin.com/in/deba-franck
+    - icon: file-pdf
+      text: CV
+      href: CV/Franck_DEBA_Resume.pdf
 ---
 
-Quantitative Researcher & Data Science Engineer specializing in financial engineering, stochastic modeling, and machine learning. Passionate about developing innovative quantitative strategies and risk management solutions in dynamic financial markets.
+Je suis Franck Deba, ingénieur Data Scientist diplômé de l'ENSAI et actuellement étudiant au M2MO (ex-DEA Laure-Elie). Je me spécialise en finance de marché après un parcours en gestion des risques bancaires.
 
-## Education
+Ce site web, conçu avec Quarto, s'adresse principalement aux étudiants intéressés par la finance de marché et ses métiers. L'accent est mis sur la pédagogie pour appréhender les défis académiques que j'ai rencontrés et que beaucoup vivent durant leur formation.
 
-**Université Paris Cité** \| Paris, France\
-*Master 2 in Quantitative Finance (M2MO)* \| Sept 2025 - Present
+Il ne prétend en aucun cas se substituer à un cours - la rigueur et l'expertise des enseignants restent essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j'ai réalisés.
 
-**WorldQuant University** \| Online\
-*MSc in Financial Engineering* \| Oct 2024 - Present
-
-**ENSAI** \| Rennes, France\
-*MSc in Data Science and Risk Management* \| Aug 2023 - Dec 2025
-
-**ISSEA - CEMAC** \| Yaoundé, Cameroon\
-*MSc in Statistics applied to Economics* \| Sept 2021 - Aug 2023
-
-## Experience
-
-**Crédit Agricole** \| Quantitative Risk Analyst Intern \| April 2025 - Sept 2025\
-- Developed climate stress-testing methodologies and risk assessment frameworks - Engineered automated BackTesting tools in Python for PD model validation - Migrated statistical models from SAS to cloud-based Python platforms
-
-**EY** \| Quantitative Risk Analyst \| Nov 2024 - Mar 2025\
-- Designed rating grades using machine learning (XGBoost) and traditional techniques - Challenged bootstrap methodologies for estimating Model Uncertainty and Margin of Conservatism - Contributed to PD model validation in Credit Risk Framework
-
-**Groupe VYV - Harmonie Mutuelle** \| Quantitative Modeling Intern \| June 2024 - Aug 2024\
-- Applied unsupervised learning (K-Means) to segment insured populations - Implemented survival analysis models (Cox PH) to quantify risk exposure - Modeled treatment costs using generalized linear models
-
-## Technical Skills
-
-**Quantitative Finance:** Stochastic Calculus, Options Pricing, Risk Metrics (VaR, ES), Portfolio Optimization, Yield Curve Bootstrapping
-
-**Programming:** Python (NumPy, Pandas, Scikit-learn, TensorFlow), C++, R, SQL, SAS
-
-**Modeling:** Time Series Analysis, Monte Carlo Simulation, Machine Learning, Survival Analysis
+Au-delà des étudiants, ce site constitue également une ressource pour les professionnels souhaitant revisiter certains concepts clés en gestion des risques ou en statistiques. Il propose des exemples concrets et des pistes de réflexion adaptées aux problématiques actuelles.
