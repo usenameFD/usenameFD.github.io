@@ -1,5 +1,5 @@
 ---
-title:  TP2:Méthodes basées sur la théorie des valeurs extrêmes
+title:  Méthodes basées sur la théorie des valeurs extrêmes
 jupyter: python3
 date: "2025-02-28"
 ---

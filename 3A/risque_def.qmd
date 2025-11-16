@@ -3,7 +3,7 @@ title: "Le risque, qu'est ce que c'est ?"
 sidebar: auto
 date: "2024-06-25"
 author:
-  - Cheryl Kouadio
+  - Franck Deba
 ---
 
 En finance, le risque peut être défini comme la survenance d'un événement incertain qui peut avoir des conséquences négatives sur le bilan, ou le compte de résultat d'une banque. Par exemple, une fraude aura un impact négative sur la réputation d'une banque ce qui peut entrainer des pertes importants ayant un impact négatif sur le résultat net de celle-ci. En économie, le risque est un événement probabilisable tandis que l'incertitude est non probabilisable.

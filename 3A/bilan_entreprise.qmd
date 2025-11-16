@@ -2,10 +2,7 @@
 title: "Comment fonctionne le bilan et le compte de résultat d'une entreprise"
 sidebar: auto
 author:
-  name: Cheryl KOUADIO
-  # position: Étudiante en 3A
-  # url: https://www.linkedin.com/in/cheryl-kouadio-7b1b3b1b3/
-  # image: img/cheryl-kouadio.jpg
+  name: Franck Deba
 date: "2024-05-15"
 ---
 

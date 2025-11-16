@@ -1,9 +1,8 @@
 ---
 title: "APF filter"
 author: 
-  - Cheryl Kouadio
-  - Safa Bouzayene
-  - Mariyam Ouyassin
+  - Franck Deba
+  - Samuel Marthely
 date: "2025-02-26"
 number-sections: true
 ---

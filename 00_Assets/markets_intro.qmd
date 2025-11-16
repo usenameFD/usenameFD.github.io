@@ -3,7 +3,7 @@ title: "Introduction aux marchés financiers"
 sidebar: auto
 date: "2025-05-05"
 author:
-  - Cheryl Kouadio
+  - Franck Deba
 ---
 
 Dans le secteur financier, le marché désigne l’endroit où se rencontrent l’offre et la demande de services ou de produits financiers. Il regroupe de nombreux acteurs, notamment les banques, les institutions financières, les entreprises et les particuliers.

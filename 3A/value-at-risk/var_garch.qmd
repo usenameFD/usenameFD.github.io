@@ -1,5 +1,5 @@
 ---
-title: TP3:Méthodes d'une calcul d'une VaR dynamique (basé sur GARCH)
+title: Méthodes d'une calcul d'une VaR dynamique (basé sur GARCH)
 jupyter: python3
 date: "2025-02-28"
 ---

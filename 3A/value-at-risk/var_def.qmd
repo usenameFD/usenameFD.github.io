@@ -1,6 +1,6 @@
 ---
 title: "La VaR"
-author: "Cheryl Kouadio"
+author: "Franck Deba"
 sidebar: auto
 number-sections: true
 date: "2024-05-06"

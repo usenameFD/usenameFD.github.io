@@ -2,7 +2,8 @@
 title: 'Asset management : Risque de valorisation ( valorisation d''obligation)'
 jupyter: python3
 author : 
-    - Cheryl Kouadio
+    - Franck Deba
+    - Marilène Kougoum
     - "Sous la supervision de : Faiçal HIHI"
 date: "2025-03-23"
 ---

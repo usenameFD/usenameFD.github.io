@@ -1,5 +1,5 @@
 ---
-title:  TP1:Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)
+title:  Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)
 jupyter: python3
 date: "2025-02-28"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Calibration avec le modèle d'Heston"
 format: html
-author: "Cheryl KOUADIO"
+author: "Franck Deba"
 date: "2025-02-06"
 ---
 

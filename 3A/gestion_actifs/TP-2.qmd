@@ -1,7 +1,8 @@
 ---
 title: "Asset management : Risques de liquidité (profil d'écoulement / de liquidation d’un portefeuille d’actifs)"
 author : 
-    - Cheryl Kouadio
+    - Franck Deba
+    - Marilène Kougoum
     - "Sous la supervision de : Faiçal HIHI"
 jupyter: python3
 date: "2025-01-27"

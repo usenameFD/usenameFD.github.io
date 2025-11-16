@@ -1,6 +1,6 @@
 ---
 title: "Calibration du modèle à volatilité stochastique de Taylor : Filtre particulaire"
-author: "Cheryl Kouadio"
+author: "Franck Deba"
 date: "2025-01-21"
 ---
 
