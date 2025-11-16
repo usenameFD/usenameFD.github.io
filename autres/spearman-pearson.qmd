@@ -1,6 +1,5 @@
 ---
 title: "Corrélation de Spearman vs corrélation de Pearson"
-author: "Cheryl Kouadio"
 date: "2025-02-07"
 ---
 

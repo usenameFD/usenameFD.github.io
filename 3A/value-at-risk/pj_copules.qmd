@@ -2,8 +2,7 @@
 title: Projet de gestion de risques multiples
 jupyter: python3
 author: 
-    - Cheryl Kouadio
-    - Mariyam Ouyassin
+    - Franck Deba
 date: 2025-03-13
 ---
 
