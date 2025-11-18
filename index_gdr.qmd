@@ -20,12 +20,14 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 ::: {.blog-section}
 - [Définition du risque financier](3A/risque_def.qmd)
 - [Value-at-risk (VaR)](3A/value-at-risk/var_def.qmd) :
-    - [Définition de la VaR](3A/value-at-risk/var_def.qmd)
-    - [Implémentation de la VaR sur python](3A/value-at-risk/var_application.qmd)
-    - [TP1 : Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)](3A/value-at-risk/var_classiques.qmd)
-    - [TP2 : Méthodes basées sur la théorie des valeurs extrêmes](3A/value-at-risk/var_evt.qmd)
-    - [TP3 : Méthodes d'une calcul d'une VaR dynamique (basé sur GARCH)](3A/value-at-risk/var_garch.qmd)
-    - [Estimation de la CreditVaR à l'aide de la théorie des copules](3A/value-at-risk/pj_copules.qmd)
+    - [Implémentation de la VaR sur python](projects/VaR/VaR.ipynb)
+    - [Estimation de la CreditVaR à l'aide de la théorie des copules](projects/Liquidity/AssetLiquidity.ipynb)
+
+### Risque Climatique
+::: {.blog-section}
+- [Exposition aux catastrophes naturelles en France](projects/Climate/Notebooks/02_ExpoClimatCommune.ipynb)
+- [Prédiction des catatrophes innondation en France](projects/Climate/Notebooks/03_PhysicalRisk.ipynb)
+
 :::
 
 ### Scoring
@@ -40,7 +42,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
     - [Estimation de la volatilité avec le filtre boostrap](3A/proc_stochastique/modele_heston.qmd)
     - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)](3A/proc_stochastique/APF_filter.qmd)
-- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull - White)](3A/proc_stochastique/pj_courbe_tx.qmd)
+- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull - White)](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
 
 :::
 

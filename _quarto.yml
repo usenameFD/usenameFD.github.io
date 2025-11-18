@@ -3,12 +3,20 @@ project:
   output-dir: docs
   resources: img
   render:
-    - "*.qmd" # Render all .qmd files
-    - "!ignored-dir/" # Ignore a specific directory
+    - "*.qmd"
+    - "*.ipynb"     # render notebooks as well
+    - "!ignored-dir/"
+
 execute:
   cache: true
-  freeze: auto 
-  
+  freeze: auto
+
+jupyter:
+  execute:
+    error: false
+    warning: false
+    message: false
+
 website:
   title: ""
   favicon: img/logo-bg.png
@@ -20,20 +28,16 @@ website:
         text: Accueil
       - href: index_stat.qmd
         text: Modélisation stat.
-      # - text: Gestion des risques
-        # menu:
       - href: index_gdr.qmd
         text: Gestion des risques
       - href: about.qmd
         text: À propos
 
-
-
 format:
   html:
     page-layout: full
-    code-fold: false
-    code-summary: "Show the code"
+    code-fold: true            # improves readability
+    code-summary: "Afficher le code"
     theme:
       light: flat
       dark: superhero
@@ -41,7 +45,5 @@ format:
     toc: true
     toc-location: left
     toc-title: "Sommaire"
-    df-print: kable    
+    df-print: paged            # better for notebooks
   ipynb: default
-  # pdf: default
-
