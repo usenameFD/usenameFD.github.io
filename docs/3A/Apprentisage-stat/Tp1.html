@@ -421,7 +421,7 @@ window.Quarto = {
 <p>where <span class="math inline">\(\sigma^2\)</span> is the variance of the noise in the data.</p>
 <p><u>Hint to prove the bias formula</u> : factorize by <span class="math inline">\(\lambda ( X^TX + \lambda I_d)^{-1}\)</span></p>
 <p>In this activity, we will numerically check the formula for the bias and the variance by generating random data and calculating the squared bias of the sample mean. Let’s start by create a function to generate the data with a noise <span class="math inline">\(\varepsilon \sim \mathcal{N}(0,\sigma^2)\)</span>.</p>
-<div id="fadbf297" class="cell">
+<div id="b756831d" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Q1 : Function that generates data from a linear model</span></span>
@@ -435,7 +435,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Our goal is now to illustrate the squared bias of each coefficient as a function of <span class="math inline">\(\lambda\)</span> when it varies between 10² and 10⁴ (in the log-domain). We will then generate a dataset with 100 samples and 10 features and calculate the squared bias of the coefficients and the variance for each value of <span class="math inline">\(\lambda\)</span>. The features will be generated from a normal distribution (not mandatory) and the true coefficients are fixed. We voluntarily put to 0 some coefficients to see the effect of the regularization.</p>
-<div id="dade100e" class="cell">
+<div id="c24037ef" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
@@ -449,7 +449,7 @@ window.Quarto = {
 </details>
 </div>
 <p>To compute numerically the bias and the variance of the ridge regression, we will generation 200 datasets. We will then, for each <span class="math inline">\(\lambda\)</span>, store the mean of each coefficients (in order to compute the numerical bias) and the standard deviation (to compute the numerical variance).</p>
-<div id="e143217b" class="cell">
+<div id="cf094e4c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n_sim<span class="op">=</span><span class="dv">1000</span></span>
@@ -467,7 +467,7 @@ window.Quarto = {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    variance[idx,:] <span class="op">=</span> np.std(estimated_theta,axis<span class="op">=</span><span class="dv">0</span>)<span class="op">**</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="ae7636dd" class="cell">
+<div id="dc957481" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
@@ -493,7 +493,7 @@ window.Quarto = {
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e95c1cf2" class="cell">
+<div id="3d70894f" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot squared theorical bias : −λ(X^T X + λId) (−1) θ</span></span>
@@ -536,7 +536,7 @@ window.Quarto = {
 <p><span class="math display">\[
 \theta ^* = argmin_{\theta} \left\{ || Y - X \theta||_2 + \lambda ||\theta||_1 \right\}
 \]</span></p>
-<div id="424ddb1e" class="cell">
+<div id="26666a5a" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
@@ -555,7 +555,7 @@ window.Quarto = {
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        variance_lasso[idx, :] <span class="op">=</span> np.std(estimated_theta_lasso, axis<span class="op">=</span><span class="dv">0</span>) <span class="op">**</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2a63f224" class="cell">
+<div id="1679ec3f" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
@@ -586,14 +586,14 @@ window.Quarto = {
 <h1>Activity 2 : Contamination dataset</h1>
 <p>We now work with a dataset related to diabetes. The initial data consists of <span class="math inline">\(n\)</span> = 442 patients and <span class="math inline">\(d\)</span> = 10 covariates and the output variable <span class="math inline">\(Y\)</span> is a score reflecting the disease progressing. During a cyberattack of the hospital housing the data, a bad robot has contaminated the dataset by adding 200 inappropriate exploratory variables. Since simply noising the data was not sufficient for the robot, he also arbitrarily permuted the variables. To complete the picture, the robot has erased any trace of his villainous act and thus we do not know which variables are relevant. The new data set contains <span class="math inline">\(n\)</span> = 442 patients and <span class="math inline">\(d\)</span> = 210 covariates.</p>
 <p>We are trying to resolve the enigma created by the playful machine and retrieve the relevant variables. We will hence use a regularized regression model to select the relevant variables.</p>
-<div id="eaad7523" class="cell">
+<div id="d1c68a89" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="244e0750" class="cell">
+<div id="feffe466" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read data from csv file</span></span>
@@ -606,7 +606,7 @@ window.Quarto = {
 </details>
 </div>
 <p>First, we will split the dataset into training and test sets. We will use the first 80% of the dataset for training and the remaining 20% for testing.</p>
-<div id="ece9326a" class="cell">
+<div id="27ccf740" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># split dataset to train and test</span></span>
@@ -625,7 +625,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="ridge-regression-1">1. Ridge regression</h2>
 <p>On training samples, we will try to fit a linear model using Ridge regression by choosing the regularization parameter <span class="math inline">\(\lambda\)</span> by cross-validation. We will use the function <code>RidgeCV</code> from the <code>sklearn</code> library to perform the cross-validation. Since we didn’t center the covariables, we will set the parameter <code>fit_intercept</code> to <code>True</code> in order to include an intercept in the model.</p>
 <pre><code>By default, the function that performs the cross validation in ridge regression performs "leave-one-out" cross-validation. In fact, leave-one-out cross-validation is a special case of k-fold cross-validation where k is equal to the number of samples. It is computationally expensive, but it is useful for small datasets. However, in ridge regression can be useful since the formula of shermann-morrison-woodbury can be used in order to use the estimator of a single ridge regession in other to compute the estimator of the leave-one-out cross-validation.</code></pre>
-<div id="09deeb69" class="cell">
+<div id="63ed0727" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> RidgeCV</span>
@@ -635,7 +635,7 @@ window.Quarto = {
 </details>
 </div>
 <p>We might interested in visualizing the path of the coefficients as a function of the regularization parameter λ. This is called regularization path. We can do this by fitting the model for different values of λ and store the coefficients.</p>
-<div id="434582fe" class="cell">
+<div id="aaabfe8a" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the coefficients as a function of lambda</span></span>
@@ -645,7 +645,7 @@ window.Quarto = {
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    coefs.append(ridge.coef_)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="7a5605aa" class="cell">
+<div id="2e162579" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
@@ -665,7 +665,7 @@ window.Quarto = {
 <p><i> In our case, it still gives an indication on the 10 variables that were relevant in the initial dataset before the contamination, but is clearly not the best method to select the relevant variables. </i></p>
 <section id="a.-check-on-the-intercept-value-of-the-model-using-lambda-found-by-cross-validation" class="level4">
 <h4 class="anchored" data-anchor-id="a.-check-on-the-intercept-value-of-the-model-using-lambda-found-by-cross-validation">a. Check on the intercept value of the model using lambda found by cross validation</h4>
-<div id="f5c723b2" class="cell">
+<div id="17b85555" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Intercept value : </span><span class="sc">{</span>ridge_cv<span class="sc">.</span>intercept_<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -677,7 +677,7 @@ window.Quarto = {
 <section id="lasso-regression-1" class="level2">
 <h2 class="anchored" data-anchor-id="lasso-regression-1">2. Lasso regression</h2>
 <p>We will now use the lasso regression to check if it can help use to select the most important variables. We will use the same lambda grid as before and also perform a cross validation. It is important to perform a cross-validation in order to choose the best value of the regularization parameter <span class="math inline">\(\lambda\)</span> as we have demonstrated in the first activity. For the lasso regression, we will use the function <code>LassoCV</code> from the <code>sklearn</code> library. By default, the function uses the coordinate descent algorithm to fit the model. It is a very efficient algorithm to solve the lasso problem because of the non-smoothness of the L1 norm.</p>
-<div id="11ba7f3c" class="cell">
+<div id="36d05962" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
@@ -685,7 +685,7 @@ window.Quarto = {
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>lasso_cv <span class="op">=</span> LassoCV(alphas<span class="op">=</span>lambda_grid,fit_intercept<span class="op">=</span><span class="va">True</span>).fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="be53d0bc" class="cell">
+<div id="5cf87604" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#LASSO PATH</span></span>
@@ -711,7 +711,7 @@ window.Quarto = {
 <section id="a.-check-on-the-intercept-value-of-the-model-using-lambda-found-by-cross-validation-1" class="level4">
 <h4 class="anchored" data-anchor-id="a.-check-on-the-intercept-value-of-the-model-using-lambda-found-by-cross-validation-1">a. Check on the intercept value of the model using lambda found by cross validation</h4>
 <p>We get approximatively the same value for the intercept as the one obtained with Ridge regression.</p>
-<div id="68b4ae78" class="cell">
+<div id="787311fd" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check value of intercept</span></span>
@@ -725,7 +725,7 @@ window.Quarto = {
 <p>In linear regression, we evaluate the quality of the model using the quadratic loss function. The quadratic risk is the expected value of the square of the difference between the true value and the predicted value. The mean squared error is then given by the formula:</p>
 <p><span class="math display">\[\mathcal{R}(\hat\theta) =  \frac{1}{n} \sum_{i=1}^{n} \left(y_i - \hat g(x_i) \right) ^2\]</span></p>
 <p>where <span class="math inline">\(\hat g(x)\)</span> is the predicted value of the output variable y given the input variable x, <span class="math inline">\(\hat g(x) =\hat  \theta_0 + \sum_{j=0}^d \hat \theta_j x_j\)</span>.</p>
-<div id="650695b6" class="cell">
+<div id="64a395a5" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>

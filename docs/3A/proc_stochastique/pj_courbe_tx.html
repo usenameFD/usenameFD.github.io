@@ -443,7 +443,7 @@ Important
 <h3 class="anchored" data-anchor-id="i.1.-formules-de-valorisation-des-taux-de-marché">I.1. Formules de valorisation des taux de marché</h3>
 <p>La courbe interbancaire est une courbe de taux qui représente les taux d’intérêt auxquels les banques se prêtent de l’argent entre elles. Elle est utilisée pour déterminer les taux d’intérêt des prêts et des emprunts à court terme. Elle est construite sur le court terme (maturité&lt;6M) à partir des taux du marchés monétaire (Money Market) basés sur les dépots non garantis entre banques. Sur le moyen terme (6m - 3y) elle est construite à partir des contrats futures, i.e.&nbsp;des forwards sur un marché OTC (Over The Counter) et sur le long terme (&gt;3y) elle est construite à partir des contrats de swap euribor (Euro Interbank Offered Rate) 3M ou 6M.</p>
 <p>Ci dessous, nous disposons de ces données de taux de marché cotés sur le marché interbancaire. Nous allons essayer de reconstituer la courbe de taux zero coupon implicite, qui ne cote pas directement sur le marché. Le fichier de données contient trois variables : - Type d’instruments (Money Market, Futures, Swap) - Maturité (en années) - Taux d’intérêt</p>
-<div id="2899eba1" class="cell">
+<div id="d4bd7d19" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -483,7 +483,7 @@ Important
 </section>
 <section id="i.2.-construction-de-la-courbe-des-taux-zéro-coupon" class="level3">
 <h3 class="anchored" data-anchor-id="i.2.-construction-de-la-courbe-des-taux-zéro-coupon">I.2. Construction de la courbe des taux zéro-coupon</h3>
-<div id="4cb3e935" class="cell">
+<div id="36d77da8" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -520,7 +520,7 @@ Important
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>df_interp.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="85a4698f" class="cell">
+<div id="1418baf1" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le rajoiuter dans le df</span></span>
@@ -528,7 +528,7 @@ Important
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>new_df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="72eccbb8" class="cell">
+<div id="1c234712" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage d'une courbe homogène de taux de marché en fonction de la maturité</span></span>
@@ -557,7 +557,7 @@ L_0(0,\delta) = \frac{1}{\delta} \left( \frac{1}{B(0,\delta)} - 1 \right)
 <p>De ce fait, le facteur d’actualisation est : <span class="math display">\[
 B(0,\delta) = \frac{1}{1 + \delta L_0(0,\delta)}
 \]</span></p>
-<div id="94d55c72" class="cell">
+<div id="8f7fe090" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Money Market</span></span>
@@ -579,7 +579,7 @@ Future = 1 - L_0(T,T+\delta) = 1 - \frac{1}{\delta} \left( \frac{B(0,T)}{B(0,T+\
 <p>De ce fait, le facteur d’actualisation est : <span class="math display">\[
 B(0,T+\delta) = \frac{B(0,T)}{1 + \delta (1- Future)}
 \]</span></p>
-<div id="ea6cc1b0" class="cell">
+<div id="b8b2cc8c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Futures</span></span>
@@ -606,7 +606,7 @@ Swap(t, T_0, T_n) = B(t, T_0)−B(t, T_n)−K ×lvl(t) = 0,
 <p>avec K le taux fixe du swap qui fait que la PV du swap vaut 0 et <span class="math inline">\(lvl(t)=\sum_{i=1}^{n} \delta_i B(t, T_i)\)</span> le taux de marché à la maturité <span class="math inline">\(T_n\)</span>. De ce fait, le facteur d’actualisation est : <span class="math display">\[
 B(0,T_n) = \frac{1 - K \sum_{i=1}^{n-1} \delta_i B(0,T_i)}{1 + K}
 \]</span></p>
-<div id="150b11b0" class="cell">
+<div id="6738ad29" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Swaps</span></span>
@@ -622,7 +622,7 @@ B(0,T_n) = \frac{1 - K \sum_{i=1}^{n-1} \delta_i B(0,T_i)}{1 + K}
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    df_ZC.loc[i, <span class="st">'R'</span>] <span class="op">=</span> <span class="op">-</span> np.log(df_ZC.loc[i, <span class="st">'B'</span>]) <span class="op">/</span> T_n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c4fc200e" class="cell">
+<div id="a53485cd" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
@@ -645,13 +645,13 @@ B(0,T_n) = \frac{1 - K \sum_{i=1}^{n-1} \delta_i B(0,T_i)}{1 + K}
 L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 \]</span> avec <span class="math inline">\(\delta = 0.25\)</span>.</p>
 <p>Pour le segment swap, il s’agira d’interpoler les taux zéro-coupon implicites pour avoir des tx forwards 3M. # changer la discretisatio à 1an ce qui est différent du ténor.</p>
-<div id="cd832b35" class="cell">
+<div id="6606b7e4" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_ZC <span class="op">=</span> pd.concat([pd.DataFrame({<span class="st">"T"</span>: [<span class="dv">0</span>], <span class="st">"B"</span>: [<span class="dv">1</span>], <span class="st">"R"</span>: [<span class="dv">0</span>]}), df_ZC], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="7d6f4f74" class="cell">
+<div id="bf5705eb" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'linear'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -688,7 +688,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux forward avec interpolation linéaire'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0adeeb69" class="cell">
+<div id="50dd760a" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'cubic'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -707,7 +707,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <p>Lorsqu’on utilise une interpolation linéaire, on obtient une courbe plus discontinue. La courbe a une structure en marches d’escalier. Il y a des sauts brusques lorsque l’on passe d’un intervalle à un autre. En effet, par nature, l’interpolation linéaire qui ne prend pas en compte les points intermédiaires. En interpolant avec une fonction spline, on obtient une courbe plus lisse et continue.Elle est plus cohérente avec l’évolution naturelle des taux d’intérêt. En effet, la fonction spline est une fonction polynomiale qui passe par tous les points de la courbe. Elle est plus flexible et permet de mieux capturer les variations des taux d’intérêt.</p>
 <p>Nous sommes intéressés à ce qui pourrait se passer lorsque nous shiftons le taux de swap 5Y de 10 points de base. Cela permet de déterminer la sensibilité de la courbe des taux forward aux variations des taux de swap et donc donner des indications sur comment hedger ce risque.</p>
 <p>Nous allons donc calculer le taux forward 3M pour les deux courbes de taux forward et comparer les résultats.</p>
-<div id="10a9684d" class="cell">
+<div id="77ba205b" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>choc <span class="op">=</span> <span class="dv">10</span><span class="op">/</span><span class="dv">10000</span></span>
@@ -727,7 +727,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>new_df[<span class="st">"tx_s"</span>] <span class="op">=</span> new_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="st">'tx'</span>]<span class="op">+</span>choc <span class="cf">if</span> x[<span class="st">'T'</span>] <span class="op">==</span> <span class="dv">5</span> <span class="cf">else</span> x[<span class="st">'tx'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b49afe2b" class="cell">
+<div id="33a2f245" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Money Market</span></span>
@@ -795,7 +795,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe de taux zéro coupon discrétisée'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="827f9cd1" class="cell">
+<div id="9fd057ea" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC_s, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'linear'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -811,7 +811,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux forward avec interpolation par spline'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="1a1aa167" class="cell">
+<div id="f00bb409" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC_s, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'cubic'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
@@ -867,14 +867,14 @@ d = \frac{1}{\sigma_S \sqrt{T_0 - t}} \left( \ln \left( \frac{F_S(t)}{K} \right)
 \text{Swaption}_t = \left( \sum_{j=1}^{n} N \delta B(t, T_j) \right) \left[ K \Phi(d - \sigma_S \sqrt{T_0 - t}) - F_S(t) \Phi(d) \right]
 \]</span></p>
 <p>Il s’agit, à partir des cotations décrites dans le tableau ci-dessous et de la courbe des taux zéro-coupon construite précédemment, calculer les prix de marché de caplets sur euribor12M, ce qui implique une période de capitalisation annuelle, de maturité T = 5Y, i.e.&nbsp;payé à 6Y, et de strikes K associés au tableau. Nous souhaitons ainsi calculer : - Le prix des caplets Caplet(t, 5Y, 6Y) pour les strikes du tableau ci-dessous. - Le prix des swaptions Swaption(t, 5Y, 6Y) pour les strikes du tableau ci-dessous.</p>
-<div id="6488b2ab" class="cell">
+<div id="7628424e" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>vol_data <span class="op">=</span> pd.read_excel(<span class="st">'data/Data_tx.xlsx'</span>, sheet_name<span class="op">=</span><span class="st">'vol'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>vol_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="8849a658" class="cell">
+<div id="d5aad0c5" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -941,7 +941,7 @@ d = \frac{1}{\sigma_S \sqrt{T_0 - t}} \left( \ln \left( \frac{F_S(t)}{K} \right)
 <span id="cb17-62"><a href="#cb17-62" aria-hidden="true" tabindex="-1"></a>vol_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b816a034" class="cell">
+<div id="266bcfb0" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pricer les swaptions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1105,14 +1105,14 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <p>Le modèle de Hull White permet d’avoir une formule fermée pour le prix des caplets. De fait, puisqu’on a calculé les prix de marché de caplets sur euribor12M, ce qui implique une période de capitalisation annuelle, de maturité T = 5Y, nous pouvons desormais calibrer le paramètre de volatilité <span class="math inline">\(\sigma_i^*\)</span> avec la méthode de dichotomie et aussi extraire de manière analytique la volatilité instantanée <span class="math inline">\(\sigma(t)\)</span> du modèle Hull&amp;White, qu’on supposera constante, i.e.&nbsp;<span class="math inline">\(\sigma(t) = \sigma\)</span>.</p>
 <p>On pose également, pour la calibration, <span class="math inline">\(\lambda = 5\%\)</span>.</p>
 <p>Pour extraire la volatilité spot, nous utiliserons uniquement le prix de marche ATM.</p>
-<div id="a2ad5dbf" class="cell">
+<div id="81e262ef" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>caplet_price_MKT <span class="op">=</span> vol_data.loc[<span class="dv">3</span>, <span class="st">'Caplet Price MKT'</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Le prix de marché caplet sur euribor 12M de maturité T=5Y est de </span><span class="sc">{</span>caplet_price_MKT<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="6d272c50" class="cell">
+<div id="4c67fc3d" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1127,7 +1127,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> price_oplet(N<span class="op">=</span>N, delta_i<span class="op">=</span>delta_i, B_t_Ti<span class="op">=</span>B_t_Ti, L_i_t<span class="op">=</span>L_i_t, K<span class="op">=</span>K, sigma_i<span class="op">=</span>sigma_i, Ti<span class="op">=</span>Ti, t<span class="op">=</span>t, option_type<span class="op">=</span>option_type)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="54e439ac" class="cell">
+<div id="676a8108" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Dichotomie(N, delta_i, B_t_Ti, L_i_t, K, Ti, t,caplet_price_MKT,option_type<span class="op">=</span><span class="st">'caplet'</span>, model<span class="op">=</span><span class="st">"HW"</span>,tol<span class="op">=</span><span class="fl">1e-6</span>, sigma_low<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">10000</span>, sigma_high<span class="op">=</span><span class="dv">1</span>):</span>
@@ -1178,7 +1178,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Volatilité implicite (en %) :"</span>, sigma_i<span class="op">*</span><span class="dv">100</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="77b27dd1" class="cell">
+<div id="34140901" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>beta_Ti_Ti_1 <span class="op">=</span>  ((<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span> lambda_ <span class="op">*</span> delta_i))<span class="op">/</span>lambda_)<span class="op">**</span><span class="dv">2</span></span>
@@ -1192,7 +1192,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <ol start="2" type="1">
 <li>Cette volatilité spot nous permet de valoriiser les caplets pour des strikes différents de l’ATM à l’aide de la formule de valorisation fermée du modèle Hull et White.</li>
 </ol>
-<div id="8e4f38c6" class="cell">
+<div id="3f5ac60a" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> vol_data.index:</span>
@@ -1225,7 +1225,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 </details>
 </div>
 <p>L’une des faiblesses du modèle de Hull et White est le fait qu’il n’arrive pas à capter le smile de volatilité. En effet, la volatilité implicite extraite est un skew. Pour constater ce phénomène, nous inverserons la formule de Black pour les caplets et nous en déduirons la volatilité implicite pour chaque strike. Nous utiliserons toujours la méthode de dichotomie pour trouver la volatilité implicite.</p>
-<div id="9cf3bdaa" class="cell">
+<div id="48d7993c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> vol_data.index:</span>
@@ -1244,7 +1244,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>vol_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5d2b26cb" class="cell">
+<div id="3159c086" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
@@ -1256,7 +1256,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Volatilité'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d9cecbda" class="cell">
+<div id="48271813" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ATM  <span class="op">=</span> L_i_t</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1337,7 +1337,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <p>Pour valoriser cette option, nous pouvons directement utiliser la loi de <span class="math inline">\(X_5|X_0\)</span> pour simuler les trajectoires du taux court et calculer le payoff de l’option ou diffuser progressivement le taux court en utilisant la loi de <span class="math inline">\(X_t|X_s\)</span> pour chaque pas de temps. Ensuite, il s’agira de calculer le payoff de l’option à chaque date, en faire la moyenne et l’actualiser pour obtenir le prix de l’option.</p>
 <section id="méthode-1-simulation-de-la-loi-de-x_5x_0" class="level5">
 <h5 class="anchored" data-anchor-id="méthode-1-simulation-de-la-loi-de-x_5x_0">Méthode 1 : Simulation de la loi de <span class="math inline">\(X_5|X_0\)</span></h5>
-<div id="ab274f46" class="cell">
+<div id="8b62a61b" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1390,7 +1390,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance conditionnelle de X_5 | X_0 : </span><span class="sc">{</span>var_5_given_0<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="79be1f5a" class="cell">
+<div id="fa4792b8" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Ti_1 <span class="op">=</span> <span class="dv">5</span></span>
@@ -1442,7 +1442,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 </section>
 <section id="méthode-2-methode-de-diffusion" class="level5">
 <h5 class="anchored" data-anchor-id="méthode-2-methode-de-diffusion">Méthode 2 : Methode de diffusion</h5>
-<div id="97489f0a" class="cell">
+<div id="cdaaf8bf" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation Monte Carlo</span></span>
@@ -1499,7 +1499,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <p>Nous constatons qu’avec les deux méthodes, nous obtenons des prix d’options similaires (différent de 0.2bps). Cela confirme que les deux méthodes convergent vers le même résultat.</p>
 <p>En dégénérant le produit en faisant tendre la barrière à <span class="math inline">\(+\infty\)</span>, nous constatons que le prix de l’option call est égal au prix de marché du forward. En dégénérant le produit en faisant tendre la barrière à 0, nous constatons que le prix de l’option call est égal à 0.</p>
 <p>Cela est cohérent car lorsque la barrière est très élevée, le produit est équivalent à un forward et lorsque la barrière est nulle, le produit est équivalent à un call classique. La fonction que nous avons implémenté est donc cohérente et bien implémentée.</p>
-<div id="bcd41f94" class="cell">
+<div id="61830061" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Ti_1 <span class="op">=</span> <span class="dv">5</span></span>
@@ -1552,7 +1552,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <p><span class="math display">\[
 \text{Payoff} = \delta_i \max\Bigl( L_i(T_i) - K,\; 0 \Bigr) \mathbb{1}_{max_{i=1,\dots,5}(L_i(T_i) &lt; B)}
 \]</span></p>
-<div id="f74f4805" class="cell">
+<div id="c7356bb3" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option bermudienne</span></span>
@@ -1620,7 +1620,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 </details>
 </div>
 <p>L’un des paramètres important du modèle de Hull et White est la mean reversion <span class="math inline">\(\lambda\)</span>, qui caractérise la force de rappel à la moyenne du processus. Ce paramètre a un impact positive sur la valorisation de l’option, comme nous pouvons l’observer dans la figure ci dessous .</p>
-<div id="6bc9703a" class="cell">
+<div id="fb87f1c5" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Liste des lambda à tester</span></span>
@@ -1672,7 +1672,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>    results.append((lambda_, call_price,prob_toucher_barriere))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0ce88379" class="cell">
+<div id="c749e7a1" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionnel : Graphique de la sensibilité</span></span>
@@ -1688,7 +1688,7 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 </details>
 </div>
 <p>De plus, plus le paramètre de mean reversion <span class="math inline">\(\lambda\)</span> est élevé, plus la probabilité de toucher la barrière est faible. Inversement, une faible mean reversion laisse plus de liberté au processus pour explorer des valeurs extrêmes, augmentant ainsi la probabilité de franchir la barrière.</p>
-<div id="2b9d6b63" class="cell">
+<div id="9e81ab1d" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, probabilities, marker<span class="op">=</span><span class="st">'o'</span>)</span>
