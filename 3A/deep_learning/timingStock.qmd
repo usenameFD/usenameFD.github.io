@@ -28,6 +28,22 @@ As with any other Deep Learning endeavor, the single most important and necessar
 
 
 ```{python}
-
+# Specify the stock Ticker
+ticker = "AAPL"
+data = yf.download(tickers=ticker, start="01-01-1980", end="12-31-2022")
 ```
-data = yf.download(tickers="AAPL", start="01-01-1980", end="12-31-2022")
+Now we compute the return, cumulative return and momentum to use.
+
+
+```{python}
+# Rename '% Return' column to 'Ret'
+df = data["Close"]
+
+# Define the name variable
+df['Ret'] = data["Close"]
+
+# Set 'Date' as index and keep only 'Ret' column
+df = df.dropna()
+
+df.head()
+```
