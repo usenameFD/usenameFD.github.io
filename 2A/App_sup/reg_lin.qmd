@@ -1,7 +1,7 @@
 ---
 title: La régression linéaire
 author:
-  - Cheryl Kouadio
+  - Franck Deba
 date: "2024-06-14"
 ---
 

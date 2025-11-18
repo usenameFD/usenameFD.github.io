@@ -1,0 +1,51 @@
+---
+title: "Multilayer Perceptron: Market Timing in Stock (AAPL)" 
+sidebar: auto
+author:
+  name: Franck Deba
+date: "2025-11-18"
+---
+
+## Introduction
+
+In this project we will try to design a strategy that times the return of Apple stock ('AAPL'). For that, we will employ an MLP network that aims to predict whether the future return of AAPL is positive or negative. Based on the predictions from the model, we will later on check how our strategy performs.
+
+Note: *The code is adapted to run on any stock using its Ticker.*
+
+```{python}
+# Required packages
+import tensorflow as tf
+from tensorflow import keras
+import keras_tuner as kt
+import numpy as np
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
+```
+
+## Data and sources
+
+As with any other Deep Learning endeavor, the single most important and necessary ingredient is data. We will retrieve Apple stock price data from Yahoo! Finance using the famous **yfinance** library in Python.
+
+```{python}
+# Specify the stock Ticker
+ticker = "AAPL"
+data = yf.download(tickers=ticker, start="01-01-1980", end="12-31-2022")
+```
+
+Now we compute the return, cumulative return and momentum to use.
+
+```{python}
+# Rename '% Return' column to 'Ret'
+df = data["Close"]
+
+# Define the name variable
+df['Ret'] = data["Close"]
+
+# Set 'Date' as index and keep only 'Ret' column
+df = df.dropna()
+
+df.head()
+```

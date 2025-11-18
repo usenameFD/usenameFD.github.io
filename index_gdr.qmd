@@ -43,19 +43,19 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Calibration avec le modèle de Black-Scholes](3A/proc_stochastique/modele_bs.qmd)
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
-- [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
-  - [Estimation de la volatilité avec le filtre bootstrap](3A/proc_stochastique/modele_heston.qmd)
-  - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)](3A/proc_stochastique/APF_filter.qmd)
+- [Modèle de Heston](projects/Calibration/HestonModel.ipynb) :
+  - [Estimation de la volatilité avec le filtre bootstrap]()
+  - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)]()
 - [Courbes de taux (Construction d'une courbe ZC, Modèle Hull-White)](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
 :::
 
 ## 💼 Asset Management
 
 ::: {.blog-section}
-- [Risque de marché](3A/gestion_actifs/TP-1.qmd)
-- [Risque de liquidité](3A/gestion_actifs/TP-2.qmd)
-- [Risque de valorisation, de crédit, etc.](3A/gestion_actifs/TP-3.qmd)
-- [Risque climatique **TO DO**](https://github.com/usenameFD/ST-Climat)
+- [Risque de marché](projects/Liquidity/AssetLiquidity.ipynb)
+- [Risque de liquidité]()
+- [Risque de valorisation, de crédit, etc.]()
+- [Risque climatique **TO DO**]()
 :::
 
 ## 💰 Asset Pricing

@@ -1,0 +1,2846 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Donnée de catastrophes naturelles reconnues – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#cartes-des-communes-de-france" id="toc-cartes-des-communes-de-france" class="nav-link active" data-scroll-target="#cartes-des-communes-de-france">Cartes des communes de France</a></li>
+  <li><a href="#indicateurs-de-risque-physique" id="toc-indicateurs-de-risque-physique" class="nav-link" data-scroll-target="#indicateurs-de-risque-physique">Indicateurs de risque physique</a></li>
+  <li><a href="#matching-indicateurs-de-risque-et-catnat" id="toc-matching-indicateurs-de-risque-et-catnat" class="nav-link" data-scroll-target="#matching-indicateurs-de-risque-et-catnat">Matching indicateurs de risque et catnat</a></li>
+  <li><a href="#stat-desc" id="toc-stat-desc" class="nav-link" data-scroll-target="#stat-desc">Stat Desc</a></li>
+  <li><a href="#discrétisation" id="toc-discrétisation" class="nav-link" data-scroll-target="#discrétisation">Discrétisation</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Donnée de catastrophes naturelles reconnues</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="8fa3f9c3-ca3f-4e05-8f7c-e50b8baade9f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:42.761222Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:42.759303Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:42.770637Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:42.768473Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:42.761162Z&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> myFunctions <span class="im">import</span> <span class="op">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="1b52345c-4dcc-4528-b53d-e008e24bc939" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:44.355454Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:44.353696Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:45.073357Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:45.071973Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:44.355366Z&quot;}}" data-execution_count="2">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importation des données</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Aléa reconnus sur les communes</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>risque <span class="op">=</span> pd.read_csv(<span class="st">"../Data/risq_gaspar.csv"</span>, sep <span class="op">=</span> <span class="st">";"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># catnat reconnues</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>catnat <span class="op">=</span> pd.read_csv(<span class="st">"../Data/catnat_gaspar.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\2434091482.py:6: DtypeWarning: Columns (3) have mixed types. Specify dtype option on import or set low_memory=False.
+  catnat = pd.read_csv("../Data/catnat_gaspar.csv", sep=";")</code></pre>
+</div>
+</div>
+<div id="bac48892-0f05-4b71-8989-07e41a32dce4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:45.075126Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:45.074850Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:45.121634Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:45.120310Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:45.075101Z&quot;}}" data-execution_count="3">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spécification des aléas climatiques</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.lib_risque.isin([<span class="st">'Cyclone / Ouragan (vent)'</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Tempête et grains (vent)'</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                  ]), <span class="st">"lib_risque"</span>] <span class="op">=</span> <span class="st">"Phénomène atmosphérique"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.lib_risque.isin([<span class="st">'Inondation'</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Par une crue à débordement lent de cours d'eau"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Par une crue torrentielle ou à montée rapide de cours d'eau"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par ruissellement et coulée de boue'</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par submersion marine'</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par remontées de nappes naturelles'</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par lave torrentielle (torrent et talweg)'</span> </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque"</span>] <span class="op">=</span> <span class="st">"Inondation"</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.lib_risque.isin([<span class="st">'Mouvement de terrain'</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Glissement de terrain'</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Eboulement ou chutes de pierres et de blocs'</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Tassements différentiels'</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Recul du trait de côte et de falaises'</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Avancée dunaire'</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque"</span>] <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>risque_climat <span class="op">=</span> risque[risque.lib_risque.isin([<span class="st">'Avalanche'</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Phénomène atmosphérique"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Feu de forêt'</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Inondation"</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Mouvement de Terrain'</span> ])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="b53ab265-664a-4c56-b30a-35fa34d97d23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:45.798764Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:45.797079Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:46.105047Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:46.102228Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:45.798659Z&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>catnat.dat_deb <span class="op">=</span> pd.to_datetime(catnat.dat_deb)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>catnat.dat_fin <span class="op">=</span> pd.to_datetime(catnat.dat_fin)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>catnat.dat_pub_arrete <span class="op">=</span> pd.to_datetime(catnat.dat_pub_arrete)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>catnat.dat_pub_jo <span class="op">=</span> pd.to_datetime(catnat.dat_pub_jo)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>catnat.dat_maj <span class="op">=</span> pd.to_datetime(catnat.dat_maj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="433da8bf-0b61-47d3-81f7-3e8f1b322ce3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:46.400259Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:46.399803Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:46.455582Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:46.454021Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:46.400222Z&quot;}}" data-execution_count="5">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spécification des aléas climatiques</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.lib_risque_jo.isin([<span class="st">'Vents Cycloniques'</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Tempête'</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                     ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">"Phénomène atmosphérique"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.lib_risque_jo.isin([<span class="st">'Inondations et/ou Coulées de Boue'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Inondations Remontée Nappe'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Lave Torrentielle'</span>, <span class="st">'Coulée de Boue'</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">"Inondation"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.lib_risque_jo.isin([<span class="st">'Glissement de Terrain'</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvement de Terrain'</span>,<span class="st">'Effondrement et/ou Affaisement'</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Eboulement et/ou Chute de Blocs'</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Glissement et Effondrement de Terrain'</span>, </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvements de terrain différentiels consécutifs à la sécheresse et à la réhydratation des sols'</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Glissement et Eboulement Rocheux'</span>, </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvements de terrains (hors sécheresse géotechnique)'</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="180bddb0-b159-4110-a0e4-233f4a9a161f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:47.594719Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:47.592988Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:47.648519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:47.647260Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:47.594627Z&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restriction des catnat au périmètres des inondations</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>catnat_flood <span class="op">=</span> catnat[catnat.lib_risque_jo.isin([<span class="st">'Inondation'</span>])]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>catnat_flood.rename(columns <span class="op">=</span> {<span class="st">'lib_risque_jo'</span>: <span class="st">'lib_risque'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>catnat_flood.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3926924251.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  catnat_flood.rename(columns = {'lib_risque_jo': 'lib_risque'}, inplace=True)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_nat_catnat</th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">num_risque_jo</th>
+<th data-quarto-table-cell-role="th">lib_risque</th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">dat_fin</th>
+<th data-quarto-table-cell-role="th">dat_pub_arrete</th>
+<th data-quarto-table-cell-role="th">dat_pub_jo</th>
+<th data-quarto-table-cell-role="th">dat_maj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1</th>
+<td>BUDD8750038A</td>
+<td>2B050</td>
+<td>Calvi</td>
+<td>54</td>
+<td>Inondation</td>
+<td>1987-01-14</td>
+<td>1987-01-15</td>
+<td>1987-06-24</td>
+<td>1987-07-10</td>
+<td>2022-05-20 15:53:47.111</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>BUDD8750038A</td>
+<td>30006</td>
+<td>Aimargues</td>
+<td>54</td>
+<td>Inondation</td>
+<td>1987-02-11</td>
+<td>1987-02-13</td>
+<td>1987-06-24</td>
+<td>1987-07-10</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<td>BUDD8750038A</td>
+<td>30020</td>
+<td>Aubord</td>
+<td>54</td>
+<td>Inondation</td>
+<td>1987-02-11</td>
+<td>1987-02-13</td>
+<td>1987-06-24</td>
+<td>1987-07-10</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>BUDD8750038A</td>
+<td>30033</td>
+<td>Beauvoisin</td>
+<td>54</td>
+<td>Inondation</td>
+<td>1987-02-11</td>
+<td>1987-02-13</td>
+<td>1987-06-24</td>
+<td>1987-07-10</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>BUDD8750038A</td>
+<td>30036</td>
+<td>Bernis</td>
+<td>54</td>
+<td>Inondation</td>
+<td>1987-02-11</td>
+<td>1987-02-13</td>
+<td>1987-06-24</td>
+<td>1987-07-10</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="784149c7-ec7f-4c77-b10e-ebe461e4f004" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:48.338006Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:48.337302Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:48.385385Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:48.383048Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:48.337889Z&quot;}}" data-execution_count="7">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"duree"</span>] <span class="op">=</span> catnat_flood.dat_fin <span class="op">-</span> catnat_flood.dat_deb</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"dat_fin"</span>] <span class="op">=</span> catnat_flood.dat_fin.dt.year </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"dat_deb"</span>] <span class="op">=</span> catnat_flood.dat_deb.dt.year </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3439210746.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  catnat_flood["duree"] = catnat_flood.dat_fin - catnat_flood.dat_deb
+C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3439210746.py:2: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  catnat_flood["dat_fin"] = catnat_flood.dat_fin.dt.year
+C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3439210746.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  catnat_flood["dat_deb"] = catnat_flood.dat_deb.dt.year</code></pre>
+</div>
+</div>
+<div id="65a7d673-4e3c-4798-b398-d6cc6af761f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:50.140185Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:50.138238Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:50.279195Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:50.277703Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:50.140100Z&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>catnat_flood.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Index: 147515 entries, 1 to 261330
+Data columns (total 11 columns):
+ #   Column          Non-Null Count   Dtype          
+---  ------          --------------   -----          
+ 0   cod_nat_catnat  147515 non-null  object         
+ 1   cod_commune     147515 non-null  object         
+ 2   lib_commune     147515 non-null  object         
+ 3   num_risque_jo   147280 non-null  object         
+ 4   lib_risque      147515 non-null  object         
+ 5   dat_deb         147515 non-null  int32          
+ 6   dat_fin         147515 non-null  int32          
+ 7   dat_pub_arrete  147515 non-null  datetime64[ns] 
+ 8   dat_pub_jo      147515 non-null  datetime64[ns] 
+ 9   dat_maj         147515 non-null  datetime64[ns] 
+ 10  duree           147515 non-null  timedelta64[ns]
+dtypes: datetime64[ns](3), int32(2), object(5), timedelta64[ns](1)
+memory usage: 12.4+ MB</code></pre>
+</div>
+</div>
+<section id="cartes-des-communes-de-france" class="level1">
+<h1>Cartes des communes de France</h1>
+<div id="62463181-fbcd-4184-b839-d066c88c5ec5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:13:27.197611Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:13:27.196966Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:00.509394Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:00.507757Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:13:27.197550Z&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carte des communes de france</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>carte_france <span class="op">=</span> gpd.read_file(<span class="st">'../Carte France/communes-20220101.shp'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> Path(<span class="st">"../Carte France/communes-france-avec-polygon-2025.json"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes de france</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>geo_data <span class="op">=</span> json.loads(file_path.read_text(encoding<span class="op">=</span><span class="st">'utf-8'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="54c90ec8-8057-40b8-bd1f-dba18a1cc266" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.859529Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.859143Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.867260Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.866182Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.859492Z&quot;}}" data-execution_count="10">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>geo_data.keys()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>dict_keys(['metadata', 'colonnes', 'data'])</code></pre>
+</div>
+</div>
+<div id="34061364-6cbb-4dec-b1f2-b6c314dcdaeb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.885039Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.884593Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.898132Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.896928Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.884985Z&quot;}}" data-execution_count="11">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(geo_data[<span class="st">'metadata'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'Description': 'Données principales des communes / villes en France avec les '
+                'codes permettants de rattacher une commune à un jeu de '
+                'données',
+ 'Fichier généré le': '2025-02-21'}</code></pre>
+</div>
+</div>
+<div id="1a9e0077-0354-4db5-92af-ad3d8e5e5b54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.900069Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.899752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.927274Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.924018Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.900043Z&quot;}}" data-execution_count="12">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(geo_data[<span class="st">'colonnes'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'academie_code': "Code de l'académie de rattachement des écoles de la commune",
+ 'academie_nom': "Nom de l'académie de rattachement",
+ 'altitude_maximale': 'Altitude maximale, en m',
+ 'altitude_minimale': 'Altitude minimale, en m',
+ 'altitude_moyenne': 'Altitude moyenne, en m',
+ 'canton_code': 'Code Canton de la commune',
+ 'canton_nom': 'Nom du canton de la commune',
+ 'code_insee': "Code commune, Code INSEE, Code assigné par l'INSEE à la "
+               'commune',
+ 'code_insee_centre_zone_emploi': 'Code INSEE de la commune centre de la zone '
+                                  "d'emploi",
+ 'code_postal': 'Code postal principal la commune',
+ 'code_unite_urbaine': "Code INSEE de l'unité urbaine (agglomération). Si la "
+                       "commune est hors unité urbaine, il s'agit du code du "
+                       'département suivi par trois 0.',
+ 'codes_postaux': 'Codes postaux rattachés à la commune',
+ 'densite': 'Densité de la commune, en habitant au km2',
+ 'dep_code': "Code département assigné par l'INSEE au département de la "
+             'commune',
+ 'dep_nom': 'Nom du département où est située la commune',
+ 'epci_code': 'Code EPCI (établissements publics de coopération '
+              "intercommunale) assigné par l'INSEE à la région de la commune",
+ 'epci_nom': "Nom de l'EPCI où est située la commune",
+ 'gentile': 'Gentilé (nom des habitants)',
+ 'grille_densite': "Grille communale de densité à 7 niveaux, selon l'INSEE",
+ 'grille_densite_texte': 'Texte de la grille communale de densité',
+ 'latitude_centre': 'Latitude du centroïde du territoire communale',
+ 'latitude_mairie': 'Latitude de la mairie',
+ 'longitude_centre': 'Longitude du centroïde du territoire communale',
+ 'longitude_mairie': 'Longitude de la mairie',
+ 'niveau_equipements_services': 'Niveau des équipements et des services, selon '
+                                "l'INSEE (de 0 à 4)",
+ 'niveau_equipements_services_texte': 'Texte du niveau des équipements et des '
+                                      'services',
+ 'nom_a': 'Nom de la commune, précédé de la préposition à, au ou aux et de '
+          "l'article de la commune, le cas échéant (ex: au Havre)",
+ 'nom_de': "Nom de la commune, précédé de la préposition d', de, du ou des et "
+           "de l'article de la commune, le cas échéant (ex: du Havre)",
+ 'nom_sans_accent': 'Nom de la commune sans accent, caractères spéciaux ou '
+                    'espaces',
+ 'nom_sans_pronom': 'Nom de la commune, sans son article le cas échéant (ex: '
+                    'Havre)',
+ 'nom_standard': 'Nom normalisé de la commune, avec son article (ex: Le Havre)',
+ 'nom_standard_majuscule': 'Nom de la commune en majuscule (ex: LE HAVRE)',
+ 'nom_unite_urbaine': "Nom de l'unité urbaine (nom de l'agglomération)",
+ 'polygone': 'Géométrie simplifiée de la commune',
+ 'population': 'Population municipale',
+ 'reg_code': "Code région assigné par l'INSEE à la région de la commune",
+ 'reg_nom': 'Nom de la région où est située la commune',
+ 'statut_commune_unite_urbain': "Place de la commune dans l'unité urbaine (H: "
+                                'Hors unité urbaine, C: Ville-centre, B: '
+                                'Commune banlieue, I: Ville isolée)',
+ 'superficie_hectare': 'Superficie de la commune, en hectare',
+ 'superficie_km2': 'Superficie de la commune, en km2',
+ 'taille_unite_urbain': "Taille de l'unité urbaine",
+ 'type_commune_unite_urbain': 'Type de commune (Hors unité urbaine ou Unité '
+                              'urbaine)',
+ 'typecom': 'Type de la commune en version abrégée (COM, COMA, COMD, ARM)',
+ 'typecom_texte': 'Type de la commune en version textuelle',
+ 'url_villedereve': 'URL de la page Ville de rêve de la commune',
+ 'url_wikipedia': 'URL de la page wikipédia de la commune',
+ 'zone_emploi': "Zone d'emploi de la commune, défini par l'INSEE"}</code></pre>
+</div>
+</div>
+<div id="74adde61-32b0-490e-a379-abb534c406bf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.930324Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.929917Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.941096Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.939659Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.930290Z&quot;}}" data-execution_count="13">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> [<span class="st">'code_insee'</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">'nom_standard'</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">'reg_code'</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">'reg_nom'</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">'dep_code'</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">'dep_nom'</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">'code_postal'</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">'latitude_centre'</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">'longitude_centre'</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">'polygone'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="f7da63a9-14e4-4680-94f1-4f713c453eab" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.942926Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.942519Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:03.706882Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:03.705699Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.942887Z&quot;}}" data-execution_count="14">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Polygon</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>geo_data_commune <span class="op">=</span> pd.DataFrame(geo_data[<span class="st">'data'</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>geo_data_commune <span class="op">=</span> geo_data_commune[header]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>geo_data_commune <span class="op">=</span> gpd.GeoDataFrame(geo_data_commune,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                                   geometry<span class="op">=</span>gpd.points_from_xy(geo_data_commune[<span class="st">'latitude_centre'</span>], geo_data_commune[<span class="st">'longitude_centre'</span>]),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                                   crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="f2802bd4-1e1f-4fec-a823-1e1caafd2df1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:03.708342Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:03.708061Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:03.717822Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:03.716970Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:03.708318Z&quot;}}" data-execution_count="15">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>geo_data_commune.loc[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>code_insee                                                      01002
+nom_standard                                    L'Abergement-de-Varey
+reg_code                                                           84
+reg_nom                                          Auvergne-Rhône-Alpes
+dep_code                                                           01
+dep_nom                                                           Ain
+code_postal                                                     01640
+latitude_centre                                             46.008999
+longitude_centre                                                5.428
+polygone            [[45.9828, 5.4302], [45.9851, 5.4349], [45.997...
+geometry                           POINT (46.0089988708 5.4279999733)
+Name: 1, dtype: object</code></pre>
+</div>
+</div>
+<div id="0815db69-50c4-4e5f-9e30-2815f4a20bb9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:03.720545Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:03.720272Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:18.872730Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:18.871779Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:03.720519Z&quot;}}" data-execution_count="16">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>empty_polygon <span class="op">=</span> []</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, polygon <span class="kw">in</span> <span class="bu">enumerate</span>(geo_data_commune[<span class="st">'polygone'</span>]):</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(polygon)<span class="op">&gt;</span><span class="dv">2</span>:</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        geo_data_commune.loc[i,<span class="st">'polygone'</span>] <span class="op">=</span> Polygon(polygon)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        geo_data_commune.loc[i,<span class="st">'polygone'</span>] <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        empty_polygon.append(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fe9ea936-a6e2-4d4e-8f05-d653a0697e52" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:18.874475Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:18.873764Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:18.880082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:18.879429Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:18.874444Z&quot;}}" data-execution_count="17">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(empty_polygon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>107</code></pre>
+</div>
+</div>
+<div id="02cfe20d-fa51-4dc9-9fbb-d96890983942" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:18.929183Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:18.927578Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:18.984265Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:18.982036Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:18.929106Z&quot;}}" data-execution_count="18">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>geo_data_commune.rename(columns<span class="op">=</span>{<span class="st">'code_insee'</span>:<span class="st">'cod_commune'</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'dep_code'</span>:<span class="st">'cod_dep'</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'dep_nom'</span>:<span class="st">'lib_dep'</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'reg_code'</span>:<span class="st">'cod_reg'</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'reg_nom'</span>:<span class="st">'lib_reg'</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">'geometry'</span>: <span class="st">'centre_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>carte_france.rename(columns <span class="op">=</span> {<span class="st">'insee'</span>: <span class="st">'cod_commune'</span>, <span class="st">'nom'</span>: <span class="st">'lib_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="b2e7181f-d5a5-41fd-ac09-7620d4c9eb14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:17:48.989767Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:17:48.988328Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:17:49.001070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:17:48.998561Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:17:48.989686Z&quot;}}" data-execution_count="19">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> [<span class="st">'cod_commune'</span>,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'cod_reg'</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'lib_reg'</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'cod_dep'</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a> <span class="st">'lib_dep'</span>,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a> <span class="st">'code_postal'</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a> <span class="st">'centre_commune'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="adbcc29a-f5bf-4ae3-81a5-acd49539979b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:17:50.340097Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:17:50.338453Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:17:50.592086Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:17:50.589869Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:17:50.339978Z&quot;}}" data-execution_count="20">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>carte_france <span class="op">=</span> carte_france.merge(geo_data_commune[header], on<span class="op">=</span> <span class="st">'cod_commune'</span>, how<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>dom_tom_com <span class="op">=</span> [<span class="st">'971'</span>, <span class="st">'972'</span>, <span class="st">'973'</span>, <span class="st">'974'</span>, <span class="st">'976'</span>, <span class="co"># DOM</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'975'</span>, <span class="st">'977'</span>, <span class="st">'978'</span>, <span class="st">'986'</span>, <span class="st">'987'</span>, <span class="st">'988'</span>, <span class="st">'984'</span>, <span class="st">'989'</span>] <span class="co"># TOM/ COM </span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>hexagone <span class="op">=</span> carte_france[<span class="op">~</span>carte_france.cod_dep.isin(dom_tom_com)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="a4354e3d-8f7d-41c7-88fd-eb8dce98f10c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:25:15.355867Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:25:15.354306Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:25:27.588442Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:25:27.587243Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:25:15.355790Z&quot;}}" data-execution_count="21">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hexagone.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-22-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="indicateurs-de-risque-physique" class="level1">
+<h1>Indicateurs de risque physique</h1>
+<div id="21f74dda-c4cb-4412-b03f-585d6753c858" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:26:54.585355Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:26:54.584461Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:26:54.643996Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:26:54.642981Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:26:54.585281Z&quot;}}" data-execution_count="22">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data_climat_ref <span class="op">=</span> pd.read_table(<span class="st">"../Data/indicesALADIN63_CNRM-CM5_REF.txt"</span>, skiprows<span class="op">=</span><span class="dv">23</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>data_climat_rcp26 <span class="op">=</span> pd.read_table(<span class="st">"../Data/indicesALADIN63_CNRM-CM5_RCP26.txt"</span>,  skiprows<span class="op">=</span><span class="dv">23</span>, sep<span class="op">=</span><span class="st">";"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> [<span class="st">"point"</span>, <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"contexte"</span>, <span class="st">"dat_deb"</span>, <span class="st">"TAV"</span>, <span class="st">"PN20MM"</span>, <span class="st">"PQ90"</span>,<span class="st">"PQ99"</span>, <span class="st">"RR99"</span>]</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>row_temp <span class="op">=</span> data_climat_ref.columns</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>data_climat_ref <span class="op">=</span> data_climat_ref.iloc[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>data_climat_ref.columns <span class="op">=</span> header</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>data_climat_rcp26 <span class="op">=</span> data_climat_rcp26.iloc[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>data_climat_rcp26.columns <span class="op">=</span> header</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> pd.concat([data_climat_ref, data_climat_rcp26])</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">point</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">contexte</th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">TAV</th>
+<th data-quarto-table-cell-role="th">PN20MM</th>
+<th data-quarto-table-cell-role="th">PQ90</th>
+<th data-quarto-table-cell-role="th">PQ99</th>
+<th data-quarto-table-cell-role="th">RR99</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1990</td>
+<td>13.06</td>
+<td>6</td>
+<td>7.81</td>
+<td>20.39</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1991</td>
+<td>12.27</td>
+<td>1</td>
+<td>6.69</td>
+<td>16.46</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1992</td>
+<td>12.17</td>
+<td>4</td>
+<td>6.84</td>
+<td>19.21</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1993</td>
+<td>12.52</td>
+<td>4</td>
+<td>6.11</td>
+<td>20.11</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1994</td>
+<td>11.99</td>
+<td>4</td>
+<td>7.65</td>
+<td>20.06</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="1f7e39f5-5d09-4541-b35b-e168ad9eba0e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:26:54.834430Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:26:54.833676Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:26:54.860518Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:26:54.858902Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:26:54.834367Z&quot;}}" data-execution_count="23">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> gpd.GeoDataFrame(data_climat,</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                                  geometry<span class="op">=</span>gpd.points_from_xy(data_climat[<span class="st">'latitude'</span>], data_climat[<span class="st">'longitude'</span>]),</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                                   crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>data_climat.rename(columns<span class="op">=</span>{<span class="st">'geometry'</span>:<span class="st">'centre_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="142a2e36-52e1-48c4-a9df-3a694572f79f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:26:55.914089Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:26:55.913204Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:26:56.279461Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:26:56.278184Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:26:55.914019Z&quot;}}" data-execution_count="24">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variable de positions comparaison des distances</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>data_climat.set_geometry(<span class="st">'centre_commune'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>carte_france.set_geometry(<span class="st">'centre_commune'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> gpd.sjoin_nearest(data_climat, carte_france, how<span class="op">=</span><span class="st">'left'</span>, max_distance<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>d:\deb\ENSAI\cours3A\GIT\ST-Climat\.venv\Lib\site-packages\geopandas\array.py:403: UserWarning: Geometry is in a geographic CRS. Results from 'sjoin_nearest' are likely incorrect. Use 'GeoSeries.to_crs()' to re-project geometries to a projected CRS before this operation.
+
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">point</th>
+<th data-quarto-table-cell-role="th">latitude</th>
+<th data-quarto-table-cell-role="th">longitude</th>
+<th data-quarto-table-cell-role="th">contexte</th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">TAV</th>
+<th data-quarto-table-cell-role="th">PN20MM</th>
+<th data-quarto-table-cell-role="th">PQ90</th>
+<th data-quarto-table-cell-role="th">PQ99</th>
+<th data-quarto-table-cell-role="th">RR99</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">wikipedia</th>
+<th data-quarto-table-cell-role="th">surf_ha</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">cod_reg</th>
+<th data-quarto-table-cell-role="th">lib_reg</th>
+<th data-quarto-table-cell-role="th">cod_dep</th>
+<th data-quarto-table-cell-role="th">lib_dep</th>
+<th data-quarto-table-cell-role="th">code_postal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1990</td>
+<td>13.06</td>
+<td>6</td>
+<td>7.81</td>
+<td>20.39</td>
+<td>6</td>
+<td>...</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>fr:Sauzon</td>
+<td>2304.0</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1991</td>
+<td>12.27</td>
+<td>1</td>
+<td>6.69</td>
+<td>16.46</td>
+<td>1</td>
+<td>...</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>fr:Sauzon</td>
+<td>2304.0</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1992</td>
+<td>12.17</td>
+<td>4</td>
+<td>6.84</td>
+<td>19.21</td>
+<td>4</td>
+<td>...</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>fr:Sauzon</td>
+<td>2304.0</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1993</td>
+<td>12.52</td>
+<td>4</td>
+<td>6.11</td>
+<td>20.11</td>
+<td>4</td>
+<td>...</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>fr:Sauzon</td>
+<td>2304.0</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>11741</td>
+<td>47.3229</td>
+<td>-3.2243</td>
+<td>REF</td>
+<td>1994</td>
+<td>11.99</td>
+<td>4</td>
+<td>7.65</td>
+<td>20.06</td>
+<td>4</td>
+<td>...</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>fr:Sauzon</td>
+<td>2304.0</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<div id="ae940f58-a8a3-47b5-8509-7c0285cf1c2d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:26:58.807066Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:26:58.806269Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:26:58.828340Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:26:58.826368Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:26:58.806998Z&quot;}}" data-execution_count="25">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> data_climat[[<span class="st">'contexte'</span>,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">'dat_deb'</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">'TAV'</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">'PN20MM'</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">'PQ90'</span>,</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">'PQ99'</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">'RR99'</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'centre_commune'</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">'cod_commune'</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">'lib_commune'</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">'cod_reg'</span>,</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">'lib_reg'</span>,</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">'cod_dep'</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">'lib_dep'</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">'code_postal'</span>,</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>           <span class="st">'geometry'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="matching-indicateurs-de-risque-et-catnat" class="level1">
+<h1>Matching indicateurs de risque et catnat</h1>
+<div id="b271dbcb-0cb8-4c4f-bb61-204bf65e3d56" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:19:05.253233Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:19:05.251854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:19:07.462063Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:19:07.460514Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:19:05.253158Z&quot;}}" data-execution_count="26">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data_climat.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-27-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="ab32e706-3b7e-43de-92ea-ad331f4743ca" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:20:20.767011Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:20:20.766089Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:20:29.021266Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:20:29.019565Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:20:20.766905Z&quot;}}" data-execution_count="27">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data_climat.set_geometry(<span class="st">'geometry'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data_climat.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-28-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="ebc31ad8-ae9a-414a-ab66-313c0a70d2e8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:27:03.619248Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:27:03.618414Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:27:03.745954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:27:03.744774Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:27:03.619159Z&quot;}}" data-execution_count="28">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> data_climat.merge(catnat_flood[[<span class="st">'cod_commune'</span>, <span class="st">'dat_deb'</span>, <span class="st">'dat_fin'</span>, <span class="st">'duree'</span>]], on <span class="op">=</span> [<span class="st">"dat_deb"</span>, <span class="st">"cod_commune"</span>], how<span class="op">=</span><span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="e85eb42b-3310-401a-8a8a-bd440a8cce63" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:27:05.024830Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:27:05.023985Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:27:05.191709Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:27:05.190714Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:27:05.024759Z&quot;}}" data-execution_count="29">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">contexte</th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">TAV</th>
+<th data-quarto-table-cell-role="th">PN20MM</th>
+<th data-quarto-table-cell-role="th">PQ90</th>
+<th data-quarto-table-cell-role="th">PQ99</th>
+<th data-quarto-table-cell-role="th">RR99</th>
+<th data-quarto-table-cell-role="th">centre_commune</th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">cod_reg</th>
+<th data-quarto-table-cell-role="th">lib_reg</th>
+<th data-quarto-table-cell-role="th">cod_dep</th>
+<th data-quarto-table-cell-role="th">lib_dep</th>
+<th data-quarto-table-cell-role="th">code_postal</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">dat_fin</th>
+<th data-quarto-table-cell-role="th">duree</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>REF</td>
+<td>1990</td>
+<td>13.06</td>
+<td>6</td>
+<td>7.81</td>
+<td>20.39</td>
+<td>6</td>
+<td>POINT (47.3229 -3.2243)</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>NaN</td>
+<td>NaT</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>REF</td>
+<td>1991</td>
+<td>12.27</td>
+<td>1</td>
+<td>6.69</td>
+<td>16.46</td>
+<td>1</td>
+<td>POINT (47.3229 -3.2243)</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>NaN</td>
+<td>NaT</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>REF</td>
+<td>1992</td>
+<td>12.17</td>
+<td>4</td>
+<td>6.84</td>
+<td>19.21</td>
+<td>4</td>
+<td>POINT (47.3229 -3.2243)</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>NaN</td>
+<td>NaT</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>REF</td>
+<td>1993</td>
+<td>12.52</td>
+<td>4</td>
+<td>6.11</td>
+<td>20.11</td>
+<td>4</td>
+<td>POINT (47.3229 -3.2243)</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>NaN</td>
+<td>NaT</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>REF</td>
+<td>1994</td>
+<td>11.99</td>
+<td>4</td>
+<td>7.65</td>
+<td>20.06</td>
+<td>4</td>
+<td>POINT (47.3229 -3.2243)</td>
+<td>56241</td>
+<td>Sauzon</td>
+<td>53</td>
+<td>Bretagne</td>
+<td>56</td>
+<td>Morbihan</td>
+<td>56360</td>
+<td>MULTIPOLYGON (((-3.2645 47.3599, -3.26443 47.3...</td>
+<td>NaN</td>
+<td>NaT</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="bacc7dbc-3dca-4c51-8eff-4e4241169de0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:32:57.812233Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:32:57.810473Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:32:57.821321Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:32:57.820263Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:32:57.812123Z&quot;}}" data-execution_count="30">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data_climat[<span class="st">'cat_nat'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data_climat.loc[data_climat.dat_fin.isna(), <span class="st">'cat_nat'</span>] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="stat-desc" class="level1">
+<h1>Stat Desc</h1>
+<div id="11984eb4-f3d1-4711-a114-cc87a6f9d7f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:39:18.717200Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:39:18.715515Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:39:18.741365Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:39:18.739280Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:39:18.717129Z&quot;}}" data-execution_count="31">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data_climat[[<span class="st">'contexte'</span>, <span class="st">'dat_deb'</span>, <span class="st">'TAV'</span>, <span class="st">'PN20MM'</span>, <span class="st">'PQ90'</span>, <span class="st">'PQ99'</span>, <span class="st">'RR99'</span>,<span class="st">'cat_nat'</span>]]</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data_rcp <span class="op">=</span> data[data.contexte <span class="op">!=</span> <span class="st">'REF'</span>] </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>train_test_oot <span class="op">=</span> data[data.contexte <span class="op">==</span> <span class="st">'REF'</span>]</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>train_test_oot.drop(columns<span class="op">=</span>[<span class="st">'contexte'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\514289987.py:4: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  train_test_oot.drop(columns=['contexte'], inplace=True)</code></pre>
+</div>
+</div>
+<div id="995f8e53-1b16-431d-aae7-4e2ca056d9ac" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:39:28.432284Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:39:28.430166Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:39:28.475779Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:39:28.474112Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:39:28.432160Z&quot;}}" data-execution_count="32">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>train_test_oot.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">TAV</th>
+<th data-quarto-table-cell-role="th">PN20MM</th>
+<th data-quarto-table-cell-role="th">PQ90</th>
+<th data-quarto-table-cell-role="th">PQ99</th>
+<th data-quarto-table-cell-role="th">RR99</th>
+<th data-quarto-table-cell-role="th">cat_nat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>6896.000000</td>
+<td>6896.000000</td>
+<td>6896.000000</td>
+<td>6896.000000</td>
+<td>6896.000000</td>
+<td>6896.000000</td>
+<td>6896.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>1997.506235</td>
+<td>11.442807</td>
+<td>5.460412</td>
+<td>7.851459</td>
+<td>21.347710</td>
+<td>3.790313</td>
+<td>0.163283</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">std</th>
+<td>4.597059</td>
+<td>0.607228</td>
+<td>3.355927</td>
+<td>1.716521</td>
+<td>4.383474</td>
+<td>1.954552</td>
+<td>0.369651</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">min</th>
+<td>1990.000000</td>
+<td>9.590000</td>
+<td>0.000000</td>
+<td>3.320000</td>
+<td>11.440000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>1994.000000</td>
+<td>11.010000</td>
+<td>3.000000</td>
+<td>6.700000</td>
+<td>18.030000</td>
+<td>2.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>1998.000000</td>
+<td>11.430000</td>
+<td>5.000000</td>
+<td>7.680000</td>
+<td>21.010000</td>
+<td>4.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>2001.000000</td>
+<td>11.890000</td>
+<td>7.000000</td>
+<td>8.990000</td>
+<td>24.120000</td>
+<td>5.000000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">max</th>
+<td>2005.000000</td>
+<td>13.280000</td>
+<td>20.000000</td>
+<td>13.880000</td>
+<td>38.910000</td>
+<td>12.000000</td>
+<td>1.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="332166ba-7e5f-4103-9091-6f9da917b570" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:42:58.279289Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:42:58.278616Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:42:58.291833Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:42:58.290047Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:42:58.279234Z&quot;}}" data-execution_count="33">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> myFunctions <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>data_oot <span class="op">=</span> train_test_oot[train_test_oot.dat_deb <span class="op">&gt;</span> <span class="dv">2000</span>]</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>train_test <span class="op">=</span> train_test_oot[train_test_oot.dat_deb <span class="op">&lt;=</span> <span class="dv">2000</span>]</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>data_train, data_test <span class="op">=</span> sampleData(train_test, [<span class="st">'dat_deb'</span>, <span class="st">'cat_nat'</span>], frac <span class="op">=</span> <span class="fl">.2</span>, rand_state<span class="op">=</span><span class="dv">49</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>d:\deb\ENSAI\cours3A\GIT\ST-Climat\Notebooks\myFunctions.py:18: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df['strat_var'] = df[var].astype(str).agg('_'.join, axis=1)</code></pre>
+</div>
+</div>
+<div id="61d3b52b-04d3-4cfd-8a1f-a6188a2f7e58" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:46:31.287664Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:46:31.287044Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:46:31.458883Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:46:31.457611Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:46:31.287610Z&quot;}}" data-execution_count="34">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>describe_cat(data_train[[<span class="st">'dat_deb'</span>, <span class="st">'cat_nat'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Proportion de chaque catégorie dans dat_deb:
+dat_deb
+1999    0.094071
+2000    0.092490
+1993    0.091700
+1995    0.091436
+1990    0.090646
+1997    0.090382
+1994    0.090382
+1996    0.089855
+1991    0.089855
+1998    0.089592
+1992    0.089592
+Name: proportion, dtype: float64
+_._._._._._._._._._._._._._._._._._._.__._._
+
+Proportion de chaque catégorie dans cat_nat:
+cat_nat
+0    0.788669
+1    0.211331
+Name: proportion, dtype: float64
+_._._._._._._._._._._._._._._._._._._.__._._</code></pre>
+</div>
+</div>
+<div id="781efb8a" class="cell" data-execution_count="35">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stabilite_structurelle(data, var, datdelhis, title):</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> data.copy()</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># proportion mensuelle par catégorie</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> data.groupby([datdelhis, var]).size().reset_index(name<span class="op">=</span><span class="st">'count'</span>)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'freq'</span>] <span class="op">=</span> df.groupby([datdelhis])[<span class="st">'count'</span>].transform(<span class="kw">lambda</span> x: x <span class="op">/</span> x.<span class="bu">sum</span>()) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evolution mensuelle </span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    sns.lineplot(data<span class="op">=</span>df, x<span class="op">=</span>datdelhis, y<span class="op">=</span><span class="st">'freq'</span>, hue<span class="op">=</span>var, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">#plt.plot(df[datdelhis], df['freq'])</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Date d'observation"</span>)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Pourcentage (%)'</span>)</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="df18be44" class="cell" data-execution_count="36">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 15 vs autres</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> stabilite_structurelle(data_train, <span class="st">'cat_nat'</span>, <span class="st">'dat_deb'</span>, <span class="st">"Evolution temporelle du taux de commune touchées par une catastrophe naturelle"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-37-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="615d4d89-d9dc-48d9-babe-bec4e486fe79" class="cell" data-execution_count="37">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> hsic <span class="im">import</span> hsic_matrix</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>col_num <span class="op">=</span> [<span class="st">'TAV'</span>, <span class="st">'PN20MM'</span>, <span class="st">'PQ90'</span>, <span class="st">'PQ99'</span>, <span class="st">'RR99'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="77676bac" class="cell">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>Hsic, H_p_value <span class="op">=</span> hsic_matrix(data_train[col_num].to_numpy())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fc30816c" class="cell" data-execution_count="38">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(Hsic, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.1f'</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, cbar<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize plot title</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Matrice des corrélations'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[38]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="font-style:italic;color:rgb(95,135,135)"># Heatmap</span>
+<span class="ansi-green-fg">      2</span> plt.figure(figsize=(<span class="ansi-green-fg">14</span>, <span class="ansi-green-fg">12</span>))
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> sns.heatmap(<span class="ansi-yellow-bg">Hsic</span>, annot=<span style="font-weight:bold;color:rgb(0,135,0)">True</span>, fmt=<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">.1f</span><span class="ansi-yellow-fg">'</span>, cmap=<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">coolwarm</span><span class="ansi-yellow-fg">'</span>, cbar=<span style="font-weight:bold;color:rgb(0,135,0)">True</span>)
+<span class="ansi-green-fg">      5</span> <span style="font-style:italic;color:rgb(95,135,135)"># Customize plot title</span>
+<span class="ansi-green-fg">      6</span> plt.title(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">Matrice des corrélations</span><span class="ansi-yellow-fg">'</span>, fontsize=<span class="ansi-green-fg">16</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'Hsic' is not defined</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 1400x1200 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<div id="6643c3c2" class="cell">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Hsic</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="77">
+<pre><code>array([[0.02557051, 0.00022367, 0.00103387, 0.00018289, 0.00089636],
+       [0.00022367, 0.02296183, 0.00305776, 0.00922259, 0.00358092],
+       [0.00103387, 0.00305776, 0.02000884, 0.002818  , 0.0001718 ],
+       [0.00018289, 0.00922259, 0.002818  , 0.02206305, 0.00411396],
+       [0.00089636, 0.00358092, 0.0001718 , 0.00411396, 0.02201997]])</code></pre>
+</div>
+</div>
+<div id="a31a83a4" class="cell" data-execution_count="39">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrice des corrélations</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> data_train[col_num].corr()</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>))</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>sns.heatmap(corr_matrix, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'.1f'</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, cbar<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize plot title</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Matrice des corrélations'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-42-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="a40b0630" class="cell" data-execution_count="44">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> kruskal</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Kruskal-Wallis test for each feature</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> {}</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> col_num:  <span class="co"># Skip the 'Group' column</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    grouped_data <span class="op">=</span> [data_train[data_train[<span class="st">'cat_nat'</span>] <span class="op">==</span> g][col] <span class="cf">for</span> g <span class="kw">in</span> data_train[<span class="st">'cat_nat'</span>].unique()]</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    stat, p_value <span class="op">=</span> kruskal(<span class="op">*</span>grouped_data)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>    results[col] <span class="op">=</span> {<span class="st">'stat'</span>: stat, <span class="st">'p_value'</span>: p_value}</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert results to DataFrame</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame(results).T</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap visualization</span></span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">8</span>))</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>sns.heatmap(</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    results_df[[<span class="st">'stat'</span>, <span class="st">'p_value'</span>]],  <span class="co"># Show stats and p-values</span></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>    annot<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>    fmt<span class="op">=</span><span class="st">".2f"</span>,</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"coolwarm"</span>,</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>    cbar_kws<span class="op">=</span>{<span class="st">'label'</span>: <span class="st">'Value'</span>}</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Kruskal-Wallis Test Results'</span>)</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Feature'</span>)</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Metric'</span>)</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-43-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="609e72cb" class="cell" data-execution_count="45">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Var significatives</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>results_df[<span class="st">'significant'</span>] <span class="op">=</span> results_df[<span class="st">'p_value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="9f610ad7" class="cell" data-execution_count="46">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>results_df[results_df[<span class="st">'significant'</span>]].sort_values(<span class="st">'stat'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">stat</th>
+<th data-quarto-table-cell-role="th">p_value</th>
+<th data-quarto-table-cell-role="th">significant</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">TAV</th>
+<td>284.777537</td>
+<td>6.831544e-64</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PQ90</th>
+<td>110.232391</td>
+<td>8.715085e-26</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RR99</th>
+<td>47.373366</td>
+<td>5.867453e-12</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">PN20MM</th>
+<td>35.389648</td>
+<td>2.699177e-09</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">PQ99</th>
+<td>22.404541</td>
+<td>2.208512e-06</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="d7674de9" class="cell" data-execution_count="47">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>col_selected  <span class="op">=</span> selectFeatures(data_train, col_num <span class="op">=</span> col_num, target <span class="op">=</span> <span class="st">'cat_nat'</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[47]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> col_selected  = <span class="ansi-yellow-bg">selectFeatures</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">data_train</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">col_num</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">col_num</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">target</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-fg ansi-yellow-bg">cat_nat</span><span class="ansi-yellow-fg ansi-yellow-bg">'</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">)</span>
+
+<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">d:\deb\ENSAI\cours3A\GIT\ST-Climat\Notebooks\myFunctions.py:77</span>, in <span class="ansi-cyan-fg">selectFeatures</span><span class="ansi-blue-fg">(data, col_num, target, method)</span>
+<span class="ansi-green-fg">     75</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> col <span style="font-weight:bold;color:rgb(175,0,255)">in</span> col_num:
+<span class="ansi-green-fg">     76</span>     grouped_data = [data[data[target] == g][col] <span style="font-weight:bold;color:rgb(0,135,0)">for</span> g <span style="font-weight:bold;color:rgb(175,0,255)">in</span> data[target].unique()]
+<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">77</span>     stat, p_value = <span class="ansi-yellow-bg">kruskal</span>(*grouped_data)
+<span class="ansi-green-fg">     78</span>     results[col] = {<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">stat</span><span class="ansi-yellow-fg">'</span>: stat, <span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">p_value</span><span class="ansi-yellow-fg">'</span>: p_value}
+<span class="ansi-green-fg">     80</span> <span style="font-style:italic;color:rgb(95,135,135)"># Convert results to DataFrame</span>
+
+<span class="ansi-red-fg">NameError</span>: name 'kruskal' is not defined</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="discrétisation" class="level1">
+<h1>Discrétisation</h1>
+<div id="4ee9aea0" class="cell" data-execution_count="48">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> col_num:</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    plot_box_by_date(data_train, value_column <span class="op">=</span> col, show_outliers<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[48]</span><span class="ansi-green-fg">, line 2</span>
+<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> col <span style="font-weight:bold;color:rgb(175,0,255)">in</span> col_num:
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     <span class="ansi-yellow-bg">plot_box_by_date</span>(data_train, value_column = col, show_outliers=<span style="font-weight:bold;color:rgb(0,135,0)">False</span>)
+
+<span class="ansi-red-fg">NameError</span>: name 'plot_box_by_date' is not defined</pre>
+</div>
+</div>
+</div>
+<div id="6e3b9355" class="cell" data-execution_count="49">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> col_num:</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    sns.kdeplot(</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>data_train,  <span class="co"># Dataframe containing the data</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>col,  <span class="co"># Column to be plotted on the x-axis</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    hue<span class="op">=</span><span class="st">'cat_nat'</span>,  <span class="co"># Column to define categories/colors</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    fill<span class="op">=</span><span class="va">True</span>,  <span class="co"># Fill the area under the KDE curve</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>    common_norm<span class="op">=</span><span class="va">False</span>,  <span class="co"># Normalize separately for each hue level</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.5</span> <span class="co"># Transparency of the fill</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-48-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-48-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-48-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-48-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-48-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="64e66a72" class="cell" data-execution_count="63">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> concentration_plot(data, hcr, target, date_column, label<span class="op">=</span><span class="st">"HCR concentration through issue date"</span>, save_figures<span class="op">=</span><span class="va">False</span>, output_dir<span class="op">=</span><span class="st">"./"</span>):</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Plots volume concentration and default rate over time, with an option to save the figures.</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="co">    data (pd.DataFrame): Input DataFrame.</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co">    hcr (str): Column name for the risk class (e.g., 'CHR').</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="co">    target (str): Target column (e.g., default indicator).</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="co">    date_column (str): Column containing date/time information.</span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co">    label (str): Plot label.</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="co">    save_figures (bool): Whether to save the figures.</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a><span class="co">    output_dir (str): Directory to save the figures.</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>    df_score <span class="op">=</span> data.copy()</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure the date column is in datetime format</span></span>
+<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>    df_score[date_column] <span class="op">=</span> pd.to_datetime(df_score[date_column].astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">'-01-01'</span>)</span>
+<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Group by year and category, then calculate proportions</span></span>
+<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>    df_score <span class="op">=</span> df_score.groupby([pd.Grouper(key<span class="op">=</span>date_column, freq<span class="op">=</span><span class="st">'Y'</span>), hcr]).agg(</span>
+<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>        part_defaut<span class="op">=</span>(target, <span class="st">'sum'</span>), </span>
+<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>        volume<span class="op">=</span>(target, <span class="st">'count'</span>)</span>
+<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>    ).reset_index()</span>
+<span id="cb63-24"><a href="#cb63-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb63-25"><a href="#cb63-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute correct default rate per risk class per year</span></span>
+<span id="cb63-26"><a href="#cb63-26" aria-hidden="true" tabindex="-1"></a>    df_score[<span class="st">'part_defaut'</span>] <span class="op">=</span> df_score[<span class="st">'part_defaut'</span>] <span class="op">*</span> <span class="dv">100</span> <span class="op">/</span> df_score[<span class="st">'volume'</span>]</span>
+<span id="cb63-27"><a href="#cb63-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-28"><a href="#cb63-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute correct volume share per year</span></span>
+<span id="cb63-29"><a href="#cb63-29" aria-hidden="true" tabindex="-1"></a>    df_score[<span class="st">'volume'</span>] <span class="op">=</span> df_score.groupby(date_column)[<span class="st">'volume'</span>].transform(<span class="kw">lambda</span> x: x <span class="op">/</span> x.<span class="bu">sum</span>()) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb63-30"><a href="#cb63-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-31"><a href="#cb63-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Handle NaNs (if any)</span></span>
+<span id="cb63-32"><a href="#cb63-32" aria-hidden="true" tabindex="-1"></a>    df_score.fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb63-33"><a href="#cb63-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-34"><a href="#cb63-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># First Figure: Improved Volume Concentration (Combined)</span></span>
+<span id="cb63-35"><a href="#cb63-35" aria-hidden="true" tabindex="-1"></a>    fig1, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb63-36"><a href="#cb63-36" aria-hidden="true" tabindex="-1"></a>    sns.barplot(data<span class="op">=</span>df_score, x<span class="op">=</span>df_score[date_column].dt.strftime(<span class="st">'%Y'</span>), y<span class="op">=</span><span class="st">'volume'</span>, hue<span class="op">=</span>hcr, ax<span class="op">=</span>ax1, palette<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
+<span id="cb63-37"><a href="#cb63-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-38"><a href="#cb63-38" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="st">'Issue Year'</span>)</span>
+<span id="cb63-39"><a href="#cb63-39" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">'Concentration (%)'</span>)</span>
+<span id="cb63-40"><a href="#cb63-40" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="ss">f'Volume by </span><span class="sc">{</span>date_column<span class="sc">}</span><span class="ss"> over years'</span>)</span>
+<span id="cb63-41"><a href="#cb63-41" aria-hidden="true" tabindex="-1"></a>    ax1.legend(title<span class="op">=</span>hcr, bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)  <span class="co"># Move legend outside the plot</span></span>
+<span id="cb63-42"><a href="#cb63-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-43"><a href="#cb63-43" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb63-44"><a href="#cb63-44" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb63-45"><a href="#cb63-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-46"><a href="#cb63-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save the first figure if requested</span></span>
+<span id="cb63-47"><a href="#cb63-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> save_figures:</span>
+<span id="cb63-48"><a href="#cb63-48" aria-hidden="true" tabindex="-1"></a>        output_path <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">volume_concentration_combined.png"</span></span>
+<span id="cb63-49"><a href="#cb63-49" aria-hidden="true" tabindex="-1"></a>        fig1.savefig(output_path, bbox_inches<span class="op">=</span><span class="st">'tight'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb63-50"><a href="#cb63-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Saved combined volume concentration plot to </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb63-51"><a href="#cb63-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-52"><a href="#cb63-52" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb63-53"><a href="#cb63-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-54"><a href="#cb63-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Separate Figure for Each Risk Class (HCR)</span></span>
+<span id="cb63-55"><a href="#cb63-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cl_chr <span class="kw">in</span> df_score[hcr].unique():</span>
+<span id="cb63-56"><a href="#cb63-56" aria-hidden="true" tabindex="-1"></a>        fig, ax1 <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))  <span class="co"># Create a new figure for each risk class</span></span>
+<span id="cb63-57"><a href="#cb63-57" aria-hidden="true" tabindex="-1"></a>        seg_score <span class="op">=</span> df_score[df_score[hcr] <span class="op">==</span> cl_chr]  <span class="co"># Filter data for this class</span></span>
+<span id="cb63-58"><a href="#cb63-58" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb63-59"><a href="#cb63-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Improved Bar Plot (Concentration)</span></span>
+<span id="cb63-60"><a href="#cb63-60" aria-hidden="true" tabindex="-1"></a>        sns.barplot(data<span class="op">=</span>seg_score, x<span class="op">=</span>seg_score[date_column].dt.strftime(<span class="st">'%Y'</span>), y<span class="op">=</span><span class="st">'volume'</span>, ax<span class="op">=</span>ax1, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">'Concentration'</span>)</span>
+<span id="cb63-61"><a href="#cb63-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-62"><a href="#cb63-62" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Improved Line Plot for Default Rate (on secondary y-axis)</span></span>
+<span id="cb63-63"><a href="#cb63-63" aria-hidden="true" tabindex="-1"></a>        ax2 <span class="op">=</span> ax1.twinx()  <span class="co"># Create a secondary y-axis for default rate</span></span>
+<span id="cb63-64"><a href="#cb63-64" aria-hidden="true" tabindex="-1"></a>        sns.lineplot(data<span class="op">=</span>seg_score, x<span class="op">=</span>seg_score[date_column].dt.strftime(<span class="st">'%Y'</span>), y<span class="op">=</span><span class="st">'part_defaut'</span>, ax<span class="op">=</span>ax2, color<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'o'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Default Rate'</span>)</span>
+<span id="cb63-65"><a href="#cb63-65" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb63-66"><a href="#cb63-66" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add labels to the bars (Volume)</span></span>
+<span id="cb63-67"><a href="#cb63-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, (date, value) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(seg_score[date_column].dt.strftime(<span class="st">'%Y'</span>), seg_score.volume)):</span>
+<span id="cb63-68"><a href="#cb63-68" aria-hidden="true" tabindex="-1"></a>            ax1.text(i, value, <span class="ss">f'</span><span class="sc">{</span>value<span class="sc">:.1f}</span><span class="ss">%'</span>, color<span class="op">=</span><span class="st">'blue'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb63-69"><a href="#cb63-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-70"><a href="#cb63-70" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Add labels to the points (Default Rate)</span></span>
+<span id="cb63-71"><a href="#cb63-71" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, (date, value) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(seg_score[date_column].dt.strftime(<span class="st">'%Y'</span>), seg_score.part_defaut)):</span>
+<span id="cb63-72"><a href="#cb63-72" aria-hidden="true" tabindex="-1"></a>            ax2.text(i, value, <span class="ss">f'</span><span class="sc">{</span>value<span class="sc">:.1f}</span><span class="ss">%'</span>, color<span class="op">=</span><span class="st">'red'</span>, ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'bottom'</span>)</span>
+<span id="cb63-73"><a href="#cb63-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-74"><a href="#cb63-74" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Labels &amp; Title</span></span>
+<span id="cb63-75"><a href="#cb63-75" aria-hidden="true" tabindex="-1"></a>        ax1.set_xlabel(<span class="st">'Issue Year'</span>)</span>
+<span id="cb63-76"><a href="#cb63-76" aria-hidden="true" tabindex="-1"></a>        ax1.set_ylabel(<span class="st">'Concentration (%)'</span>)</span>
+<span id="cb63-77"><a href="#cb63-77" aria-hidden="true" tabindex="-1"></a>        ax2.set_ylabel(<span class="st">'Default Rate (%)'</span>)</span>
+<span id="cb63-78"><a href="#cb63-78" aria-hidden="true" tabindex="-1"></a>        ax1.set_title(<span class="ss">f'Volume and Default Rate for HRC_</span><span class="sc">{</span>cl_chr<span class="sc">}</span><span class="ss"> through </span><span class="sc">{</span>date_column<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb63-79"><a href="#cb63-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-80"><a href="#cb63-80" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Combine legends</span></span>
+<span id="cb63-81"><a href="#cb63-81" aria-hidden="true" tabindex="-1"></a>        lines, labels <span class="op">=</span> ax1.get_legend_handles_labels()</span>
+<span id="cb63-82"><a href="#cb63-82" aria-hidden="true" tabindex="-1"></a>        lines2, labels2 <span class="op">=</span> ax2.get_legend_handles_labels()</span>
+<span id="cb63-83"><a href="#cb63-83" aria-hidden="true" tabindex="-1"></a>        ax1.legend(lines <span class="op">+</span> lines2, labels <span class="op">+</span> labels2, loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb63-84"><a href="#cb63-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-85"><a href="#cb63-85" aria-hidden="true" tabindex="-1"></a>        plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb63-86"><a href="#cb63-86" aria-hidden="true" tabindex="-1"></a>        plt.tight_layout()</span>
+<span id="cb63-87"><a href="#cb63-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-88"><a href="#cb63-88" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save the individual figure if requested</span></span>
+<span id="cb63-89"><a href="#cb63-89" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> save_figures:</span>
+<span id="cb63-90"><a href="#cb63-90" aria-hidden="true" tabindex="-1"></a>            output_path <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>output_dir<span class="sc">}</span><span class="ss">volume_default_rate_HRC_</span><span class="sc">{</span>cl_chr<span class="sc">}</span><span class="ss">.png"</span></span>
+<span id="cb63-91"><a href="#cb63-91" aria-hidden="true" tabindex="-1"></a>            fig.savefig(output_path, bbox_inches<span class="op">=</span><span class="st">'tight'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb63-92"><a href="#cb63-92" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Saved plot for HRC_</span><span class="sc">{</span>cl_chr<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb63-93"><a href="#cb63-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-94"><a href="#cb63-94" aria-hidden="true" tabindex="-1"></a>        plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="540a4593" class="cell" data-execution_count="66">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>col_num</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<pre><code>['TAV', 'PN20MM', 'PQ90', 'PQ99', 'RR99']</code></pre>
+</div>
+</div>
+<div id="f63cf713" class="cell" data-execution_count="65">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">'cat_nat'</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>date_column <span class="op">=</span> <span class="st">'dat_deb'</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feat <span class="kw">in</span> col_num:</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> data_train.copy()</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    conditions, values, thresholds <span class="op">=</span> discretizer(df, feat, target, )</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'CHR'</span>] <span class="op">=</span> np.select(conditions, values)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>    concentration_plot(df, <span class="st">'CHR'</span>, target, date_column)</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>    resultats <span class="op">=</span> taux_defaut(df, <span class="st">'CHR'</span>, date_column, target)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>    CHR_plot(df, target, label<span class="op">=</span><span class="st">'train'</span>)</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Optimal thresholds </span></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Optimal thresholds: </span><span class="ch">\t</span><span class="sc">{</span>thresholds<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Relative Deviation</span></span>
+<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(resultats)</span>
+<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#taux_defaut(df, feat)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3037785039.py:20: FutureWarning: 'Y' is deprecated and will be removed in a future version, please use 'YE' instead.
+  df_score = df_score.groupby([pd.Grouper(key=date_column, freq='Y'), hcr]).agg(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-7.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-8.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-9.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimal thresholds:     [np.float64(7.415), 11.18, 11.68, 11.95, np.float64(15.375)]
+     Default rate  Relatif deviation  Gini index  Shannon entropy
+CHR                                                              
+4        0.102195                NaN    0.183502         0.329879
+3        0.166376          62.803124    0.277390         0.450094
+2        0.331126          99.022225    0.442963         0.634973
+1        0.423913          28.021739    0.488422         0.681524</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-11.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3037785039.py:20: FutureWarning: 'Y' is deprecated and will be removed in a future version, please use 'YE' instead.
+  df_score = df_score.groupby([pd.Grouper(key=date_column, freq='Y'), hcr]).agg(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-13.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-14.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-15.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-16.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-17.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-18.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-19.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimal thresholds:     [np.float64(-15.5), 1.5, 2.5, 8.5, np.float64(28.5)]
+     Default rate  Relatif deviation  Gini index  Shannon entropy
+CHR                                                              
+4        0.069388                NaN    0.129146         0.252052
+3        0.158273         128.099873    0.266446         0.436796
+2        0.216641          36.877408    0.339415         0.522623
+1        0.285470          31.771337    0.407954         0.598046</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-21.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3037785039.py:20: FutureWarning: 'Y' is deprecated and will be removed in a future version, please use 'YE' instead.
+  df_score = df_score.groupby([pd.Grouper(key=date_column, freq='Y'), hcr]).agg(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-23.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-24.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-25.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-26.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-27.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-28.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimal thresholds:     [np.float64(-3.0524999999999984), 5.32, 6.04, np.float64(19.079499999999996)]
+     Default rate  Relatif deviation  Gini index  Shannon entropy
+CHR                                                              
+1        0.166817                NaN    0.277978         0.450803
+2        0.328244          96.768815    0.441000         0.632928
+3        0.764151         132.799473    0.360449         0.546248</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-30.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3037785039.py:20: FutureWarning: 'Y' is deprecated and will be removed in a future version, please use 'YE' instead.
+  df_score = df_score.groupby([pd.Grouper(key=date_column, freq='Y'), hcr]).agg(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-32.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-33.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-34.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-35.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-36.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-37.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-38.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimal thresholds:     [np.float64(-6.3394999999999975), 17.48, 22.7, 25.37, np.float64(50.512499999999996)]
+     Default rate  Relatif deviation  Gini index  Shannon entropy
+CHR                                                              
+4        0.158854                NaN    0.267239         0.437765
+3        0.196925          23.965836    0.316291         0.496110
+1        0.233480          18.563056    0.357934         0.543447
+2        0.287023          22.932450    0.409282         0.599464</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-40.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_18984\3037785039.py:20: FutureWarning: 'Y' is deprecated and will be removed in a future version, please use 'YE' instead.
+  df_score = df_score.groupby([pd.Grouper(key=date_column, freq='Y'), hcr]).agg(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-42.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-43.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-44.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-45.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-46.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-47.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_PhysicalRisk_files/figure-html/cell-51-output-48.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimal thresholds:     [np.float64(-9.5), 1.5, 2.5, 3.5, np.float64(18.5)]
+     Default rate  Relatif deviation  Gini index  Shannon entropy
+CHR                                                              
+4        0.077882                NaN    0.143632         0.273565
+3        0.150830          93.665158    0.256160         0.424145
+2        0.196970          30.590909    0.316345         0.496173
+1        0.258049          31.009258    0.382919         0.571006</code></pre>
+</div>
+</div>
+<div id="b9fc8046" class="cell">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.5</span>, <span class="fl">2.5</span>, <span class="fl">3.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="e1cf2b14" class="cell" data-execution_count="93">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reformater les données</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> formater(df):</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> df.copy()</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1: Discretize 'TAV'</span></span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>    conditions <span class="op">=</span> [</span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'TAV'</span>]<span class="op">&lt;=</span> <span class="fl">11.18</span>),</span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'TAV'</span>]<span class="op">&gt;</span> <span class="fl">11.18</span>)<span class="op">&amp;</span>(data[<span class="st">'TAV'</span>]<span class="op">&lt;=</span><span class="fl">11.68</span>)),</span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'TAV'</span>]<span class="op">&gt;</span><span class="fl">11.68</span>)<span class="op">&amp;</span>(data[<span class="st">'TAV'</span>]<span class="op">&lt;=</span><span class="fl">11.95</span>)),</span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'TAV'</span>]<span class="op">&gt;</span> <span class="fl">11.95</span>)</span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">'TAV'</span>] <span class="op">=</span> np.select(conditions, values)</span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2: Discretize 'PN20MM'</span></span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a>    conditions <span class="op">=</span> [</span>
+<span id="cb78-17"><a href="#cb78-17" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'PN20MM'</span>]<span class="op">&lt;=</span><span class="fl">1.5</span>),</span>
+<span id="cb78-18"><a href="#cb78-18" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'PN20MM'</span>]<span class="op">&gt;</span><span class="fl">1.5</span>)<span class="op">&amp;</span>(data[<span class="st">'PN20MM'</span>]<span class="op">&lt;=</span><span class="fl">2.5</span>)),</span>
+<span id="cb78-19"><a href="#cb78-19" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'PN20MM'</span>]<span class="op">&gt;</span><span class="fl">2.5</span>)<span class="op">&amp;</span>(data[<span class="st">'PN20MM'</span>]<span class="op">&lt;=</span><span class="fl">8.5</span>)),</span>
+<span id="cb78-20"><a href="#cb78-20" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'PN20MM'</span>]<span class="op">&gt;</span><span class="fl">8.5</span>)</span>
+<span id="cb78-21"><a href="#cb78-21" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb78-22"><a href="#cb78-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-23"><a href="#cb78-23" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb78-24"><a href="#cb78-24" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">'PN20MM'</span>] <span class="op">=</span> np.select(conditions, values)</span>
+<span id="cb78-25"><a href="#cb78-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-26"><a href="#cb78-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3: Discretize 'PQ90'</span></span>
+<span id="cb78-27"><a href="#cb78-27" aria-hidden="true" tabindex="-1"></a>    conditions <span class="op">=</span> [</span>
+<span id="cb78-28"><a href="#cb78-28" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'PQ90'</span>]<span class="op">&lt;=</span><span class="fl">5.32</span>),</span>
+<span id="cb78-29"><a href="#cb78-29" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'PQ90'</span>]<span class="op">&gt;</span><span class="fl">5.32</span>)<span class="op">&amp;</span>(data[<span class="st">'PQ90'</span>]<span class="op">&lt;=</span><span class="fl">6.04</span>)),</span>
+<span id="cb78-30"><a href="#cb78-30" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'PQ90'</span>]<span class="op">&gt;</span><span class="fl">6.04</span>)</span>
+<span id="cb78-31"><a href="#cb78-31" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb78-32"><a href="#cb78-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-33"><a href="#cb78-33" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
+<span id="cb78-34"><a href="#cb78-34" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">'PQ90'</span>] <span class="op">=</span> np.select(conditions, values)</span>
+<span id="cb78-35"><a href="#cb78-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-36"><a href="#cb78-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4: Discretize 'PQ99'</span></span>
+<span id="cb78-37"><a href="#cb78-37" aria-hidden="true" tabindex="-1"></a>    conditions <span class="op">=</span> [</span>
+<span id="cb78-38"><a href="#cb78-38" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'PQ99'</span>]<span class="op">&lt;=</span><span class="fl">17.48</span>),</span>
+<span id="cb78-39"><a href="#cb78-39" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'PQ99'</span>]<span class="op">&gt;</span><span class="fl">17.48</span>)<span class="op">&amp;</span>(data[<span class="st">'PQ99'</span>]<span class="op">&lt;=</span><span class="fl">22.7</span>)),</span>
+<span id="cb78-40"><a href="#cb78-40" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'PQ99'</span>]<span class="op">&gt;</span><span class="fl">22.7</span>)<span class="op">&amp;</span>(data[<span class="st">'PQ99'</span>]<span class="op">&lt;=</span><span class="fl">25.37</span>)),</span>
+<span id="cb78-41"><a href="#cb78-41" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'PQ99'</span>]<span class="op">&gt;</span><span class="fl">25.37</span>)</span>
+<span id="cb78-42"><a href="#cb78-42" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb78-43"><a href="#cb78-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-44"><a href="#cb78-44" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb78-45"><a href="#cb78-45" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">'PQ99'</span>] <span class="op">=</span> np.select(conditions, values)</span>
+<span id="cb78-46"><a href="#cb78-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-47"><a href="#cb78-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5: Discretize 'RR99'</span></span>
+<span id="cb78-48"><a href="#cb78-48" aria-hidden="true" tabindex="-1"></a>    conditions <span class="op">=</span> [</span>
+<span id="cb78-49"><a href="#cb78-49" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'RR99'</span>]<span class="op">&lt;=</span><span class="fl">1.5</span>),</span>
+<span id="cb78-50"><a href="#cb78-50" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'RR99'</span>]<span class="op">&gt;</span><span class="fl">1.5</span>)<span class="op">&amp;</span>(data[<span class="st">'RR99'</span>]<span class="op">&lt;=</span><span class="fl">2.5</span>)),</span>
+<span id="cb78-51"><a href="#cb78-51" aria-hidden="true" tabindex="-1"></a>    ((data[<span class="st">'RR99'</span>]<span class="op">&gt;</span><span class="fl">2.5</span>)<span class="op">&amp;</span>(data[<span class="st">'RR99'</span>]<span class="op">&lt;=</span><span class="fl">3.5</span>)),</span>
+<span id="cb78-52"><a href="#cb78-52" aria-hidden="true" tabindex="-1"></a>    (data[<span class="st">'RR99'</span>]<span class="op">&gt;</span><span class="fl">3.5</span>)</span>
+<span id="cb78-53"><a href="#cb78-53" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb78-54"><a href="#cb78-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-55"><a href="#cb78-55" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb78-56"><a href="#cb78-56" aria-hidden="true" tabindex="-1"></a>    data[<span class="st">'RR99'</span>] <span class="op">=</span> np.select(conditions, values)</span>
+<span id="cb78-57"><a href="#cb78-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="f05c2137" class="cell" data-execution_count="94">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Training model</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> <span class="bu">format</span>(data_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="8bfba315" class="cell" data-execution_count="91">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[91]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span class="ansi-yellow-bg">df</span><span class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">head</span>()
+
+<span class="ansi-red-fg">AttributeError</span>: 'str' object has no attribute 'head'</pre>
+</div>
+</div>
+</div>
+<div id="457089fe" class="cell" data-execution_count="95">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="95">
+<pre><code>'      dat_deb    TAV  PN20MM  PQ90   PQ99  RR99  cat_nat\n4101     1991  10.80       4  6.71  19.23     5        0\n5598     1998  11.06       6  9.18  21.63     3        0\n1147     1998  11.28       2  6.53  16.50     2        0\n487      1993  11.77       1  6.87  14.42     1        0\n6567     1998  11.89       2  7.85  14.66     2        0\n...       ...    ...     ...   ...    ...   ...      ...\n6543     1990  12.11       5  9.42  20.87     5        0\n4501     1998  10.51       4  9.38  19.71     4        0\n5657     1992  10.64       6  7.50  25.85     7        0\n1630     1998  11.52       3  6.48  17.38     3        0\n4074     1996  10.96       6  6.89  22.38     4        0\n\n[3795 rows x 7 columns]'</code></pre>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
