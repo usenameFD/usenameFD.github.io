@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.ipynb"
 
 website:
   title: "Franck Deba - Quantitative Research"
@@ -18,9 +21,12 @@ website:
       - href: about.qmd
         text: À propos
 
-# DÉSACTIVER l'exécution globale
+# On désactive l’exécution globale
 execute:
   enabled: false
+  # ... mais PAS pour les notebooks !
+  exclude: 
+    - "*.ipynb"
 
 format:
   html:
