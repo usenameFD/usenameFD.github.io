@@ -1,99 +1,94 @@
 ---
-title: ""
+title: "Gestion des Risques"
 ---
 
 # Gestion des risques
 
-::: callout-note
+::: {.callout-note}
 Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m'efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu'ils serviront de guide précieux pour ceux qui suivront une voie similaire.
 :::
 
-### Analyse financière
+## 📊 Analyse financière
 
-::: blog-section
--   [Construction du bilan d'entreprise](3A/bilan_entreprise.qmd)
--   [Reglementation prudentielle **TO REWRITE**](3A/reglementation_prudentielle.qmd)
+::: {.blog-section}
+- [Construction du bilan d'entreprise](3A/bilan_entreprise.qmd)
+- [Règlementation prudentielle **TO REWRITE**](3A/reglementation_prudentielle.qmd)
 :::
 
-### Risques financiers
+## ⚠️ Risques financiers
 
-::::::::::: blog-section
--   [Définition du risque financier](3A/risque_def.qmd)
--   [Value-at-risk (VaR)](3A/value-at-risk/var_def.qmd) :
-    -   [Implémentation de la VaR sur python](projects/VaR/VaR.ipynb)
-    -   [Estimation de la CreditVaR à l'aide de la théorie des copules](projects/Liquidity/AssetLiquidity.ipynb)
-
-### Risque Climatique
-
-::: blog-section
--   [Exposition aux catastrophes naturelles en France](projects/Climate/Notebooks/02_ExpoClimatCommune.ipynb)
--   [Prédiction des catatrophes innondation en France](projects/Climate/Notebooks/03_PhysicalRisk.ipynb)
+::: {.blog-section}
+- [Définition du risque financier](3A/risque_def.qmd)
+- [Value-at-Risk (VaR)](3A/value-at-risk/var_def.qmd) :
+  - [Implémentation de la VaR sur Python](projects/VaR/VaR.ipynb)
+  - [Estimation de la CreditVaR avec copules](projects/Liquidity/AssetLiquidity.ipynb)
 :::
 
-### Scoring
+## 🌍 Risque Climatique
 
-::: blog-section
+::: {.blog-section}
+- [Exposition aux catastrophes naturelles en France](projects/Climate/Notebooks/02_ExpoClimatCommune.ipynb)
+- [Prédiction des catastrophes inondation en France](projects/Climate/Notebooks/03_PhysicalRisk.ipynb)
 :::
 
-### Calibrations de processus stochastique
+## 📈 Scoring
 
-::: blog-section
--   [Calibration avec le modèle de black-scholes](3A/proc_stochastique/modele_bs.qmd)
--   [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
--   [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
--   [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
-    -   [Estimation de la volatilité avec le filtre boostrap](3A/proc_stochastique/modele_heston.qmd)
-    -   [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)](3A/proc_stochastique/APF_filter.qmd)
--   [Courbes de taux (Construction d'une courbe ZC, Modèle Hull - White)](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
+::: {.blog-section}
+*Contenu à venir...*
 :::
 
-## Assets
+## 📐 Calibrations de processus stochastiques
 
-::: blog-section
--   [Introduction aux marchés financiers](00_Assets/markets_intro.qmd)
+::: {.blog-section}
+- [Calibration avec le modèle de Black-Scholes](3A/proc_stochastique/modele_bs.qmd)
+- [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
+- [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
+- [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
+  - [Estimation de la volatilité avec le filtre bootstrap](3A/proc_stochastique/modele_heston.qmd)
+  - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)](3A/proc_stochastique/APF_filter.qmd)
+- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull-White)](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
 :::
 
-### Asset management
+## 💼 Asset Management
 
-::: blog-section
--   [Risque de marché](3A/gestion_actifs/TP-1.qmd)
--   [Risque de liquidité](3A/gestion_actifs/TP-2.qmd)
--   [Risque de valorisation, de crédit etc.](3A/gestion_actifs/TP-3.qmd)
--   [Risque climatique **To Do**](https://github.com/usenameFD/ST-Climat)
+::: {.blog-section}
+- [Risque de marché](3A/gestion_actifs/TP-1.qmd)
+- [Risque de liquidité](3A/gestion_actifs/TP-2.qmd)
+- [Risque de valorisation, de crédit, etc.](3A/gestion_actifs/TP-3.qmd)
+- [Risque climatique **TO DO**](https://github.com/usenameFD/ST-Climat)
 :::
 
-### Asset pricing
+## 💰 Asset Pricing
 
-::: blog-section
--   [Pricing d'options vanilles **TO DO**]()
--   [Pricing de taux, swap, d'obligations **TO DO**]()
--   [Tracking error **TO DO**]()
--   [Construction de portefeuille markowitz **TO DO**]()
+::: {.blog-section}
+- [Pricing d'options vanilles **TO DO**]()
+- [Pricing de taux, swap, d'obligations **TO DO**]()
+- [Tracking error **TO DO**]()
+- [Construction de portefeuille Markowitz **TO DO**]()
 :::
 
-### Autres sujets
+## 🔍 Autres sujets
 
-::: blog-section
--   [Investissement socialement responsable](autres/ISR.qmd)
--   [Finance durable](autres/finance_durable.qmd)
--   [Corrélation de spearman vs Corrélation de pearson](autres/spearman-pearson.qmd)
+::: {.blog-section}
+- [Investissement socialement responsable](autres/ISR.qmd)
+- [Finance durable](autres/finance_durable.qmd)
+- [Corrélation de Spearman vs corrélation de Pearson](autres/spearman-pearson.qmd)
 :::
 
-## Projets et applications déployées
+## 🚀 Projets et applications déployées
 
-::: blog-section
-**Projets**
-
--   [Projet de séries temporelles **TO DO**](3A/rapports/rapport_series_temporelles.pdf)
--   [Projet de gestion de risques multiples](3A/rapports/Copulas.pdf)
--   [Projet de théorie de valeurs extrêmes](3A/rapports/projet_EVT.pdf)
--   [Projet de fin d'étude 1 (Margin of Conservatisme)](3A/rapports/PFE_EY.pdf)
--   [Projet de fin d'étude 2(Stress Test Climatique) **TDO DO**](3A/rapports/PFE_EY.pdf)
-
-**Applications déployées**
-
--   [Stock price prediction : ADOBE](https://github.com/usenameFD/Stock-Price-Prediction)
--   [Asset pricing and management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
--   [Back-Testing de la VaR](https://github.com/usenameFD/Risk-Management)
+### Projets académiques
+::: {.blog-section}
+- [Projet de séries temporelles **TO DO**](3A/rapports/rapport_series_temporelles.pdf)
+- [Projet de gestion de risques multiples](3A/rapports/Copulas.pdf)
+- [Projet de théorie des valeurs extrêmes](3A/rapports/projet_EVT.pdf)
+- [Projet de fin d'étude 1 (Margin of Conservatism)](3A/rapports/PFE_EY.pdf)
+- [Projet de fin d'étude 2 (Stress Test Climatique) **TO DO**](3A/rapports/PFE_EY.pdf)
 :::
-:::::::::::
+
+### Applications déployées
+::: {.blog-section}
+- [Stock price prediction : ADOBE](https://github.com/usenameFD/Stock-Price-Prediction)
+- [Asset pricing and management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
+- [Back-Testing de la VaR](https://github.com/usenameFD/Risk-Management)
+:::

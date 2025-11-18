@@ -860,11 +860,6 @@ Pour la mise en place de ces tests statistiques, nous avons besoin d'une échant
 
 
 PROBLÈME : au bout de 30j, s'il n'y a pas d'exceptions, on ne recalibre pas le modèle mais si au 31e jour il y a une exception, le test de kupiec echoue=> recalibrage.
-***References***:
-- [1] Kupiec, P. "Techniques for Verifying the Accuracy of Risk Management Models." Journal of Derivatives. Vol. 3, 1995, pp. 73–84.
-- [2] Haas, M. "New Methods in Backtesting." Financial Engineering, Research Center Caesar, Bonn, 2001.
-- [3] Christoffersen, P. "Evaluating Interval Forecasts." International Economic Review. Vol. 39, 1998, pp. 841–862.
-
 
 
 ```{python}

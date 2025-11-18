@@ -1,24 +1,9 @@
 project:
   type: website
   output-dir: docs
-  resources: img
-  render:
-    - "*.qmd"
-    - "*.ipynb"     # render notebooks as well
-    - "!ignored-dir/"
-
-execute:
-  cache: true
-  freeze: auto
-
-jupyter:
-  execute:
-    error: false
-    warning: false
-    message: false
 
 website:
-  title: ""
+  title: "Franck Deba - Quantitative Research"
   favicon: img/logo-bg.png
   back-to-top-navigation: true
   navbar:
@@ -27,23 +12,25 @@ website:
       - href: index.qmd
         text: Accueil
       - href: index_stat.qmd
-        text: Modélisation stat.
+        text: Modélisation Stat.
       - href: index_gdr.qmd
-        text: Gestion des risques
+        text: Gestion des Risques
       - href: about.qmd
         text: À propos
 
+# DÉSACTIVER l'exécution globale
+execute:
+  enabled: false
+
 format:
   html:
-    page-layout: full
-    code-fold: true            # improves readability
-    code-summary: "Afficher le code"
     theme:
-      light: flat
-      dark: superhero
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
     toc-location: left
     toc-title: "Sommaire"
-    df-print: paged            # better for notebooks
-  ipynb: default
+    code-fold: true
+    code-summary: "Afficher le code"
+    df-print: paged
