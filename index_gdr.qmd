@@ -4,91 +4,179 @@ title: "Gestion des Risques"
 
 # Gestion des risques
 
-::: {.callout-note}
-Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m'efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu'ils serviront de guide précieux pour ceux qui suivront une voie similaire.
+Cette section rassemble l’ensemble des ressources liées au Risk Management : analyse financière, risques de marché, risques de crédit, risques climatiques, calibration de modèles stochastiques, asset management, asset pricing et travaux académiques.  
+Les contenus sont structurés selon les principaux piliers méthodologiques de la discipline.
+
+---
+
+# 1. Analyse financière  
+## 1.1 Concepts fondamentaux
+::: {.blog-section}
+- **Structure du bilan d'entreprise**  
+  [Accéder au document](3A/bilan_entreprise.qmd)
+
+- **Règlementation prudentielle**  
+  Présentation des cadres réglementaires (CRR2, CRD5, Solvabilité II).  
+  [Accéder au document](3A/reglementation_prudentielle.qmd)
 :::
 
-## 📊 Analyse financière
+---
 
+# 2. Risques financiers  
+Présentation des notions fondamentales liées à l’ensemble des risques quantifiables (marché, crédit, liquidité, opérationnel, climatique).
+
+## 2.1 Notions générales
 ::: {.blog-section}
-- [Construction du bilan d'entreprise](3A/bilan_entreprise.qmd)
-- [Règlementation prudentielle **TO REWRITE**](3A/reglementation_prudentielle.qmd)
+- Définition du risque financier  
+  [Accéder](3A/risque_def.qmd)
 :::
 
-## ⚠️ Risques financiers
-
+## 2.2 Risk Measures  
+### Value-at-Risk (VaR) — théorie et pratique
 ::: {.blog-section}
-- [Définition du risque financier](3A/risque_def.qmd)
-- [Value-at-Risk (VaR)](3A/value-at-risk/var_def.qmd) :
-  - [Implémentation de la VaR sur Python](projects/VaR/VaR.ipynb)
-  - [Estimation de la CreditVaR avec copules](projects/Liquidity/AssetLiquidity.ipynb)
+- **Principes, hypothèses, propriétés (sous-additivité, cohérence)**  
+  [Document théorique](3A/value-at-risk/var_def.qmd)
+
+- **Implémentation Python (historique, paramétrique, Monte Carlo)**  
+  [Notebook d’implémentation](projects/VaR/VaR.ipynb)
+
+- **CreditVaR & risque de liquidité via copules**  
+  [Notebook](projects/Liquidity/AssetLiquidity.ipynb)
 :::
 
-## 🌍 Risque Climatique
+---
 
+# 3. Risques climatiques  
+Approche quantitative du risque physique (inondations, sécheresses, catastrophes naturelles) appliquée au territoire français.
+
+## 3.1 Exposition & vulnérabilité
 ::: {.blog-section}
-- [Exposition aux catastrophes naturelles en France](projects/Climate/Notebooks/02_ExpoClimatCommune.ipynb)
-- [Prédiction des catastrophes inondation en France](projects/Climate/Notebooks/03_PhysicalRisk.ipynb)
+- Exposition aux catastrophes naturelles par commune  
+  [Notebook](projects/Climate/Notebooks/02_ExpoClimatCommune.ipynb)
 :::
 
-## 📈 Scoring
-
+## 3.2 Modélisation prédictive
 ::: {.blog-section}
-*Contenu à venir...*
+- Modélisation du risque d’inondation et aléas physiques  
+  [Notebook](projects/Climate/Notebooks/03_PhysicalRisk.ipynb)
 :::
 
-## 📐 Calibrations de processus stochastiques
+---
 
+# 4. Calibration de modèles stochastiques  
+Section dédiée aux modèles continus et discrets utilisés en finance de marché.
+
+## 4.1 Diffusions classiques
 ::: {.blog-section}
-- [Calibration avec le modèle de Black-Scholes](3A/proc_stochastique/modele_bs.qmd)
-- [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
-- [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
-- [Modèle de Heston](projects/Calibration/HestonModel.ipynb) :
-  - [Estimation de la volatilité avec le filtre bootstrap]()
-  - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)]()
-- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull-White)](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
+- Modèle de Black-Scholes — calibration et estimation de la volatilité  
+  [Accéder](3A/proc_stochastique/modele_bs.qmd)
 :::
 
-## 💼 Asset Management
-
+## 4.2 Modèles à volatilité stochastique
 ::: {.blog-section}
-- [Risque de marché](projects/Liquidity/AssetLiquidity.ipynb)
-- [Risque de liquidité]()
-- [Risque de valorisation, de crédit, etc.]()
-- [Risque climatique **TO DO**]()
+- **Modèle de Taylor — Filtre de Kalman**  
+  [Document](3A/proc_stochastique/modele_log_sv-part1.qmd)
+
+- **Modèle de Taylor — Filtre particulaire bootstrap**  
+  [Document](3A/proc_stochastique/modele_log_sv-part2.qmd)
 :::
 
-## 💰 Asset Pricing
-
+## 4.3 Modèles avancés
 ::: {.blog-section}
-- [Pricing d'options vanilles **TO DO**]()
-- [Pricing de taux, swap, d'obligations **TO DO**]()
-- [Tracking error **TO DO**]()
-- [Construction de portefeuille Markowitz **TO DO**]()
+- **Modèle de Heston — Calibration & Analyse**  
+  [Notebook complet](projects/Calibration/HestonModel.ipynb)
+
+- **Courbes de taux (ZC, OIS) & Modèle Hull-White**  
+  [Notebook](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
 :::
 
-## 🔍 Autres sujets
+---
 
+# 5. Asset Management  
+Méthodes et outils utilisés dans la gestion de portefeuille institutionnelle.
+
+## 5.1 Risques associés aux portefeuilles
 ::: {.blog-section}
-- [Investissement socialement responsable](autres/ISR.qmd)
-- [Finance durable](autres/finance_durable.qmd)
-- [Corrélation de Spearman vs corrélation de Pearson](autres/spearman-pearson.qmd)
+- Risque de marché & liquidité (implémentations Python)  
+  [Notebook](projects/Liquidity/AssetLiquidity.ipynb)
+
+- Risque de valorisation, risque de crédit, risque climatique  
+  (contenus à venir)
 :::
 
-## 🚀 Projets et applications déployées
+## 5.2 Allocation d’actifs  
+Contenus en préparation :  
+Markowitz, front de Markowitz vs. robust optimisation, allocation sous contraintes, metrics d’évaluation.
 
-### Projets académiques
+---
+
+# 6. Asset Pricing  
+Méthodes analytiques et numériques pour la valorisation d’actifs.
+
+## 6.1 Modèles de valorisation  
 ::: {.blog-section}
-- [Projet de séries temporelles **TO DO**](3A/rapports/rapport_series_temporelles.pdf)
-- [Projet de gestion de risques multiples](3A/rapports/Copulas.pdf)
-- [Projet de théorie des valeurs extrêmes](3A/rapports/projet_EVT.pdf)
-- [Projet de fin d'étude 1 (Margin of Conservatism)](3A/rapports/PFE_EY.pdf)
-- [Projet de fin d'étude 2 (Stress Test Climatique) **TO DO**](3A/rapports/PFE_EY.pdf)
+Contenus à venir :  
+- [Options vanilles](projects/main_options.ipynb)
+- [Swaps, obligations](projects/main_options.ipynb) 
+- [Pricers numériques et calibrations](projects/main_options.ipynb)
+- [Tracking Error et mesures de performance](projects/main_options.ipynb)
+- [Derivative pricing 1](projects/WQU/Derivative%20Pricing%201.ipynb)
+- [Derivative pricing 2](projects/WQU/Derivative%20Pricing%202.ipynb)
 :::
 
-### Applications déployées
+---
+
+# 7. Sujets transverses en finance durable  
+Section dédiée aux enjeux ESG et aux approches quantitatives associées.
+
 ::: {.blog-section}
-- [Stock price prediction : ADOBE](https://github.com/usenameFD/Stock-Price-Prediction)
-- [Asset pricing and management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
-- [Back-Testing de la VaR](https://github.com/usenameFD/Risk-Management)
+- Investissement socialement responsable  
+  [Accéder](autres/ISR.qmd)
+
+- Finance durable : indicateurs, cadres réglementaires  
+  [Accéder](autres/finance_durable.qmd)
+
+- Corrélations : comparaison Spearman / Pearson  
+  [Accéder](autres/spearman-pearson.qmd)
+:::
+
+---
+
+# 8. Projets académiques  
+Documents PDF issus de projets universitaires.
+
+## 8.1 Projets de semestre
+::: {.blog-section}
+- Séries temporelles : ARIMA, ETS, stationnarité  
+  [PDF](3A/rapports/rapport_series_temporelles.pdf)
+
+- Gestion multi-risques via copules  
+  [PDF](3A/rapports/Copulas.pdf)
+
+- Théorie des valeurs extrêmes (EVT)  
+  [PDF](3A/rapports/projet_EVT.pdf)
+:::
+
+## 8.2 Projets de fin d’étude
+::: {.blog-section}
+- Margin of Conservatism (MoC)  
+  [PDF](3A/rapports/PFE_EY.pdf)
+
+- Stress Test Climatique (version à venir)  
+  [PDF](3A/rapports/PFE_EY.pdf)
+:::
+
+---
+
+# 9. Applications & dépôts GitHub
+
+::: {.blog-section}
+- Stock Price Prediction — Modèles ML appliqués aux séries financières  
+  [GitHub](https://github.com/usenameFD/Stock-Price-Prediction)
+
+- Asset Pricing & Management — modules de pricing numériques  
+  [GitHub](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
+
+- Back-testing de la VaR — implémentation Python  
+  [GitHub](https://github.com/usenameFD/Risk-Management)
 :::

@@ -3,6 +3,8 @@ title: ""
 listing:
   contents: 
     - 3A/**/*.qmd
+    - project/**/*.ipynb
+    - project/**/*.qmd
     - 2A/**/*.qmd
   type: grid
   sort: "date desc"

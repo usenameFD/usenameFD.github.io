@@ -4,12 +4,15 @@ title: ""
 
 # Théorie des valeurs extrêmes
 ::: {.blog-section}
-- [Résumé de la théorie des valeurs extrêmes](3A/EVT/EVT_resume.pdf)
+- [Résumé de la théorie des valeurs extrêmes](3A/rapports/projet_EVT.pdf)
 :::
 
-# Microéconométrie appliquée
+# Analyse des séries financières
 ::: {.blog-section}
-- [Résumé des méthodes de microéconométrie appliquée enseignées à la promo 2024-2025 ENSAI](2A/Courses.pdf)
+- [Feature selection criterion](projects/WQU/Financial%20Data%201.ipynb)
+- [Modeling non-stationarity and finding a unit Root Testing](projects/WQU/Financial%20Data%202.ipynb)
+- [Exploring financial data (skeness, kurtosis)](projects/WQU/Financial%20Econometrics%201.ipynb)
+- [VECM modeling and pair trading](projects/WQU/Financial%20Econometrics%202.ipynb)
 :::
 
 # Apprentissage supervisé
@@ -20,5 +23,11 @@ title: ""
 - [Feature selection](3A/Apprentisage-stat/Tp4.qmd)
 - [Régression ridge et lasso](3A/Apprentisage-stat/Tp1.qmd)
 - [CART & Random Forest](2A/App_sup/arbres_&_forets_aleatoires.html)
+:::
+
+# DeepLearning et NLP
+::: {.blog-section}
+- [DeepLearning](projects/DeepLearning/DL.ipynb)
+- [NLP](projects/DeepLearning/NLP.ipynb)
 :::
 

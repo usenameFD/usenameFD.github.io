@@ -161,3 +161,7 @@ zipp==3.23.0
 statsmodels
 arch
 plotly
+umap
+umap-learn
+seaborn
+xgboost
