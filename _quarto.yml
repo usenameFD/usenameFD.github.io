@@ -1,14 +1,12 @@
 project:
   type: website
   output-dir: docs
-  render:
-    - "*.qmd"
-    - "*.ipynb"
 
 website:
   title: "Franck Deba - Quantitative Research"
   favicon: img/logo-bg.png
   back-to-top-navigation: true
+
   navbar:
     logo: img/logo-bg.png
     left:
@@ -21,9 +19,10 @@ website:
       - href: about.qmd
         text: À propos
 
-# On désactive l’exécution globale
 execute:
   enabled: false
+  except:
+    - "**/*.ipynb"
 
 format:
   html:
@@ -31,6 +30,8 @@ format:
       light: flatly
       dark: darkly
     css: styles.css
+    include-after-body:
+      - _layouts/risk-management.html
     toc: true
     toc-location: left
     toc-title: "Sommaire"

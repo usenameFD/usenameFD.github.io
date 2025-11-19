@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Franck Deba">
+<meta name="description" content="VECM modelling and pair trading.">
 
-<title>Challenge 2: Modeling non-stationarity and finding an equilibrium – Franck Deba - Quantitative Research</title>
+<title>Financial Econometrics II – Franck Deba - Quantitative Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -360,9 +362,11 @@ window.Quarto = {
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
-  <li><a href="#definition" id="toc-definition" class="nav-link active" data-scroll-target="#definition">## 1. Definition</a></li>
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">## 2. Description</a></li>
-  <li><a href="#demonstration" id="toc-demonstration" class="nav-link" data-scroll-target="#demonstration">## 3. Demonstration</a>
+  <li><a href="#challenge-2-modeling-non-stationarity-and-finding-an-equilibrium" id="toc-challenge-2-modeling-non-stationarity-and-finding-an-equilibrium" class="nav-link active" data-scroll-target="#challenge-2-modeling-non-stationarity-and-finding-an-equilibrium">Challenge 2: Modeling non-stationarity and finding an equilibrium</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">1. Definition</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">2. Description</a></li>
+  <li><a href="#demonstration" id="toc-demonstration" class="nav-link" data-scroll-target="#demonstration">3. Demonstration</a>
   <ul class="collapse">
   <li><a href="#fetching-data" id="toc-fetching-data" class="nav-link" data-scroll-target="#fetching-data">3.1. Fetching data</a></li>
   <li><a href="#testing-for-stationarity" id="toc-testing-for-stationarity" class="nav-link" data-scroll-target="#testing-for-stationarity">3.2. Testing for stationarity</a></li>
@@ -375,11 +379,6 @@ window.Quarto = {
   <li><a href="#directions" id="toc-directions" class="nav-link" data-scroll-target="#directions">3.7. Directions</a></li>
   <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">3.8. Deployment</a></li>
   </ul></li>
-  <li><a href="#challenge-3" id="toc-challenge-3" class="nav-link" data-scroll-target="#challenge-3">Challenge 3</a>
-  <ul class="collapse">
-  <li><a href="#importing-data" id="toc-importing-data" class="nav-link" data-scroll-target="#importing-data">Importing data</a></li>
-  <li><a href="#test-for-multicollinearity" id="toc-test-for-multicollinearity" class="nav-link" data-scroll-target="#test-for-multicollinearity">Test for multicollinearity</a></li>
-  <li><a href="#deploying-models" id="toc-deploying-models" class="nav-link" data-scroll-target="#deploying-models">Deploying Models</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -394,13 +393,24 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Challenge 2: Modeling non-stationarity and finding an equilibrium</h1>
+<h1 class="title">Financial Econometrics II</h1>
 </div>
 
+<div>
+  <div class="description">
+    VECM modelling and pair trading.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Franck Deba </p>
+          </div>
+  </div>
     
   
     
@@ -411,8 +421,10 @@ window.Quarto = {
 </header>
 
 
+<section id="challenge-2-modeling-non-stationarity-and-finding-an-equilibrium" class="level1">
+<h1>Challenge 2: Modeling non-stationarity and finding an equilibrium</h1>
 <section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition">## 1. Definition</h2>
+<h2 class="anchored" data-anchor-id="definition">1. Definition</h2>
 <p>Vector error correlation models are related to vector autoregressive models (VARs). Given a n-dimensional of cointegrated time series <span class="math inline">\(X_t = (X_{1,t}, X_{2,t}, ..., X_{n,t})\)</span> the VECM is specified as:</p>
 <p><span class="math display">\[ \Delta X_t = C + \alpha \beta' X_{t-1} + \sum_{i=1}^{p-1} \Gamma_i \Delta X_{t-i} + \epsilon_t \]</span></p>
 <p>Where</p>
@@ -421,14 +433,13 @@ window.Quarto = {
 </blockquote>
 </section>
 <section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">## 2. Description</h2>
+<h2 class="anchored" data-anchor-id="description">2. Description</h2>
 <p>Adjustment vectors contain the coefficients that can bring the short-term deviation of the time series back to their long-term equilibrium relationship. The coefficients in adjustment vectors are error correction coefficients. Therefore, <span class="math inline">\(\Pi = \alpha \beta'\)</span> corrects the error gap that happened in the last period and brings short-term disequilibrium among time series back to their long-term equilibrium.</p>
 </section>
 <section id="demonstration" class="level2">
-<h2 class="anchored" data-anchor-id="demonstration">## 3. Demonstration</h2>
+<h2 class="anchored" data-anchor-id="demonstration">3. Demonstration</h2>
 <p>In this challenge, we aim to calibrate a Vector Error Correction Model (VECM), which requires the presence of cointegrated time series. As highlighted in the literature, financial time series—particularly stock prices—are often non-stationary but may exhibit long-run equilibrium relationships, making them suitable candidates for cointegration analysis.</p>
 <p>For this purpose, we consider daily adjusted stock prices for four major technology companies: Google, Apple, Microsoft, and Nvidia, spanning the period from 2016 to 2021. These firms operate within the same sector and are likely influenced by common macroeconomic and industry-specific factors, which may induce cointegrated behavior among their price series.</p>
-<hr>
 <div id="cell-2" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
@@ -484,7 +495,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -504,7 +515,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -521,7 +532,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1368,7 +1379,7 @@ S_t = -16.5637 + 1*AAPL_t + 0.6624*GOOGL_t \\
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1433,7 +1444,7 @@ Alternative Hypothesis: The process is weakly stationary.</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1476,7 +1487,7 @@ Alternative Hypothesis: The process is weakly stationary.</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1738,211 +1749,35 @@ dtype: float64</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Financial econometrics 2_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="Financial Econometrics 2_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+
+
 </section>
-</section>
-<section id="challenge-3" class="level1">
-<h1>Challenge 3</h1>
-<div id="cell-32" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> variance_inflation_factor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<section id="importing-data" class="level2">
-<h2 class="anchored" data-anchor-id="importing-data">Importing data</h2>
-<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:175,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1744045526359,&quot;user&quot;:{&quot;displayName&quot;:&quot;Yuxuan&quot;,&quot;userId&quot;:&quot;09219089386068872328&quot;},&quot;user_tz&quot;:-480}}" data-outputid="3b1969bc-887f-421b-f9d9-7f64d7e155e2" data-execution_count="1">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tickers <span class="op">=</span> [<span class="st">'BP'</span>, <span class="st">'XOM'</span>, <span class="st">'SHEL'</span>, <span class="st">'CVX'</span>]</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> yf.download(tickers, start<span class="op">=</span><span class="st">'2019-01-01'</span>, end<span class="op">=</span><span class="st">'2024-12-31'</span>)[<span class="st">'Close'</span>]</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-1-255fbf492c85&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 0&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      1</span> tickers <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">'BP'</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'XOM'</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'SHEL'</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'CVX'</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>data <span class="ansi-blue-fg">=</span> yf<span class="ansi-blue-fg">.</span>download<span class="ansi-blue-fg">(</span>tickers<span class="ansi-blue-fg">,</span> start<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">'2019-01-01'</span><span class="ansi-blue-fg">,</span> end<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">'2024-12-31'</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">'Close'</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-fg ansi-bold">      3</span> data <span class="ansi-blue-fg">=</span> data<span class="ansi-blue-fg">.</span>dropna<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'yf' is not defined</pre>
-</div>
-</div>
-</div>
-<div id="cell-35" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stock price from 2019 to 2024</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, figsize <span class="op">=</span> (<span class="dv">7</span>,<span class="dv">7</span>))</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> ax.flatten()</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(data.columns):</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    data[[col]].plot(title<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> Stock Price from 2019 to 2024"</span>, ax<span class="op">=</span>ax[i])</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(hspace<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="test-for-multicollinearity" class="level2">
-<h2 class="anchored" data-anchor-id="test-for-multicollinearity">Test for multicollinearity</h2>
-<div id="cell-38" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="op">=</span> data.corr()</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>px.imshow(correlation_matrix)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-39" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute VIF for each feature</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>vif_data <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>vif_data[<span class="st">"Variable"</span>] <span class="op">=</span> data.columns</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>vif_data[<span class="st">"VIF"</span>] <span class="op">=</span> [variance_inflation_factor(data.values, i) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(data.shape[<span class="dv">1</span>])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-40" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>vif_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="deploying-models" class="level2">
-<h2 class="anchored" data-anchor-id="deploying-models">Deploying Models</h2>
-<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true}}">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-43" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true}}">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">'BP'</span>]</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data[[<span class="st">'XOM'</span>, <span class="st">'SHEL'</span>, <span class="st">'CVX'</span>]].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.shift(<span class="dv">1</span>).fillna(method <span class="op">=</span> <span class="st">'bfill'</span>))</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, shuffle<span class="op">=</span><span class="va">False</span>, test_size<span class="op">=</span><span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
-  X = data[['XOM', 'SHEL', 'CVX']].apply(lambda x: x.shift(1).fillna(method = 'bfill'))</code></pre>
-</div>
-</div>
-<div id="cell-44" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:5426,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1744132200721,&quot;user&quot;:{&quot;displayName&quot;:&quot;Yuxuan&quot;,&quot;userId&quot;:&quot;09219089386068872328&quot;},&quot;user_tz&quot;:-480}}" data-execution_count="1">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#LINEAR REGRESSION</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>ols <span class="op">=</span> LinearRegression()</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>ols.fit(X_train, y_train)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>y_pred_ols <span class="op">=</span> ols.predict(X_test)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>ols_mse <span class="op">=</span> mean_squared_error(y_test, y_pred_ols)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-45" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;background_save&quot;:true}}">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#RIDGE REGRESSION</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ridge <span class="op">=</span> Ridge(alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>ridge.fit(X_train, y_train)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>y_pred_ridge <span class="op">=</span> ridge.predict(X_test)</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>ridge_mse <span class="op">=</span> mean_squared_error(y_test, y_pred_ridge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-46" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:4,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1744132326076,&quot;user&quot;:{&quot;displayName&quot;:&quot;Yuxuan&quot;,&quot;userId&quot;:&quot;09219089386068872328&quot;},&quot;user_tz&quot;:-480}}" data-outputid="b09a9d96-3a94-4f51-ec05-d34f00cd1f24" data-execution_count="2">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#LASSO REGRESSION</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> Lasso(alpha<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>lasso.fit(X_train, y_train)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>y_pred_lasso <span class="op">=</span> lasso.predict(X_test)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>lasso_mse <span class="op">=</span> mean_squared_error(y_test, y_pred_lasso)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-2-2ea82eb7fe2a&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 0&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      3</span> <span class="ansi-red-fg"># Initialize and train the Lasso model</span>
-<span class="ansi-green-fg ansi-bold">      4</span> lasso <span class="ansi-blue-fg">=</span> Lasso<span class="ansi-blue-fg">(</span>alpha<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">0.01</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg"> </span>lasso<span class="ansi-blue-fg">.</span>fit<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">,</span> y_train<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg ansi-bold">      6</span> 
-<span class="ansi-green-fg ansi-bold">      7</span> <span class="ansi-red-fg"># Predict and evaluate</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'X_train' is not defined</pre>
-</div>
-</div>
-</div>
-<div id="cell-47" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Linear Regression MSE: </span><span class="sc">{</span>ols_mse<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Ridge Regression MSE: </span><span class="sc">{</span>ridge_mse<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lasso Regression MSE: </span><span class="sc">{</span>lasso_mse<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div id="cell-48" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:98,&quot;status&quot;:&quot;error&quot;,&quot;timestamp&quot;:1744132373460,&quot;user&quot;:{&quot;displayName&quot;:&quot;Yuxuan&quot;,&quot;userId&quot;:&quot;09219089386068872328&quot;},&quot;user_tz&quot;:-480}}" data-outputid="fe01a9b4-70c8-4ed1-e143-932a6bc06476" data-execution_count="3">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#PCA with OLS</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>X_train_scaled <span class="op">=</span> scaler.fit_transform(X_train)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>X_test_scaled <span class="op">=</span> scaler.transform(X_test)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>X_train_pca <span class="op">=</span> pca.fit_transform(X_train_scaled)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>X_test_pca <span class="op">=</span> pca.transform(X_test_scaled)</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>pca_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>pca_model.fit(X_train_pca, y_train)</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>pca_pred <span class="op">=</span> pca_model.predict(X_test_pca)</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>pca_mse <span class="op">=</span> mean_squared_error(y_test, pca_pred)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-3-3b1df4a9f94e&gt;</span> in <span class="ansi-cyan-fg">&lt;cell line: 0&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-fg ansi-bold">      2</span> 
-<span class="ansi-green-fg ansi-bold">      3</span> scaler <span class="ansi-blue-fg">=</span> StandardScaler<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>X_train_scaled <span class="ansi-blue-fg">=</span> scaler<span class="ansi-blue-fg">.</span>fit_transform<span class="ansi-blue-fg">(</span>X_train<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg ansi-bold">      5</span> X_test_scaled <span class="ansi-blue-fg">=</span> scaler<span class="ansi-blue-fg">.</span>transform<span class="ansi-blue-fg">(</span>X_test<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg ansi-bold">      6</span> pca <span class="ansi-blue-fg">=</span> PCA<span class="ansi-blue-fg">(</span>n_components<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'X_train' is not defined</pre>
-</div>
-</div>
-</div>
-<div id="cell-49" class="cell">
-<details class="code-fold">
-<summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Linear Regression MSE: </span><span class="sc">{</span>ols_mse<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'PCA Linear Regression MSE: </span><span class="sc">{</span>pca_mse<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-
-
 </section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+  <div class="hero-content">
+    <h1 class="hero-title">{{ title }}</h1>
+    <p class="hero-subtitle">
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+    </p>
+  </div>
+</hero>
+
+{{ body }}
+
+<footer class="quant-footer">
+  <p>© {{&lt; year &gt;}} Franck Deba — Quantitative Research Lab</p>
+  <p class="footer-sub">
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+  </p>
+</footer>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

@@ -3,31 +3,88 @@ title: ""
 ---
 
 # Théorie des valeurs extrêmes
-::: {.blog-section}
-- [Résumé de la théorie des valeurs extrêmes](3A/rapports/projet_EVT.pdf)
+
+::: {.card-grid}
+
+::: {.card}
+### Résumé de la théorie des valeurs extrêmes  
+[Accéder au PDF →](3A/rapports/projet_EVT.pdf)
 :::
+
+:::
+---
 
 # Analyse des séries financières
-::: {.blog-section}
-- [Feature selection criterion](projects/WQU/Financial%20Data%201.ipynb)
-- [Modeling non-stationarity and finding a unit Root Testing](projects/WQU/Financial%20Data%202.ipynb)
-- [Exploring financial data (skeness, kurtosis)](projects/WQU/Financial%20Econometrics%201.ipynb)
-- [VECM modeling and pair trading](projects/WQU/Financial%20Econometrics%202.ipynb)
+
+::: {.card-grid}
+
+::: {.card}
+### Feature Selection Criterion  
+[Notebook →](projects/WQU/Financial%20Data%201.ipynb)
 :::
+
+::: {.card}
+### Non-Stationarity & Unit Root Testing  
+[Notebook →](projects/WQU/Financial%20Data%202.ipynb)
+:::
+
+::: {.card}
+### VECM Modeling & Pair Trading  
+[Notebook →](projects/WQU/Financial%20Econometrics%202.ipynb)
+:::
+
+:::
+---
 
 # Apprentissage supervisé
-::: {.blog-section}
-- [Régression linéaire](2A/App_sup/reg_lin.qmd)
-- [Kernel Trick and Support Vector Machines (SVM)](3A/Apprentisage-stat/Tp2.qmd)
-- [Gradient boosting](3A/Apprentisage-stat/Tp3.qmd)
-- [Feature selection](3A/Apprentisage-stat/Tp4.qmd)
-- [Régression ridge et lasso](3A/Apprentisage-stat/Tp1.qmd)
-- [CART & Random Forest](2A/App_sup/arbres_&_forets_aleatoires.html)
+
+::: {.card-grid}
+
+::: {.card}
+### Régression linéaire  
+[Document →](2A/App_sup/reg_lin.qmd)
 :::
 
-# DeepLearning et NLP
-::: {.blog-section}
-- [DeepLearning](projects/DeepLearning/DL.ipynb)
-- [NLP](projects/DeepLearning/NLP.ipynb)
+::: {.card}
+### Kernel Trick & SVM  
+[Document →](3A/Apprentisage-stat/Tp2.qmd)
 :::
 
+::: {.card}
+### Gradient Boosting  
+[Document →](3A/Apprentisage-stat/Tp3.qmd)
+:::
+
+::: {.card}
+### Feature Selection  
+[Document →](3A/Apprentisage-stat/Tp4.qmd)
+:::
+
+::: {.card}
+### Régression Ridge & Lasso  
+[Document →](3A/Apprentisage-stat/Tp1.qmd)
+:::
+
+::: {.card}
+### CART & Random Forest  
+[HTML →](2A/App_sup/arbres_&_forets_aleatoires.html)
+:::
+
+:::
+---
+
+# Deep Learning & NLP
+
+::: {.card-grid}
+
+::: {.card}
+### Deep Learning  
+[Notebook →](projects/DeepLearning/DL.ipynb)
+:::
+
+::: {.card}
+### NLP  
+[Notebook →](projects/DeepLearning/NLP.ipynb)
+:::
+
+:::

@@ -1,14 +1,15 @@
 ---
-title: ""
+title: "Tous les contenus"
 listing:
   contents: 
     - 3A/**/*.qmd
-    - project/**/*.ipynb
-    - project/**/*.qmd
+    - 3A/**/*.ipynb
+    - projects/**/*.qmd
+    - projects/**/*.ipynb
     - 2A/**/*.qmd
   type: grid
-  sort: "date desc"
+  sort: "title"         # car la plupart de tes fichiers n'ont PAS de date
   image-placeholder: img/placeholder.jpg
-  fields: [image, date, title, author, reading-time,description]
+  fields: [image, title, description]   # champs réellement disponibles
   categories: false
 ---

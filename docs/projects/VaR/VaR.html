@@ -6,10 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
-<meta name="dcterms.date" content="2025-03-24">
+<meta name="author" content="Franck Deba">
+<meta name="dcterms.date" content="2024-02-01">
+<meta name="description" content="Historical, parametric and Monte-Carlo VaR implementation with backtesting.">
 
-<title>Statistiques des risques extrêmes – Franck Deba - Quantitative Research</title>
+<title>Value-at-Risk Estimation – Franck Deba - Quantitative Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -396,9 +397,14 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Statistiques des risques extrêmes</h1>
+<h1 class="title">Value-at-Risk Estimation</h1>
 </div>
 
+<div>
+  <div class="description">
+    Historical, parametric and Monte-Carlo VaR implementation with backtesting.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -406,14 +412,14 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>DEBA WANDJI Franck DelmaKOUGOUM MOKO MANI Marilene </p>
+             <p>Franck Deba </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 24, 2025</p>
+      <p class="date">February 1, 2024</p>
     </div>
   </div>
   
@@ -426,6 +432,8 @@ window.Quarto = {
 
 
 <p><a href="https://github.com/usenameFD/STATISTIQUES-RISQUES-EXTREMES.git">Lien vers l’application Dash (GitHub)</a> <a href="3A/rapports/projet_EVT.pdf">Note de synthèse EVT</a></p>
+<p>La VaR est une mesure de perte (potentielle) qui peut survenir à la suite de variations du marché. Elle permet de réponde à la question : combien l’établissement financier peut-il perdre au maximum avec une probabilité <span class="math inline">\(\alpha\)</span> sur un horizon de temps fixé à <span class="math inline">\(h\)</span>?</p>
+<p>Pour bien interpréter la Valeur à Risque (VaR), il est donc nécessaire de prendre en compte deux éléments clés, à savoir, la période de détention et le seuil de confiance.</p>
 <section id="recuperation-des-données-et-analyse-des-données" class="level2">
 <h2 class="anchored" data-anchor-id="recuperation-des-données-et-analyse-des-données">Recuperation des données et analyse des données</h2>
 <div id="cell-2" class="cell" data-execution_count="59">
@@ -2406,6 +2414,23 @@ Optimization terminated successfully    (Exit mode 0)
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+  <div class="hero-content">
+    <h1 class="hero-title">{{ title }}</h1>
+    <p class="hero-subtitle">
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+    </p>
+  </div>
+</hero>
+
+{{ body }}
+
+<footer class="quant-footer">
+  <p>© {{&lt; year &gt;}} Franck Deba — Quantitative Research Lab</p>
+  <p class="footer-sub">
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+  </p>
+</footer>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

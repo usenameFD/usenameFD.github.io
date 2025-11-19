@@ -1,27 +1,55 @@
-/* css styles */
-body {
-  font-family: "Times New Roman", Times, serif;
+/* ============================================
+   PALETTE DE COULEURS QUANT FINANCE
+   ============================================ */
+:root {
+  --primary: #0A2342;
+  --accent: #007BFF;
+  --accent-light: #66B7FF;
+  --bg-light: #F5F7FA;
+  --text-dark: #222;
+  --text-muted: #555;
+  --success: #1FA37A;
+  --danger: #C0392B;
 }
 
-/* .quarto-title > h1.title {
-    opacity: 0 !important;
-  } */
+/* ============================================
+   GLOBAL TYPOGRAPHY & BODY
+   ============================================ */
+body {
+  font-family: "Times New Roman", Times, serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
 
-.box{
-    float:left;
-    background-color:rgba(238, 237, 237, 0.766); 
-    margin:25px 15px;
-    padding:15px 15px ;
-    border-radius:5px;
-  }
+h1, h2, h3, h4 {
+  margin: 0.1rem 0;
+  font-weight: 700;
+}
 
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.35rem; padding-left: 15px; }
+h3 { font-size: 1.1rem;  padding-left: 25px; }
+
+/* ============================================
+   CUSTOM BOX (OLD STYLE)
+   ============================================ */
+.box {
+  float: left;
+  background-color: rgba(238, 237, 237, 0.766);
+  margin: 25px 15px;
+  padding: 15px 15px;
+  border-radius: 5px;
+}
+
+/* ============================================
+   PROFILE CONTAINER (HOME)
+   ============================================ */
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Default layout for larger screens */
 .container ul {
   list-style-type: none;
   margin-right: 20px;
@@ -33,53 +61,26 @@ body {
   height: 250px;
 }
 
-/* Media query for phones (768px and below) */
+/* Mobile layout */
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  
-  .container ul {
-    text-align: left;
-    margin-right: 0;
-  }
-  
-  .container img {
-    margin-top: 20px;
-  }
+  .container { flex-direction: column; }
+  .container ul { margin-right: 0; }
+  .container img { margin-top: 20px; }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  margin: 0.1rem 0;
-}
-
-h1 {
-  font-size: 1.5rem;
-}
-
-h2 {
-  font-size: 1.2rem;
-  padding-left: 20px;
-}
-
-h3 {
-  font-size: 1rem;
-  padding-left: 40px;
-}
-
+/* ============================================
+   BLOG-SECTIONS (LEGACY)
+   ============================================ */
 .blog-section {
-  background-color: rgba(183, 182, 182, 0.342);  /* Fond légèrement gris */
+  background-color: rgba(183, 182, 182, 0.25);
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 8px;
-  border-left: 5px solid #007bff; /* Barre colorée pour différencier les sections */
+  border-left: 5px solid var(--accent);
 }
 
 .blog-section a {
-  color: black; /* Liens en bleu */
+  color: var(--primary);
   text-decoration: none;
 }
 
@@ -87,5 +88,94 @@ h3 {
   text-decoration: underline;
 }
 
+/* ============================================
+   MODERN CARDS GRID SYSTEM
+   ============================================ */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px;
+  margin: 25px 0;
+}
 
+/* ============================================
+   MODERN CARD STYLE
+   ============================================ */
+.card {
+  background-color: white;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+}
+
+/* Titles inside cards */
+.card h2, 
+.card h3, 
+.card h4 {
+  padding-left: 0;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+/* ============================================
+   CARD IMAGE SUPPORT
+   ============================================ */
+.card img, 
+.card .card-img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  max-height: 150px;
+}
+
+/* ============================================
+   LINKS INSIDE CARDS
+   ============================================ */
+.card a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.card a:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+.dark body {
+  background-color: #1a1c20;
+  color: #ddd;
+}
+
+.dark .card {
+  background-color: #2b2e34;
+  border: 1px solid #444;
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.5);
+}
+
+.dark .card:hover {
+  box-shadow: 0px 6px 22px rgba(0,0,0,0.7);
+}
+
+.dark .card a {
+  color: var(--accent-light);
+}
+
+.dark .blog-section {
+  background-color: rgba(60, 60, 60, 0.4);
+  border-left-color: var(--accent-light);
+}
+
+.dark .blog-section a {
+  color: #ddd;
+}

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Franck Deba">
+<meta name="dcterms.date" content="2024-02-01">
+<meta name="description" content="Pricing under Bates and Heston models with Lewis method, CIR for forward rate">
 
-<title>MScFE 622 STOCHASTIC MODELING – Franck Deba - Quantitative Research</title>
+<title>Pricing Asian options and forward rate – Franck Deba - Quantitative Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -357,8 +360,7 @@ window.Quarto = {
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
-  <li><a href="#group-work-project-1" id="toc-group-work-project-1" class="nav-link active" data-scroll-target="#group-work-project-1">Group Work Project 1</a></li>
-  <li><a href="#scenario" id="toc-scenario" class="nav-link" data-scroll-target="#scenario"><strong>Scenario</strong></a></li>
+  <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario"><strong>Scenario</strong></a></li>
   <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a>
   <ul class="collapse">
   <li><a href="#b.-initially-the-client-seems-to-be-looking-for-a-very-short-maturity-for-her-derivative-around-15-days." id="toc-b.-initially-the-client-seems-to-be-looking-for-a-very-short-maturity-for-her-derivative-around-15-days." class="nav-link" data-scroll-target="#b.-initially-the-client-seems-to-be-looking-for-a-very-short-maturity-for-her-derivative-around-15-days.">b. Initially, the client seems to be looking for a very short maturity for her derivative (around 15 days).</a></li>
@@ -400,14 +402,31 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MScFE 622 STOCHASTIC MODELING</h1>
+<h1 class="title">Pricing Asian options and forward rate</h1>
 </div>
 
+<div>
+  <div class="description">
+    Pricing under Bates and Heston models with Lewis method, CIR for forward rate
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Franck Deba </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 1, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -417,10 +436,6 @@ window.Quarto = {
 </header>
 
 
-<section id="group-work-project-1" class="level3">
-<h3 class="anchored" data-anchor-id="group-work-project-1">Group Work Project 1</h3>
-<hr>
-</section>
 <section id="scenario" class="level1">
 <h1><strong>Scenario</strong></h1>
 <p>Financial engineers can use volatility models to price options. As a trio (or duo) of quants, you will be tasked with pricing options using different models. The outputs of your work are used all day, every day by the options desk– a profitable part of the firm’s market making. Do your job correctly, and you will be considered the ‘rocket scientists’ of the group. Do your job incorrectly, and well… let’s not go there.</p>
@@ -430,7 +445,7 @@ max(𝐴𝑣𝑔 (𝑆_𝑡 ) − 𝐾;0)
 \]</span> 𝑓𝑜𝑟 <span class="math inline">\(𝑡 = {0,1,…𝑇}\)</span> (Remember to include the current price today,<span class="math inline">\(𝑆_0\)</span>, in the calculation of the average <span class="math inline">\(S_t\)</span>).</p>
 <p>The client is not so sure about the maturity she wants to consider for the option. Fortunately, you have information on vanilla options traded in the market, with the underlying asset being the stock of SM (for SM Energy Company), in the attached Excel file. SM stock is currently trading at $232.90 USD:</p>
 <p><em>Let’s import necessary libraries and download Option Data to complete the Project.</em></p>
-<div id="cell-4" class="cell">
+<div id="cell-3" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -440,7 +455,7 @@ max(𝐴𝑣𝑔 (𝑆_𝑡 ) − 𝐾;0)
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> brute, fmin</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="e7231bdc-45fa-44b4-ba33-dcee12ce50c3">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="e7231bdc-45fa-44b4-ba33-dcee12ce50c3">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sheet_id <span class="op">=</span> <span class="st">"1YNqTHLMxoGpyehXfpNg7WMbDSdnYQPwR"</span></span>
@@ -481,7 +496,7 @@ P_0 = C_0 + K*e^{-rT} - S_0
 <h2 class="anchored" data-anchor-id="calibrate-heston-1993-stochastic-volatility-model">1. Calibrate Heston (1993) stochastic volatility model</h2>
 <section id="calibration-architecture" class="level3">
 <h3 class="anchored" data-anchor-id="calibration-architecture">Calibration architecture</h3>
-<div id="cell-10" class="cell">
+<div id="cell-9" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> brute, fmin</span>
@@ -812,7 +827,7 @@ P_0 = C_0 + K*e^{-rT} - S_0
 <span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> CallValue</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-11" class="cell">
+<div id="cell-10" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> plotCalibration:</span>
@@ -888,7 +903,7 @@ P_0 = C_0 + K*e^{-rT} - S_0
 </section>
 <section id="runnig-calibration" class="level3">
 <h3 class="anchored" data-anchor-id="runnig-calibration">Runnig calibration</h3>
-<div id="cell-13" class="cell">
+<div id="cell-12" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Actual stock value</span></span>
@@ -897,7 +912,7 @@ P_0 = C_0 + K*e^{-rT} - S_0
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.50</span> <span class="op">/</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="9da8f044-7068-4152-9ddf-5425a129e67a">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="9da8f044-7068-4152-9ddf-5425a129e67a">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize and calibrate model</span></span>
@@ -980,7 +995,7 @@ v0: 0.108</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="c54ef980-117a-4d90-9866-c7a7dff9ca57">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="c54ef980-117a-4d90-9866-c7a7dff9ca57">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize and calibrate model</span></span>
@@ -1061,7 +1076,7 @@ v0: 0.108</code></pre>
 <h2 class="anchored" data-anchor-id="pricing-asian-option">Pricing Asian option</h2>
 <section id="pricer-architechture" class="level4">
 <h4 class="anchored" data-anchor-id="pricer-architechture">Pricer architechture</h4>
-<div id="cell-20" class="cell">
+<div id="cell-19" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1266,7 +1281,7 @@ v0: 0.108</code></pre>
 </section>
 <section id="princing-results" class="level3">
 <h3 class="anchored" data-anchor-id="princing-results">Princing results</h3>
-<div id="cell-22" class="cell">
+<div id="cell-21" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option characteristics</span></span>
@@ -1276,7 +1291,7 @@ v0: 0.108</code></pre>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>charge <span class="op">=</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="4a05375a-6564-41c3-f3fa-0e2ae0377c1c">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="4a05375a-6564-41c3-f3fa-0e2ae0377c1c">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pricer configuration</span></span>
@@ -1326,7 +1341,7 @@ Probability that Payoff is 0: 50.65%</code></pre>
 <h1>Step 2</h1>
 <section id="calibrate-bates-1996-model" class="level2">
 <h2 class="anchored" data-anchor-id="calibrate-bates-1996-model">Calibrate Bates (1996) model</h2>
-<div id="cell-26" class="cell">
+<div id="cell-25" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> brute, fmin</span>
@@ -1751,7 +1766,7 @@ Probability that Payoff is 0: 50.65%</code></pre>
 </section>
 <section id="runnig-calibration-1" class="level2">
 <h2 class="anchored" data-anchor-id="runnig-calibration-1">Runnig calibration</h2>
-<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="37dd94d4-845c-43d8-850e-18bff4f8ed96">
+<div id="cell-27" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="37dd94d4-845c-43d8-850e-18bff4f8ed96">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -1863,7 +1878,7 @@ delta: 0.000</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="cf313b3b-ea9e-42b1-e4d2-ce7869b54118">
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="cf313b3b-ea9e-42b1-e4d2-ce7869b54118">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -1995,7 +2010,7 @@ delta: 0.000</code></pre>
 <h2 class="anchored" data-anchor-id="pricing-asion-option">Pricing Asion Option</h2>
 <section id="pricer-architecture" class="level3">
 <h3 class="anchored" data-anchor-id="pricer-architecture">Pricer architecture</h3>
-<div id="cell-32" class="cell">
+<div id="cell-31" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -2216,7 +2231,7 @@ delta: 0.000</code></pre>
 </section>
 <section id="pricing-results" class="level3">
 <h3 class="anchored" data-anchor-id="pricing-results">Pricing results</h3>
-<div id="cell-34" class="cell">
+<div id="cell-33" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>S0 <span class="op">=</span> <span class="fl">232.9</span></span>
@@ -2225,7 +2240,7 @@ delta: 0.000</code></pre>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.5</span> <span class="op">/</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="da0c6c17-9eb9-45ae-9c6f-e67de443842a">
+<div id="cell-34" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="da0c6c17-9eb9-45ae-9c6f-e67de443842a">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pricer configuration</span></span>
@@ -2249,7 +2264,7 @@ delta: 0.000</code></pre>
 Option client price: $0.26</code></pre>
 </div>
 </div>
-<div id="cell-36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="754f11d2-0f50-4a57-bf61-637dd1e13fb5">
+<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="754f11d2-0f50-4a57-bf61-637dd1e13fb5">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#asian_option.plot_trajectories()</span></span>
@@ -2281,7 +2296,7 @@ Option client price: $0.26</code></pre>
 <h1>Step 3</h1>
 <section id="a.-calibrate-a-cir-1985-model-considering-current-rates" class="level2">
 <h2 class="anchored" data-anchor-id="a.-calibrate-a-cir-1985-model-considering-current-rates">a. Calibrate a CIR (1985) model considering current rates</h2>
-<div id="cell-38" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="10513ddd-bc7e-4492-cc9f-aec0f523f9dd">
+<div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000}}" data-outputid="10513ddd-bc7e-4492-cc9f-aec0f523f9dd">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2452,7 +2467,7 @@ sigma_r: 0.006736816380822958</code></pre>
 <li><p>What is the expected value of the 12-month Euribor in 1 year?</p></li>
 <li><p>How will this expected number affect the pricing of your products in 1 year versus the current 12-month Euribor rate?</p></li>
 </ol>
-<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:472}}" data-outputid="3e267c45-d518-4af7-b4d2-7a87ee9cb819">
+<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:472}}" data-outputid="3e267c45-d518-4af7-b4d2-7a87ee9cb819">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CIR model</span></span>
@@ -2510,7 +2525,7 @@ The expected rate is: 7.901%.</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="614b6a03-7c02-4065-fca7-ffafc7901ded">
+<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="614b6a03-7c02-4065-fca7-ffafc7901ded">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>r0<span class="op">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2519,7 +2534,7 @@ The expected rate is: 7.901%.</code></pre>
 <pre><code>np.float64(2.523880486362555)</code></pre>
 </div>
 </div>
-<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:472}}" data-outputid="6f33ab8f-617a-4a78-c5fa-c74b4e153b00">
+<div id="cell-41" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:472}}" data-outputid="6f33ab8f-617a-4a78-c5fa-c74b4e153b00">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>plt.plot(rates_cir[:,:<span class="dv">100</span>])</span>
@@ -2543,6 +2558,23 @@ The expected rate is: 7.901%.</code></pre>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+  <div class="hero-content">
+    <h1 class="hero-title">{{ title }}</h1>
+    <p class="hero-subtitle">
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+    </p>
+  </div>
+</hero>
+
+{{ body }}
+
+<footer class="quant-footer">
+  <p>© {{&lt; year &gt;}} Franck Deba — Quantitative Research Lab</p>
+  <p class="footer-sub">
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+  </p>
+</footer>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
