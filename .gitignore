@@ -1,5 +1,53 @@
-/.quarto/
-/_site/
-/.venv/
+# -------------------------
+# Positron / RStudio files
+# -------------------------
+.Rproj.user/
+*.Rproj
+.Rhistory
+.RData
+.Ruserdata
+
+# -------------------------
+# Quarto build artifacts
+# -------------------------
+.quarto/
+_site/
 **/*.quarto_ipynb
-/venv/
+
+# -------------------------
+# Python virtual environments
+# -------------------------
+.venv/
+venv/
+
+# -------------------------
+# Python cache
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# -------------------------
+# Jupyter Notebook artifacts
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# OS / system files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Editor metadata
+# -------------------------
+.vscode/       # in case you open project with VS Code
+.idea/         # JetBrains products
+
+# -------------------------
+# Project-specific ignores
+# -------------------------
+/projects/Climate/Carte France/
+
+/.quarto/

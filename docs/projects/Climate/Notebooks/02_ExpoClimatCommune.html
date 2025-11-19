@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Indice d’exposition climatique des communes – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#aléas-climatiques-et-catastrophes-climatiques-au-sein-des-communes" id="toc-aléas-climatiques-et-catastrophes-climatiques-au-sein-des-communes" class="nav-link active" data-scroll-target="#aléas-climatiques-et-catastrophes-climatiques-au-sein-des-communes">Aléas Climatiques et catastrophes climatiques au sein des communes</a>
+  <ul class="collapse">
+  <li><a href="#communes-à-risque-et-catastrophes-naturelles-reconnues" id="toc-communes-à-risque-et-catastrophes-naturelles-reconnues" class="nav-link" data-scroll-target="#communes-à-risque-et-catastrophes-naturelles-reconnues">Communes à risque et catastrophes naturelles reconnues</a></li>
+  <li><a href="#quelques-observations-sur-les-aleas-climatiques-dans-les-communes" id="toc-quelques-observations-sur-les-aleas-climatiques-dans-les-communes" class="nav-link" data-scroll-target="#quelques-observations-sur-les-aleas-climatiques-dans-les-communes">Quelques observations sur les aleas climatiques dans les communes</a></li>
+  </ul></li>
+  <li><a href="#densité-de-la-population-au-sein-des-communes" id="toc-densité-de-la-population-au-sein-des-communes" class="nav-link" data-scroll-target="#densité-de-la-population-au-sein-des-communes">Densité de la population au sein des communes</a>
+  <ul class="collapse">
+  <li><a href="#quelques-observations-sur-les-densités-de-population" id="toc-quelques-observations-sur-les-densités-de-population" class="nav-link" data-scroll-target="#quelques-observations-sur-les-densités-de-population">Quelques observations sur les densités de population</a></li>
+  </ul></li>
+  <li><a href="#synthèse-de-lindicateur-dexposition-au-risque-climatique" id="toc-synthèse-de-lindicateur-dexposition-au-risque-climatique" class="nav-link" data-scroll-target="#synthèse-de-lindicateur-dexposition-au-risque-climatique">Synthèse de l’indicateur d’exposition au risque climatique</a></li>
+  <li><a href="#cartographie-des-niveau-dexposition" id="toc-cartographie-des-niveau-dexposition" class="nav-link" data-scroll-target="#cartographie-des-niveau-dexposition">Cartographie des niveau d’exposition</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Indice d’exposition climatique des communes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="8fc4110b-b501-4a12-9a77-37790e7ae0cc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-16T12:46:03.963547Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-16T12:46:03.962010Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-16T12:46:03.974068Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-16T12:46:03.971960Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-16T12:46:03.963469Z&quot;}}" data-execution_count="1">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<hr>
+<p><strong>Objectif</strong>: Déterminer un indice d’exposition des communes aux risques climatique.</p>
+<p><strong>Méthodologie</strong>: &gt; Calcul de l’indice d’exposition <span class="math display">\[
+        Exposition = note relative au nombre d’aléas climatiques × note relative à la densité de population / 10
+                   = [(nombre d’aléas déclarés/nombre d’aléas possibles × 10) × (quantile de la densité de population × 10)] / 10
+    \]</span> <br></p>
+<pre><code>$$
+    NB_ALEAclim = ALEAinondation + ALEAfeu + ALEAtempête + ALEAavalanche + ALEAmvt
+$$</code></pre>
+<blockquote class="blockquote">
+<p>Discrétisation en classes d’exposition: Application d’une segmentation à la Jenks avec en amont six classes spécifiées. <br></p>
+</blockquote>
+<p><strong>Données</strong>: &gt;Base 1: Aléas climatiques par commune et catastrophes naturelles &gt;&gt; Les aléas climatiques sont estimés à partir des communes déclarées à risques majeurs par les services de l’État dans la base de données « gestion assistée des procédures administratives relatives aux risques naturels et technologiques » gérée par les services du ministère en charge de l’Environnement (MTES/DGPR, Gaspar 2017). &gt;&gt; Pour un aléa donné, il est considéré que cet aléa est identifié sur cette commune : &gt;&gt;&gt; si la commune a été déclarée à risque pour cet aléa par les services de l’État (source : MTES, Gaspar, 2017. Traitements : SDES, 2018) ; &gt;&gt;&gt; ou si cette commune a fait l’objet d’au moins trois arrêtés de Cat-Nat pour cet aléa entre 1982 et la date considérée (source : MTES/DGPR, Gaspar, 2016).</p>
+<blockquote class="blockquote">
+<p>Base 2: Densité de la population par commune &gt; Données issues du recensement de la population. Nous nous interesserons aux données de 2010, 2015 et 2021. &gt; Pour chaque année on considérera comme densité la densité la plus récente connue.</p>
+</blockquote>
+<p><strong>Pour aller plus loin</strong>: On pourra explorer la possibilité d’inclure la fréquence des catastrophes naturelles dans le calcul de l’indice d’exposition.</p>
+<section id="aléas-climatiques-et-catastrophes-climatiques-au-sein-des-communes" class="level2">
+<h2 class="anchored" data-anchor-id="aléas-climatiques-et-catastrophes-climatiques-au-sein-des-communes">Aléas Climatiques et catastrophes climatiques au sein des communes</h2>
+<p>L’indicateur d’exposition des populations aux risques climatiques confronte l’aléa (événement naturel potentiellement dangereux, d’occurrence et d’intensité données) et les enjeux (populations ou biens susceptibles d’être affectés par le phénomène naturel). En l’occurrence, l’indicateur, déterminé à l’échelle communale, résulte du croisement entre la densité de population et <strong>le nombre d’aléas climatiques identifiés et déclarés par les services de l’État pour chaque commune</strong>.</p>
+<p>Ces aléas naturels correspondent à ceux susceptibles d’être directement ou indirectement influencés par le changement climatique :</p>
+<blockquote class="blockquote">
+<p>avalanches, <br> Phénomène atmosphérique: <br> &gt; « cyclones/ouragan (vent) » <br> &gt; « tempête et grains (vent) » <br></p>
+</blockquote>
+<p>Si une commune est déclarée à risque majeur pour ces deux aléas, pour autant elle n’est identifiée à risque « phénomènes météorologiques » qu’une seule fois.</p>
+<blockquote class="blockquote">
+<p>feux de forêt, <br> inondations: <br> &gt; crue à débordement de cours d’eau, <br> &gt; crue torrentielle ou à montée rapide de cours d’eau, <br> &gt; ruissellement et coulée de boue, <br> &gt; lave torrentielle (torrent et talweg), <br> &gt; remontée de nappes naturelles, <br> &gt; submersion marine. <br></p>
+</blockquote>
+<p>Dès lors qu’au moins l’un de ces types d’aléa est identifié pour une commune, celle-ci est déclarée à risque majeur « inondation ». Par conséquent, si une commune fait l’objet par exemple d’une déclaration à risque majeur « crue par débordement de cours d’eau », mais également « ruissellement et coulée de boue », pour autant elle n’est identifiée à risque « inondation » qu’une seule fois.</p>
+<blockquote class="blockquote">
+<p>mouvements de terrain: <br> &gt; affaissement et effondrement liés aux cavités souterraines (hors mines),<br> &gt; éboulement,<br> &gt; chute de pierres et de blocs,<br> &gt; glissement de terrain,<br> &gt; avancée dunaire,<br> &gt; recul du trait de côte et de falaises,<br> &gt; tassement différentiel <br></p>
+</blockquote>
+<p>Dès lors qu’au moins l’un de ces types d’aléa est identifié dans une commune, celle-ci est déclarée à risque majeur « mouvement de terrain ». Si une commune est par exemple déclarée à risque majeur « affaissements et effondrements liés aux cavités souterraines » et « tassements différentiels », elle n’est identifiée à risque mouvement de terrain qu’une seule fois.</p>
+<p>Ainsi, l’exposition des populations se révèle d’autant plus forte, que la densité de population de la commune, d’une part, et le nombre d’aléas climatiques identifiés et déclarés par les services de l’État d’autre part, sont élevés.</p>
+<section id="communes-à-risque-et-catastrophes-naturelles-reconnues" class="level3">
+<h3 class="anchored" data-anchor-id="communes-à-risque-et-catastrophes-naturelles-reconnues">Communes à risque et catastrophes naturelles reconnues</h3>
+<div id="984d1290-1e6f-4945-a311-27f51365eeab" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:06.197905Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:06.194753Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:07.021585Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:07.020165Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:06.197815Z&quot;}}" data-execution_count="2">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importation des données</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Aléa reconnus sur les communes</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>risque <span class="op">=</span> pd.read_csv(<span class="st">"../Data/risq_gaspar.csv"</span>, sep <span class="op">=</span> <span class="st">";"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># catnat reconnues</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>catnat <span class="op">=</span> pd.read_csv(<span class="st">"../Data/catnat_gaspar.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_62216\2277590488.py:6: DtypeWarning: Columns (3) have mixed types. Specify dtype option on import or set low_memory=False.
+  catnat = pd.read_csv("../Data/catnat_gaspar.csv", sep=";")</code></pre>
+</div>
+</div>
+<div id="b8a8c079-005f-4ae5-85f8-29f07dd46cdf" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:07.681959Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:07.681509Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:07.701871Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:07.699466Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:07.681924Z&quot;}}" data-execution_count="3">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>risque.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">lib_risque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>Inondation</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>Par une crue à débordement lent de cours d'eau</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>Séisme</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>Transport de marchandises dangereuses</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>01002</td>
+<td>L'Abergement-de-Varey</td>
+<td>Mouvement de terrain</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="90ddb224-04bb-459b-a153-041ae52de064" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:09.249162Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:09.247956Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:09.274737Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:09.273094Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:09.249110Z&quot;}}" data-execution_count="4">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>risque.lib_risque.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array(['Inondation', "Par une crue à débordement lent de cours d'eau",
+       'Séisme', 'Transport de marchandises dangereuses',
+       'Mouvement de terrain', 'Glissement de terrain',
+       "Par une crue torrentielle ou à montée rapide de cours d'eau",
+       'Rupture de barrage',
+       'Eboulement ou chutes de pierres et de blocs', 'Risque industriel',
+       'Effet thermique', 'Effet toxique', 'Effet de projection',
+       'Nucléaire', 'Avalanche', 'Par ruissellement et coulée de boue',
+       'Effet de surpression', 'Feu de forêt', 'Affaissement minier',
+       'Effondrements localisés', 'Tassements',
+       'Glissements ou mouvements de pente', 'Tassements différentiels',
+       'Affaissements progressifs', 'Emissions en surface de gaz de mine',
+       'Radon', 'Par submersion marine',
+       'Recul du trait de côte et de falaises',
+       'Effondrements généralisés', 'Engins de guerre',
+       "Phénomène lié à l'atmosphère", 'Neige et pluies verglaçantes',
+       'Par remontées de nappes naturelles', 'Ecroulements rocheux',
+       'Inondations de terrains miniers',
+       'Pollution des eaux souterraines et de surface',
+       'Pollution des sédiments et sols', 'Tempête et grains (vent)',
+       'Autre risque', 'Avancée dunaire', nan,
+       'Par lave torrentielle (torrent et talweg)',
+       'Echauffement des terrains de dépôts', 'Foudre', 'Grêle',
+       'Coulées', 'Cyclone / Ouragan (vent)', 'Eruption volcanique'],
+      dtype=object)</code></pre>
+</div>
+</div>
+<div id="ce5fd056-9fc7-496c-a7bf-ddd05d40a627" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:10.531777Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:10.529913Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:10.590444Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:10.588763Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:10.531698Z&quot;}}" data-execution_count="5">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spécification des aléas climatiques</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.lib_risque.isin([<span class="st">'Cyclone / Ouragan (vent)'</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Tempête et grains (vent)'</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                                  ]), <span class="st">"lib_risque"</span>] <span class="op">=</span> <span class="st">"Phénomène atmosphérique"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.lib_risque.isin([<span class="st">'Inondation'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Par une crue à débordement lent de cours d'eau"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Par une crue torrentielle ou à montée rapide de cours d'eau"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par ruissellement et coulée de boue'</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par submersion marine'</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par remontées de nappes naturelles'</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Par lave torrentielle (torrent et talweg)'</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque"</span>] <span class="op">=</span> <span class="st">"Inondation"</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.lib_risque.isin([<span class="st">'Mouvement de terrain'</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Glissement de terrain'</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Eboulement ou chutes de pierres et de blocs'</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Tassements différentiels'</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Recul du trait de côte et de falaises'</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">'Avancée dunaire'</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque"</span>] <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>risque_climat <span class="op">=</span> risque[risque.lib_risque.isin([<span class="st">'Avalanche'</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Phénomène atmosphérique"</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Feu de forêt'</span>,</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Inondation"</span>,</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Mouvement de Terrain'</span> ])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="d085e2b8-2d39-4c9f-98f9-54316c0d7024" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:12.666464Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:12.666007Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:12.680076Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:12.678150Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:12.666427Z&quot;}}" data-execution_count="6">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>risque_climat.lib_risque.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array(['Inondation', 'Mouvement de Terrain', 'Avalanche', 'Feu de forêt',
+       'Phénomène atmosphérique'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="f739450d-826f-4c85-b30f-e063afe2bcb0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:14.454154Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:14.452975Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:14.477318Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:14.475388Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:14.454101Z&quot;}}" data-execution_count="7">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>catnat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_nat_catnat</th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">num_risque_jo</th>
+<th data-quarto-table-cell-role="th">lib_risque_jo</th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">dat_fin</th>
+<th data-quarto-table-cell-role="th">dat_pub_arrete</th>
+<th data-quarto-table-cell-role="th">dat_pub_jo</th>
+<th data-quarto-table-cell-role="th">dat_maj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>BUDD8750027A</td>
+<td>06120</td>
+<td>Saint-Étienne-de-Tinée</td>
+<td>63</td>
+<td>Glissement de Terrain</td>
+<td>1985-01-01 00:00:00.000</td>
+<td>1986-12-31 00:00:00.000</td>
+<td>1987-05-20 00:00:00.000</td>
+<td>1987-05-24 00:00:00.000</td>
+<td>2022-05-20 15:53:47.090</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>BUDD8750038A</td>
+<td>2B050</td>
+<td>Calvi</td>
+<td>54</td>
+<td>Inondations et/ou Coulées de Boue</td>
+<td>1987-01-14 00:00:00.000</td>
+<td>1987-01-15 00:00:00.000</td>
+<td>1987-06-24 00:00:00.000</td>
+<td>1987-07-10 00:00:00.000</td>
+<td>2022-05-20 15:53:47.111</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>BUDD8750038A</td>
+<td>30006</td>
+<td>Aimargues</td>
+<td>54</td>
+<td>Inondations et/ou Coulées de Boue</td>
+<td>1987-02-11 00:00:00.000</td>
+<td>1987-02-13 00:00:00.000</td>
+<td>1987-06-24 00:00:00.000</td>
+<td>1987-07-10 00:00:00.000</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>BUDD8750038A</td>
+<td>30020</td>
+<td>Aubord</td>
+<td>54</td>
+<td>Inondations et/ou Coulées de Boue</td>
+<td>1987-02-11 00:00:00.000</td>
+<td>1987-02-13 00:00:00.000</td>
+<td>1987-06-24 00:00:00.000</td>
+<td>1987-07-10 00:00:00.000</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>BUDD8750038A</td>
+<td>30033</td>
+<td>Beauvoisin</td>
+<td>54</td>
+<td>Inondations et/ou Coulées de Boue</td>
+<td>1987-02-11 00:00:00.000</td>
+<td>1987-02-13 00:00:00.000</td>
+<td>1987-06-24 00:00:00.000</td>
+<td>1987-07-10 00:00:00.000</td>
+<td>2022-05-20 15:53:47.138</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="5865dcb2-4507-4c48-afae-75777fb54881" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:20.353803Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:20.352842Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:20.665343Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:20.663143Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:20.353767Z&quot;}}" data-execution_count="8">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>catnat.dat_deb <span class="op">=</span> pd.to_datetime(catnat.dat_deb)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>catnat.dat_fin <span class="op">=</span> pd.to_datetime(catnat.dat_fin)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>catnat.dat_pub_arrete <span class="op">=</span> pd.to_datetime(catnat.dat_pub_arrete)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>catnat.dat_pub_jo <span class="op">=</span> pd.to_datetime(catnat.dat_pub_jo)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>catnat.dat_maj <span class="op">=</span> pd.to_datetime(catnat.dat_maj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="c0953796-96a7-4d42-93b6-ad1b6c9156d7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:21.791827Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:21.791441Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:22.135991Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:22.134485Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:21.791797Z&quot;}}" data-execution_count="9">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>catnat.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">dat_deb</th>
+<th data-quarto-table-cell-role="th">dat_fin</th>
+<th data-quarto-table-cell-role="th">dat_pub_arrete</th>
+<th data-quarto-table-cell-role="th">dat_pub_jo</th>
+<th data-quarto-table-cell-role="th">dat_maj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>261331</td>
+<td>261331</td>
+<td>261331</td>
+<td>261331</td>
+<td>261331</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">mean</th>
+<td>1999-11-06 15:22:36.803440768</td>
+<td>2000-01-11 13:39:34.960490752</td>
+<td>2000-05-19 08:50:09.838097920</td>
+<td>2000-05-28 11:44:42.391296896</td>
+<td>2022-06-26 01:23:04.497398016</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">min</th>
+<td>1982-08-15 00:00:00</td>
+<td>1982-08-15 00:00:00</td>
+<td>1982-09-21 00:00:00</td>
+<td>1982-09-30 00:00:00</td>
+<td>2022-05-20 15:22:19.014000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">25%</th>
+<td>1989-05-01 00:00:00</td>
+<td>1990-02-16 00:00:00</td>
+<td>1990-03-16 00:00:00</td>
+<td>1990-03-23 00:00:00</td>
+<td>2022-05-20 15:55:32.884000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">50%</th>
+<td>1999-12-25 00:00:00</td>
+<td>1999-12-29 00:00:00</td>
+<td>1999-12-29 00:00:00</td>
+<td>1999-12-30 00:00:00</td>
+<td>2022-05-24 11:17:06.953999872</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">75%</th>
+<td>2009-01-24 00:00:00</td>
+<td>2009-01-27 00:00:00</td>
+<td>2009-01-28 00:00:00</td>
+<td>2009-01-29 00:00:00</td>
+<td>2022-05-24 11:39:20.860999936</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">max</th>
+<td>2025-01-23 01:00:00</td>
+<td>2025-02-05 01:00:00</td>
+<td>2025-02-12 01:00:00</td>
+<td>2025-02-18 01:00:00</td>
+<td>2025-02-20 01:00:00</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="a3521b48-c81a-4e6f-8ae8-1e289b92d11a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:25.828235Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:25.826365Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:25.874771Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:25.873140Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:25.828149Z&quot;}}" data-execution_count="10">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>catnat.lib_risque_jo.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array(['Glissement de Terrain', 'Inondations et/ou Coulées de Boue',
+       'Mouvement de Terrain', 'Avalanche', 'Secousse Sismique',
+       'Inondations Remontée Nappe',
+       "Chocs Mécaniques liés à l'action des Vagues",
+       'Effondrement et/ou Affaisement',
+       'Eboulement et/ou Chute de Blocs', 'Sécheresse',
+       'Vents Cycloniques', 'Raz de Marée', 'Lave Torrentielle',
+       'Tempête', 'Poids de la Neige',
+       'Glissement et Effondrement de Terrain',
+       'Glissement et Eboulement Rocheux', 'Coulée de Boue', 'Divers',
+       'Eruption Volcanique', 'Grêle',
+       'Mouvements de terrain différentiels consécutifs à la sécheresse et à la réhydratation des sols',
+       "Choc M�caniques li�s � l'action des Vagues", 'Séismes',
+       'Mouvements de terrains (hors sécheresse géotechnique)',
+       'Inondations par choc mécanique des vagues'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="74963f26-74b8-465b-885c-7f9d911b5b37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:28.937151Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:28.934908Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:28.987344Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:28.984887Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:28.937029Z&quot;}}" data-execution_count="11">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Spécification des aléas climatiques</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.lib_risque_jo.isin([<span class="st">'Vents Cycloniques'</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Tempête'</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                     ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">"Phénomène atmosphérique"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.lib_risque_jo.isin([<span class="st">'Inondations et/ou Coulées de Boue'</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Inondations Remontée Nappe'</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Lave Torrentielle'</span>, <span class="st">'Coulée de Boue'</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">"Inondation"</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.lib_risque_jo.isin([<span class="st">'Glissement de Terrain'</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvement de Terrain'</span>,<span class="st">'Effondrement et/ou Affaisement'</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Eboulement et/ou Chute de Blocs'</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Glissement et Effondrement de Terrain'</span>, </span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvements de terrain différentiels consécutifs à la sécheresse et à la réhydratation des sols'</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Glissement et Eboulement Rocheux'</span>, </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvements de terrains (hors sécheresse géotechnique)'</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="3b1b519d-b3a0-4395-a02a-090758801413" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T07:51:30.412714Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T07:51:30.411582Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T07:51:30.441773Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T07:51:30.440613Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T07:51:30.412645Z&quot;}}" data-execution_count="12">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>catnat.lib_risque_jo.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array(['Mouvement de Terrain', 'Inondation', 'Avalanche',
+       'Secousse Sismique', "Chocs Mécaniques liés à l'action des Vagues",
+       'Sécheresse', 'Phénomène atmosphérique', 'Raz de Marée',
+       'Poids de la Neige', 'Divers', 'Eruption Volcanique', 'Grêle',
+       "Choc M�caniques li�s � l'action des Vagues", 'Séismes',
+       'Inondations par choc mécanique des vagues'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="f6aa4040-9c42-482f-adfb-940d4090a8c2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T09:00:25.084318Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T09:00:25.082671Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T09:00:25.153822Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T09:00:25.152070Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T09:00:25.084252Z&quot;}}" data-execution_count="13">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Restriction des catnat au périmètres des aléas climatiques</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>catnat_climat <span class="op">=</span> catnat[catnat.lib_risque_jo.isin([<span class="st">'Mouvement de Terrain'</span>, <span class="st">'Inondation'</span>, <span class="st">'Avalanche'</span>, <span class="st">'Phénomène atmosphérique'</span>])]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>catnat_climat.rename(columns <span class="op">=</span> {<span class="st">'lib_risque_jo'</span>: <span class="st">'lib_risque'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> alea_commune(catnat_climat, risque_climat, date_fin):</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># catnat_reconnue depuis 1982 jusqu'à date_fin</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> catnat_climat[catnat_climat.dat_fin.dt.year <span class="op">&lt;=</span> date_fin]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.groupby([<span class="st">'cod_commune'</span>,<span class="st">'lib_commune'</span>,<span class="st">'lib_risque'</span>]).agg(nb_arret <span class="op">=</span> (<span class="st">'lib_risque'</span>,<span class="st">'count'</span>)).reset_index()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data[data.nb_arret<span class="op">&gt;=</span><span class="dv">3</span>]</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Consolidation de la base des risque par commune</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    data_alea_climat <span class="op">=</span> pd.concat([risque_climat[[<span class="st">'cod_commune'</span>,<span class="st">'lib_commune'</span>,<span class="st">'lib_risque'</span>]],</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>                               data[data.nb_arret<span class="op">&gt;=</span><span class="dv">3</span>][[<span class="st">'cod_commune'</span>,<span class="st">'lib_commune'</span>,<span class="st">'lib_risque'</span>]]]) <span class="co"># On complete la liste des communes et risques</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    data_alea_climat.drop_duplicates(inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Passage de chaque type de risque en clonne</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    data_alea_climat <span class="op">=</span> pd.get_dummies(data_alea_climat, columns <span class="op">=</span> [<span class="st">'lib_risque'</span>])</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    data_alea_climat.rename(columns <span class="op">=</span> {<span class="st">'lib_risque_Avalanche'</span>: <span class="st">'Avalanche'</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">'lib_risque_Inondation'</span>: <span class="st">'Inondation'</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">'lib_risque_Mouvement de Terrain'</span>: <span class="st">'Mouvement de Terrain'</span>,</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">'lib_risque_Phénomène atmosphérique'</span>: <span class="st">'Phénomène atmosphérique'</span>,</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">'lib_risque_Feu de forêt'</span>: <span class="st">'Feu de forêt'</span>},</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>                      inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    data_alea_climat <span class="op">=</span> data_alea_climat.groupby([<span class="st">'cod_commune'</span>, <span class="st">'lib_commune'</span>]).agg(<span class="st">'sum'</span>).reset_index()</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Nb alea</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    data_alea_climat[<span class="st">"nb_alea"</span>] <span class="op">=</span> data_alea_climat[<span class="st">'Avalanche'</span>] <span class="op">+</span> data_alea_climat[<span class="st">'Inondation'</span>] <span class="op">+\</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>                                    data_alea_climat[<span class="st">'Mouvement de Terrain'</span>] <span class="op">+</span> data_alea_climat[<span class="st">'Phénomène atmosphérique'</span>] <span class="op">+\</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>                                        data_alea_climat[<span class="st">'Feu de forêt'</span>]</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note relative à l'aléa climatique</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    data_alea_climat[<span class="st">"note_alea"</span>] <span class="op">=</span> data_alea_climat[<span class="st">"nb_alea"</span>]<span class="op">*</span><span class="dv">10</span> <span class="op">/</span> <span class="dv">5</span>  <span class="co"># 5 représente le nombre total d'aléa possibles</span></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_alea_climat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_62216\2131813539.py:3: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  catnat_climat.rename(columns = {'lib_risque_jo': 'lib_risque'}, inplace=True)</code></pre>
+</div>
+</div>
+<div id="e2f9db00-e319-4d37-ad34-4fb2e914ccfd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T09:00:59.494055Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T09:00:59.492883Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T09:01:00.169253Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T09:01:00.167950Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T09:00:59.493944Z&quot;}}" data-execution_count="14">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre d'arrêtés catnat depuis 1982 jusqu'en 2021</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>data_alea_climat_2021 <span class="op">=</span> alea_commune(catnat_climat, risque_climat, date_fin <span class="op">=</span> <span class="dv">2021</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>data_alea_climat_2021.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">Avalanche</th>
+<th data-quarto-table-cell-role="th">Feu de forêt</th>
+<th data-quarto-table-cell-role="th">Inondation</th>
+<th data-quarto-table-cell-role="th">Mouvement de Terrain</th>
+<th data-quarto-table-cell-role="th">Phénomène atmosphérique</th>
+<th data-quarto-table-cell-role="th">nb_alea</th>
+<th data-quarto-table-cell-role="th">note_alea</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>01002</td>
+<td>L'Abergement-de-Varey</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>01004</td>
+<td>Ambérieu-en-Bugey</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>01007</td>
+<td>Ambronay</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>01009</td>
+<td>Andert-et-Condon</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="quelques-observations-sur-les-aleas-climatiques-dans-les-communes" class="level3">
+<h3 class="anchored" data-anchor-id="quelques-observations-sur-les-aleas-climatiques-dans-les-communes">Quelques observations sur les aleas climatiques dans les communes</h3>
+<div id="f8ce9f6b-7ef4-4d7c-9a54-9ebe51a09e57" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-16T12:46:13.188784Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-16T12:46:13.188338Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-16T12:46:13.212121Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-16T12:46:13.210590Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-16T12:46:13.188752Z&quot;}}" data-execution_count="15">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes sur lesquelles le risque n'est pas déclaré mais dont l'état de catnat a été arrêté au moins trois fois pour ce risque</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>exception <span class="op">=</span> catnat_climat.loc[<span class="op">~</span>catnat_climat.cod_commune.isin(risque_climat.cod_commune.unique())]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="231b099e-775a-4a4c-88e0-10245d7b6225" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-16T12:46:13.856391Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-16T12:46:13.855774Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-16T12:46:13.875617Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-16T12:46:13.874272Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-16T12:46:13.856328Z&quot;}}" data-execution_count="16">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>risque.loc[risque.cod_commune.isin(exception.cod_commune.unique())].lib_risque.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>array(['Séisme', 'Transport de marchandises dangereuses',
+       'Rupture de barrage', 'Nucléaire', 'Affaissement minier',
+       'Effondrements localisés', 'Tassements',
+       'Glissements ou mouvements de pente', 'Affaissements progressifs',
+       'Emissions en surface de gaz de mine', 'Risque industriel',
+       'Effet toxique', 'Radon', "Phénomène lié à l'atmosphère",
+       'Neige et pluies verglaçantes', 'Effet thermique', 'Autre risque',
+       'Effet de surpression', 'Effondrements généralisés',
+       'Effet de projection', 'Engins de guerre', 'Grêle'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="7f4c8fc9-5733-4575-9a71-a75ee85cc802" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-16T12:46:14.628355Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-16T12:46:14.626344Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-16T12:46:14.656734Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-16T12:46:14.655336Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-16T12:46:14.628275Z&quot;}}" data-execution_count="17">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>catnat.loc[catnat.cod_commune.isin(exception.cod_commune.unique())].lib_risque_jo.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>array(['Inondation', 'Mouvement de Terrain',
+       "Chocs Mécaniques liés à l'action des Vagues", 'Sécheresse',
+       'Secousse Sismique', 'Poids de la Neige',
+       'Phénomène atmosphérique', 'Grêle', 'Séismes'], dtype=object)</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="densité-de-la-population-au-sein-des-communes" class="level2">
+<h2 class="anchored" data-anchor-id="densité-de-la-population-au-sein-des-communes">Densité de la population au sein des communes</h2>
+<div id="d72158af-fd98-4f49-b02d-b614d36d9dbe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T08:51:59.921665Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T08:51:59.920978Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T08:52:46.621236Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T08:52:46.619589Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T08:51:59.921598Z&quot;}}" data-execution_count="18">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importer les données de densité de population</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>densite_pop <span class="op">=</span> pd.read_excel(<span class="st">'../Data/insee_rp_hist_1968.xlsx'</span>, skiprows<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>densite_pop.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Unnamed: 1</th>
+<th data-quarto-table-cell-role="th">Unnamed: 2</th>
+<th data-quarto-table-cell-role="th">Densité de population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>codgeo</td>
+<td>libgeo</td>
+<td>an</td>
+<td>dens_pop</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1968</td>
+<td>21.82</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1975</td>
+<td>23.14</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1982</td>
+<td>30</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1990</td>
+<td>36.42</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="2530c78d-9f22-4d55-8e7d-6a0954f72754" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T08:53:37.724666Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T08:53:37.723082Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T08:53:37.833045Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T08:53:37.831943Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T08:53:37.724576Z&quot;}}" data-execution_count="19">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formatage de la table des densités</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>densite_pop.columns <span class="op">=</span> densite_pop.loc[<span class="dv">0</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>densite_pop <span class="op">=</span> densite_pop[<span class="dv">1</span>:]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>densite_pop.rename(columns <span class="op">=</span> {<span class="st">'codgeo'</span>: <span class="st">'cod_commune'</span>, <span class="st">'libgeo'</span>: <span class="st">'lib_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>densite_pop.an <span class="op">=</span> densite_pop.an.astype(<span class="st">'int'</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>densite_pop.dens_pop <span class="op">=</span> densite_pop.dens_pop.astype(<span class="st">'float'</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>densite_pop.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">an</th>
+<th data-quarto-table-cell-role="th">dens_pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1968</td>
+<td>21.82</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1975</td>
+<td>23.14</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1982</td>
+<td>30.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1990</td>
+<td>36.42</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>1999</td>
+<td>45.79</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="7ce9e19b-a7d5-4489-bba0-97b2051d0bf6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T09:05:50.776559Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T09:05:50.775641Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T09:05:50.791838Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T09:05:50.789830Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T09:05:50.776483Z&quot;}}" data-execution_count="20">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> density_commune(densite_pop, date):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""date: est l'année de recensement considérée [2010, 2015, 2021]"""</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    data_dens_pop <span class="op">=</span> densite_pop[densite_pop.an <span class="op">==</span> date]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Topper les communes sans densité renseignée</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    data_dens_pop[<span class="st">'top_dens_nan'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    data_dens_pop.loc[data_dens_pop.dens_pop.isna(), <span class="st">'top_dens_nan'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Note relative à la densité de la population</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    data_dens_pop.loc[data_dens_pop.top_dens_nan <span class="op">==</span> <span class="dv">0</span>, <span class="st">'q_dens'</span>] <span class="op">=</span> data_dens_pop.loc[data_dens_pop.top_dens_nan <span class="op">==</span> <span class="dv">0</span>,<span class="st">'dens_pop'</span>]<span class="op">\</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                                                                                .rank(method<span class="op">=</span><span class="st">'min'</span>, pct<span class="op">=</span><span class="va">True</span>) <span class="co"># Quantile de densité de population</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    data_dens_pop[<span class="st">'note_dens'</span>] <span class="op">=</span> data_dens_pop[<span class="st">'q_dens'</span>]<span class="op">*</span><span class="dv">10</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_dens_pop</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="1960b4ef-838d-497e-bc9e-31ee87c77275" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T09:07:56.906715Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T09:07:56.904471Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T09:07:56.953591Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T09:07:56.951370Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T09:07:56.906625Z&quot;}}" data-execution_count="21">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data_dens_pop_2021 <span class="op">=</span> density_commune(densite_pop, date <span class="op">=</span><span class="dv">2021</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>data_dens_pop_2021.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_62216\1042087.py:6: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data_dens_pop['top_dens_nan'] = 0
+C:\Users\DEBA\AppData\Local\Temp\ipykernel_62216\1042087.py:10: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data_dens_pop.loc[data_dens_pop.top_dens_nan == 0, 'q_dens'] = data_dens_pop.loc[data_dens_pop.top_dens_nan == 0,'dens_pop']\
+C:\Users\DEBA\AppData\Local\Temp\ipykernel_62216\1042087.py:12: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  data_dens_pop['note_dens'] = data_dens_pop['q_dens']*10</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">an</th>
+<th data-quarto-table-cell-role="th">dens_pop</th>
+<th data-quarto-table-cell-role="th">top_dens_nan</th>
+<th data-quarto-table-cell-role="th">q_dens</th>
+<th data-quarto-table-cell-role="th">note_dens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>2021</td>
+<td>52.33</td>
+<td>0</td>
+<td>0.581236</td>
+<td>5.812355</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">16</th>
+<td>01002</td>
+<td>L'Abergement-de-Varey</td>
+<td>2021</td>
+<td>29.02</td>
+<td>0</td>
+<td>0.392617</td>
+<td>3.926168</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">24</th>
+<td>01004</td>
+<td>Ambérieu-en-Bugey</td>
+<td>2021</td>
+<td>603.82</td>
+<td>0</td>
+<td>0.956926</td>
+<td>9.569264</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">32</th>
+<td>01005</td>
+<td>Ambérieux-en-Dombes</td>
+<td>2021</td>
+<td>119.31</td>
+<td>0</td>
+<td>0.792279</td>
+<td>7.922788</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">40</th>
+<td>01006</td>
+<td>Ambléon</td>
+<td>2021</td>
+<td>19.15</td>
+<td>0</td>
+<td>0.262480</td>
+<td>2.624796</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<section id="quelques-observations-sur-les-densités-de-population" class="level3">
+<h3 class="anchored" data-anchor-id="quelques-observations-sur-les-densités-de-population">Quelques observations sur les densités de population</h3>
+<p>Certaines commune ont été intégrées dans d’autres et d’autres ont été créées.</p>
+<div id="f176f112-e333-4bd8-a19e-0695e6824d6f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T09:14:44.230743Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T09:14:44.230355Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T09:14:44.328738Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T09:14:44.327200Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T09:14:44.230715Z&quot;}}" data-execution_count="22">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes non identifiées dans la base des densité de population</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>data_alea_climat_2021[<span class="op">~</span>data_alea_climat_2021.cod_commune.isin(densite_pop.cod_commune.unique())]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Topper ces communes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">Avalanche</th>
+<th data-quarto-table-cell-role="th">Feu de forêt</th>
+<th data-quarto-table-cell-role="th">Inondation</th>
+<th data-quarto-table-cell-role="th">Mouvement de Terrain</th>
+<th data-quarto-table-cell-role="th">Phénomène atmosphérique</th>
+<th data-quarto-table-cell-role="th">nb_alea</th>
+<th data-quarto-table-cell-role="th">note_alea</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28</th>
+<td>01039</td>
+<td>Béon</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">316</th>
+<td>02077</td>
+<td>Berzy-le-Sec</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2003</th>
+<td>08294</td>
+<td>La Moncelle</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2376</th>
+<td>09255</td>
+<td>Saint-Amans</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4473</th>
+<td>16140</td>
+<td>Fontclaireau</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4625</th>
+<td>16355</td>
+<td>Saint-Sulpice-de-Cognac</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5272</th>
+<td>18131</td>
+<td>Lugny-Bourbonnais</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">6538</th>
+<td>24089</td>
+<td>Cazoulès</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>6.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6729</th>
+<td>24314</td>
+<td>Orliaguet</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7039</th>
+<td>25134</td>
+<td>Châtillon-sur-Lison</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">7273</th>
+<td>25549</td>
+<td>Sombacour</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7311</th>
+<td>25628</td>
+<td>Villers-sous-Montrond</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">7507</th>
+<td>26219</td>
+<td>Mureils</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7696</th>
+<td>27058</td>
+<td>Les Trois Lacs</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">11354</th>
+<td>35112</td>
+<td>Fleurigné</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15405</th>
+<td>49321</td>
+<td>Saint-Sigismond</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>8.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">15447</th>
+<td>50015</td>
+<td>Annoville</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15944</th>
+<td>51063</td>
+<td>Binson-et-Orquigny</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16431</th>
+<td>51637</td>
+<td>Villers-sous-Châtillon</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">18251</th>
+<td>56049</td>
+<td>Croixanvec</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">22318</th>
+<td>64541</td>
+<td>Urdès</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">24048</th>
+<td>69152</td>
+<td>Pierre-Bénite</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>6.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">25159</th>
+<td>71492</td>
+<td>Saint-Ythaire</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">28797</th>
+<td>85037</td>
+<td>Breuil-Barret</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28801</th>
+<td>85041</td>
+<td>Cezais</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">28809</th>
+<td>85053</td>
+<td>La Chapelle-aux-Lys</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">28991</th>
+<td>85271</td>
+<td>Saint-Sulpice-en-Pareds</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>4.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">29022</th>
+<td>85307</td>
+<td>La Faute-sur-Mer</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>6.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">29230</th>
+<td>86231</td>
+<td>Saint-Macoux</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>6.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">30792</th>
+<td>95282</td>
+<td>Gouzangrez</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">31002</th>
+<td>97501</td>
+<td>Miquelon-Langlade</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">31003</th>
+<td>97502</td>
+<td>Saint-Pierre</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>10.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">31021</th>
+<td>97701</td>
+<td>Saint-Barthélemy</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">31022</th>
+<td>97801</td>
+<td>Saint-Martin</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="synthèse-de-lindicateur-dexposition-au-risque-climatique" class="level2">
+<h2 class="anchored" data-anchor-id="synthèse-de-lindicateur-dexposition-au-risque-climatique">Synthèse de l’indicateur d’exposition au risque climatique</h2>
+<div id="9b1b4120-18ff-473a-9c24-9509ad73c104" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:10:54.689625Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:10:54.688385Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:10:54.701748Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:10:54.700301Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:10:54.689571Z&quot;}}" data-execution_count="23">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> indice_expo_climat(data_alea_climat, data_dens_pop):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Completer les commune de data_climat sans alea</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> data_dens_pop[<span class="op">~</span>data_dens_pop.cod_commune.isin(data_alea_climat.cod_commune.unique())]</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    data_climat <span class="op">=</span> pd.concat([data_alea_climat, temp[[<span class="st">'cod_commune'</span>, <span class="st">'lib_commune'</span>]]])</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    data_climat.fillna(<span class="dv">0</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commune ayant non présentes dans les density_pop</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    temp2 <span class="op">=</span> data_alea_climat[<span class="op">~</span>data_alea_climat.cod_commune.isin(data_dens_pop.cod_commune.unique())]</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    data_climat[<span class="st">'top_commune_chg'</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    data_climat.loc[data_climat.cod_commune.isin(temp2.cod_commune.unique()), <span class="st">'top_commune_chg'</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    data_final <span class="op">=</span> data_climat.merge(data_dens_pop[[<span class="st">'cod_commune'</span>, <span class="st">'dens_pop'</span>, <span class="st">'top_dens_nan'</span>,<span class="st">'q_dens'</span>, <span class="st">'note_dens'</span>]],</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                         on <span class="op">=</span> <span class="st">'cod_commune'</span>,</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>                         how <span class="op">=</span> <span class="st">'left'</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcul de l'exposition</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    data_final[<span class="st">"note_expo"</span>] <span class="op">=</span> data_final[<span class="st">'note_alea'</span>] <span class="op">*</span> data_final[<span class="st">'note_dens'</span>] <span class="op">/</span> <span class="dv">10</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data_final</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="96dcc693-2f5b-4d2e-bf1b-e65cd5d488ad" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:10:56.996983Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:10:56.996396Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:10:57.163261Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:10:57.160692Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:10:56.996925Z&quot;}}" data-execution_count="24">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>exposition_2021 <span class="op">=</span> indice_expo_climat(data_alea_climat_2021, data_dens_pop_2021)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="9eef27f2-c714-4368-a1e1-64c33b7435ef" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:10:59.239817Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:10:59.239025Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:10:59.277813Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:10:59.275639Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:10:59.239752Z&quot;}}" data-execution_count="25">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>exposition_2021.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">Avalanche</th>
+<th data-quarto-table-cell-role="th">Feu de forêt</th>
+<th data-quarto-table-cell-role="th">Inondation</th>
+<th data-quarto-table-cell-role="th">Mouvement de Terrain</th>
+<th data-quarto-table-cell-role="th">Phénomène atmosphérique</th>
+<th data-quarto-table-cell-role="th">nb_alea</th>
+<th data-quarto-table-cell-role="th">note_alea</th>
+<th data-quarto-table-cell-role="th">top_commune_chg</th>
+<th data-quarto-table-cell-role="th">dens_pop</th>
+<th data-quarto-table-cell-role="th">top_dens_nan</th>
+<th data-quarto-table-cell-role="th">q_dens</th>
+<th data-quarto-table-cell-role="th">note_dens</th>
+<th data-quarto-table-cell-role="th">note_expo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>01001</td>
+<td>L'Abergement-Clémenciat</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>0</td>
+<td>52.33</td>
+<td>0.0</td>
+<td>0.581236</td>
+<td>5.812355</td>
+<td>1.162471</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>01002</td>
+<td>L'Abergement-de-Varey</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>0</td>
+<td>29.02</td>
+<td>0.0</td>
+<td>0.392617</td>
+<td>3.926168</td>
+<td>0.785234</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>01004</td>
+<td>Ambérieu-en-Bugey</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>0</td>
+<td>603.82</td>
+<td>0.0</td>
+<td>0.956926</td>
+<td>9.569264</td>
+<td>3.827706</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>01007</td>
+<td>Ambronay</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>0</td>
+<td>84.57</td>
+<td>0.0</td>
+<td>0.715554</td>
+<td>7.155540</td>
+<td>1.431108</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>01009</td>
+<td>Andert-et-Condon</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>2.0</td>
+<td>0</td>
+<td>46.67</td>
+<td>0.0</td>
+<td>0.544062</td>
+<td>5.440616</td>
+<td>1.088123</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="4a34ab38-d868-43ff-ac1b-56357a9bee7e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:11:11.997805Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:11:11.996760Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:11:12.044884Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:11:12.043717Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:11:11.997736Z&quot;}}" data-execution_count="26">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>exposition_2021.isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>cod_commune                 0
+lib_commune                 0
+Avalanche                   0
+Feu de forêt                0
+Inondation                  0
+Mouvement de Terrain        0
+Phénomène atmosphérique     0
+nb_alea                     0
+note_alea                   0
+top_commune_chg             0
+dens_pop                   52
+top_dens_nan               34
+q_dens                     52
+note_dens                  52
+note_expo                  52
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="73059ee4" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pip install jenkspy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting jenkspy
+  Downloading jenkspy-0.4.1-cp312-cp312-win_amd64.whl.metadata (7.3 kB)
+Requirement already satisfied: numpy in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from jenkspy) (2.0.2)
+Downloading jenkspy-0.4.1-cp312-cp312-win_amd64.whl (224 kB)
+Installing collected packages: jenkspy
+Successfully installed jenkspy-0.4.1
+Note: you may need to restart the kernel to use updated packages.</code></pre>
+</div>
+</div>
+<div id="15e2b7f3" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Segmentation à la Jenks</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jenkspy</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de segment: 6</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>seuils <span class="op">=</span> jenkspy.jenks_breaks(exposition_2021[<span class="op">~</span>exposition_2021.note_expo.isna()].note_expo, n_classes <span class="op">=</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="9eaf0971" class="cell" data-execution_count="29">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>seuils</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>[np.float64(0.0),
+ np.float64(0.5566915828965834),
+ np.float64(1.3429561531632157),
+ np.float64(2.258842397685941),
+ np.float64(3.29237907036687),
+ np.float64(4.641292207234299),
+ np.float64(7.964028983016869)]</code></pre>
+</div>
+</div>
+<div id="12855acc-08ec-4cf9-ac07-917a4a1e709e" class="cell" data-execution_count="30">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Segmentation à la Jenks</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">"Aucun risque climatique déclaré"</span>, </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Très faible"</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Faible"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Moyen"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Fort"</span>,</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Très fort"</span>]</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter une colonne de classe au DataFrame</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>exposition_2021[<span class="st">'indice_expo'</span>] <span class="op">=</span> pd.cut(exposition_2021[<span class="st">'note_expo'</span>], bins<span class="op">=</span>seuils, labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="25bf4f37-127a-4d29-a040-4e740ac34a5b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:25:56.813327Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:25:56.812764Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:25:56.958102Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:25:56.956202Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:25:56.813278Z&quot;}}" data-execution_count="31">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre de segment: 6</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>seuils <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">"Aucun aléa climatique"</span>, </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">"1 aléa climatique"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">"2 aléas climatiques"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">"3 aléas climatiques"</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"4 aléas climatiques"</span>,</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"5 aléas climatiques"</span>]</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter une colonne de classe au DataFrame</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>exposition_2021[<span class="st">'nb_alea'</span>] <span class="op">=</span> pd.cut(exposition_2021[<span class="st">'nb_alea'</span>], bins<span class="op">=</span>seuils, labels<span class="op">=</span>labels, include_lowest<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="fdb97e85-1759-495e-a616-2a29bbd32204" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:26:36.248489Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:26:36.247373Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:26:36.272016Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:26:36.269905Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:26:36.248413Z&quot;}}" data-execution_count="32">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>exposition_2021.nb_alea.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>['Aucun aléa climatique', '1 aléa climatique', '2 aléas climatiques', '3 aléas climatiques', '4 aléas climatiques']
+Categories (6, object): ['Aucun aléa climatique' &lt; '1 aléa climatique' &lt; '2 aléas climatiques' &lt; '3 aléas climatiques' &lt; '4 aléas climatiques' &lt; '5 aléas climatiques']</code></pre>
+</div>
+</div>
+</section>
+<section id="cartographie-des-niveau-dexposition" class="level1">
+<h1>Cartographie des niveau d’exposition</h1>
+<div id="e81eb178" class="cell" data-execution_count="33">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>pip install geopandas</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting geopandas
+  Downloading geopandas-1.1.1-py3-none-any.whl.metadata (2.3 kB)
+Requirement already satisfied: numpy&gt;=1.24 in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from geopandas) (2.0.2)
+Collecting pyogrio&gt;=0.7.2 (from geopandas)
+  Downloading pyogrio-0.11.1-cp312-cp312-win_amd64.whl.metadata (5.4 kB)
+Requirement already satisfied: packaging in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from geopandas) (24.2)
+Requirement already satisfied: pandas&gt;=2.0.0 in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from geopandas) (2.2.3)
+Collecting pyproj&gt;=3.5.0 (from geopandas)
+  Downloading pyproj-3.7.2-cp312-cp312-win_amd64.whl.metadata (31 kB)
+Collecting shapely&gt;=2.0.0 (from geopandas)
+  Downloading shapely-2.1.2-cp312-cp312-win_amd64.whl.metadata (7.1 kB)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from pandas&gt;=2.0.0-&gt;geopandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from pandas&gt;=2.0.0-&gt;geopandas) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from pandas&gt;=2.0.0-&gt;geopandas) (2025.1)
+Requirement already satisfied: certifi in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from pyogrio&gt;=0.7.2-&gt;geopandas) (2025.1.31)
+Requirement already satisfied: six&gt;=1.5 in d:\deb\mywebsite\franckdeba-ws\.venv\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=2.0.0-&gt;geopandas) (1.17.0)
+Downloading geopandas-1.1.1-py3-none-any.whl (338 kB)
+Downloading pyogrio-0.11.1-cp312-cp312-win_amd64.whl (19.2 MB)
+   ---------------------------------------- 0.0/19.2 MB ? eta -:--:--
+   - -------------------------------------- 0.5/19.2 MB 4.2 MB/s eta 0:00:05
+   -- ------------------------------------- 1.3/19.2 MB 3.5 MB/s eta 0:00:06
+   ---- ----------------------------------- 2.4/19.2 MB 3.6 MB/s eta 0:00:05
+   ------ --------------------------------- 3.1/19.2 MB 3.8 MB/s eta 0:00:05
+   ------- -------------------------------- 3.7/19.2 MB 3.6 MB/s eta 0:00:05
+   -------- ------------------------------- 4.2/19.2 MB 3.5 MB/s eta 0:00:05
+   ---------- ----------------------------- 5.0/19.2 MB 3.4 MB/s eta 0:00:05
+   ----------- ---------------------------- 5.5/19.2 MB 3.2 MB/s eta 0:00:05
+   ------------- -------------------------- 6.3/19.2 MB 3.3 MB/s eta 0:00:04
+   -------------- ------------------------- 6.8/19.2 MB 3.3 MB/s eta 0:00:04
+   ---------------- ----------------------- 7.9/19.2 MB 3.4 MB/s eta 0:00:04
+   ----------------- ---------------------- 8.4/19.2 MB 3.4 MB/s eta 0:00:04
+   ------------------- -------------------- 9.2/19.2 MB 3.4 MB/s eta 0:00:03
+   -------------------- ------------------- 10.0/19.2 MB 3.4 MB/s eta 0:00:03
+   --------------------- ------------------ 10.5/19.2 MB 3.3 MB/s eta 0:00:03
+   ----------------------- ---------------- 11.3/19.2 MB 3.3 MB/s eta 0:00:03
+   ------------------------- -------------- 12.3/19.2 MB 3.4 MB/s eta 0:00:03
+   --------------------------- ------------ 13.1/19.2 MB 3.4 MB/s eta 0:00:02
+   ---------------------------- ----------- 13.6/19.2 MB 3.4 MB/s eta 0:00:02
+   ----------------------------- ---------- 14.2/19.2 MB 3.4 MB/s eta 0:00:02
+   ------------------------------- -------- 15.2/19.2 MB 3.4 MB/s eta 0:00:02
+   -------------------------------- ------- 15.7/19.2 MB 3.4 MB/s eta 0:00:02
+   ---------------------------------- ----- 16.5/19.2 MB 3.4 MB/s eta 0:00:01
+   ------------------------------------ --- 17.3/19.2 MB 3.4 MB/s eta 0:00:01
+   ------------------------------------- -- 18.1/19.2 MB 3.4 MB/s eta 0:00:01
+   ---------------------------------------  18.9/19.2 MB 3.4 MB/s eta 0:00:01
+   ---------------------------------------- 19.2/19.2 MB 3.4 MB/s  0:00:05
+Downloading pyproj-3.7.2-cp312-cp312-win_amd64.whl (6.3 MB)
+   ---------------------------------------- 0.0/6.3 MB ? eta -:--:--
+   ---- ----------------------------------- 0.8/6.3 MB 4.2 MB/s eta 0:00:02
+   --------- ------------------------------ 1.6/6.3 MB 4.4 MB/s eta 0:00:02
+   -------------- ------------------------- 2.4/6.3 MB 3.9 MB/s eta 0:00:02
+   ---------------- ----------------------- 2.6/6.3 MB 3.8 MB/s eta 0:00:01
+   --------------------- ------------------ 3.4/6.3 MB 3.4 MB/s eta 0:00:01
+   ------------------------ --------------- 3.9/6.3 MB 3.2 MB/s eta 0:00:01
+   ---------------------------- ----------- 4.5/6.3 MB 3.1 MB/s eta 0:00:01
+   ------------------------------- -------- 5.0/6.3 MB 3.0 MB/s eta 0:00:01
+   ---------------------------------- ----- 5.5/6.3 MB 3.0 MB/s eta 0:00:01
+   ---------------------------------------- 6.3/6.3 MB 3.0 MB/s  0:00:02
+Downloading shapely-2.1.2-cp312-cp312-win_amd64.whl (1.7 MB)
+   ---------------------------------------- 0.0/1.7 MB ? eta -:--:--
+   ------------ --------------------------- 0.5/1.7 MB 3.4 MB/s eta 0:00:01
+   ------------------------ --------------- 1.0/1.7 MB 3.0 MB/s eta 0:00:01
+   ------------------------ --------------- 1.0/1.7 MB 3.0 MB/s eta 0:00:01
+   ------------------------------ --------- 1.3/1.7 MB 1.9 MB/s eta 0:00:01
+   ---------------------------------------- 1.7/1.7 MB 1.6 MB/s  0:00:01
+Installing collected packages: shapely, pyproj, pyogrio, geopandas
+
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------------------------------------- 0/4 [shapely]
+   ---------- ----------------------------- 1/4 [pyproj]
+   ---------- ----------------------------- 1/4 [pyproj]
+   ---------- ----------------------------- 1/4 [pyproj]
+   ---------- ----------------------------- 1/4 [pyproj]
+   ---------- ----------------------------- 1/4 [pyproj]
+   ---------- ----------------------------- 1/4 [pyproj]
+   ---------- ----------------------------- 1/4 [pyproj]
+   -------------------- ------------------- 2/4 [pyogrio]
+   -------------------- ------------------- 2/4 [pyogrio]
+   -------------------- ------------------- 2/4 [pyogrio]
+   -------------------- ------------------- 2/4 [pyogrio]
+   -------------------- ------------------- 2/4 [pyogrio]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ------------------------------ --------- 3/4 [geopandas]
+   ---------------------------------------- 4/4 [geopandas]
+
+Successfully installed geopandas-1.1.1 pyogrio-0.11.1 pyproj-3.7.2 shapely-2.1.2
+Note: you may need to restart the kernel to use updated packages.</code></pre>
+</div>
+</div>
+<div id="1486a60d-be58-45df-b692-63eb27b3967c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T10:12:31.764819Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T10:12:31.764224Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T10:12:31.772874Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T10:12:31.771224Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T10:12:31.764770Z&quot;}}" data-execution_count="34">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">#import folium</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="f2e90d06-29fc-4a43-be51-f97898e2b1a6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T13:42:07.964096Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T13:42:07.963110Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T13:42:48.273424Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T13:42:48.271563Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T13:42:07.964033Z&quot;}}" data-execution_count="35">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carte des communes de france</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>carte_france <span class="op">=</span> gpd.read_file(<span class="st">'../Carte France/communes-20220101.shp'</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>carte_france.rename(columns <span class="op">=</span> {<span class="st">'insee'</span>: <span class="st">'cod_commune'</span>, <span class="st">'nom'</span>: <span class="st">'lib_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="e431b6cd-8514-4aa6-81d6-8b844416d897" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T13:42:48.275991Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T13:42:48.275622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T13:43:02.106373Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T13:43:02.104732Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T13:42:48.275953Z&quot;}}" data-execution_count="36">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>carte_france.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-37-output-1.png" width="579" height="373" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="af3bf185-07b4-41ba-b85c-2030d6b45175" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T13:43:02.111090Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T13:43:02.109448Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T13:43:14.202495Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T13:43:14.201059Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T13:43:02.111011Z&quot;}}" data-execution_count="37">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout correspondance commune-département</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>com_dep_cor <span class="op">=</span> pd.read_excel(<span class="st">'../Data/table-appartenance-geo-communes-2025.xlsx'</span>, sheet_name<span class="op">=</span><span class="st">'COM'</span>, skiprows<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>com_dep_cor.rename(columns <span class="op">=</span> {<span class="st">'CODGEO'</span>:<span class="st">'cod_commune'</span>, <span class="st">'DEP'</span>:<span class="st">'cod_dep'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>carte_france <span class="op">=</span> carte_france.merge(com_dep_cor[[<span class="st">'cod_commune'</span>, <span class="st">'cod_dep'</span>]], on <span class="op">=</span> <span class="st">'cod_commune'</span>, how <span class="op">=</span> <span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="112d87dd-1811-47e9-b6c6-44043ef68c83" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T13:43:14.204896Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T13:43:14.204565Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T13:43:14.286050Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T13:43:14.284767Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T13:43:14.204868Z&quot;}}" data-execution_count="38">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>carte_france[carte_france.cod_dep.isna()]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">cod_commune</th>
+<th data-quarto-table-cell-role="th">lib_commune</th>
+<th data-quarto-table-cell-role="th">wikipedia</th>
+<th data-quarto-table-cell-role="th">surf_ha</th>
+<th data-quarto-table-cell-role="th">geometry</th>
+<th data-quarto-table-cell-role="th">cod_dep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1015</th>
+<td>26371</td>
+<td>Véronne</td>
+<td>fr:Véronne</td>
+<td>2168.0</td>
+<td>POLYGON ((5.17059 44.72378, 5.17095 44.72457, ...</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2231</th>
+<td>42252</td>
+<td>Saint-Laurent-Rochefort</td>
+<td>fr:Saint-Laurent-Rochefort</td>
+<td>1574.0</td>
+<td>POLYGON ((3.87956 45.76996, 3.87962 45.77015, ...</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2234</th>
+<td>42072</td>
+<td>La Côte-en-Couzan</td>
+<td>fr:La Côte-en-Couzan</td>
+<td>909.0</td>
+<td>POLYGON ((3.79791 45.74904, 3.79815 45.74977, ...</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2408</th>
+<td>59070</td>
+<td>Bermeries</td>
+<td>fr:Bermeries</td>
+<td>529.0</td>
+<td>POLYGON ((3.72493 50.29002, 3.72711 50.29107, ...</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2548</th>
+<td>42109</td>
+<td>L'Hôpital-sous-Rochefort</td>
+<td>fr:L'Hôpital-sous-Rochefort</td>
+<td>114.0</td>
+<td>POLYGON ((3.92732 45.77658, 3.9274 45.77654, 3...</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">34212</th>
+<td>16355</td>
+<td>Saint-Sulpice-de-Cognac</td>
+<td>fr:Saint-Sulpice-de-Cognac</td>
+<td>2373.0</td>
+<td>POLYGON ((-0.46314 45.75191, -0.46299 45.75206...</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">34696</th>
+<td>35112</td>
+<td>Fleurigné</td>
+<td>fr:Fleurigné</td>
+<td>1812.0</td>
+<td>POLYGON ((-1.14877 48.36651, -1.14873 48.36673...</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">34747</th>
+<td>22309</td>
+<td>Saint-Launeuc</td>
+<td>fr:Saint-Launeuc</td>
+<td>1159.0</td>
+<td>POLYGON ((-2.40457 48.23438, -2.40024 48.23418...</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">34783</th>
+<td>22043</td>
+<td>Coëtlogon</td>
+<td>fr:Coëtlogon</td>
+<td>1669.0</td>
+<td>POLYGON ((-2.57538 48.15147, -2.57519 48.15149...</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">34797</th>
+<td>22027</td>
+<td>Le Cambout</td>
+<td>fr:Le Cambout</td>
+<td>1827.0</td>
+<td>POLYGON ((-2.66321 48.04637, -2.66321 48.04641...</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>92 rows × 6 columns</p>
+</div>
+</div>
+</div>
+<div id="e0f6a988-323d-45df-ae3c-a0494e9e01b1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T13:47:41.293476Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T13:47:41.291283Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T13:47:41.398928Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T13:47:41.396907Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T13:47:41.293369Z&quot;}}" data-execution_count="39">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout des données sur les aléas climatiques (2021)</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>carte_france <span class="op">=</span> carte_france[[<span class="st">'cod_commune'</span>, <span class="st">'cod_dep'</span>, <span class="st">'geometry'</span>]].merge(exposition_2021, on<span class="op">=</span>[<span class="st">'cod_commune'</span>], how <span class="op">=</span> <span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="68e167fc-56ca-46c2-a939-8df128c27437" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T14:04:37.032484Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T14:04:37.031605Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T14:04:37.093314Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T14:04:37.091479Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T14:04:37.032422Z&quot;}}" data-execution_count="40">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>dom_tom_com <span class="op">=</span> [<span class="st">'971'</span>, <span class="st">'972'</span>, <span class="st">'973'</span>, <span class="st">'974'</span>, <span class="st">'976'</span>, <span class="co"># DOM</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'975'</span>, <span class="st">'977'</span>, <span class="st">'978'</span>, <span class="st">'986'</span>, <span class="st">'987'</span>, <span class="st">'988'</span>, <span class="st">'984'</span>, <span class="st">'989'</span>] <span class="co"># TOM/ COM </span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>hexagone <span class="op">=</span> carte_france[<span class="op">~</span>carte_france.cod_dep.isin(dom_tom_com)]</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>guadeloupe <span class="op">=</span> carte_france[carte_france.cod_dep <span class="op">==</span> <span class="st">'971'</span>]</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>martinique <span class="op">=</span> carte_france[carte_france.cod_dep <span class="op">==</span> <span class="st">'972'</span>]</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>guyane <span class="op">=</span> carte_france[carte_france.cod_dep <span class="op">==</span> <span class="st">'973'</span>]</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>reunion <span class="op">=</span> carte_france[carte_france.cod_dep <span class="op">==</span> <span class="st">'974'</span>]</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>mayotte <span class="op">=</span> carte_france[carte_france.cod_dep <span class="op">==</span> <span class="st">'976'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="4f901536-cda5-49ea-b05e-0d1d9ae03ad4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:51:26.141534Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:51:26.141028Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T15:51:26.151095Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T15:51:26.149731Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:51:26.141492Z&quot;}}" data-execution_count="41">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage de la carte pour différentes target (elément représenté)</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_climat_risque(data, target, titles):    </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>    data[<span class="dv">0</span>].plot(column<span class="op">=</span>data[<span class="dv">0</span>][target], label <span class="op">=</span> <span class="st">'Hexagone'</span>, cmap <span class="op">=</span> <span class="st">'OrRd'</span>, legend <span class="op">=</span> <span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> <span class="dv">0</span>   </span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> carte, label <span class="kw">in</span> <span class="bu">zip</span>(data[<span class="dv">1</span>:], titles[<span class="dv">1</span>:]):</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>        carte.plot(column<span class="op">=</span>carte[target], label <span class="op">=</span> label, cmap <span class="op">=</span> <span class="st">'OrRd'</span>, ax<span class="op">=</span>axes[j])</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>        j <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="2a685501-d3c5-468b-8b40-4657ef771e1d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:53:04.274523Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:53:04.272596Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T15:53:20.452618Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T15:53:20.450124Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:53:04.274460Z&quot;}}" data-execution_count="42">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Indicateur d'exposition des communes aux aléas climatiques</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'indice_expo'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-43-output-1.png" width="816" height="781" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-43-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pour matotte on ne dispose pas de densité de la population</p>
+<div id="dab4c19f-98c3-47bc-89e0-acafa974bd77" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:55:42.341346Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:55:42.338673Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T15:56:02.074685Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T15:56:02.073234Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:55:42.341254Z&quot;}}" data-execution_count="43">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantile de densité de la population par commune</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'q_dens'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-44-output-1.png" width="940" height="786" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-44-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="92016aac-54ef-44db-b9ef-2d08e585e44e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:56:49.806427Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:56:49.805354Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T15:57:04.852557Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T15:57:04.850625Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:56:49.806325Z&quot;}}" data-execution_count="44">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nombre d'aléas climatiques sur chaque commune</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'nb_alea'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-45-output-1.png" width="816" height="781" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-45-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="6ccd295c-9ae0-411f-bcb2-59d65045e983" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:58:19.186606Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:58:19.184271Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T15:58:19.198783Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T15:58:19.197228Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:58:19.186529Z&quot;}}" data-execution_count="45">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>hexagone.columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>Index(['cod_commune', 'cod_dep', 'geometry', 'lib_commune', 'Avalanche',
+       'Feu de forêt', 'Inondation', 'Mouvement de Terrain',
+       'Phénomène atmosphérique', 'nb_alea', 'note_alea', 'top_commune_chg',
+       'dens_pop', 'top_dens_nan', 'q_dens', 'note_dens', 'note_expo',
+       'indice_expo'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="df2ed5a6-278d-45c7-9bda-031ceb167256" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:58:39.817184Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:58:39.816629Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T15:58:58.766360Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T15:58:58.765122Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:58:39.817138Z&quot;}}" data-execution_count="46">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes exposées aux avalanches</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'Avalanche'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-47-output-1.png" width="940" height="786" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-47-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="5402692e-4223-4b45-bd74-8bf9988b622d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T15:59:44.846825Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T15:59:44.846244Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T16:00:03.066761Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T16:00:03.065503Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T15:59:44.846783Z&quot;}}" data-execution_count="47">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes exposées aux 'Feu de forêt'</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'Feu de forêt'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-48-output-1.png" width="940" height="786" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-48-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="54f0859a-b4df-48d3-b20e-41d6b2c02150" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T16:00:24.953833Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T16:00:24.951622Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T16:00:42.067013Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T16:00:42.064436Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T16:00:24.953707Z&quot;}}" data-execution_count="48">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes exposées aux 'Inondation'</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'Inondation'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-49-output-1.png" width="940" height="786" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-49-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="4715bc54-6ff8-45f8-b0fe-ebe5163dec50" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T16:01:04.185903Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T16:01:04.184844Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T16:01:19.313772Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T16:01:19.311740Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T16:01:04.185803Z&quot;}}" data-execution_count="49">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes exposées aux 'Mouvement de Terrain'</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-50-output-1.png" width="940" height="786" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-50-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="53ecb5da-04a2-4ae2-978a-e83771aaa25b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-17T16:01:53.554657Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-17T16:01:53.554080Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-17T16:02:12.676906Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-17T16:02:12.674773Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-17T16:01:53.554602Z&quot;}}" data-execution_count="50">
+<details class="code-fold">
+<summary>Afficher le code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes exposées aux 'Phénomène atmosphérique'</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>plot_climat_risque(data <span class="op">=</span> [hexagone, guadeloupe,  reunion, martinique, guyane],</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>                    titles <span class="op">=</span>[<span class="st">'hexagone'</span>, <span class="st">'guadeloupe'</span>, <span class="st">'reunion'</span>, <span class="st">'martinique'</span>, <span class="st">'guyane'</span>],</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>                    target <span class="op">=</span> <span class="st">'Phénomène atmosphérique'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-51-output-1.png" width="940" height="786" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_ExpoClimatCommune_files/figure-html/cell-51-output-2.png" width="1449" height="397" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

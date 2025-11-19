@@ -23,7 +23,7 @@ website:
 
 # On désactive l’exécution globale
 execute:
-  enabled: true
+  enabled: false
 
 format:
   html:
