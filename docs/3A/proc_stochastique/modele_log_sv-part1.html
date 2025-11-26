@@ -423,7 +423,7 @@ y_t = x_t + \varepsilon_t
 <p>où <span class="math inline">\(y_t\)</span> est le logarithme des rendements au carré à l’instant <span class="math inline">\(t\)</span>, <span class="math inline">\(x_t\)</span> est la volatilité de l’actif financier à l’instant <span class="math inline">\(t\)</span>, et <span class="math inline">\(\varepsilon_t\)</span> est un bruit blanc de loi log-<span class="math inline">\(\chi^2\)</span>.</p>
 <p>De ce fait, nous pouvons utiliser le filtre de Kalman pour estimer la volatilité de l’actif financier en utilisant les rendements observés. En effet, le filtre de Kalman est un algorithme récursif qui permet d’estimer l’état caché d’un système dynamique à partir d’observations bruitées. Il s’applique à des modèles linéaires dont le bruit est gaussien. Dans notre cas, nous avons linéarisé le modèle pour qu’il soit compatible avec le filtre de Kalman. Cependant, le bruit n’est pas gaussien, mais log-<span class="math inline">\(\chi^2\)</span>. L’objectif de ce notebook est d’observer le comportement du filtre de Kalman où le bruit n’est pas gaussien.</p>
 <p>Nous possédons déjà d’un fichier avec les rendements de l’actif financier et la vraie volatilité simulés avec les paramètres suivants <span class="math inline">\(\mu = -0.8\)</span>, <span class="math inline">\(\phi = 0.9\)</span>, <span class="math inline">\(\sigma = 0.09\)</span>. Nous allons donc utiliser ces données pour estimer la volatilité de l’actif financier en utilisant le filtre de Kalman. Néanmoins, le code est également fourni pour simuler les données si vous souhaitez tester le filtre de Kalman sur d’autres paramètres.</p>
-<div id="fc774d6d" class="cell">
+<div id="c9c1b2e7" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation d'un modèle à vol stochastique de Taylor</span></span>
@@ -460,7 +460,7 @@ y_t = x_t + \varepsilon_t
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">'x'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cdd315bf" class="cell">
+<div id="55fcd770" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des trajectoires</span></span>
@@ -475,7 +475,7 @@ y_t = x_t + \varepsilon_t
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="647e8bb6" class="cell">
+<div id="901db922" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construction du modèle log-SV (modèle de Taylor)</span></span>
@@ -511,7 +511,7 @@ x_{\text{hat}[t]} &amp;= x_{\text{hat\_m}} + K \cdot (y[t] - y_m)
 <p>$$</p>
 <p>Pour initialiser le filtre de Kalman, il est conseillé de connaitre la loi stationnaire de la volatilité. En effet, la volatilité suit une loi normale stationnaire de paramètre <span class="math inline">\(\mu/(1 - \phi)\)</span> et <span class="math inline">\(\sigma^2/(1 - \phi^2)\)</span>. Par conséquent, nous pouvons initialiser le filtre de Kalman avec ces paramètres. En ce qui concerne la matrice de covariance de l’état initial, nous pouvons la fixer à une valeur élevée, par exemple <span class="math inline">\(10^2\)</span>.</p>
 <p>Dans notre cas, nous allons tester deux initialisations différentes : une initialisation avec les paramètres stationnaires et une initialisation avec des paramètres aléatoires.</p>
-<div id="5fe592ac" class="cell">
+<div id="17254069" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Script de filtre de kalman pour estimer la volatilité à chaque instant t en supposant les paramètres connus</span></span>
@@ -537,7 +537,7 @@ x_{\text{hat}[t]} &amp;= x_{\text{hat\_m}} + K \cdot (y[t] - y_m)
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_hat, P, K</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="834abd41" class="cell">
+<div id="53ef78d8" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialisation à 0 et 0.01</span></span>
@@ -547,7 +547,7 @@ x_{\text{hat}[t]} &amp;= x_{\text{hat\_m}} + K \cdot (y[t] - y_m)
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x_hat, color<span class="op">=</span><span class="st">'grey'</span>, label<span class="op">=</span><span class="st">'Volatilité estimée'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="9a842b14" class="cell">
+<div id="6ea7bb7e" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialisation à x_0 et sigma_squared/(1-phi**2)</span></span>
@@ -568,7 +568,7 @@ x_{\text{hat}[t]} &amp;= x_{\text{hat\_m}} + K \cdot (y[t] - y_m)
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"RMSE = "</span>, rmse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="22679e55" class="cell">
+<div id="aff27320" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialisation à mu/(1-phi) et sigma_squared/(1-phi**2)</span></span>
@@ -592,7 +592,7 @@ x_{\text{hat}[t]} &amp;= x_{\text{hat\_m}} + K \cdot (y[t] - y_m)
 <section id="filtre-de-kalman-avec-paramètres-inconnus" class="level2">
 <h2 class="anchored" data-anchor-id="filtre-de-kalman-avec-paramètres-inconnus">Filtre de Kalman avec paramètres inconnus</h2>
 <p>Dans le cas où les paramètres du modèle sont inconnus, nous pouvons les estimer en utilisant le filtre de Kalman. En effet, nous pouvons utiliser l’algorithme EM pour estimer les paramètres du modèle. L’algorithme EM est un algorithme itératif qui permet d’estimer les paramètres d’un modèle en maximisant la vraisemblance des données observées. Dans notre cas, nous allons utiliser l’algorithme EM pour estimer les paramètres <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\phi\)</span> et <span class="math inline">\(\sigma\)</span> du modèle.</p>
-<div id="6a1439e8" class="cell">
+<div id="b5d94ca2" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
