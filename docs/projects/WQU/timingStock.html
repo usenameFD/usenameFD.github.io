@@ -421,7 +421,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>In this project we will try to design a strategy that times the return of Apple stock (‘AAPL’). For that, we will employ an MLP network that aims to predict whether the future return of AAPL is positive or negative. Based on the predictions from the model, we will later on check how our strategy performs.</p>
 <p>Note: <em>The code is adapted to run on any stock using its Ticker.</em></p>
-<div id="cd564435" class="cell">
+<div id="cbf9ac2c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Required packages</span></span>
@@ -440,7 +440,7 @@ window.Quarto = {
 <section id="data-and-sources" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-sources">Data and sources</h2>
 <p>As with any other Deep Learning endeavor, the single most important and necessary ingredient is data. We will retrieve Apple stock price data from Yahoo! Finance using the famous <strong>yfinance</strong> library in Python. We will retrieve daily stock price data from AAPL (Apple Inc.) from January 1st, 1980, but we keep only data that do not have any missing observations, reducing the sample size substantially.</p>
-<div id="d5b8dd60" class="cell">
+<div id="6f14d4b7" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the stock Ticker</span></span>
@@ -449,7 +449,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Once we have daily prices, we can compute daily returns, which will be used to construct the inputs (and output) of our MLP:</p>
-<div id="0f3eb02a" class="cell">
+<div id="47449ec4" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Closing price</span></span>
@@ -467,7 +467,7 @@ window.Quarto = {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="6bced149" class="cell">
+<div id="c745f0b1" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the cumulative return</span></span>
@@ -488,7 +488,7 @@ window.Quarto = {
 <section id="inputs-and-outputs" class="level3">
 <h3 class="anchored" data-anchor-id="inputs-and-outputs"><strong>2.1 Inputs and outputs</strong></h3>
 <p>There are multiple choices to make when selecting the inputs of a MLP model. Some of them are based on sound theory, but also some simply stem from a trial and error process. We will consider as inputs in the network the stock returns from the past 25, 60, 90, 120 and 240 days.</p>
-<div id="5cdd5779" class="cell">
+<div id="0287387d" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the name variable</span></span>
@@ -509,7 +509,7 @@ window.Quarto = {
 <p><strong>Defining the output: Classification</strong></p>
 <p>Finally, we need to define our output label/s. We have decided to focus on the <span class="math inline">\(+120\)</span> (trading) days return for Apple stock. Remember that in this case we will perform a classification task with out MLP model, so that we simply aim to predict whether, on a given time <span class="math inline">\(t\)</span>, the return of AAPL from <span class="math inline">\(t\)</span> to <span class="math inline">\(t+120\)</span> days will be positive or negative (note how a zero return, although unlikely, will also be classified as negative).</p>
 <p>Therefore, we first investigate, at a given time <span class="math inline">\(t\)</span>, what would be the 120-day return on AAPL. Then, we calculate our output variable, keeping in mind that we will be running a classification task and, hence, we need to convert our output variable to a <span class="math inline">\(0, 1\)</span> variable (<span class="math inline">\(0\)</span> for negative 120 days return, <span class="math inline">\(1\)</span> for positive):</p>
-<div id="509ef2c2" class="cell">
+<div id="805ef0af" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Ret120"</span>] <span class="op">=</span> df[<span class="st">"Ret120_i"</span>].shift(<span class="op">-</span><span class="dv">120</span>)</span>
@@ -521,7 +521,7 @@ window.Quarto = {
 </details>
 </div>
 <p>It is always useful to see some summary statistics of the different variables in our model.</p>
-<div id="1dfd7cd8" class="cell">
+<div id="9886e432" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -531,7 +531,7 @@ window.Quarto = {
 <section id="train-test-samples-and-scaling" class="level3">
 <h3 class="anchored" data-anchor-id="train-test-samples-and-scaling"><strong>2.2 Train-Test samples and Scaling</strong></h3>
 <p>Next important step in building our model is in defining our train and test samples, together with the scaling of variables. As we have usually done before, we will take 20% of observations and devote them to testing, while 80% will be used for training the model. It is logical to do this in chronological order!</p>
-<div id="774e254c" class="cell">
+<div id="4ec8ad82" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train-test split</span></span>
@@ -543,7 +543,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Now we are ready to use <strong>sklearn</strong> to formally define the input and output matrices for training (<strong>X_train</strong> and <strong>y_train</strong>) and test (<strong>X_test</strong> and <strong>y_test</strong>). One more time, make sure you keep the ‘shuffle’ option set to ‘False’!</p>
-<div id="5a5d3edc" class="cell">
+<div id="cc4970f3" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -587,7 +587,7 @@ For more information on how this loss function works, check the <strong>official
 </ul>
 <p>Still, one question remains about which metric would we use for our loss function based on binary cross-entropy. A <strong>metric</strong> is simply a function that is used to judge the performance of your model. See all metrics available in Keras here: https://keras.io/api/metrics/</p>
 <p>Here, we choose to judge our model performance using ‘<strong>accuracy</strong>’, which in this case corresponds to binary accuracy: https://keras.io/api/metrics/accuracy_metrics/#binaryaccuracy-class</p>
-<div id="9f019065" class="cell">
+<div id="0a3fb907" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
@@ -624,7 +624,7 @@ For more information on how this loss function works, check the <strong>official
 <h3 class="anchored" data-anchor-id="validation-and-callbacks-earlystopping"><strong>2.3.1 Validation and callbacks (Earlystopping)</strong></h3>
 <p>We have already built our model, but there are still a few questions that need an answer when training it: how many epochs do we train for? when does the model stop?</p>
 <p>To solve these questions, we will use <strong>EarlyStopping</strong>. In this case the variable that we will monitor will be model accuracy in the validation set. Naturally, we will aim to obtain the maximum accuracy in validation, and set the patience to 20, so that model training will stop after 20 epochs in which there is no improvement in the accuracy that the model weights yield in the validation set.</p>
-<div id="70d0aeea" class="cell">
+<div id="f5d14faf" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>es <span class="op">=</span> tf.keras.callbacks.EarlyStopping(</span>
@@ -642,7 +642,7 @@ For more information on how this loss function works, check the <strong>official
 <p>When we work on classification tasks, there is always the possibility that one of the labels we are trying to predict is underrepresented in the training sample. Ideally you would want the model to give a heavier weight to underrepresented labels so that you do not overlook this in future prediction. For example, suppose that you are trying to predict corporate default, but your data has very small percentage of observation when a firm actually defaults. You may want the model to pay more attention to these observations where the actual action occurs. For that, we can use <strong>class_weights</strong>.</p>
 <p><strong>Class-weights</strong> essentially consist on passing Keras a weight for each class in the sample, so that we can make the model focus on a particular class more than it will based on its representation in the sample.</p>
 <p>In this case, we would like the model to pay more attention to labels of 0, which correspond to days in which the 120-day-ahead return is negative. There are many ways to assign and modify class weights, we follow here a simple one, completely discretionary:</p>
-<div id="432ff289" class="cell">
+<div id="ce8d0f38" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>class_weight <span class="op">=</span> {<span class="dv">0</span>: (np.mean(y_train) <span class="op">/</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="fl">1.2</span>, <span class="dv">1</span>: <span class="fl">1.0</span>}</span>
@@ -650,7 +650,7 @@ For more information on how this loss function works, check the <strong>official
 </details>
 </div>
 <p>Finally, we are ready to train our model with all these ingredients!</p>
-<div id="a320955c" class="cell">
+<div id="82a4ac93" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
@@ -666,7 +666,7 @@ For more information on how this loss function works, check the <strong>official
 </details>
 </div>
 <p>Let’s inspect the summary of the model layers, which in the presence of dropout makes much more sense to have clear in mind:</p>
-<div id="25e89650" class="cell">
+<div id="c3296e8c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -682,7 +682,7 @@ For more information on how this loss function works, check the <strong>official
 <section id="model-performance-in-test-sample" class="level3">
 <h3 class="anchored" data-anchor-id="model-performance-in-test-sample"><strong>3.1 Model performance in test sample</strong></h3>
 <p>We will start by obtaining the predictions of the model in the test sample and its accuracy. Remember, we are evaluating how well our model predicts, using past AAPL returns for 5 different windows, whether the next 120 days returns is positive or negative. The way we will operate is defining model prediction as a 1 (i.e., positive return) if the probability assigned by the model is higher than 0.5; and 0 (i.e., negative return) else.</p>
-<div id="9008ffb3" class="cell">
+<div id="3688294a" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -700,7 +700,7 @@ For more information on how this loss function works, check the <strong>official
 <section id="trading-strategy-based-on-model-predictions" class="level3">
 <h3 class="anchored" data-anchor-id="trading-strategy-based-on-model-predictions"><strong>3.2 Trading strategy based on model predictions</strong></h3>
 <p>Next, let’s evaluate the extent to which our model predictions can act as the foundation of a trading strategy. To that end, we will perform a <strong>backtest</strong>.</p>
-<div id="cfe74879" class="cell">
+<div id="434bb341" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_predictions <span class="op">=</span> pd.DataFrame(</span>
@@ -720,7 +720,7 @@ For more information on how this loss function works, check the <strong>official
 <li><p>A long-only strategy that will go to cash (return = 0) when model predicts a negative 120-day return.</p></li>
 <li><p>A Buy-and-hold strategy that will buy the stock at the beginning of the test period and hold it until the end of the period.</p></li>
 </ul>
-<div id="d9b55707" class="cell">
+<div id="61b3504b" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df_predictions.copy()</span>
@@ -745,7 +745,7 @@ For more information on how this loss function works, check the <strong>official
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Buy and Hold Return ="</span>, Buy_Return <span class="op">*</span> <span class="dv">100</span>, <span class="st">"%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="e9a15ead" class="cell">
+<div id="35dff5e2" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>

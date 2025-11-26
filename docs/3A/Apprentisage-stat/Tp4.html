@@ -414,7 +414,7 @@ window.Quarto = {
 <p>In order to have confidence in this measure, we will consider a bivariate gaussian variable <span class="math inline">\(Z=(X,Y)\)</span> with mean <span class="math inline">\(\mu = (0,0)\)</span> and covariance matrix <span class="math inline">\(\Sigma = \begin{pmatrix} \sigma^2_X &amp; \rho \sigma_X \sigma_X \\  \rho \sigma_X \sigma_X &amp; \sigma^2_Y \end{pmatrix}\)</span>. We will compute the mutual information between X and Y for a grid a <span class="math inline">\(\rho\)</span> between 0.01 and 0.99 using 1000 size samples repeated 100 times and see how the mutual information behaves and compare it the theorical value of the mutual information which is equal to <span class="math inline">\(-\frac{1}{2} \log(1-\rho^2)\)</span>.</p>
 <section id="accuracy-of-mutual-information-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="accuracy-of-mutual-information-estimation">1. Accuracy of mutual information estimation</h2>
-<div id="7a49cde7" class="cell">
+<div id="6329217f" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -439,7 +439,7 @@ window.Quarto = {
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> np.log(<span class="dv">1</span> <span class="op">-</span> rho<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="10d7d7c4" class="cell">
+<div id="dd20070b" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parameters</span></span>
@@ -488,7 +488,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="comparison-between-mutual-information-and-correlation-tests">2. Comparison between mutual information and correlation tests</h2>
 <p>We will use a simulate dataset where we know the relationship between the variables and see how the pearson, spearman an mutual information perform. We will consider a dataset where the 15 first variables are normal <span class="math inline">\(X_{i = 1,\dots,15} \sim \mathcal{N}(0,1)\)</span> and the 5 last variables are uniform <span class="math inline">\(X_{i = 16,\dots,20} \sim \mathcal{U}(0,1)\)</span>. We will consider the target variable <span class="math inline">\(Y\)</span> as a linear combination of some variables :</p>
 <p><span class="math display">\[ Y = 2X_1 + X_7^2 + X_4^3 + 3 X_2 X_{11} + 2 \sin(2\pi X_{19}) + 3X_6^2\cos(2\pi X_{17})\]</span></p>
-<div id="6327af78" class="cell">
+<div id="1ca1e471" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to generate data</span></span>
@@ -506,7 +506,7 @@ window.Quarto = {
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b88e3e45" class="cell">
+<div id="2aaded36" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the correlation between each feature and the target</span></span>
@@ -523,7 +523,7 @@ window.Quarto = {
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    concat_pearson.append(np.<span class="bu">abs</span>(pearson_corr))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="37085949" class="cell">
+<div id="c8a99596" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -543,7 +543,7 @@ window.Quarto = {
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="3813ca1d" class="cell">
+<div id="a2c6cc0b" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson correlations</span></span>
@@ -557,7 +557,7 @@ window.Quarto = {
 </details>
 </div>
 <p>As we can see, the spearman and pearson correlation can not identify all the relevant features, in fact, they are only able to identify the relevant variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_4\)</span> and <span class="math inline">\(X_{19}\)</span> related to the target variable <span class="math inline">\(Y\)</span>. If we are interested in selecting the relevant features using the mutual information, we can identify more relevant features such as <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_4\)</span>, <span class="math inline">\(X_6\)</span>, <span class="math inline">\(X_7\)</span>, and <span class="math inline">\(X_{19}\)</span>, however some irrelevant features are also selected such as <span class="math inline">\(X_2\)</span> and <span class="math inline">\(X_{11}\)</span>.</p>
-<div id="dbb5acd0" class="cell">
+<div id="02d6b385" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mutual_info <span class="op">=</span> []</span>
@@ -583,7 +583,7 @@ window.Quarto = {
 <section id="what-about-feature-selection-with-lasso-regression" class="level3">
 <h3 class="anchored" data-anchor-id="what-about-feature-selection-with-lasso-regression">What about feature selection with lasso regression?</h3>
 <p>We might be interested in the behavior of the lasso regression in the same dataset. We will use the <code>Lasso</code> class from the <code>sklearn.linear_model</code> module to fit the lasso regression on the dataset and see how it performs in selecting the relevant features. We will use the <code>LassoCV</code> class to select the best value of the regularization parameter <span class="math inline">\(\alpha\)</span> using cross-validation.</p>
-<div id="d55ee007" class="cell">
+<div id="6825857e" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
@@ -609,7 +609,7 @@ window.Quarto = {
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    selected_features[sim, :] <span class="op">=</span> (lasso.coef_ <span class="op">!=</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2dcabdc1" class="cell">
+<div id="4641fc5e" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency of selection for each feature</span></span>
@@ -647,7 +647,7 @@ window.Quarto = {
 <p><span class="math display">\[HSIC(X,Y) = \frac{1}{n^2} \text{tr}(KHLH)\]</span></p>
 <p>where <span class="math inline">\(K\)</span> is the kernel matrix of X and <span class="math inline">\(L\)</span> is the kernel matrix of Y and H is the centering matrix <span class="math inline">\(H = I - \frac{1}{n} \mathbf{1} \mathbf{1}^T\)</span>. Since the HSIC is not implemented in the mainstream libraries, we will implement it ourselves using the sobolev kernel for X and Y with :</p>
 <p><span class="math display">\[k(x,x') = 1 + (z_i - 0.5) (z_j - 0.5) + \frac{1}{2} ((z_i-z_j)^2 - |z_i -z_j| +1/6)\]</span></p>
-<div id="f805f315" class="cell">
+<div id="b38c5a98" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sobolev_kernel(x,y):</span>
@@ -671,7 +671,7 @@ window.Quarto = {
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hsic_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="3f56c7a3" class="cell">
+<div id="d3b7252e" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
@@ -688,7 +688,7 @@ window.Quarto = {
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>hsic_df <span class="op">=</span> pd.DataFrame(hsic_values, columns<span class="op">=</span>feature_names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0a90cfa4" class="cell">
+<div id="98a7bf87" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting boxplots for Spearman correlations</span></span>
@@ -705,7 +705,7 @@ window.Quarto = {
 <section id="threshold-selection-for-mutual-information-and-hsic" class="level2">
 <h2 class="anchored" data-anchor-id="threshold-selection-for-mutual-information-and-hsic">Threshold selection for mutual information and HSIC</h2>
 <p>The hilbert-schmidt independence criterion, the mutual information are able to capture the relationship between the variables, no matter what type of variables they are. However, it needs a definition of a threshold to select the relevant features in a dataset. As for correlation tests like pearson or speaman, we might use statistical tests to select the relevant features in a dataset. However, for mutual information and HSIC, we use the permutation test where the test statistic distribution under the null hypothesis (X and Y are independent), is estimated with several data permutations. The p-value is then computed as the proportion of test statistics that are more extreme than the observed test statistic.</p>
-<div id="b7f8ea1d" class="cell">
+<div id="51ed541b" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> resample</span>
@@ -739,7 +739,7 @@ window.Quarto = {
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>p_values_mi <span class="op">=</span> np.mean(mi_train <span class="op">&lt;</span> all_miXYindep, axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="1f4c4013" class="cell">
+<div id="392f2af8" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
@@ -752,7 +752,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Depending on the pvalues, we can select the relevant features in a dataset. Using the mutual information, the variables selected are listed below :</p>
-<div id="9e2de3f0" class="cell">
+<div id="a70a2da9" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Selected variables with MI p-values </span><span class="sc">%s</span><span class="st"> "</span> <span class="op">%</span> np.where(p_values_mi <span class="op">&lt;</span> <span class="fl">0.05</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -766,17 +766,19 @@ window.Quarto = {
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <hero class="hero-banner">
   <div class="hero-content">
-    <h1 class="hero-title">{{ title }}</h1>
+    <h1 class="hero-title"></h1>
     <p class="hero-subtitle">
       Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
     </p>
   </div>
 </hero>
 
-{{ body }}
+<main class="content">
+  
+</main>
 
 <footer class="quant-footer">
-  <p>© {{&lt; year &gt;}} Franck Deba — Quantitative Research Lab</p>
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
   <p class="footer-sub">
     Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
   </p>
