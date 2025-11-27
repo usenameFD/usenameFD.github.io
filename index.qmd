@@ -9,7 +9,7 @@ listing:
     - 2A/**/*.qmd
   type: grid
   sort: "title"         # car la plupart de tes fichiers n'ont PAS de date
-  image-placeholder: img/placeholder.jpg
+  image-placeholder: img/logo.svg
   fields: [image, title, description]   # champs réellement disponibles
   categories: false
 ---

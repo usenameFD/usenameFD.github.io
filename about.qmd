@@ -18,7 +18,7 @@ about:
       href: CV/Franck_DEBA_Resume.pdf
 ---
 
-Je suis Franck Deba, ingénieur Data Scientist diplômé de l'ENSAI et actuellement étudiant au M2MO (ex-DEA Laure-Elie). Je me spécialise en finance de marché après un parcours en gestion des risques bancaires.
+Je suis [Franck Deba](CV/Franck_DEBA_Resume.pdf), ingénieur Data Scientist diplômé de l'ENSAI et actuellement étudiant au M2MO (ex-DEA Laure-Elie). Je me spécialise en finance de marché après un parcours en gestion des risques bancaires.
 
 Ce site web, conçu avec Quarto, s'adresse principalement aux étudiants intéressés par la finance de marché et ses métiers. L'accent est mis sur la pédagogie pour appréhender les défis académiques que j'ai rencontrés et que beaucoup vivent durant leur formation.
 

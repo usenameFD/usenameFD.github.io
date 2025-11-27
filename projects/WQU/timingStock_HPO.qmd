@@ -1,0 +1,375 @@
+---
+title: "Multilayer Perceptron: Market Timing in Stock (AAPL)" 
+sidebar: auto
+author:
+  name: Franck Deba
+date: "2025-11-18"
+layout: risk-management
+---
+
+## Introduction
+
+In this project we will try to design a strategy that times the return of Apple stock ('AAPL'). For that, we will employ an MLP network that aims to predict whether the future return of AAPL is positive or negative. Based on the predictions from the model, we will later on check how our strategy performs.
+
+Note: *The code is adapted to run on any stock using its Ticker.*
+
+```{python}
+# Required packages
+import tensorflow as tf
+from tensorflow import keras
+import keras_tuner as kt
+import numpy as np
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import yfinance as yf
+```
+
+## Data and sources
+
+As with any other Deep Learning endeavor, the single most important and necessary ingredient is data. We will retrieve Apple stock price data from Yahoo! Finance using the famous **yfinance** library in Python.
+We will retrieve daily stock price data from AAPL (Apple Inc.) from January 1st, 1980, but we keep only data that do not have any missing observations, reducing the sample size substantially.
+
+
+```{python}
+# Specify the stock Ticker
+ticker = "AAPL"
+data = yf.download(tickers=ticker, start="1980-01-01")
+```
+
+Once we have daily prices, we can compute daily returns, which will be used to construct the inputs (and output) of our MLP:
+
+```{python}
+# Closing price
+df = data["Close"]
+
+# Define the name variable
+df['Ret'] = data["Close"].pct_change()*100
+
+# Calculate cumulative return
+df['Cumulative Return'] = (1 + df['Ret']/100).cumprod() - 1
+
+# Set 'Date' as index and keep only 'Ret' column
+df = df.dropna()
+
+df.head()
+```
+
+
+```{python}
+# Plot the cumulative return
+plt.figure(figsize=(10, 6))
+df['Cumulative Return'].plot()
+plt.title('Cumulative Return of AAPL')
+plt.xlabel('Date')
+plt.ylabel('Cumulative Return')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+```
+
+## **2. Timing Apple stock with Multilayer Perceptron (MLPs)**
+
+As we have already mentioned, the purpose of our MLP is to predict the future return (we will shortly see for which time horizon and how) of AAPL using past returns. Hence, one of the first things we must do is decide and define the inputs and outputs of the model.
+
+### **2.1 Inputs and outputs**
+
+There are multiple choices to make when selecting the inputs of a MLP model. Some of them are based on sound theory, but also some simply stem from a trial and error process. We will consider as inputs in the network the stock returns from the past 25, 60, 90, 120 and 240 days. 
+
+```{python}
+# Define the name variable
+name = 'Ret'
+
+df = df[['Ret']]
+
+df["Ret25_i"] = df[name].rolling(25).apply(lambda x: 100 * (np.prod(1 + x / 100) - 1))
+df["Ret60_i"] = df[name].rolling(60).apply(lambda x: 100 * (np.prod(1 + x / 100) - 1))
+df["Ret90_i"] = df[name].rolling(90).apply(lambda x: 100 * (np.prod(1 + x / 100) - 1))
+df["Ret120_i"] = df[name].rolling(120).apply(lambda x: 100 * (np.prod(1 + x / 100) - 1))
+df["Ret240_i"] = df[name].rolling(240).apply(lambda x: 100 * (np.prod(1 + x / 100) - 1))
+
+df = df.dropna()
+df.tail(10)
+```
+**Defining the output: Classification**
+
+Finally, we need to define our output label/s. We have decided to focus on the $+120$ (trading) days return for Apple stock. Remember that in this case we will perform a classification task with out MLP model, so that we simply aim to predict whether, on a given time $t$, the return of AAPL from $t$ to $t+120$ days will be positive or negative (note how a zero return, although unlikely, will also be classified as negative). 
+
+Therefore, we first investigate, at a given time $t$, what would be the 120-day return on AAPL. Then, we calculate our output variable, keeping in mind that we will be running a classification task and, hence, we need to convert our output variable to a $0, 1$ variable ($0$ for negative 120 days return, $1$ for positive):
+
+```{python}
+df["Ret120"] = df["Ret120_i"].shift(-120)
+df["Output"] = df["Ret120"] > 0
+df["Output"] = df["Output"].astype(int)
+del df["Ret120"]
+df = df.dropna()
+df.tail(10)
+```
+
+It is always useful to see some summary statistics of the different variables in our model.
+
+```{python}
+df.describe()
+```
+
+### **2.2 Train-Test samples and Scaling**
+
+Next important step in building our model is in defining our train and test samples, together with the scaling of variables. As we have usually done before, we will take 20% of observations and devote them to testing, while 80% will be used for training the model. It is logical to do this in chronological order!
+
+```{python}
+# Train-test split
+ts = int(0.2 * len(df))  # Number of observations in test sample (20%)
+split_time = len(df) - ts  # Start of test sample
+test_time = df.index[split_time:]  # Extract Date index for test period
+Ret_vector = df['Ret'][split_time:].values  # Extract Ret values for test period
+df.tail()
+```
+Now we are ready to use **sklearn** to formally define the input and output matrices for training (**X_train** and **y_train**) and test (**X_test** and **y_test**). One more time, make sure you keep the 'shuffle' option set to 'False'! 
+
+```{python}
+from sklearn.model_selection import train_test_split
+
+Xdf, ydf = df.iloc[:, 1:-1], df.iloc[:, -1]
+X = Xdf.astype("float32")
+y = ydf.astype("float32")
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=ts, shuffle=False
+)  # It is important to keep "shuffle=False"
+print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
+```
+The last 'print' in the previous chunk of code gives as an output very useful information specially for a later time where we will move on to more complex models. In this case, we know that we have $6,428$ observations in training for $5$ different input series. 
+
+- **What about scaling?**
+
+We have not implemented scaling here. Scaling of variables is actually a very good practice recommended to follow. In this case, since we are working with returns from the same stock, the impact that scaling of inputs will have is presumably very limited. (To be clear, we use 'scaled' data by taking prices that adjust for any dividends and stock splits).
+
+### **2.3 Model and Training**
+
+Finally, it is time to set up our model. In this case, we will use 3 hidden layers with 25, 15 and 10 units respectively, and a final single-unit output layer. For all the hidden layers, we will use a **ReLU** activation function, whereas we will opt for a **sigmoid** activation in the output layer. 
+
+- **Dropout**
+
+We introduce a **dropout layer** after each of the hidden layers. Dropout randomly sets some units of a hidden layer to zero. The question of how many units (i.e., frequency rate) is up to the user to define. In this case, we set **n_dropout = 0.2** to shut down 20% of the units in the layer. More info on how the dropout layers work in the official Keras documentation:
+https://keras.io/api/layers/regularization_layers/dropout/
+
+- **Loss function?**
+
+Since we are in a classification problem with 2 labels (0, 1), we select a loss function, **binary cross-entropy** that is essentially a log-likelihood:
+
+\
+\begin{equation*}
+H(y_i) = - \frac{1}{N} \sum_{i=1}^N y_i \ log(p(y_i)) \ + \ (1-y_i) \ log(1-p(y_i))
+\end{equation*}
+
+\
+For more information on how this loss function works, check the **official documentation** in Keras: https://www.tensorflow.org/api_docs/python/tf/keras/losses/BinaryCrossentropy
+
+A simple explanation of binary cross-entropy may be found here: https://towardsdatascience.com/understanding-binary-cross-entropy-log-loss-a-visual-explanation-a3ac6025181a
+
+- **Metric for loss function?**
+
+Still, one question remains about which metric would we use for our loss function based on binary cross-entropy. A **metric** is simply a function that is used to judge the performance of your model. See all metrics available in Keras here: https://keras.io/api/metrics/
+
+Here, we choose to judge our model performance using '**accuracy**', which in this case corresponds to binary accuracy:
+https://keras.io/api/metrics/accuracy_metrics/#binaryaccuracy-class
+
+
+- **Model tunning**
+We are simply tuning 3 hyper-parameters:
+
+- **Dropout**: we are letting the tuner choose between a value for dropout of 0.2 or 0.3.
+
+- **Number of layers in the model**: in this case, we will let the tuner choose between 1 and 5 hidden layers in the model. We do this using the **hp.Int()** method.
+
+- **Number of units in each hidden layer**: the tuner will choose between 1 (min_value) and 25 (max_value) units in each layer, with a step size of 5.
+
+
+```{python}
+import keras_tuner as kt
+import tensorflow as tf
+from keras_tuner import HyperModel
+
+tf.keras.backend.clear_session()
+tf.random.set_seed(1234)
+val_split = 0.2
+
+
+class MLP_model(HyperModel):
+    def build(self, hp):
+        # We define a constant activation function of ReLU form. We will not be tuning the activation functions
+        act_fun = "relu"
+
+        # We do ask the Keras Tuner to choose whether is best to have a dropout rate after each hidden layer of 0.2 or 0.3
+        n_dropout = hp.Choice("n_dropout", values=[0.20, 0.30])
+
+        model = tf.keras.models.Sequential()
+
+        # Now, we will use a loop to let the tuner choose the number of layers that is best for the model between 1 and 5
+        for i in range(1, hp.Int("num_layers", 1, 5)):
+            # Within this loop, we will also ask the tuner to decide the optimal number of units that each of the selected layer should have.
+            model.add(
+                tf.keras.layers.Dense(
+                    units=hp.Int(
+                        "units_dense_" + str(i), min_value=1, max_value=25, step=5
+                    ),
+                    activation=act_fun,
+                )
+            )
+            model.add(tf.keras.layers.Dropout(n_dropout))
+
+        model.add(tf.keras.layers.Dense(units=1))
+
+        # As was the case with the activation function, there is no tuning on the learning rate, nor the optimizer, although we could easily incorporate it.
+        hp_lr = 1e-5
+        adam = tf.keras.optimizers.Adam(learning_rate=hp_lr)
+        model.compile(optimizer=adam, loss="mean_absolute_error")
+
+        return model
+```
+\
+Now, once we have defined our HyperModel (i.e., **MLP_model()** class), we can perform the tuning of the hyper-parameters. This is, essentially, another optimization algorithm (**Tuner**), for which we would also need to make some decisions:
+
+- **Hypermodel**: we have already defined our hypermodel: MLP_model()
+
+- **Objective**: what is the objective function to optimize? In this case we will minimize the loss function in the validation set.
+
+- **Other parameters**: these include whether we overwrite results, fixing the random seed, or storage of results (convenient for large complex models).
+
+\
+We will select the Hyperband tuner embedded in Keras.
+
+```{python}
+import os
+
+from keras import backend as K
+
+# First, we clear the session just to make sure our seeds are correctly working and replicability is achieved
+K.clear_session()
+
+# Then, we call the model and perform the tuning:
+hypermodel = MLP_model()
+tuner = kt.Hyperband(
+    hypermodel,
+    objective=kt.Objective("val_loss", direction="min"),
+    overwrite=True,
+    max_epochs=10,
+    seed=1234,
+    directory=os.path.normpath("Output/"),
+)
+
+# Let's run the tuner! (Warning: this could take time)
+tuner.search(X_train, y_train, validation_split=val_split)
+best_hps = tuner.get_best_hyperparameters(num_trials=1)[0]
+```
+
+```{python}
+best_hps.values
+```
+
+### **2.3.1 Validation and callbacks (Earlystopping)**
+
+We have already built our model, but there are still a few questions that need an answer when training it: how many epochs do we train for? when does the model stop?
+
+To solve these questions, we will use **EarlyStopping**. In this case the variable that we will monitor will be model accuracy in the validation set. Naturally, we will aim to obtain the maximum accuracy in validation, and set the patience to 20, so that model training will stop after 20 epochs in which there is no improvement in the accuracy that the model weights yield in the validation set. 
+
+Now, we can use these tuned hyper-parameter values to train our model, together with a usual early-stopping criteria:
+```{python}
+model = tuner.hypermodel.build(best_hps)
+es = tf.keras.callbacks.EarlyStopping(
+    monitor="val_loss", mode="min", verbose=1, patience=20, restore_best_weights=True
+)
+
+# fit the model
+model.fit(
+    X_train,
+    y_train,
+    validation_split=0.2,
+    epochs=200,
+    batch_size=32,
+    verbose=2,
+    callbacks=[es],
+)
+```
+
+This section concludes all relative to the construction and training of the MLP classification model. Now, as we have usually done, let's explore if we could use this model, which achieves a decent accuracy in the validation set, to build a trading strategy.
+
+## **3. Financial performance of the model**
+
+As we have done before, let's now evaluate the use of this model for a financial strategy. It is very important that we clearly understand that evaluating the **financial performance** is a completely separate thing from evaluating the **predictive performance** of the model. Obviously, the two tasks are interrelated, but they may offer completely different conclusions after a thorough analysis. We have already trained our model and assess its fit. Now, we will check if the predictions delivered in the test sample are valid for developing a trading strategy!
+
+### **3.1 Model performance in test sample**
+We will start by obtaining the predictions of the model in the test sample and its accuracy. Remember, we are evaluating how well our model predicts, using past AAPL returns for 5 different windows, whether the next 120 days returns is positive or negative. The way we will operate is defining model prediction as a 1 (i.e., positive return) if the probability assigned by the model is higher than 0.5; and 0 (i.e., negative return) else.
+
+```{python}
+y_pred = model.predict(X_test)
+df_predictions = pd.DataFrame(
+    {
+        'Date': test_time,  # No flatten needed for DatetimeIndex
+        'Pred': y_pred.flatten() if y_pred.ndim > 1 else y_pred,  # Flatten if 2D
+        'Ret': Ret_vector.flatten() if Ret_vector.ndim > 1 else Ret_vector,  # Flatten if 2D
+    }
+)
+df_predictions.tail()
+df = df_predictions.copy()
+df.tail()
+```
+
+### **3.2 Trading strategy based on model predictions**
+
+Next, let's evaluate the extent to which our model predictions can act as the foundation of a trading strategy. To that end, we will perform a **backtest**.
+
+
+We will define the positions that our trading strategy will take as long ($+1$) if the prediction of the model is higher than $0.5$, and short ($-1$) if less. *(Note, nonetheless, that in practice our prediction can only take values 0 or 1)*
+
+As in previous cases, we will backtest 3 trading strategies:
+
+- A long/short strategy that will take a long or short position when model prediction indicate so.
+
+- A long-only strategy that will go to cash (return = 0) when model predicts a negative 120-day return.
+
+- A Buy-and-hold strategy that will buy the stock at the beginning of the test period and hold it until the end of the period.
+
+```{python}
+df['Ret'] = df['Ret'] / 100
+
+df["Positions"] = np.where(df["Pred"] > 0, 1, -1)
+df["Strat_ret"] = df["Positions"].shift(1) * df["Ret"]
+df["Positions_L"] = df["Positions"].shift(1)
+df["Positions_L"][df["Positions_L"] == -1] = 0
+df["Strat_ret_L"] = df["Positions_L"] * df["Ret"]
+df["CumRet"] = df["Strat_ret"].expanding().apply(lambda x: np.prod(1 + x) - 1)
+df["CumRet_L"] = df["Strat_ret_L"].expanding().apply(lambda x: np.prod(1 + x) - 1)
+df["bhRet"] = df["Ret"].expanding().apply(lambda x: np.prod(1 + x) - 1)
+
+Final_Return_L = np.prod(1 + df["Strat_ret_L"]) - 1
+Final_Return = np.prod(1 + df["Strat_ret"]) - 1
+Buy_Return = np.prod(1 + df["Ret"]) - 1
+
+print("Strat Return Long Only =", Final_Return_L * 100, "%")
+print("Strat Return =", Final_Return * 100, "%")
+print("Buy and Hold Return =", Buy_Return * 100, "%")
+```
+
+Judging by the numbers obtained here, it seems that, under these tuned hyper-parameters and, remember, for the testing period of our choice, our model does a fairly decent job in timing the AAPL stock. Let' better see it graphically:
+
+```{python}
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(12, 6))
+ax = plt.gca()
+df.plot(x="Date", y="bhRet", label="Buy&Hold", ax=ax)
+df.plot(x="Date", y="CumRet_L", label="Strat Only Long", ax=ax)
+df.plot(x="Date", y="CumRet", label="Strat Long/Short", ax=ax)
+plt.xlabel("date")
+plt.ylabel("Cumulative Returns")
+plt.grid()
+plt.show()
+
+df.describe()
+```
+
+## **4. Conclusion**
+
+We have worked with TensorFlow Keras on a MLP model for classification purposes. Specifically, we designed a MLP model that aims to predict the forward 120 day return of Apple stock. In doing so, we have used some features of Deep Learning models, such as dropout and class weights. Still, there is much to be done in terms of improving model performance by, for example, optimally selecting some of the hyperparameters used in the model such as the learning rate.

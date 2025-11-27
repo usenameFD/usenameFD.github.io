@@ -79,7 +79,9 @@ title: ""
 
 ::: {.card}
 ### Deep Learning  
-[Notebook →](projects/DeepLearning/DL.ipynb)
+[Deep learning for finance (Notebook) →](projects/WQU/timingStock_HPO.qmd)
+[Other (Notebook) →](projects/DeepLearning/DL.ipynb)
+
 :::
 
 ::: {.card}
