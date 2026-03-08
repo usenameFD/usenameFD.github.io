@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-03-08">
+
+<title>Problème de Navigation de Zermelo Stochastique – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7ac2f9da8c2617a4fdd15004b4601015.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7c8793e99a21e081e2bb8d69993efb75.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-6c9d4b6e8397689ef559897df4fbe577.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-7c8793e99a21e081e2bb8d69993efb75.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a>
+  <ul class="collapse">
+  <li><a href="#dynamique-contrôlée" id="toc-dynamique-contrôlée" class="nav-link" data-scroll-target="#dynamique-contrôlée">Dynamique contrôlée</a></li>
+  <li><a href="#valeur-optimale" id="toc-valeur-optimale" class="nav-link" data-scroll-target="#valeur-optimale">Valeur optimale</a></li>
+  <li><a href="#domaine-et-vitesse-du-bateau" id="toc-domaine-et-vitesse-du-bateau" class="nav-link" data-scroll-target="#domaine-et-vitesse-du-bateau">Domaine et vitesse du bateau</a></li>
+  <li><a href="#équation-hjbi" id="toc-équation-hjbi" class="nav-link" data-scroll-target="#équation-hjbi">Équation HJBI</a></li>
+  <li><a href="#paramètres-numériques" id="toc-paramètres-numériques" class="nav-link" data-scroll-target="#paramètres-numériques">Paramètres numériques</a></li>
+  </ul></li>
+  <li><a href="#objectifs" id="toc-objectifs" class="nav-link" data-scroll-target="#objectifs">2. Objectifs</a></li>
+  <li><a href="#approche-par-différences-finies" id="toc-approche-par-différences-finies" class="nav-link" data-scroll-target="#approche-par-différences-finies">3.1. Approche par différences finies</a>
+  <ul class="collapse">
+  <li><a href="#schéma-de-newton-semi-smooth" id="toc-schéma-de-newton-semi-smooth" class="nav-link" data-scroll-target="#schéma-de-newton-semi-smooth">Schéma de Newton semi-smooth</a></li>
+  <li><a href="#f-correspondant-à-une-solution-explicite" id="toc-f-correspondant-à-une-solution-explicite" class="nav-link" data-scroll-target="#f-correspondant-à-une-solution-explicite">3.1.1. <span class="math inline">\(f\)</span> correspondant à une solution explicite</a></li>
+  <li><a href="#f-1-solution-exacte-inconnue" id="toc-f-1-solution-exacte-inconnue" class="nav-link" data-scroll-target="#f-1-solution-exacte-inconnue">3.1.2. <span class="math inline">\(f = 1\)</span> — solution exacte inconnue</a></li>
+  </ul></li>
+  <li><a href="#approche-par-réseaux-de-neurones-pinns" id="toc-approche-par-réseaux-de-neurones-pinns" class="nav-link" data-scroll-target="#approche-par-réseaux-de-neurones-pinns">3.2. Approche par réseaux de neurones (PINNs)</a>
+  <ul class="collapse">
+  <li><a href="#f-correspondant-à-une-solution-explicite-1" id="toc-f-correspondant-à-une-solution-explicite-1" class="nav-link" data-scroll-target="#f-correspondant-à-une-solution-explicite-1">3.2.1. <span class="math inline">\(f\)</span> correspondant à une solution explicite</a></li>
+  <li><a href="#f-1-solution-exacte-inconnue-1" id="toc-f-1-solution-exacte-inconnue-1" class="nav-link" data-scroll-target="#f-1-solution-exacte-inconnue-1">3.2.2. <span class="math inline">\(f = 1\)</span> — solution exacte inconnue</a></li>
+  </ul></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références">Références</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Problème de Navigation de Zermelo Stochastique</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Résolution numérique d’une équation HJBI par différences finies et PINNs</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">EDP</div>
+    <div class="quarto-category">PINNs</div>
+    <div class="quarto-category">Optimisation</div>
+    <div class="quarto-category">Python</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 8, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<p>Ce projet porte sur l’étude et la résolution numérique d’une classe d’équations d’Hamilton–Jacobi–Bellman–Isaacs (HJBI) apparaissant dans des problèmes de contrôle optimal et de contrôle robuste. Nous considérons en particulier une équation issue du <strong>problème stochastique de navigation de Zermelo</strong>, où un bateau cherche à optimiser son temps de sortie d’un domaine soumis à un vent fort, avec incertitude sur la perturbation stochastique.</p>
+<section id="dynamique-contrôlée" class="level3">
+<h3 class="anchored" data-anchor-id="dynamique-contrôlée">Dynamique contrôlée</h3>
+<p><span class="math display">\[
+dX_t = b(X_t, \alpha_t)\,dt + \sigma\,dW_t, \quad X_0 = x \in \Omega
+\]</span></p>
+<p>où <span class="math inline">\(\alpha_t\)</span> est une stratégie de contrôle dans un ensemble <span class="math inline">\(A\)</span>, <span class="math inline">\(b\)</span> représente la vitesse relative du bateau plus la vitesse du vent, et <span class="math inline">\(\sigma\)</span> décrit un bruit gaussien multidimensionnel.</p>
+</section>
+<section id="valeur-optimale" class="level3">
+<h3 class="anchored" data-anchor-id="valeur-optimale">Valeur optimale</h3>
+<p><span class="math display">\[
+u(x) = \inf_\alpha \sup_{Q \in \mathcal{M}}\, \mathbb{E}^Q\!\left[\int_0^\tau f(X_t)\,dt + g(X_\tau)\right]
+\]</span></p>
+<p>où <span class="math inline">\(\mathcal{M}\)</span> encode une incertitude sur la loi du bruit et <span class="math inline">\(\tau\)</span> est le temps de sortie du domaine. Par programmation dynamique, <span class="math inline">\(u\)</span> est l’unique solution de viscosité d’un problème HJBI <span class="math inline">\(F(x,u,\nabla u, D^2 u)=0\)</span> dans <span class="math inline">\(\Omega\)</span>.</p>
+</section>
+<section id="domaine-et-vitesse-du-bateau" class="level3">
+<h3 class="anchored" data-anchor-id="domaine-et-vitesse-du-bateau">Domaine et vitesse du bateau</h3>
+<p>Le domaine considéré est l’anneau :</p>
+<p><span class="math display">\[
+\Omega = \{(x,y)\in\mathbb{R}^2 :\ r^2 &lt; x^2+y^2 &lt; R^2\}
+\]</span></p>
+<p>avec un drift de la forme :</p>
+<p><span class="math display">\[
+b\big((x,y),\alpha\big) := \begin{pmatrix} v_c(x,y) + v_s\cos\alpha \\ v_s\sin\alpha \end{pmatrix}, \quad \alpha\in[0,2\pi]
+\]</span></p>
+<p>Le but est de conduire le bateau jusqu’au bord intérieur <span class="math inline">\(S_r = \partial B(0,r)\)</span> en temps minimal (<span class="math inline">\(f\equiv 1\)</span>), la rive extérieure étant modélisée par <span class="math inline">\(g\equiv 1\)</span> sur <span class="math inline">\(\partial B_R\)</span>.</p>
+</section>
+<section id="équation-hjbi" class="level3">
+<h3 class="anchored" data-anchor-id="équation-hjbi">Équation HJBI</h3>
+<p><span class="math display">\[
+-\frac{1}{2}\!\left(\sigma_x^2\,u_{xx}+\sigma_y^2\,u_{yy}\right)
+- v_c(x,y)\,u_x
++ v_s\|\nabla u\|_2
+- \kappa\|\nabla u\|_1
+- f(x,y) = 0, \quad x\in\Omega
+\]</span></p>
+<p>avec le vent horizontal :</p>
+<p><span class="math display">\[
+v_c(x,y) := 1 - a\sin\!\left(\pi\frac{x^2+y^2-r^2}{R^2-r^2}\right)
+\]</span></p>
+<p>et les conditions aux limites :</p>
+<p><span class="math display">\[
+u = 0\ \text{ sur }\ \partial B_r, \qquad u = 1\ \text{ sur }\ \partial B_R
+\]</span></p>
+</section>
+<section id="paramètres-numériques" class="level3">
+<h3 class="anchored" data-anchor-id="paramètres-numériques">Paramètres numériques</h3>
+<p><span class="math display">\[
+r=0.5,\quad R=\sqrt{2},\quad \kappa=0.1,\quad v_s=0.5,\quad a=0.2,\quad \sigma_x=0.5,\quad \sigma_y=0.2
+\]</span></p>
+</section>
+</section>
+<section id="objectifs" class="level2">
+<h2 class="anchored" data-anchor-id="objectifs">2. Objectifs</h2>
+<p>Ce projet étudie numériquement ce problème par deux approches complémentaires :</p>
+<ol type="1">
+<li><strong>Différences finies</strong> — schéma de Newton semi-smooth permettant de construire une solution de référence.</li>
+<li><strong>PINNs</strong> (Physics-Informed Neural Networks) — approximation par réseaux de neurones.</li>
+</ol>
+<p>On comparera ainsi les performances, la robustesse et la précision des deux méthodes.</p>
+<hr>
+</section>
+<section id="approche-par-différences-finies" class="level2">
+<h2 class="anchored" data-anchor-id="approche-par-différences-finies">3.1. Approche par différences finies</h2>
+<p>On englobe l’anneau <span class="math inline">\(\Omega\)</span> dans le carré <span class="math inline">\(K:=[-2,2]^2\)</span> avec un maillage cartésien <span class="math inline">\(x_i = X_{\min}+ih\)</span>, <span class="math inline">\(y_j = Y_{\min}+jh\)</span>, <span class="math inline">\(h = (X_{\max}-X_{\min})/(M+1)\)</span>.</p>
+<p>On note <span class="math inline">\(\Gamma_r := \{(x_i,y_j)\in K,\,r_{i,j}\le r\}\)</span> et <span class="math inline">\(\Gamma_R:=\{(x_i,y_j)\in K,\,r_{i,j}\ge R\}\)</span>.</p>
+<section id="schéma-de-newton-semi-smooth" class="level3">
+<h3 class="anchored" data-anchor-id="schéma-de-newton-semi-smooth">Schéma de Newton semi-smooth</h3>
+<p>À l’itération <span class="math inline">\(n\)</span>, connaissant <span class="math inline">\(U^n\)</span>, on résout en <span class="math inline">\(U^{n+1}\)</span> le système linéaire creux <span class="math inline">\(AU^{n+1}=b\)</span> avec le gradient normalisé <span class="math inline">\(\alpha(U)_{i,j}:=\frac{(D^1U)_{i,j}}{\|(D^1U)_{i,j}\|_2}\)</span> et <span class="math inline">\(\beta(U)_{i,j}:=\bigl(\text{sign}(D^1_xU),\,\text{sign}(D^1_yU)\bigr)_{i,j}\)</span>, en utilisant les différences centrées :</p>
+<p><span class="math display">\[
+(D_x^2 U)_{i,j} = \frac{U_{i+1,j}-2U_{i,j}+U_{i-1,j}}{h^2}, \qquad
+(D_x^1 U)_{i,j} = \frac{U_{i+1,j}-U_{i-1,j}}{2h}
+\]</span></p>
+<div id="setup" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> zermeloDF <span class="im">import</span> ZermeloDFConfig, ZermeloDF</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> zermeloNumericalTest <span class="im">import</span> ZermeloNumericalTestConfig, ZermeloNumericalTest, ZermeloPinnsTest</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> zermeloPinns <span class="im">import</span> ZermeloPinnsConfig, ZermeloPinns</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># Paramètres</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>r, R         <span class="op">=</span> <span class="fl">0.5</span>, np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>kappa, vs, a <span class="op">=</span> <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>sigma_x      <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>sigma_y      <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a>M                    <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>X_min, X_max         <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span>, <span class="fl">2.0</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>Y_min, Y_max         <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span>, <span class="fl">2.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="f-correspondant-à-une-solution-explicite" class="level3">
+<h3 class="anchored" data-anchor-id="f-correspondant-à-une-solution-explicite">3.1.1. <span class="math inline">\(f\)</span> correspondant à une solution explicite</h3>
+<p>La solution exacte est :</p>
+<p><span class="math display">\[
+u_{ex}(x,y) = \sin\!\left(\frac{\pi}{2}\cdot\frac{x^2+y^2-r^2}{R^2-r^2}\right)
+\]</span></p>
+<p>On vérifie <span class="math inline">\(u_{ex}=0\)</span> sur <span class="math inline">\(\partial B_r\)</span> et <span class="math inline">\(u_{ex}=1\)</span> sur <span class="math inline">\(\partial B_R\)</span>.</p>
+<div id="df-exact" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>config <span class="op">=</span> ZermeloDFConfig(M, X_min, X_max, Y_min, Y_max, u_ex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>zermelo_pb <span class="op">=</span> ZermeloDF(config)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>zermelo_pb.plot_solution()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="ordre-numérique-de-convergence" class="level4">
+<h4 class="anchored" data-anchor-id="ordre-numérique-de-convergence">Ordre numérique de convergence</h4>
+<div id="convergence-exact" class="cell" data-tbl-cap="Convergence — cas A (solution exacte connue)">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>configTest <span class="op">=</span> ZermeloNumericalTestConfig(</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>, vs<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span>, u_ex<span class="op">=</span><span class="va">True</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a>test <span class="op">=</span> ZermeloNumericalTest(configTest)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>test.run_tests(M_list<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">80</span>, <span class="dv">160</span>, <span class="dv">320</span>])</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>df <span class="op">=</span> test.result_convergence</span>
+<span id="cb3-10"><a href="#cb3-10"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="f-1-solution-exacte-inconnue" class="level3">
+<h3 class="anchored" data-anchor-id="f-1-solution-exacte-inconnue">3.1.2. <span class="math inline">\(f = 1\)</span> — solution exacte inconnue</h3>
+<div id="df-f1" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>config <span class="op">=</span> ZermeloDFConfig(M, X_min, X_max, Y_min, Y_max, u_ex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>zermelo_pb <span class="op">=</span> ZermeloDF(config)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb4-4"><a href="#cb4-4"></a>zermelo_pb.plot_solution()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="ordre-numérique-de-convergence-1" class="level4">
+<h4 class="anchored" data-anchor-id="ordre-numérique-de-convergence-1">Ordre numérique de convergence</h4>
+<p>Dans ce cas, l’erreur est estimée par différences entre solutions successives <span class="math inline">\(\|U_M - U_{M_{\text{prev}}}\|_\infty\)</span> via interpolation bilinéaire explicite.</p>
+<div id="convergence-f1" class="cell" data-tbl-cap="Convergence — cas B (f=1, solution inconnue)">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>configTest <span class="op">=</span> ZermeloNumericalTestConfig(</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>, vs<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span>, u_ex<span class="op">=</span><span class="va">False</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>test <span class="op">=</span> ZermeloNumericalTest(configTest)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>test.run_tests(M_list<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">80</span>, <span class="dv">160</span>, <span class="dv">320</span>])</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>df <span class="op">=</span> test.result_convergence</span>
+<span id="cb5-10"><a href="#cb5-10"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="approche-par-réseaux-de-neurones-pinns" class="level2">
+<h2 class="anchored" data-anchor-id="approche-par-réseaux-de-neurones-pinns">3.2. Approche par réseaux de neurones (PINNs)</h2>
+<p>On approche <span class="math inline">\(u\)</span> par un réseau fully-connected <span class="math inline">\(\Phi(\cdot\,;\theta)\)</span> avec activation <span class="math inline">\(\tanh\)</span>, entraîné en minimisant la fonction de perte basée sur le résidu PDE :</p>
+<p><span class="math display">\[
+\mathcal{L}(\theta) =
+\underbrace{\|F(x,u_\theta,\nabla u_\theta, D^2u_\theta)\|^2_\Omega}_{\text{résidu PDE}}
++
+\lambda\underbrace{\!\left(\|u_\theta\|^2_{\partial B_r}+\|u_\theta-1\|^2_{\partial B_R}\right)}_{\text{conditions aux limites}}
+\]</span></p>
+<p>Les dérivées sont estimées par deux approches :</p>
+<ul>
+<li><strong>Différentiation automatique</strong> via PyTorch (<code>with_df=False</code>)</li>
+<li><strong>Différences finies</strong> avec pas <span class="math inline">\(\delta\)</span>, inspiré de [1] (<code>with_df=True</code>)</li>
+</ul>
+<p>L’optimisation utilise une <strong>méthode de gradient stochastique</strong> (Adam) avec re-tirage des points à chaque itération (<span class="math inline">\(N_0\)</span> points PDE, <span class="math inline">\(N_{b1}\)</span> points de bord).</p>
+<section id="f-correspondant-à-une-solution-explicite-1" class="level3">
+<h3 class="anchored" data-anchor-id="f-correspondant-à-une-solution-explicite-1">3.2.1. <span class="math inline">\(f\)</span> correspondant à une solution explicite</h3>
+<section id="autograd" class="level4">
+<h4 class="anchored" data-anchor-id="autograd">Autograd</h4>
+<div id="pinns-exact-autograd" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>config <span class="op">=</span> ZermeloPinnsConfig(u_ex<span class="op">=</span><span class="va">True</span>, with_df<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="différences-finies" class="level4">
+<h4 class="anchored" data-anchor-id="différences-finies">Différences finies</h4>
+<div id="pinns-exact-df" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>config <span class="op">=</span> ZermeloPinnsConfig(u_ex<span class="op">=</span><span class="va">True</span>, with_df<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+</section>
+<section id="f-1-solution-exacte-inconnue-1" class="level3">
+<h3 class="anchored" data-anchor-id="f-1-solution-exacte-inconnue-1">3.2.2. <span class="math inline">\(f = 1\)</span> — solution exacte inconnue</h3>
+<section id="autograd-1" class="level4">
+<h4 class="anchored" data-anchor-id="autograd-1">Autograd</h4>
+<div id="pinns-f1-autograd" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>config <span class="op">=</span> ZermeloPinnsConfig(num_iter<span class="op">=</span><span class="dv">5000</span>, layers<span class="op">=</span><span class="dv">1</span>, u_ex<span class="op">=</span><span class="va">False</span>, with_df<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb8-4"><a href="#cb8-4"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="différences-finies-1" class="level4">
+<h4 class="anchored" data-anchor-id="différences-finies-1">Différences finies</h4>
+<div id="pinns-f1-df" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>config <span class="op">=</span> ZermeloPinnsConfig(num_iter<span class="op">=</span><span class="dv">5000</span>, u_ex<span class="op">=</span><span class="va">False</span>, with_df<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="test-de-convergence-architecture-20" class="level4">
+<h4 class="anchored" data-anchor-id="test-de-convergence-architecture-20">Test de convergence — Architecture <span class="math inline">\([20]\)</span></h4>
+<p>Raffinement progressif de <span class="math inline">\(\delta\)</span> selon l’<strong>Algorithm 2</strong> : warm start entre les steps, <span class="math inline">\(N_0\)</span> croissant, <span class="math inline">\(\delta\)</span> décroissant.</p>
+<div id="pinns-conv-small" class="cell" data-tbl-cap="Convergence PINNs — architecture [20]">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>pinnsTest <span class="op">=</span> ZermeloPinnsTest(</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    vs<span class="op">=</span><span class="fl">0.5</span>, a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>)</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a>results <span class="op">=</span> pinnsTest.run(</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    hidden_list   <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>],</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    layers_list   <span class="op">=</span> [<span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span> ],</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    delta_list    <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>],</span>
+<span id="cb10-10"><a href="#cb10-10"></a>    n_pde_bc_list <span class="op">=</span> [(<span class="dv">40</span>,<span class="dv">40</span>), (<span class="dv">80</span>,<span class="dv">40</span>), (<span class="dv">120</span>,<span class="dv">40</span>), (<span class="dv">200</span>,<span class="dv">40</span>)],</span>
+<span id="cb10-11"><a href="#cb10-11"></a>    num_iter_list <span class="op">=</span> [<span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">8000</span>]</span>
+<span id="cb10-12"><a href="#cb10-12"></a>)</span>
+<span id="cb10-13"><a href="#cb10-13"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="test-de-convergence-architecture-50-50-50" class="level4">
+<h4 class="anchored" data-anchor-id="test-de-convergence-architecture-50-50-50">Test de convergence — Architecture <span class="math inline">\([50, 50, 50]\)</span></h4>
+<div id="pinns-conv-large" class="cell" data-tbl-cap="Convergence PINNs — architecture [50, 50, 50]">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>pinnsTest <span class="op">=</span> ZermeloPinnsTest(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    vs<span class="op">=</span><span class="fl">0.5</span>, a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a></span>
+<span id="cb11-6"><a href="#cb11-6"></a>results <span class="op">=</span> pinnsTest.run(</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    hidden_list   <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>],</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    layers_list   <span class="op">=</span> [<span class="dv">3</span>,  <span class="dv">3</span>,  <span class="dv">3</span>,  <span class="dv">3</span> ],</span>
+<span id="cb11-9"><a href="#cb11-9"></a>    delta_list    <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>],</span>
+<span id="cb11-10"><a href="#cb11-10"></a>    n_pde_bc_list <span class="op">=</span> [(<span class="dv">40</span>,<span class="dv">40</span>), (<span class="dv">80</span>,<span class="dv">40</span>), (<span class="dv">120</span>,<span class="dv">40</span>), (<span class="dv">200</span>,<span class="dv">40</span>)],</span>
+<span id="cb11-11"><a href="#cb11-11"></a>    num_iter_list <span class="op">=</span> [<span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">8000</span>]</span>
+<span id="cb11-12"><a href="#cb11-12"></a>)</span>
+<span id="cb11-13"><a href="#cb11-13"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="références" class="level2">
+<h2 class="anchored" data-anchor-id="références">Références</h2>
+<p>[1] Esteve-Yagüe, Tsai, Massucco. <em>Finite-difference least square methods for solving Hamilton-Jacobi equations using neural networks</em>. J. Comput. Phys., 2025.</p>
+<p>[2] Ito, Reisinger, Zhang. <em>A neural network-based policy iteration algorithm with global H2-superlinear convergence for stochastic games on domains</em>. Found. Comput. Math., 2021.</p>
+
+
+<!-- -->
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+
+  <div class="hero-content">
+
+    <h1 class="hero-title"></h1>
+
+    <p class="hero-subtitle">
+
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+
+    </p>
+
+  </div>
+
+</hero>
+
+
+
+<main class="content">
+
+  
+
+</main>
+
+
+
+<footer class="quant-footer">
+
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
+
+  <p class="footer-sub">
+
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+
+  </p>
+
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="an">title:</span><span class="co"> "Problème de Navigation de Zermelo Stochastique"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="an">subtitle:</span><span class="co"> "Résolution numérique d'une équation HJBI par différences finies et PINNs"</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="an">format:</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co">  html:</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">    toc: true</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">    toc-depth: 3</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co">    code-fold: true</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co">    code-tools: true</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">    highlight-style: github</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="an">categories:</span><span class="co"> [EDP, PINNs, Optimisation, Python]</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">---</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="fu">## 1. Introduction</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a>Ce projet porte sur l'étude et la résolution numérique d'une classe d'équations</span>
+<span id="cb12-18"><a href="#cb12-18"></a>d'Hamilton–Jacobi–Bellman–Isaacs (HJBI) apparaissant dans des problèmes de contrôle optimal</span>
+<span id="cb12-19"><a href="#cb12-19"></a>et de contrôle robuste. Nous considérons en particulier une équation issue du **problème</span>
+<span id="cb12-20"><a href="#cb12-20"></a>stochastique de navigation de Zermelo**, où un bateau cherche à optimiser son temps de</span>
+<span id="cb12-21"><a href="#cb12-21"></a>sortie d'un domaine soumis à un vent fort, avec incertitude sur la perturbation stochastique.</span>
+<span id="cb12-22"><a href="#cb12-22"></a></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="fu">### Dynamique contrôlée</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a></span>
+<span id="cb12-25"><a href="#cb12-25"></a>$$</span>
+<span id="cb12-26"><a href="#cb12-26"></a>dX_t = b(X_t, \alpha_t)\,dt + \sigma\,dW_t, \quad X_0 = x \in \Omega</span>
+<span id="cb12-27"><a href="#cb12-27"></a>$$</span>
+<span id="cb12-28"><a href="#cb12-28"></a></span>
+<span id="cb12-29"><a href="#cb12-29"></a>où $\alpha_t$ est une stratégie de contrôle dans un ensemble $A$, $b$ représente la vitesse</span>
+<span id="cb12-30"><a href="#cb12-30"></a>relative du bateau plus la vitesse du vent, et $\sigma$ décrit un bruit gaussien multidimensionnel.</span>
+<span id="cb12-31"><a href="#cb12-31"></a></span>
+<span id="cb12-32"><a href="#cb12-32"></a><span class="fu">### Valeur optimale</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a></span>
+<span id="cb12-34"><a href="#cb12-34"></a>$$</span>
+<span id="cb12-35"><a href="#cb12-35"></a>u(x) = \inf_\alpha \sup_{Q \in \mathcal{M}}\, \mathbb{E}^Q<span class="sc">\!</span>\left<span class="co">[</span><span class="ot">\int_0^\tau f(X_t)\,dt + g(X_\tau)\right</span><span class="co">]</span></span>
+<span id="cb12-36"><a href="#cb12-36"></a>$$</span>
+<span id="cb12-37"><a href="#cb12-37"></a></span>
+<span id="cb12-38"><a href="#cb12-38"></a>où $\mathcal{M}$ encode une incertitude sur la loi du bruit et $\tau$ est le temps de sortie</span>
+<span id="cb12-39"><a href="#cb12-39"></a>du domaine. Par programmation dynamique, $u$ est l'unique solution de viscosité d'un problème</span>
+<span id="cb12-40"><a href="#cb12-40"></a>HJBI $F(x,u,\nabla u, D^2 u)=0$ dans $\Omega$.</span>
+<span id="cb12-41"><a href="#cb12-41"></a></span>
+<span id="cb12-42"><a href="#cb12-42"></a><span class="fu">### Domaine et vitesse du bateau</span></span>
+<span id="cb12-43"><a href="#cb12-43"></a></span>
+<span id="cb12-44"><a href="#cb12-44"></a>Le domaine considéré est l'anneau :</span>
+<span id="cb12-45"><a href="#cb12-45"></a></span>
+<span id="cb12-46"><a href="#cb12-46"></a>$$</span>
+<span id="cb12-47"><a href="#cb12-47"></a>\Omega = <span class="sc">\{</span>(x,y)\in\mathbb{R}^2 :\ r^2 &lt; x^2+y^2 &lt; R^2<span class="sc">\}</span></span>
+<span id="cb12-48"><a href="#cb12-48"></a>$$</span>
+<span id="cb12-49"><a href="#cb12-49"></a></span>
+<span id="cb12-50"><a href="#cb12-50"></a>avec un drift de la forme :</span>
+<span id="cb12-51"><a href="#cb12-51"></a></span>
+<span id="cb12-52"><a href="#cb12-52"></a>$$</span>
+<span id="cb12-53"><a href="#cb12-53"></a>b\big((x,y),\alpha\big) := \begin{pmatrix} v_c(x,y) + v_s\cos\alpha <span class="sc">\\</span> v_s\sin\alpha \end{pmatrix}, \quad \alpha\in<span class="co">[</span><span class="ot">0,2\pi</span><span class="co">]</span></span>
+<span id="cb12-54"><a href="#cb12-54"></a>$$</span>
+<span id="cb12-55"><a href="#cb12-55"></a></span>
+<span id="cb12-56"><a href="#cb12-56"></a>Le but est de conduire le bateau jusqu'au bord intérieur $S_r = \partial B(0,r)$ en temps</span>
+<span id="cb12-57"><a href="#cb12-57"></a>minimal ($f\equiv 1$), la rive extérieure étant modélisée par $g\equiv 1$ sur $\partial B_R$.</span>
+<span id="cb12-58"><a href="#cb12-58"></a></span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="fu">### Équation HJBI</span></span>
+<span id="cb12-60"><a href="#cb12-60"></a></span>
+<span id="cb12-61"><a href="#cb12-61"></a>$$</span>
+<span id="cb12-62"><a href="#cb12-62"></a>-\frac{1}{2}<span class="sc">\!</span>\left(\sigma_x^2\,u_{xx}+\sigma_y^2\,u_{yy}\right)</span>
+<span id="cb12-63"><a href="#cb12-63"></a><span class="ss">- </span>v_c(x,y)\,u_x</span>
+<span id="cb12-64"><a href="#cb12-64"></a><span class="ss">+ </span>v_s<span class="sc">\|</span>\nabla u<span class="sc">\|</span>_2</span>
+<span id="cb12-65"><a href="#cb12-65"></a><span class="ss">- </span>\kappa<span class="sc">\|</span>\nabla u<span class="sc">\|</span>_1</span>
+<span id="cb12-66"><a href="#cb12-66"></a><span class="ss">- </span>f(x,y) = 0, \quad x\in\Omega</span>
+<span id="cb12-67"><a href="#cb12-67"></a>$$</span>
+<span id="cb12-68"><a href="#cb12-68"></a></span>
+<span id="cb12-69"><a href="#cb12-69"></a>avec le vent horizontal :</span>
+<span id="cb12-70"><a href="#cb12-70"></a></span>
+<span id="cb12-71"><a href="#cb12-71"></a>$$</span>
+<span id="cb12-72"><a href="#cb12-72"></a>v_c(x,y) := 1 - a\sin<span class="sc">\!</span>\left(\pi\frac{x^2+y^2-r^2}{R^2-r^2}\right)</span>
+<span id="cb12-73"><a href="#cb12-73"></a>$$</span>
+<span id="cb12-74"><a href="#cb12-74"></a></span>
+<span id="cb12-75"><a href="#cb12-75"></a>et les conditions aux limites :</span>
+<span id="cb12-76"><a href="#cb12-76"></a></span>
+<span id="cb12-77"><a href="#cb12-77"></a>$$</span>
+<span id="cb12-78"><a href="#cb12-78"></a>u = 0\ \text{ sur }\ \partial B_r, \qquad u = 1\ \text{ sur }\ \partial B_R</span>
+<span id="cb12-79"><a href="#cb12-79"></a>$$</span>
+<span id="cb12-80"><a href="#cb12-80"></a></span>
+<span id="cb12-81"><a href="#cb12-81"></a><span class="fu">### Paramètres numériques</span></span>
+<span id="cb12-82"><a href="#cb12-82"></a></span>
+<span id="cb12-83"><a href="#cb12-83"></a>$$</span>
+<span id="cb12-84"><a href="#cb12-84"></a>r=0.5,\quad R=\sqrt{2},\quad \kappa=0.1,\quad v_s=0.5,\quad a=0.2,\quad \sigma_x=0.5,\quad \sigma_y=0.2</span>
+<span id="cb12-85"><a href="#cb12-85"></a>$$</span>
+<span id="cb12-86"><a href="#cb12-86"></a></span>
+<span id="cb12-87"><a href="#cb12-87"></a><span class="fu">## 2. Objectifs</span></span>
+<span id="cb12-88"><a href="#cb12-88"></a></span>
+<span id="cb12-89"><a href="#cb12-89"></a>Ce projet étudie numériquement ce problème par deux approches complémentaires :</span>
+<span id="cb12-90"><a href="#cb12-90"></a></span>
+<span id="cb12-91"><a href="#cb12-91"></a><span class="ss">1. </span>**Différences finies** — schéma de Newton semi-smooth permettant de construire une solution de référence.</span>
+<span id="cb12-92"><a href="#cb12-92"></a><span class="ss">2. </span>**PINNs** (Physics-Informed Neural Networks) — approximation par réseaux de neurones.</span>
+<span id="cb12-93"><a href="#cb12-93"></a></span>
+<span id="cb12-94"><a href="#cb12-94"></a>On comparera ainsi les performances, la robustesse et la précision des deux méthodes.</span>
+<span id="cb12-95"><a href="#cb12-95"></a></span>
+<span id="cb12-96"><a href="#cb12-96"></a>---</span>
+<span id="cb12-97"><a href="#cb12-97"></a></span>
+<span id="cb12-98"><a href="#cb12-98"></a><span class="fu">## 3.1. Approche par différences finies</span></span>
+<span id="cb12-99"><a href="#cb12-99"></a></span>
+<span id="cb12-100"><a href="#cb12-100"></a>On englobe l'anneau $\Omega$ dans le carré $K:=<span class="co">[</span><span class="ot">-2,2</span><span class="co">]</span>^2$ avec un maillage cartésien</span>
+<span id="cb12-101"><a href="#cb12-101"></a>$x_i = X_{\min}+ih$, $y_j = Y_{\min}+jh$, $h = (X_{\max}-X_{\min})/(M+1)$.</span>
+<span id="cb12-102"><a href="#cb12-102"></a></span>
+<span id="cb12-103"><a href="#cb12-103"></a>On note $\Gamma_r := <span class="sc">\{</span>(x_i,y_j)\in K,\,r_{i,j}\le r<span class="sc">\}</span>$ et $\Gamma_R:=<span class="sc">\{</span>(x_i,y_j)\in K,\,r_{i,j}\ge R<span class="sc">\}</span>$.</span>
+<span id="cb12-104"><a href="#cb12-104"></a></span>
+<span id="cb12-105"><a href="#cb12-105"></a><span class="fu">### Schéma de Newton semi-smooth</span></span>
+<span id="cb12-106"><a href="#cb12-106"></a></span>
+<span id="cb12-107"><a href="#cb12-107"></a>À l'itération $n$, connaissant $U^n$, on résout en $U^{n+1}$ le système linéaire creux $AU^{n+1}=b$ avec le gradient normalisé $\alpha(U)_{i,j}:=\frac{(D^1U)_{i,j}}{\|(D^1U)_{i,j}<span class="sc">\|</span>_2}$</span>
+<span id="cb12-108"><a href="#cb12-108"></a>et $\beta(U)_{i,j}:=\bigl(\text{sign}(D^1_xU),\,\text{sign}(D^1_yU)\bigr)_{i,j}$,</span>
+<span id="cb12-109"><a href="#cb12-109"></a>en utilisant les différences centrées :</span>
+<span id="cb12-110"><a href="#cb12-110"></a></span>
+<span id="cb12-111"><a href="#cb12-111"></a>$$</span>
+<span id="cb12-112"><a href="#cb12-112"></a>(D_x^2 U)_{i,j} = \frac{U_{i+1,j}-2U_{i,j}+U_{i-1,j}}{h^2}, \qquad</span>
+<span id="cb12-113"><a href="#cb12-113"></a>(D_x^1 U)_{i,j} = \frac{U_{i+1,j}-U_{i-1,j}}{2h}</span>
+<span id="cb12-114"><a href="#cb12-114"></a>$$</span>
+<span id="cb12-115"><a href="#cb12-115"></a></span>
+<span id="cb12-118"><a href="#cb12-118"></a><span class="in">```{python}</span></span>
+<span id="cb12-119"><a href="#cb12-119"></a><span class="co">#| label: setup</span></span>
+<span id="cb12-120"><a href="#cb12-120"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb12-121"><a href="#cb12-121"></a></span>
+<span id="cb12-122"><a href="#cb12-122"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-123"><a href="#cb12-123"></a><span class="im">from</span> zermeloDF <span class="im">import</span> ZermeloDFConfig, ZermeloDF</span>
+<span id="cb12-124"><a href="#cb12-124"></a><span class="im">from</span> zermeloNumericalTest <span class="im">import</span> ZermeloNumericalTestConfig, ZermeloNumericalTest, ZermeloPinnsTest</span>
+<span id="cb12-125"><a href="#cb12-125"></a><span class="im">from</span> zermeloPinns <span class="im">import</span> ZermeloPinnsConfig, ZermeloPinns</span>
+<span id="cb12-126"><a href="#cb12-126"></a></span>
+<span id="cb12-127"><a href="#cb12-127"></a><span class="co"># Paramètres</span></span>
+<span id="cb12-128"><a href="#cb12-128"></a>r, R         <span class="op">=</span> <span class="fl">0.5</span>, np.sqrt(<span class="dv">2</span>)</span>
+<span id="cb12-129"><a href="#cb12-129"></a>kappa, vs, a <span class="op">=</span> <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.2</span></span>
+<span id="cb12-130"><a href="#cb12-130"></a>sigma_x      <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb12-131"><a href="#cb12-131"></a>sigma_y      <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb12-132"><a href="#cb12-132"></a></span>
+<span id="cb12-133"><a href="#cb12-133"></a>M                    <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb12-134"><a href="#cb12-134"></a>X_min, X_max         <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span>, <span class="fl">2.0</span></span>
+<span id="cb12-135"><a href="#cb12-135"></a>Y_min, Y_max         <span class="op">=</span> <span class="op">-</span><span class="fl">2.0</span>, <span class="fl">2.0</span></span>
+<span id="cb12-136"><a href="#cb12-136"></a><span class="in">```</span></span>
+<span id="cb12-137"><a href="#cb12-137"></a></span>
+<span id="cb12-138"><a href="#cb12-138"></a><span class="fu">### 3.1.1. $f$ correspondant à une solution explicite</span></span>
+<span id="cb12-139"><a href="#cb12-139"></a></span>
+<span id="cb12-140"><a href="#cb12-140"></a>La solution exacte est :</span>
+<span id="cb12-141"><a href="#cb12-141"></a></span>
+<span id="cb12-142"><a href="#cb12-142"></a>$$</span>
+<span id="cb12-143"><a href="#cb12-143"></a>u_{ex}(x,y) = \sin<span class="sc">\!</span>\left(\frac{\pi}{2}\cdot\frac{x^2+y^2-r^2}{R^2-r^2}\right)</span>
+<span id="cb12-144"><a href="#cb12-144"></a>$$</span>
+<span id="cb12-145"><a href="#cb12-145"></a></span>
+<span id="cb12-146"><a href="#cb12-146"></a>On vérifie $u_{ex}=0$ sur $\partial B_r$ et $u_{ex}=1$ sur $\partial B_R$.</span>
+<span id="cb12-147"><a href="#cb12-147"></a></span>
+<span id="cb12-150"><a href="#cb12-150"></a><span class="in">```{python}</span></span>
+<span id="cb12-151"><a href="#cb12-151"></a><span class="co">#| label: df-exact</span></span>
+<span id="cb12-152"><a href="#cb12-152"></a><span class="co">#| fig-cap: "Solution DF — cas avec solution exacte (M=80)"</span></span>
+<span id="cb12-153"><a href="#cb12-153"></a></span>
+<span id="cb12-154"><a href="#cb12-154"></a>config <span class="op">=</span> ZermeloDFConfig(M, X_min, X_max, Y_min, Y_max, u_ex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-155"><a href="#cb12-155"></a>zermelo_pb <span class="op">=</span> ZermeloDF(config)</span>
+<span id="cb12-156"><a href="#cb12-156"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb12-157"><a href="#cb12-157"></a>zermelo_pb.plot_solution()</span>
+<span id="cb12-158"><a href="#cb12-158"></a><span class="in">```</span></span>
+<span id="cb12-159"><a href="#cb12-159"></a></span>
+<span id="cb12-160"><a href="#cb12-160"></a><span class="fu">#### Ordre numérique de convergence</span></span>
+<span id="cb12-161"><a href="#cb12-161"></a></span>
+<span id="cb12-164"><a href="#cb12-164"></a><span class="in">```{python}</span></span>
+<span id="cb12-165"><a href="#cb12-165"></a><span class="co">#| label: convergence-exact</span></span>
+<span id="cb12-166"><a href="#cb12-166"></a><span class="co">#| tbl-cap: "Convergence — cas A (solution exacte connue)"</span></span>
+<span id="cb12-167"><a href="#cb12-167"></a></span>
+<span id="cb12-168"><a href="#cb12-168"></a>configTest <span class="op">=</span> ZermeloNumericalTestConfig(</span>
+<span id="cb12-169"><a href="#cb12-169"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>, vs<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb12-170"><a href="#cb12-170"></a>    a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span>, u_ex<span class="op">=</span><span class="va">True</span></span>
+<span id="cb12-171"><a href="#cb12-171"></a>)</span>
+<span id="cb12-172"><a href="#cb12-172"></a></span>
+<span id="cb12-173"><a href="#cb12-173"></a>test <span class="op">=</span> ZermeloNumericalTest(configTest)</span>
+<span id="cb12-174"><a href="#cb12-174"></a>test.run_tests(M_list<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">80</span>, <span class="dv">160</span>, <span class="dv">320</span>])</span>
+<span id="cb12-175"><a href="#cb12-175"></a></span>
+<span id="cb12-176"><a href="#cb12-176"></a>df <span class="op">=</span> test.result_convergence</span>
+<span id="cb12-177"><a href="#cb12-177"></a>df</span>
+<span id="cb12-178"><a href="#cb12-178"></a><span class="in">```</span></span>
+<span id="cb12-179"><a href="#cb12-179"></a></span>
+<span id="cb12-180"><a href="#cb12-180"></a><span class="fu">### 3.1.2. $f = 1$ — solution exacte inconnue</span></span>
+<span id="cb12-181"><a href="#cb12-181"></a></span>
+<span id="cb12-184"><a href="#cb12-184"></a><span class="in">```{python}</span></span>
+<span id="cb12-185"><a href="#cb12-185"></a><span class="co">#| label: df-f1</span></span>
+<span id="cb12-186"><a href="#cb12-186"></a><span class="co">#| fig-cap: "Solution DF — cas f=1 (M=80)"</span></span>
+<span id="cb12-187"><a href="#cb12-187"></a></span>
+<span id="cb12-188"><a href="#cb12-188"></a>config <span class="op">=</span> ZermeloDFConfig(M, X_min, X_max, Y_min, Y_max, u_ex<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-189"><a href="#cb12-189"></a>zermelo_pb <span class="op">=</span> ZermeloDF(config)</span>
+<span id="cb12-190"><a href="#cb12-190"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb12-191"><a href="#cb12-191"></a>zermelo_pb.plot_solution()</span>
+<span id="cb12-192"><a href="#cb12-192"></a><span class="in">```</span></span>
+<span id="cb12-193"><a href="#cb12-193"></a></span>
+<span id="cb12-194"><a href="#cb12-194"></a><span class="fu">#### Ordre numérique de convergence</span></span>
+<span id="cb12-195"><a href="#cb12-195"></a></span>
+<span id="cb12-196"><a href="#cb12-196"></a>Dans ce cas, l'erreur est estimée par différences entre solutions successives</span>
+<span id="cb12-197"><a href="#cb12-197"></a>$<span class="sc">\|</span>U_M - U_{M_{\text{prev}}}<span class="sc">\|</span>_\infty$ via interpolation bilinéaire explicite.</span>
+<span id="cb12-198"><a href="#cb12-198"></a></span>
+<span id="cb12-201"><a href="#cb12-201"></a><span class="in">```{python}</span></span>
+<span id="cb12-202"><a href="#cb12-202"></a><span class="co">#| label: convergence-f1</span></span>
+<span id="cb12-203"><a href="#cb12-203"></a><span class="co">#| tbl-cap: "Convergence — cas B (f=1, solution inconnue)"</span></span>
+<span id="cb12-204"><a href="#cb12-204"></a></span>
+<span id="cb12-205"><a href="#cb12-205"></a>configTest <span class="op">=</span> ZermeloNumericalTestConfig(</span>
+<span id="cb12-206"><a href="#cb12-206"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>, vs<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb12-207"><a href="#cb12-207"></a>    a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span>, u_ex<span class="op">=</span><span class="va">False</span></span>
+<span id="cb12-208"><a href="#cb12-208"></a>)</span>
+<span id="cb12-209"><a href="#cb12-209"></a></span>
+<span id="cb12-210"><a href="#cb12-210"></a>test <span class="op">=</span> ZermeloNumericalTest(configTest)</span>
+<span id="cb12-211"><a href="#cb12-211"></a>test.run_tests(M_list<span class="op">=</span>[<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">80</span>, <span class="dv">160</span>, <span class="dv">320</span>])</span>
+<span id="cb12-212"><a href="#cb12-212"></a></span>
+<span id="cb12-213"><a href="#cb12-213"></a>df <span class="op">=</span> test.result_convergence</span>
+<span id="cb12-214"><a href="#cb12-214"></a>df</span>
+<span id="cb12-215"><a href="#cb12-215"></a><span class="in">```</span></span>
+<span id="cb12-216"><a href="#cb12-216"></a></span>
+<span id="cb12-217"><a href="#cb12-217"></a>---</span>
+<span id="cb12-218"><a href="#cb12-218"></a></span>
+<span id="cb12-219"><a href="#cb12-219"></a><span class="fu">## 3.2. Approche par réseaux de neurones (PINNs)</span></span>
+<span id="cb12-220"><a href="#cb12-220"></a></span>
+<span id="cb12-221"><a href="#cb12-221"></a>On approche $u$ par un réseau fully-connected $\Phi(\cdot\,;\theta)$ avec activation $\tanh$,</span>
+<span id="cb12-222"><a href="#cb12-222"></a>entraîné en minimisant la fonction de perte basée sur le résidu PDE :</span>
+<span id="cb12-223"><a href="#cb12-223"></a></span>
+<span id="cb12-224"><a href="#cb12-224"></a>$$</span>
+<span id="cb12-225"><a href="#cb12-225"></a>\mathcal{L}(\theta) =</span>
+<span id="cb12-226"><a href="#cb12-226"></a>\underbrace{<span class="sc">\|</span>F(x,u_\theta,\nabla u_\theta, D^2u_\theta)<span class="sc">\|</span>^2_\Omega}_{\text{résidu PDE}}</span>
+<span id="cb12-227"><a href="#cb12-227"></a>+</span>
+<span id="cb12-228"><a href="#cb12-228"></a>\lambda\underbrace{<span class="sc">\!</span>\left(<span class="sc">\|</span>u_\theta<span class="sc">\|</span>^2_{\partial B_r}+<span class="sc">\|</span>u_\theta-1<span class="sc">\|</span>^2_{\partial B_R}\right)}_{\text{conditions aux limites}}</span>
+<span id="cb12-229"><a href="#cb12-229"></a>$$</span>
+<span id="cb12-230"><a href="#cb12-230"></a></span>
+<span id="cb12-231"><a href="#cb12-231"></a>Les dérivées sont estimées par deux approches :</span>
+<span id="cb12-232"><a href="#cb12-232"></a></span>
+<span id="cb12-233"><a href="#cb12-233"></a><span class="ss">- </span>**Différentiation automatique** via PyTorch (<span class="in">`with_df=False`</span>)</span>
+<span id="cb12-234"><a href="#cb12-234"></a><span class="ss">- </span>**Différences finies** avec pas $\delta$, inspiré de <span class="co">[</span><span class="ot">1</span><span class="co">]</span> (<span class="in">`with_df=True`</span>)</span>
+<span id="cb12-235"><a href="#cb12-235"></a></span>
+<span id="cb12-236"><a href="#cb12-236"></a>L'optimisation utilise une **méthode de gradient stochastique** (Adam) avec re-tirage des</span>
+<span id="cb12-237"><a href="#cb12-237"></a>points à chaque itération ($N_0$ points PDE, $N_{b1}$ points de bord).</span>
+<span id="cb12-238"><a href="#cb12-238"></a></span>
+<span id="cb12-239"><a href="#cb12-239"></a><span class="fu">### 3.2.1. $f$ correspondant à une solution explicite</span></span>
+<span id="cb12-240"><a href="#cb12-240"></a></span>
+<span id="cb12-241"><a href="#cb12-241"></a><span class="fu">#### Autograd</span></span>
+<span id="cb12-242"><a href="#cb12-242"></a></span>
+<span id="cb12-245"><a href="#cb12-245"></a><span class="in">```{python}</span></span>
+<span id="cb12-246"><a href="#cb12-246"></a><span class="co">#| label: pinns-exact-autograd</span></span>
+<span id="cb12-247"><a href="#cb12-247"></a><span class="co">#| fig-cap: "PINNs autograd — solution exacte connue"</span></span>
+<span id="cb12-248"><a href="#cb12-248"></a></span>
+<span id="cb12-249"><a href="#cb12-249"></a>config <span class="op">=</span> ZermeloPinnsConfig(u_ex<span class="op">=</span><span class="va">True</span>, with_df<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-250"><a href="#cb12-250"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb12-251"><a href="#cb12-251"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb12-252"><a href="#cb12-252"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span>
+<span id="cb12-253"><a href="#cb12-253"></a><span class="in">```</span></span>
+<span id="cb12-254"><a href="#cb12-254"></a></span>
+<span id="cb12-255"><a href="#cb12-255"></a><span class="fu">#### Différences finies</span></span>
+<span id="cb12-256"><a href="#cb12-256"></a></span>
+<span id="cb12-259"><a href="#cb12-259"></a><span class="in">```{python}</span></span>
+<span id="cb12-260"><a href="#cb12-260"></a><span class="co">#| label: pinns-exact-df</span></span>
+<span id="cb12-261"><a href="#cb12-261"></a><span class="co">#| fig-cap: "PINNs différences finies — solution exacte connue"</span></span>
+<span id="cb12-262"><a href="#cb12-262"></a></span>
+<span id="cb12-263"><a href="#cb12-263"></a>config <span class="op">=</span> ZermeloPinnsConfig(u_ex<span class="op">=</span><span class="va">True</span>, with_df<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-264"><a href="#cb12-264"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb12-265"><a href="#cb12-265"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb12-266"><a href="#cb12-266"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span>
+<span id="cb12-267"><a href="#cb12-267"></a><span class="in">```</span></span>
+<span id="cb12-268"><a href="#cb12-268"></a></span>
+<span id="cb12-269"><a href="#cb12-269"></a><span class="fu">### 3.2.2. $f = 1$ — solution exacte inconnue</span></span>
+<span id="cb12-270"><a href="#cb12-270"></a></span>
+<span id="cb12-271"><a href="#cb12-271"></a><span class="fu">#### Autograd</span></span>
+<span id="cb12-272"><a href="#cb12-272"></a></span>
+<span id="cb12-275"><a href="#cb12-275"></a><span class="in">```{python}</span></span>
+<span id="cb12-276"><a href="#cb12-276"></a><span class="co">#| label: pinns-f1-autograd</span></span>
+<span id="cb12-277"><a href="#cb12-277"></a><span class="co">#| fig-cap: "PINNs autograd — f=1"</span></span>
+<span id="cb12-278"><a href="#cb12-278"></a></span>
+<span id="cb12-279"><a href="#cb12-279"></a>config <span class="op">=</span> ZermeloPinnsConfig(num_iter<span class="op">=</span><span class="dv">5000</span>, layers<span class="op">=</span><span class="dv">1</span>, u_ex<span class="op">=</span><span class="va">False</span>, with_df<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-280"><a href="#cb12-280"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb12-281"><a href="#cb12-281"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb12-282"><a href="#cb12-282"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span>
+<span id="cb12-283"><a href="#cb12-283"></a><span class="in">```</span></span>
+<span id="cb12-284"><a href="#cb12-284"></a></span>
+<span id="cb12-285"><a href="#cb12-285"></a><span class="fu">#### Différences finies</span></span>
+<span id="cb12-286"><a href="#cb12-286"></a></span>
+<span id="cb12-289"><a href="#cb12-289"></a><span class="in">```{python}</span></span>
+<span id="cb12-290"><a href="#cb12-290"></a><span class="co">#| label: pinns-f1-df</span></span>
+<span id="cb12-291"><a href="#cb12-291"></a><span class="co">#| fig-cap: "PINNs différences finies — f=1"</span></span>
+<span id="cb12-292"><a href="#cb12-292"></a></span>
+<span id="cb12-293"><a href="#cb12-293"></a>config <span class="op">=</span> ZermeloPinnsConfig(num_iter<span class="op">=</span><span class="dv">5000</span>, u_ex<span class="op">=</span><span class="va">False</span>, with_df<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-294"><a href="#cb12-294"></a>zermelo_pb <span class="op">=</span> ZermeloPinns(config)</span>
+<span id="cb12-295"><a href="#cb12-295"></a>zermelo_pb.fit(r, R, kappa, vs, a, sigma_x, sigma_y)</span>
+<span id="cb12-296"><a href="#cb12-296"></a>zermelo_pb.plot_solution(M, X_min, X_max, Y_min, Y_max)</span>
+<span id="cb12-297"><a href="#cb12-297"></a><span class="in">```</span></span>
+<span id="cb12-298"><a href="#cb12-298"></a></span>
+<span id="cb12-299"><a href="#cb12-299"></a><span class="fu">#### Test de convergence — Architecture $[20]$</span></span>
+<span id="cb12-300"><a href="#cb12-300"></a></span>
+<span id="cb12-301"><a href="#cb12-301"></a>Raffinement progressif de $\delta$ selon l'**Algorithm 2** : warm start entre les steps,</span>
+<span id="cb12-302"><a href="#cb12-302"></a>$N_0$ croissant, $\delta$ décroissant.</span>
+<span id="cb12-303"><a href="#cb12-303"></a></span>
+<span id="cb12-306"><a href="#cb12-306"></a><span class="in">```{python}</span></span>
+<span id="cb12-307"><a href="#cb12-307"></a><span class="co">#| label: pinns-conv-small</span></span>
+<span id="cb12-308"><a href="#cb12-308"></a><span class="co">#| tbl-cap: "Convergence PINNs — architecture [20]"</span></span>
+<span id="cb12-309"><a href="#cb12-309"></a></span>
+<span id="cb12-310"><a href="#cb12-310"></a>pinnsTest <span class="op">=</span> ZermeloPinnsTest(</span>
+<span id="cb12-311"><a href="#cb12-311"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb12-312"><a href="#cb12-312"></a>    vs<span class="op">=</span><span class="fl">0.5</span>, a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb12-313"><a href="#cb12-313"></a>)</span>
+<span id="cb12-314"><a href="#cb12-314"></a></span>
+<span id="cb12-315"><a href="#cb12-315"></a>results <span class="op">=</span> pinnsTest.run(</span>
+<span id="cb12-316"><a href="#cb12-316"></a>    hidden_list   <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>],</span>
+<span id="cb12-317"><a href="#cb12-317"></a>    layers_list   <span class="op">=</span> [<span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span> ],</span>
+<span id="cb12-318"><a href="#cb12-318"></a>    delta_list    <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>],</span>
+<span id="cb12-319"><a href="#cb12-319"></a>    n_pde_bc_list <span class="op">=</span> [(<span class="dv">40</span>,<span class="dv">40</span>), (<span class="dv">80</span>,<span class="dv">40</span>), (<span class="dv">120</span>,<span class="dv">40</span>), (<span class="dv">200</span>,<span class="dv">40</span>)],</span>
+<span id="cb12-320"><a href="#cb12-320"></a>    num_iter_list <span class="op">=</span> [<span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">8000</span>]</span>
+<span id="cb12-321"><a href="#cb12-321"></a>)</span>
+<span id="cb12-322"><a href="#cb12-322"></a>results</span>
+<span id="cb12-323"><a href="#cb12-323"></a><span class="in">```</span></span>
+<span id="cb12-324"><a href="#cb12-324"></a></span>
+<span id="cb12-325"><a href="#cb12-325"></a><span class="fu">#### Test de convergence — Architecture $[50, 50, 50]$</span></span>
+<span id="cb12-326"><a href="#cb12-326"></a></span>
+<span id="cb12-329"><a href="#cb12-329"></a><span class="in">```{python}</span></span>
+<span id="cb12-330"><a href="#cb12-330"></a><span class="co">#| label: pinns-conv-large</span></span>
+<span id="cb12-331"><a href="#cb12-331"></a><span class="co">#| tbl-cap: "Convergence PINNs — architecture [50, 50, 50]"</span></span>
+<span id="cb12-332"><a href="#cb12-332"></a></span>
+<span id="cb12-333"><a href="#cb12-333"></a>pinnsTest <span class="op">=</span> ZermeloPinnsTest(</span>
+<span id="cb12-334"><a href="#cb12-334"></a>    r<span class="op">=</span><span class="fl">0.5</span>, R<span class="op">=</span>np.sqrt(<span class="dv">2</span>), kappa<span class="op">=</span><span class="fl">0.1</span>,</span>
+<span id="cb12-335"><a href="#cb12-335"></a>    vs<span class="op">=</span><span class="fl">0.5</span>, a<span class="op">=</span><span class="fl">0.2</span>, sigma_x<span class="op">=</span><span class="fl">0.5</span>, sigma_y<span class="op">=</span><span class="fl">0.2</span></span>
+<span id="cb12-336"><a href="#cb12-336"></a>)</span>
+<span id="cb12-337"><a href="#cb12-337"></a></span>
+<span id="cb12-338"><a href="#cb12-338"></a>results <span class="op">=</span> pinnsTest.run(</span>
+<span id="cb12-339"><a href="#cb12-339"></a>    hidden_list   <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>, <span class="dv">50</span>],</span>
+<span id="cb12-340"><a href="#cb12-340"></a>    layers_list   <span class="op">=</span> [<span class="dv">3</span>,  <span class="dv">3</span>,  <span class="dv">3</span>,  <span class="dv">3</span> ],</span>
+<span id="cb12-341"><a href="#cb12-341"></a>    delta_list    <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>],</span>
+<span id="cb12-342"><a href="#cb12-342"></a>    n_pde_bc_list <span class="op">=</span> [(<span class="dv">40</span>,<span class="dv">40</span>), (<span class="dv">80</span>,<span class="dv">40</span>), (<span class="dv">120</span>,<span class="dv">40</span>), (<span class="dv">200</span>,<span class="dv">40</span>)],</span>
+<span id="cb12-343"><a href="#cb12-343"></a>    num_iter_list <span class="op">=</span> [<span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">5000</span>, <span class="dv">8000</span>]</span>
+<span id="cb12-344"><a href="#cb12-344"></a>)</span>
+<span id="cb12-345"><a href="#cb12-345"></a>results</span>
+<span id="cb12-346"><a href="#cb12-346"></a><span class="in">```</span></span>
+<span id="cb12-347"><a href="#cb12-347"></a></span>
+<span id="cb12-348"><a href="#cb12-348"></a>---</span>
+<span id="cb12-349"><a href="#cb12-349"></a></span>
+<span id="cb12-350"><a href="#cb12-350"></a><span class="fu">## Références</span></span>
+<span id="cb12-351"><a href="#cb12-351"></a></span>
+<span id="cb12-352"><a href="#cb12-352"></a><span class="co">[</span><span class="ot">1</span><span class="co">]</span> Esteve-Yagüe, Tsai, Massucco. *Finite-difference least square methods for solving</span>
+<span id="cb12-353"><a href="#cb12-353"></a>Hamilton-Jacobi equations using neural networks*. J. Comput. Phys., 2025.</span>
+<span id="cb12-354"><a href="#cb12-354"></a></span>
+<span id="cb12-355"><a href="#cb12-355"></a><span class="co">[</span><span class="ot">2</span><span class="co">]</span> Ito, Reisinger, Zhang. *A neural network-based policy iteration algorithm with</span>
+<span id="cb12-356"><a href="#cb12-356"></a>global H2-superlinear convergence for stochastic games on domains*.</span>
+<span id="cb12-357"><a href="#cb12-357"></a>Found. Comput. Math., 2021.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Gestion des Risques – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./img/logo-bg.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="./img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./index_gdr.html" aria-current="page"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#gestion-des-risques" id="toc-gestion-des-risques" class="nav-link active" data-scroll-target="#gestion-des-risques">Gestion des risques</a></li>
+  <li><a href="#analyse-financière" id="toc-analyse-financière" class="nav-link" data-scroll-target="#analyse-financière">1. Analyse financière</a>
+  <ul class="collapse">
+  <li><a href="#concepts-fondamentaux" id="toc-concepts-fondamentaux" class="nav-link" data-scroll-target="#concepts-fondamentaux">1.1 Concepts fondamentaux</a></li>
+  </ul></li>
+  <li><a href="#risques-financiers" id="toc-risques-financiers" class="nav-link" data-scroll-target="#risques-financiers">2. Risques financiers</a>
+  <ul class="collapse">
+  <li><a href="#notions-générales" id="toc-notions-générales" class="nav-link" data-scroll-target="#notions-générales">2.1 Notions générales</a>
+  <ul class="collapse">
+  <li><a href="#définition-du-risque-financier" id="toc-définition-du-risque-financier" class="nav-link" data-scroll-target="#définition-du-risque-financier">Définition du risque financier</a></li>
+  </ul></li>
+  <li><a href="#mesures-de-risque-value-at-risk-var" id="toc-mesures-de-risque-value-at-risk-var" class="nav-link" data-scroll-target="#mesures-de-risque-value-at-risk-var">2.2 Mesures de Risque — Value-at-Risk (VaR)</a></li>
+  </ul></li>
+  <li><a href="#risques-climatiques" id="toc-risques-climatiques" class="nav-link" data-scroll-target="#risques-climatiques">3. Risques climatiques</a></li>
+  <li><a href="#calibration-de-modèles-stochastiques" id="toc-calibration-de-modèles-stochastiques" class="nav-link" data-scroll-target="#calibration-de-modèles-stochastiques">4. Calibration de modèles stochastiques</a>
+  <ul class="collapse">
+  <li><a href="#modèles-classiques" id="toc-modèles-classiques" class="nav-link" data-scroll-target="#modèles-classiques">4.1 Modèles classiques</a>
+  <ul class="collapse">
+  <li><a href="#modèle-de-black-scholes" id="toc-modèle-de-black-scholes" class="nav-link" data-scroll-target="#modèle-de-black-scholes">Modèle de Black-Scholes</a></li>
+  </ul></li>
+  <li><a href="#volatilité-stochastique" id="toc-volatilité-stochastique" class="nav-link" data-scroll-target="#volatilité-stochastique">4.2 Volatilité stochastique</a></li>
+  <li><a href="#modèles-avancés" id="toc-modèles-avancés" class="nav-link" data-scroll-target="#modèles-avancés">4.3 Modèles avancés</a></li>
+  </ul></li>
+  <li><a href="#asset-management" id="toc-asset-management" class="nav-link" data-scroll-target="#asset-management">5. Asset Management</a>
+  <ul class="collapse">
+  <li><a href="#risques-des-portefeuilles" id="toc-risques-des-portefeuilles" class="nav-link" data-scroll-target="#risques-des-portefeuilles">Risques des portefeuilles</a></li>
+  </ul></li>
+  <li><a href="#asset-pricing" id="toc-asset-pricing" class="nav-link" data-scroll-target="#asset-pricing">6. Asset Pricing</a></li>
+  <li><a href="#finance-durable" id="toc-finance-durable" class="nav-link" data-scroll-target="#finance-durable">7. Finance durable</a></li>
+  <li><a href="#projets-académiques" id="toc-projets-académiques" class="nav-link" data-scroll-target="#projets-académiques">8. Projets académiques</a>
+  <ul class="collapse">
+  <li><a href="#projets-de-semestre" id="toc-projets-de-semestre" class="nav-link" data-scroll-target="#projets-de-semestre">8.1 Projets de semestre</a></li>
+  <li><a href="#projets-de-fin-détude" id="toc-projets-de-fin-détude" class="nav-link" data-scroll-target="#projets-de-fin-détude">8.2 Projets de fin d’étude</a></li>
+  </ul></li>
+  <li><a href="#applications-dépôts-github" id="toc-applications-dépôts-github" class="nav-link" data-scroll-target="#applications-dépôts-github">9. Applications &amp; dépôts GitHub</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Gestion des Risques</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="gestion-des-risques" class="level1">
+<h1>Gestion des risques</h1>
+<p>Cette section rassemble l’ensemble des ressources liées au <strong>Risk Management</strong> : analyse financière, risques de marché, risques de crédit, risques climatiques, calibration de modèles stochastiques, asset management, asset pricing et travaux académiques.<br>
+Les contenus sont structurés selon les principaux piliers méthodologiques de la discipline.</p>
+<hr>
+</section>
+<section id="analyse-financière" class="level1">
+<h1>1. Analyse financière</h1>
+<section id="concepts-fondamentaux" class="level2">
+<h2 class="anchored" data-anchor-id="concepts-fondamentaux">1.1 Concepts fondamentaux</h2>
+<div class="card-grid">
+<section id="structure-du-bilan-dentreprise" class="level3 card">
+<h3 class="anchored" data-anchor-id="structure-du-bilan-dentreprise">Structure du bilan d’entreprise</h3>
+<p><a href="./3A/bilan_entreprise.html">Accéder au document →</a></p>
+</section>
+<section id="règlementation-prudentielle" class="level3 card">
+<h3 class="anchored" data-anchor-id="règlementation-prudentielle">Règlementation prudentielle</h3>
+<p>CRR2, CRD5, Solvabilité II<br>
+<a href="./3A/reglementation_prudentielle.html">Accéder au document →</a></p>
+</section>
+</div>
+<hr>
+</section>
+</section>
+<section id="risques-financiers" class="level1">
+<h1>2. Risques financiers</h1>
+<p>Présentation des notions fondamentales liées aux risques quantifiables (marché, crédit, liquidité, opérationnel, climatique).</p>
+<section id="notions-générales" class="level2">
+<h2 class="anchored" data-anchor-id="notions-générales">2.1 Notions générales</h2>
+<div class="card-grid">
+<section id="définition-du-risque-financier" class="level3 card">
+<h3 class="anchored" data-anchor-id="définition-du-risque-financier">Définition du risque financier</h3>
+<p><a href="./3A/risque_def.html">Accéder →</a></p>
+</section>
+</div>
+</section>
+<section id="mesures-de-risque-value-at-risk-var" class="level2">
+<h2 class="anchored" data-anchor-id="mesures-de-risque-value-at-risk-var">2.2 Mesures de Risque — Value-at-Risk (VaR)</h2>
+<div class="card-grid">
+<section id="théorie-de-la-var" class="level3 card">
+<h3 class="anchored" data-anchor-id="théorie-de-la-var">Théorie de la VaR</h3>
+<p>Principes, hypothèses, cohérence<br>
+<a href="./3A/value-at-risk/var_def.html">Document théorique →</a></p>
+</section>
+<section id="implémentation-python" class="level3 card">
+<h3 class="anchored" data-anchor-id="implémentation-python">Implémentation Python</h3>
+<p>Historique, paramétrique, Monte Carlo<br>
+<a href="./projects/VaR/VaR.html">Notebook →</a></p>
+</section>
+<section id="creditvar-liquidité-copules" class="level3 card">
+<h3 class="anchored" data-anchor-id="creditvar-liquidité-copules">CreditVaR &amp; Liquidité (copules)</h3>
+<p><a href="./projects/Liquidity/AssetLiquidity.html">Notebook →</a></p>
+</section>
+</div>
+<hr>
+</section>
+</section>
+<section id="risques-climatiques" class="level1">
+<h1>3. Risques climatiques</h1>
+<p>Approche quantitative du risque physique appliquée au territoire français.</p>
+<div class="card-grid">
+<section id="exposition-territoriale" class="level3 card">
+<h3 class="anchored" data-anchor-id="exposition-territoriale">Exposition territoriale</h3>
+<p>Cartographie des catastrophes naturelles<br>
+<a href="./projects/Climate/Notebooks/02_ExpoClimatCommune.html">Notebook →</a></p>
+</section>
+<section id="modélisation-prédictive" class="level3 card">
+<h3 class="anchored" data-anchor-id="modélisation-prédictive">Modélisation prédictive</h3>
+<p>Inondations &amp; aléas naturels<br>
+<a href="./projects/Climate/Notebooks/03_PhysicalRisk.html">Notebook →</a></p>
+</section>
+</div>
+<hr>
+</section>
+<section id="calibration-de-modèles-stochastiques" class="level1">
+<h1>4. Calibration de modèles stochastiques</h1>
+<section id="modèles-classiques" class="level2">
+<h2 class="anchored" data-anchor-id="modèles-classiques">4.1 Modèles classiques</h2>
+<div class="card-grid">
+<section id="modèle-de-black-scholes" class="level3 card">
+<h3 class="anchored" data-anchor-id="modèle-de-black-scholes">Modèle de Black-Scholes</h3>
+<p>Calibration et volatilité<br>
+<a href="./3A/proc_stochastique/modele_bs.html">Accéder →</a></p>
+</section>
+</div>
+</section>
+<section id="volatilité-stochastique" class="level2">
+<h2 class="anchored" data-anchor-id="volatilité-stochastique">4.2 Volatilité stochastique</h2>
+<div class="card-grid">
+<section id="taylor-filtre-de-kalman" class="level3 card">
+<h3 class="anchored" data-anchor-id="taylor-filtre-de-kalman">Taylor — Filtre de Kalman</h3>
+<p><a href="./3A/proc_stochastique/modele_log_sv-part1.html">Document →</a></p>
+</section>
+<section id="taylor-filtre-particulaire" class="level3 card">
+<h3 class="anchored" data-anchor-id="taylor-filtre-particulaire">Taylor — Filtre particulaire</h3>
+<p><a href="./3A/proc_stochastique/modele_log_sv-part2.html">Document →</a></p>
+</section>
+</div>
+</section>
+<section id="modèles-avancés" class="level2">
+<h2 class="anchored" data-anchor-id="modèles-avancés">4.3 Modèles avancés</h2>
+<div class="card-grid">
+<section id="modèle-de-heston" class="level3 card">
+<h3 class="anchored" data-anchor-id="modèle-de-heston">Modèle de Heston</h3>
+<p><a href="./projects/Calibration/HestonModel.html">Notebook complet →</a></p>
+</section>
+<section id="courbes-de-taux-zc-ois-hull-white" class="level3 card">
+<h3 class="anchored" data-anchor-id="courbes-de-taux-zc-ois-hull-white">Courbes de taux (ZC, OIS) — Hull-White</h3>
+<p><a href="./projects/Yield Curve/Projet_courbe_taux.html">Notebook →</a></p>
+</section>
+<section id="pricing-doption-exotiques" class="level3 card">
+<h3 class="anchored" data-anchor-id="pricing-doption-exotiques">Pricing d’option exotiques</h3>
+<p><a href="./projects/WQU/Stochastic Modeling 1.html">Notebook complet →</a></p>
+</section>
+</div>
+<hr>
+</section>
+</section>
+<section id="asset-management" class="level1">
+<h1>5. Asset Management</h1>
+<div class="card-grid">
+<section id="risques-des-portefeuilles" class="level3 card">
+<h3 class="anchored" data-anchor-id="risques-des-portefeuilles">Risques des portefeuilles</h3>
+<p>Marché, liquidité (implémentations Python)<br>
+<a href="./projects/Liquidity/AssetLiquidity.html">Notebook →</a></p>
+</section>
+</div>
+<hr>
+</section>
+<section id="asset-pricing" class="level1">
+<h1>6. Asset Pricing</h1>
+<div class="card-grid">
+<section id="options-dérivés" class="level3 card">
+<h3 class="anchored" data-anchor-id="options-dérivés">Options &amp; dérivés</h3>
+<p><a href="./projects/main_options.html">Notebook →</a></p>
+</section>
+<section id="pricing-avancé" class="level3 card">
+<h3 class="anchored" data-anchor-id="pricing-avancé">Pricing avancé</h3>
+<p><a href="./projects/WQU/Derivative Pricing 1.html">Derivative Pricing 1 →</a><br>
+<a href="./projects/WQU/Derivative Pricing 2.html">Derivative Pricing 2 →</a></p>
+</section>
+</div>
+<hr>
+</section>
+<section id="finance-durable" class="level1">
+<h1>7. Finance durable</h1>
+<div class="card-grid">
+<section id="investissement-socialement-responsable" class="level3 card">
+<h3 class="anchored" data-anchor-id="investissement-socialement-responsable">Investissement Socialement Responsable</h3>
+<p><a href="./autres/ISR.html">Accéder →</a></p>
+</section>
+<section id="finance-durable-1" class="level3 card">
+<h3 class="anchored" data-anchor-id="finance-durable-1">Finance durable</h3>
+<p>Indicateurs, cadres réglementaires<br>
+<a href="./autres/finance_durable.html">Accéder →</a></p>
+</section>
+<section id="corrélations-spearman-vs-pearson" class="level3 card">
+<h3 class="anchored" data-anchor-id="corrélations-spearman-vs-pearson">Corrélations Spearman vs Pearson</h3>
+<p><a href="./autres/spearman-pearson.html">Analyse →</a></p>
+</section>
+</div>
+<hr>
+</section>
+<section id="projets-académiques" class="level1">
+<h1>8. Projets académiques</h1>
+<section id="projets-de-semestre" class="level2">
+<h2 class="anchored" data-anchor-id="projets-de-semestre">8.1 Projets de semestre</h2>
+<div class="card-grid">
+<section id="séries-temporelles" class="level3 card">
+<h3 class="anchored" data-anchor-id="séries-temporelles">Séries temporelles</h3>
+<p><a href="3A/rapports/rapport_series_temporelles.pdf">PDF →</a></p>
+</section>
+<section id="copules-multi-risques" class="level3 card">
+<h3 class="anchored" data-anchor-id="copules-multi-risques">Copules &amp; multi-risques</h3>
+<p><a href="3A/rapports/Copulas.pdf">PDF →</a></p>
+</section>
+<section id="théorie-des-valeurs-extrêmes" class="level3 card">
+<h3 class="anchored" data-anchor-id="théorie-des-valeurs-extrêmes">Théorie des valeurs extrêmes</h3>
+<p><a href="3A/rapports/projet_EVT.pdf">PDF →</a></p>
+</section>
+</div>
+</section>
+<section id="projets-de-fin-détude" class="level2">
+<h2 class="anchored" data-anchor-id="projets-de-fin-détude">8.2 Projets de fin d’étude</h2>
+<div class="card-grid">
+<section id="margin-of-conservatism" class="level3 card">
+<h3 class="anchored" data-anchor-id="margin-of-conservatism">Margin of Conservatism</h3>
+<p><a href="3A/rapports/PFE_EY.pdf">PDF →</a></p>
+</section>
+<section id="stress-test-climatique" class="level3 card">
+<h3 class="anchored" data-anchor-id="stress-test-climatique">Stress Test Climatique</h3>
+<p>Version à venir<br>
+<a href="3A/rapports/PFE_EY.pdf">PDF →</a></p>
+</section>
+</div>
+<hr>
+</section>
+</section>
+<section id="applications-dépôts-github" class="level1">
+<h1>9. Applications &amp; dépôts GitHub</h1>
+<div class="card-grid">
+<section id="stock-price-prediction" class="level3 card">
+<h3 class="anchored" data-anchor-id="stock-price-prediction">Stock Price Prediction</h3>
+<p><a href="https://github.com/usenameFD/Stock-Price-Prediction">GitHub →</a></p>
+</section>
+<section id="asset-pricing-management" class="level3 card">
+<h3 class="anchored" data-anchor-id="asset-pricing-management">Asset Pricing &amp; Management</h3>
+<p><a href="https://github.com/Niyo-D-JC/Asset-Pricing-and-Management">GitHub →</a></p>
+</section>
+<section id="back-testing-de-la-var" class="level3 card">
+<h3 class="anchored" data-anchor-id="back-testing-de-la-var">Back-testing de la VaR</h3>
+<p><a href="https://github.com/usenameFD/Risk-Management">GitHub →</a></p>
+</section>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+
+  <div class="hero-content">
+
+    <h1 class="hero-title"></h1>
+
+    <p class="hero-subtitle">
+
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+
+    </p>
+
+  </div>
+
+</hero>
+
+
+
+<main class="content">
+
+  
+
+</main>
+
+
+
+<footer class="quant-footer">
+
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
+
+  <p class="footer-sub">
+
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+
+  </p>
+
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>derivative-pricing-1 – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="hero-title title display-7"></h1></header>
+
+
+
+
+
+<div id="cell-0" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">!</span>pip install tabulate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="cbac0402-1c74-4e48-c157-d511011af8d9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Parameters example STEP 1</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Parameters</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>S <span class="op">=</span> <span class="dv">100</span>      <span class="co"># Spot price</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>K <span class="op">=</span> <span class="dv">100</span>      <span class="co"># Strike price</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>T <span class="op">=</span> <span class="dv">1</span>        <span class="co"># Time to maturity (in years)</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>r <span class="op">=</span> <span class="fl">0.05</span>     <span class="co"># Risk-free rate</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>sigma <span class="op">=</span> <span class="fl">0.2</span>  <span class="co"># Volatility</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>steps <span class="op">=</span> <span class="dv">5</span>    <span class="co"># Number of binomial steps</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># Derived parameters</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>dt <span class="op">=</span> T <span class="op">/</span> steps</span>
+<span id="cb2-16"><a href="#cb2-16"></a>u <span class="op">=</span> np.exp(sigma <span class="op">*</span> np.sqrt(dt))</span>
+<span id="cb2-17"><a href="#cb2-17"></a>d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u</span>
+<span id="cb2-18"><a href="#cb2-18"></a>p <span class="op">=</span> (np.exp(r <span class="op">*</span> dt) <span class="op">-</span> d) <span class="op">/</span> (u <span class="op">-</span> d)</span>
+<span id="cb2-19"><a href="#cb2-19"></a>discount <span class="op">=</span> np.exp(<span class="op">-</span>r <span class="op">*</span> dt)</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co"># Initialize tree structure</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="kw">def</span> init_tree(steps):</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="cf">return</span> [[<span class="dv">0</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb2-24"><a href="#cb2-24"></a></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="co"># Generate stock price tree</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="kw">def</span> generate_stock_tree(S, u, d, steps):</span>
+<span id="cb2-27"><a href="#cb2-27"></a>    tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-29"><a href="#cb2-29"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-30"><a href="#cb2-30"></a>            tree[i][j] <span class="op">=</span> S <span class="op">*</span> (u <span class="op">**</span> j) <span class="op">*</span> (d <span class="op">**</span> (i <span class="op">-</span> j))</span>
+<span id="cb2-31"><a href="#cb2-31"></a>    <span class="cf">return</span> tree</span>
+<span id="cb2-32"><a href="#cb2-32"></a></span>
+<span id="cb2-33"><a href="#cb2-33"></a><span class="co"># Price European option using backward induction</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a><span class="kw">def</span> price_option_european(tree, K, r, dt, is_call<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb2-35"><a href="#cb2-35"></a>    option_tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb2-36"><a href="#cb2-36"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-37"><a href="#cb2-37"></a>        option_tree[steps][j] <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, tree[steps][j] <span class="op">-</span> K) <span class="cf">if</span> is_call <span class="cf">else</span> <span class="bu">max</span>(<span class="dv">0</span>, K <span class="op">-</span> tree[steps][j])</span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(steps)):</span>
+<span id="cb2-39"><a href="#cb2-39"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-40"><a href="#cb2-40"></a>            option_tree[i][j] <span class="op">=</span> discount <span class="op">*</span> (p <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j])</span>
+<span id="cb2-41"><a href="#cb2-41"></a>    <span class="cf">return</span> option_tree[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb2-42"><a href="#cb2-42"></a></span>
+<span id="cb2-43"><a href="#cb2-43"></a><span class="co"># Price American option with early exercise</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="kw">def</span> price_option_american(tree, K, r, dt, is_call<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb2-45"><a href="#cb2-45"></a>    option_tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb2-46"><a href="#cb2-46"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-47"><a href="#cb2-47"></a>        option_tree[steps][j] <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, tree[steps][j] <span class="op">-</span> K) <span class="cf">if</span> is_call <span class="cf">else</span> <span class="bu">max</span>(<span class="dv">0</span>, K <span class="op">-</span> tree[steps][j])</span>
+<span id="cb2-48"><a href="#cb2-48"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(steps)):</span>
+<span id="cb2-49"><a href="#cb2-49"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb2-50"><a href="#cb2-50"></a>            continuation <span class="op">=</span> discount <span class="op">*</span> (p <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j])</span>
+<span id="cb2-51"><a href="#cb2-51"></a>            exercise <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, tree[i][j] <span class="op">-</span> K) <span class="cf">if</span> is_call <span class="cf">else</span> <span class="bu">max</span>(<span class="dv">0</span>, K <span class="op">-</span> tree[i][j])</span>
+<span id="cb2-52"><a href="#cb2-52"></a>            option_tree[i][j] <span class="op">=</span> <span class="bu">max</span>(continuation, exercise)</span>
+<span id="cb2-53"><a href="#cb2-53"></a>    <span class="cf">return</span> option_tree[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb2-54"><a href="#cb2-54"></a></span>
+<span id="cb2-55"><a href="#cb2-55"></a><span class="co"># Generate stock tree</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a>stock_tree <span class="op">=</span> generate_stock_tree(S, u, d, steps)</span>
+<span id="cb2-57"><a href="#cb2-57"></a></span>
+<span id="cb2-58"><a href="#cb2-58"></a><span class="co"># Compute option prices</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>european_call <span class="op">=</span> price_option_european(stock_tree, K, r, dt, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-60"><a href="#cb2-60"></a>european_put <span class="op">=</span> price_option_european(stock_tree, K, r, dt, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-61"><a href="#cb2-61"></a>american_call <span class="op">=</span> price_option_american(stock_tree, K, r, dt, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-62"><a href="#cb2-62"></a>american_put <span class="op">=</span> price_option_american(stock_tree, K, r, dt, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-63"><a href="#cb2-63"></a></span>
+<span id="cb2-64"><a href="#cb2-64"></a><span class="co"># Verify put-call parity (only for European options)</span></span>
+<span id="cb2-65"><a href="#cb2-65"></a>put_call_parity <span class="op">=</span> european_call <span class="op">-</span> european_put</span>
+<span id="cb2-66"><a href="#cb2-66"></a>theoretical_parity <span class="op">=</span> S <span class="op">-</span> K <span class="op">*</span> np.exp(<span class="op">-</span>r <span class="op">*</span> T)</span>
+<span id="cb2-67"><a href="#cb2-67"></a></span>
+<span id="cb2-68"><a href="#cb2-68"></a><span class="co"># Create results table</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a>results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-70"><a href="#cb2-70"></a>    <span class="st">'Option Type'</span>: [<span class="st">'European Call'</span>, <span class="st">'European Put'</span>, <span class="st">'American Call'</span>, <span class="st">'American Put'</span>, <span class="st">'Put-Call Parity'</span>],</span>
+<span id="cb2-71"><a href="#cb2-71"></a>    <span class="st">'Price'</span>: [european_call, european_put, american_call, american_put, put_call_parity],</span>
+<span id="cb2-72"><a href="#cb2-72"></a>    <span class="st">'Check (vs S - PV(K))'</span>: [<span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, <span class="st">''</span>, np.<span class="bu">round</span>(theoretical_parity,<span class="dv">2</span>)]</span>
+<span id="cb2-73"><a href="#cb2-73"></a>})</span>
+<span id="cb2-74"><a href="#cb2-74"></a></span>
+<span id="cb2-75"><a href="#cb2-75"></a><span class="co"># Display results</span></span>
+<span id="cb2-76"><a href="#cb2-76"></a>headers <span class="op">=</span> [<span class="st">'Option Type'</span>, <span class="st">'Price'</span>, <span class="st">'Check (vs S - PV(K))'</span>]</span>
+<span id="cb2-77"><a href="#cb2-77"></a><span class="bu">print</span>(tabulate(results.<span class="bu">round</span>(<span class="dv">2</span>), headers<span class="op">=</span>headers, tablefmt<span class="op">=</span><span class="st">"pretty"</span>, floatfmt<span class="op">=</span><span class="st">".4f"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+---+-----------------+-------+----------------------+
+|   |   Option Type   | Price | Check (vs S - PV(K)) |
++---+-----------------+-------+----------------------+
+| 0 |  European Call  | 10.81 |                      |
+| 1 |  European Put   | 5.93  |                      |
+| 2 |  American Call  | 10.81 |                      |
+| 3 |  American Put   | 6.37  |                      |
+| 4 | Put-Call Parity | 4.88  |         4.88         |
++---+-----------------+-------+----------------------+</code></pre>
+</div>
+</div>
+<p>Step 1:</p>
+<p>Team member A will work with European Calls and Puts using a Binomial Tree. For the next set of questions, assume the following values and parameters:</p>
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:732}}" data-outputid="29e7f552-2130-432c-a404-904e658bec58">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Parameters</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>S0 <span class="op">=</span> <span class="dv">100</span>               <span class="co"># Spot price</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>K <span class="op">=</span> <span class="dv">100</span>                <span class="co"># Strike price (ATM)</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>r <span class="op">=</span> <span class="fl">0.05</span>               <span class="co"># Risk-free interest rate</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>sigma_20 <span class="op">=</span> <span class="fl">0.20</span>        <span class="co"># Initial volatility</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>sigma_25 <span class="op">=</span> <span class="fl">0.25</span>        <span class="co"># Volatility after 5% increase</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>T <span class="op">=</span> <span class="fl">0.25</span>               <span class="co"># Time to maturity (3 months)</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>steps <span class="op">=</span> <span class="dv">100</span>            <span class="co"># Number of steps in the binomial tree</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># Binomial model functions</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">def</span> binomial_factors(sigma, dt):</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    u <span class="op">=</span> np.exp(sigma <span class="op">*</span> np.sqrt(dt))</span>
+<span id="cb4-16"><a href="#cb4-16"></a>    d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u</span>
+<span id="cb4-17"><a href="#cb4-17"></a>    p <span class="op">=</span> (np.exp(r <span class="op">*</span> dt) <span class="op">-</span> d) <span class="op">/</span> (u <span class="op">-</span> d)</span>
+<span id="cb4-18"><a href="#cb4-18"></a>    <span class="cf">return</span> u, d, p</span>
+<span id="cb4-19"><a href="#cb4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="kw">def</span> init_tree(steps):</span>
+<span id="cb4-21"><a href="#cb4-21"></a>    <span class="cf">return</span> [[<span class="dv">0</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb4-22"><a href="#cb4-22"></a></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="kw">def</span> generate_stock_tree(S, u, d, steps):</span>
+<span id="cb4-24"><a href="#cb4-24"></a>    tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-26"><a href="#cb4-26"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-27"><a href="#cb4-27"></a>            tree[i][j] <span class="op">=</span> S <span class="op">*</span> (u <span class="op">**</span> j) <span class="op">*</span> (d <span class="op">**</span> (i <span class="op">-</span> j))</span>
+<span id="cb4-28"><a href="#cb4-28"></a>    <span class="cf">return</span> tree</span>
+<span id="cb4-29"><a href="#cb4-29"></a></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="kw">def</span> price_european_option(S, K, r, sigma, T, steps, is_call<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb4-31"><a href="#cb4-31"></a>    dt <span class="op">=</span> T <span class="op">/</span> steps</span>
+<span id="cb4-32"><a href="#cb4-32"></a>    discount <span class="op">=</span> np.exp(<span class="op">-</span>r <span class="op">*</span> dt)</span>
+<span id="cb4-33"><a href="#cb4-33"></a>    u, d, p <span class="op">=</span> binomial_factors(sigma, dt)</span>
+<span id="cb4-34"><a href="#cb4-34"></a>    tree <span class="op">=</span> generate_stock_tree(S, u, d, steps)</span>
+<span id="cb4-35"><a href="#cb4-35"></a>    option_tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb4-36"><a href="#cb4-36"></a></span>
+<span id="cb4-37"><a href="#cb4-37"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-38"><a href="#cb4-38"></a>        option_tree[steps][j] <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, tree[steps][j] <span class="op">-</span> K) <span class="cf">if</span> is_call <span class="cf">else</span> <span class="bu">max</span>(<span class="dv">0</span>, K <span class="op">-</span> tree[steps][j])</span>
+<span id="cb4-39"><a href="#cb4-39"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(steps)):</span>
+<span id="cb4-40"><a href="#cb4-40"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb4-41"><a href="#cb4-41"></a>            option_tree[i][j] <span class="op">=</span> discount <span class="op">*</span> (p <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j])</span>
+<span id="cb4-42"><a href="#cb4-42"></a>    <span class="cf">return</span> option_tree[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb4-43"><a href="#cb4-43"></a></span>
+<span id="cb4-44"><a href="#cb4-44"></a><span class="co"># Compute base option prices at 20% volatility</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a>call_20 <span class="op">=</span> price_european_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-46"><a href="#cb4-46"></a>put_20 <span class="op">=</span> price_european_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-47"><a href="#cb4-47"></a></span>
+<span id="cb4-48"><a href="#cb4-48"></a><span class="co"># Compute Delta using central difference method</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a>epsilon <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a>call_up <span class="op">=</span> price_european_option(S0 <span class="op">+</span> epsilon, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-51"><a href="#cb4-51"></a>call_down <span class="op">=</span> price_european_option(S0 <span class="op">-</span> epsilon, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-52"><a href="#cb4-52"></a>call_delta <span class="op">=</span> (call_up <span class="op">-</span> call_down) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> epsilon)</span>
+<span id="cb4-53"><a href="#cb4-53"></a></span>
+<span id="cb4-54"><a href="#cb4-54"></a>put_up <span class="op">=</span> price_european_option(S0 <span class="op">+</span> epsilon, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-55"><a href="#cb4-55"></a>put_down <span class="op">=</span> price_european_option(S0 <span class="op">-</span> epsilon, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-56"><a href="#cb4-56"></a>put_delta <span class="op">=</span> (put_up <span class="op">-</span> put_down) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> epsilon)</span>
+<span id="cb4-57"><a href="#cb4-57"></a></span>
+<span id="cb4-58"><a href="#cb4-58"></a><span class="co"># Compute Vega as sensitivity to volatility increase from 20% to 25%</span></span>
+<span id="cb4-59"><a href="#cb4-59"></a>call_25 <span class="op">=</span> price_european_option(S0, K, r, sigma_25, T, steps, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-60"><a href="#cb4-60"></a>put_25 <span class="op">=</span> price_european_option(S0, K, r, sigma_25, T, steps, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-61"><a href="#cb4-61"></a>call_vega <span class="op">=</span> (call_25 <span class="op">-</span> call_20) <span class="op">/</span> (sigma_25 <span class="op">-</span> sigma_20)</span>
+<span id="cb4-62"><a href="#cb4-62"></a>put_vega <span class="op">=</span> (put_25 <span class="op">-</span> put_20) <span class="op">/</span> (sigma_25 <span class="op">-</span> sigma_20)</span>
+<span id="cb4-63"><a href="#cb4-63"></a></span>
+<span id="cb4-64"><a href="#cb4-64"></a><span class="co"># Compile results</span></span>
+<span id="cb4-65"><a href="#cb4-65"></a>results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-66"><a href="#cb4-66"></a>    <span class="st">"Metric"</span>: [<span class="st">"Call Price (20%)"</span>, <span class="st">"Put Price (20%)"</span>, <span class="st">"Call Delta"</span>, <span class="st">"Put Delta"</span>,</span>
+<span id="cb4-67"><a href="#cb4-67"></a>               <span class="st">"Call Price (25%)"</span>, <span class="st">"Put Price (25%)"</span>, <span class="st">"Call Vega"</span>, <span class="st">"Put Vega"</span>],</span>
+<span id="cb4-68"><a href="#cb4-68"></a>    <span class="st">"Value"</span>: [call_20, put_20, call_delta, put_delta, call_25, put_25, call_vega, put_vega]</span>
+<span id="cb4-69"><a href="#cb4-69"></a>})</span>
+<span id="cb4-70"><a href="#cb4-70"></a></span>
+<span id="cb4-71"><a href="#cb4-71"></a></span>
+<span id="cb4-72"><a href="#cb4-72"></a><span class="co"># Print results</span></span>
+<span id="cb4-73"><a href="#cb4-73"></a><span class="bu">print</span>(<span class="st">"European option pricing with binomial tree: </span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-74"><a href="#cb4-74"></a>headers <span class="op">=</span> [<span class="st">"Metric"</span>, <span class="st">"Value"</span>]</span>
+<span id="cb4-75"><a href="#cb4-75"></a><span class="bu">print</span>(tabulate(results.<span class="bu">round</span>(<span class="dv">2</span>), headers<span class="op">=</span>headers, tablefmt<span class="op">=</span><span class="st">"pretty"</span>, floatfmt<span class="op">=</span><span class="st">".4f"</span>))</span>
+<span id="cb4-76"><a href="#cb4-76"></a></span>
+<span id="cb4-77"><a href="#cb4-77"></a><span class="co"># European call and put vs stock prices</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a>stock_prices <span class="op">=</span> S0<span class="op">*</span>np.array([<span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">1.10</span>, <span class="fl">1.15</span>, <span class="fl">1.20</span>, <span class="fl">1.50</span>])</span>
+<span id="cb4-79"><a href="#cb4-79"></a>call_prices <span class="op">=</span> np.array([price_european_option(S, S0, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> S <span class="kw">in</span> stock_prices])</span>
+<span id="cb4-80"><a href="#cb4-80"></a>put_prices <span class="op">=</span> np.array([price_european_option(S, S0, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> S <span class="kw">in</span> stock_prices])</span>
+<span id="cb4-81"><a href="#cb4-81"></a></span>
+<span id="cb4-82"><a href="#cb4-82"></a>plt.plot(stock_prices, call_prices, <span class="st">'bo-'</span>, label <span class="op">=</span> <span class="st">'call option'</span>)</span>
+<span id="cb4-83"><a href="#cb4-83"></a>plt.plot(stock_prices, put_prices, <span class="st">'ro-'</span>, label <span class="op">=</span> <span class="st">'put option'</span>)</span>
+<span id="cb4-84"><a href="#cb4-84"></a>plt.xlabel(<span class="st">"Stock Prices"</span>)</span>
+<span id="cb4-85"><a href="#cb4-85"></a>plt.ylabel(<span class="st">"Option Prices"</span>)</span>
+<span id="cb4-86"><a href="#cb4-86"></a>plt.legend()</span>
+<span id="cb4-87"><a href="#cb4-87"></a>plt.grid()</span>
+<span id="cb4-88"><a href="#cb4-88"></a>plt.title(<span class="st">"Graph 1: European option prices vs stock prices"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>European option pricing with binomial tree: 
+
++---+------------------+-------+
+|   |      Metric      | Value |
++---+------------------+-------+
+| 0 | Call Price (20%) | 4.61  |
+| 1 | Put Price (20%)  | 3.36  |
+| 2 |    Call Delta    | 0.57  |
+| 3 |    Put Delta     | -0.43 |
+| 4 | Call Price (25%) | 5.59  |
+| 5 | Put Price (25%)  | 4.34  |
+| 6 |    Call Vega     | 19.62 |
+| 7 |     Put Vega     | 19.62 |
++---+------------------+-------+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="82">
+<pre><code>Text(0.5, 1.0, 'Graph 1: European option prices vs stock prices')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-4-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Team member B will work with American Calls and Puts using a Binomial Tree. For the next set of questions, assume the same values and parameters as before.</p>
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:732}}" data-outputid="8d0846d8-4dbb-4e0c-87d6-b826f8355873">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Parameters</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>S0 <span class="op">=</span> <span class="dv">100</span>               <span class="co"># Spot price</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>K <span class="op">=</span> <span class="dv">100</span>                <span class="co"># Strike price (ATM)</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>r <span class="op">=</span> <span class="fl">0.05</span>               <span class="co"># Risk-free interest rate</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>sigma_20 <span class="op">=</span> <span class="fl">0.20</span>        <span class="co"># Initial volatility</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>sigma_25 <span class="op">=</span> <span class="fl">0.25</span>        <span class="co"># Volatility after 5% increase</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>T <span class="op">=</span> <span class="fl">0.25</span>               <span class="co"># Time to maturity (3 months)</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>steps <span class="op">=</span> <span class="bu">int</span>(T<span class="op">*</span><span class="dv">250</span>)           <span class="co"># Number of steps in the binomial tree</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># Binomial model functions</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="kw">def</span> binomial_factors(sigma, dt):</span>
+<span id="cb7-12"><a href="#cb7-12"></a>    u <span class="op">=</span> np.exp(sigma <span class="op">*</span> np.sqrt(dt))</span>
+<span id="cb7-13"><a href="#cb7-13"></a>    d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u</span>
+<span id="cb7-14"><a href="#cb7-14"></a>    p <span class="op">=</span> (np.exp(r <span class="op">*</span> dt) <span class="op">-</span> d) <span class="op">/</span> (u <span class="op">-</span> d)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="cf">return</span> u, d, p</span>
+<span id="cb7-16"><a href="#cb7-16"></a></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="kw">def</span> init_tree(steps):</span>
+<span id="cb7-18"><a href="#cb7-18"></a>    <span class="cf">return</span> [[<span class="dv">0</span> <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>)]</span>
+<span id="cb7-19"><a href="#cb7-19"></a></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="kw">def</span> generate_stock_tree(S, u, d, steps):</span>
+<span id="cb7-21"><a href="#cb7-21"></a>    tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb7-23"><a href="#cb7-23"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb7-24"><a href="#cb7-24"></a>            tree[i][j] <span class="op">=</span> S <span class="op">*</span> (u <span class="op">**</span> j) <span class="op">*</span> (d <span class="op">**</span> (i <span class="op">-</span> j))</span>
+<span id="cb7-25"><a href="#cb7-25"></a>    <span class="cf">return</span> tree</span>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a><span class="co"># Price American option with early exercise</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a><span class="kw">def</span> price_american_option(S, K, r, sigma, T, steps, is_call<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb7-29"><a href="#cb7-29"></a>    dt <span class="op">=</span> T <span class="op">/</span> steps</span>
+<span id="cb7-30"><a href="#cb7-30"></a>    discount <span class="op">=</span> np.exp(<span class="op">-</span>r <span class="op">*</span> dt)</span>
+<span id="cb7-31"><a href="#cb7-31"></a>    u, d, p <span class="op">=</span> binomial_factors(sigma, dt)</span>
+<span id="cb7-32"><a href="#cb7-32"></a>    tree <span class="op">=</span> generate_stock_tree(S, u, d, steps)</span>
+<span id="cb7-33"><a href="#cb7-33"></a>    option_tree <span class="op">=</span> init_tree(steps)</span>
+<span id="cb7-34"><a href="#cb7-34"></a>    delta <span class="op">=</span> np.zeros([steps, steps])</span>
+<span id="cb7-35"><a href="#cb7-35"></a></span>
+<span id="cb7-36"><a href="#cb7-36"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb7-37"><a href="#cb7-37"></a>        option_tree[steps][j] <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, tree[steps][j] <span class="op">-</span> K) <span class="cf">if</span> is_call <span class="cf">else</span> <span class="bu">max</span>(<span class="dv">0</span>, K <span class="op">-</span> tree[steps][j])</span>
+<span id="cb7-38"><a href="#cb7-38"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">reversed</span>(<span class="bu">range</span>(steps)):</span>
+<span id="cb7-39"><a href="#cb7-39"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb7-40"><a href="#cb7-40"></a>            continuation <span class="op">=</span> discount <span class="op">*</span> (p <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j])</span>
+<span id="cb7-41"><a href="#cb7-41"></a>            exercise <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, tree[i][j] <span class="op">-</span> K) <span class="cf">if</span> is_call <span class="cf">else</span> <span class="bu">max</span>(<span class="dv">0</span>, K <span class="op">-</span> tree[i][j])</span>
+<span id="cb7-42"><a href="#cb7-42"></a>            option_tree[i][j] <span class="op">=</span> <span class="bu">max</span>(continuation, exercise)</span>
+<span id="cb7-43"><a href="#cb7-43"></a>            delta[i][j] <span class="op">=</span> (option_tree[i <span class="op">+</span> <span class="dv">1</span>][j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>][j]) <span class="op">/</span> (</span>
+<span id="cb7-44"><a href="#cb7-44"></a>                tree[i <span class="op">+</span> <span class="dv">1</span>][j<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span> tree[i <span class="op">+</span> <span class="dv">1</span>][j]</span>
+<span id="cb7-45"><a href="#cb7-45"></a>            )</span>
+<span id="cb7-46"><a href="#cb7-46"></a>    <span class="cf">return</span> option_tree[<span class="dv">0</span>][<span class="dv">0</span>], delta[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb7-47"><a href="#cb7-47"></a></span>
+<span id="cb7-48"><a href="#cb7-48"></a><span class="co"># Compute base option prices and deltas at 20% volatility</span></span>
+<span id="cb7-49"><a href="#cb7-49"></a>call_20, call_delta_20 <span class="op">=</span> price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-50"><a href="#cb7-50"></a>put_20, put_delta_20 <span class="op">=</span> price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-51"><a href="#cb7-51"></a></span>
+<span id="cb7-52"><a href="#cb7-52"></a></span>
+<span id="cb7-53"><a href="#cb7-53"></a><span class="co"># Compute Vega as sensitivity to volatility increase from 20% to 25%</span></span>
+<span id="cb7-54"><a href="#cb7-54"></a>call_25, _ <span class="op">=</span> price_american_option(S0, K, r, sigma_25, T, steps, is_call<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-55"><a href="#cb7-55"></a>put_25, _ <span class="op">=</span> price_american_option(S0, K, r, sigma_25, T, steps, is_call<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-56"><a href="#cb7-56"></a>call_vega <span class="op">=</span> (call_25 <span class="op">-</span> call_20) <span class="op">/</span> (sigma_25 <span class="op">-</span> sigma_20)</span>
+<span id="cb7-57"><a href="#cb7-57"></a>put_vega <span class="op">=</span> (put_25 <span class="op">-</span> put_20) <span class="op">/</span> (sigma_25 <span class="op">-</span> sigma_20)</span>
+<span id="cb7-58"><a href="#cb7-58"></a></span>
+<span id="cb7-59"><a href="#cb7-59"></a><span class="co"># Compile results</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a>results <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-61"><a href="#cb7-61"></a>    <span class="st">"Metric"</span>: [<span class="st">"Call Price (20%)"</span>, <span class="st">"Put Price (20%)"</span>, <span class="st">"Call Delta"</span>, <span class="st">"Put Delta"</span>,</span>
+<span id="cb7-62"><a href="#cb7-62"></a>               <span class="st">"Call Price (25%)"</span>, <span class="st">"Put Price (25%)"</span>, <span class="st">"Call Vega"</span>, <span class="st">"Put Vega"</span>],</span>
+<span id="cb7-63"><a href="#cb7-63"></a>    <span class="st">"Value"</span>: [call_20, put_20, call_delta_20, put_delta_20, call_25, put_25, call_vega, put_vega]</span>
+<span id="cb7-64"><a href="#cb7-64"></a>})</span>
+<span id="cb7-65"><a href="#cb7-65"></a></span>
+<span id="cb7-66"><a href="#cb7-66"></a><span class="co"># Print results</span></span>
+<span id="cb7-67"><a href="#cb7-67"></a><span class="bu">print</span>(<span class="st">"American option pricing with binomial tree: </span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb7-68"><a href="#cb7-68"></a>headers <span class="op">=</span> [<span class="st">"Metric"</span>, <span class="st">"Value"</span>]</span>
+<span id="cb7-69"><a href="#cb7-69"></a><span class="bu">print</span>(tabulate(results.<span class="bu">round</span>(<span class="dv">2</span>), headers<span class="op">=</span>headers, tablefmt<span class="op">=</span><span class="st">"pretty"</span>, floatfmt<span class="op">=</span><span class="st">".4f"</span>))</span>
+<span id="cb7-70"><a href="#cb7-70"></a></span>
+<span id="cb7-71"><a href="#cb7-71"></a></span>
+<span id="cb7-72"><a href="#cb7-72"></a><span class="co"># American call and put vs stock prices</span></span>
+<span id="cb7-73"><a href="#cb7-73"></a>stock_prices <span class="op">=</span> S0<span class="op">*</span>np.array([<span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">1.10</span>, <span class="fl">1.15</span>, <span class="fl">1.20</span>, <span class="fl">1.50</span>])</span>
+<span id="cb7-74"><a href="#cb7-74"></a>call_prices <span class="op">=</span> np.array([price_american_option(S, S0, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)[<span class="dv">0</span>] <span class="cf">for</span> S <span class="kw">in</span> stock_prices])</span>
+<span id="cb7-75"><a href="#cb7-75"></a>put_prices <span class="op">=</span> np.array([price_american_option(S, S0, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>] <span class="cf">for</span> S <span class="kw">in</span> stock_prices])</span>
+<span id="cb7-76"><a href="#cb7-76"></a></span>
+<span id="cb7-77"><a href="#cb7-77"></a>plt.plot(stock_prices, call_prices, <span class="st">'bo-'</span>, label <span class="op">=</span> <span class="st">'call option'</span>)</span>
+<span id="cb7-78"><a href="#cb7-78"></a>plt.plot(stock_prices, put_prices, <span class="st">'ro-'</span>, label <span class="op">=</span> <span class="st">'put option'</span>)</span>
+<span id="cb7-79"><a href="#cb7-79"></a>plt.xlabel(<span class="st">"Stock Prices"</span>)</span>
+<span id="cb7-80"><a href="#cb7-80"></a>plt.ylabel(<span class="st">"Option Prices"</span>)</span>
+<span id="cb7-81"><a href="#cb7-81"></a>plt.legend()</span>
+<span id="cb7-82"><a href="#cb7-82"></a>plt.grid()</span>
+<span id="cb7-83"><a href="#cb7-83"></a>plt.title(<span class="st">"Graph 2: American option prices vs stock prices"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>American option pricing with binomial tree: 
+
++---+------------------+-------+
+|   |      Metric      | Value |
++---+------------------+-------+
+| 0 | Call Price (20%) |  4.6  |
+| 1 | Put Price (20%)  | 3.47  |
+| 2 |    Call Delta    | 0.57  |
+| 3 |    Put Delta     | -0.45 |
+| 4 | Call Price (25%) | 5.58  |
+| 5 | Put Price (25%)  | 4.45  |
+| 6 |    Call Vega     | 19.59 |
+| 7 |     Put Vega     | 19.54 |
++---+------------------+-------+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="83">
+<pre><code>Text(0.5, 1.0, 'Graph 2: American option prices vs stock prices')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-5-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:489}}" data-outputid="7a576d6a-267d-4e52-9f3d-d426c49eb07a">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Choice of the number of steps</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>nb_steps <span class="op">=</span> np.array([<span class="dv">50</span>, <span class="dv">62</span>, <span class="dv">100</span>, <span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">1500</span>, <span class="dv">5000</span>, <span class="dv">10000</span>])</span>
+<span id="cb10-3"><a href="#cb10-3"></a>call_prices <span class="op">=</span> np.array([price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)[<span class="dv">0</span>] <span class="cf">for</span> steps <span class="kw">in</span> nb_steps])</span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a>plt.plot(nb_steps, call_prices, <span class="st">'bo-'</span>, label <span class="op">=</span> <span class="st">'American call'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>plt.xlabel(<span class="st">"Number of steps"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7"></a>plt.ylabel(<span class="st">"Price"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8"></a>plt.legend()</span>
+<span id="cb10-9"><a href="#cb10-9"></a>plt.title(<span class="st">"American options price with binomial tree"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>Text(0.5, 1.0, 'American options price with binomial tree')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-6-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:489}}" data-outputid="338b8d27-f15e-4b0d-9901-82db6ce6b9c8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># European and American calls vs strike</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>strikes <span class="op">=</span> S0<span class="op">*</span>np.array([<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="dv">1</span>, <span class="fl">1.05</span>, <span class="fl">1.10</span>])</span>
+<span id="cb12-3"><a href="#cb12-3"></a>eur_call_prices <span class="op">=</span> np.array([price_european_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb12-4"><a href="#cb12-4"></a>am_call_prices <span class="op">=</span> np.array([price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>)[<span class="dv">0</span>] <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>plt.plot(strikes, eur_call_prices, <span class="st">'bo-'</span>, label <span class="op">=</span> <span class="st">'Eur call'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>plt.plot(strikes, am_call_prices, <span class="st">'ro-'</span>, label <span class="op">=</span> <span class="st">'Am call'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a>plt.xlabel(<span class="st">"Strikes"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9"></a>plt.ylabel(<span class="st">"Call Option Prices"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a>plt.legend()</span>
+<span id="cb12-11"><a href="#cb12-11"></a>plt.grid()</span>
+<span id="cb12-12"><a href="#cb12-12"></a>plt.title(<span class="st">"Graph 3: European and American call prices vs strikes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="84">
+<pre><code>Text(0.5, 1.0, 'Graph 3: European and American call prices vs strikes')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:489}}" data-outputid="a2d40dcd-99d5-4a65-e034-1e26c1db5fb6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># European and American puts vs strike</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>strikes <span class="op">=</span> S0<span class="op">*</span>np.array([<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="dv">1</span>, <span class="fl">1.05</span>, <span class="fl">1.10</span>])</span>
+<span id="cb14-3"><a href="#cb14-3"></a>eur_call_prices <span class="op">=</span> np.array([price_european_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb14-4"><a href="#cb14-4"></a>am_call_prices <span class="op">=</span> np.array([price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>] <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a>plt.plot(strikes, eur_call_prices, <span class="st">'bo-'</span>, label <span class="op">=</span> <span class="st">'Eur put'</span>)</span>
+<span id="cb14-7"><a href="#cb14-7"></a>plt.plot(strikes, am_call_prices, <span class="st">'ro-'</span>, label <span class="op">=</span> <span class="st">'Am put'</span>)</span>
+<span id="cb14-8"><a href="#cb14-8"></a>plt.xlabel(<span class="st">"Strikes"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9"></a>plt.ylabel(<span class="st">"Put Option Prices"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10"></a>plt.legend()</span>
+<span id="cb14-11"><a href="#cb14-11"></a>plt.grid()</span>
+<span id="cb14-12"><a href="#cb14-12"></a>plt.title(<span class="st">"Graph 4: European and American put prices vs strikes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>Text(0.5, 1.0, 'Graph 4: European and American put prices vs strikes')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>STEP 2:</p>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:663}}" data-outputid="c7f5acb2-f9b2-44fc-b9db-8ab37b381491">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb16-5"><a href="#cb16-5"></a></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="co"># Parameters</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>S0 <span class="op">=</span> <span class="dv">100</span>               <span class="co"># Spot price</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>r <span class="op">=</span> <span class="fl">0.05</span>               <span class="co"># Risk-free interest rate</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>sigma_20 <span class="op">=</span> <span class="fl">0.20</span>        <span class="co"># Initial volatility</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>sigma_25 <span class="op">=</span> <span class="fl">0.25</span>        <span class="co"># Volatility after 5% increase</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>T <span class="op">=</span> <span class="fl">0.25</span>               <span class="co"># Time to maturity (3 months)</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>steps <span class="op">=</span> <span class="bu">int</span>(T<span class="op">*</span><span class="dv">250</span>)            <span class="co"># Number of steps in the binomial tree</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a></span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="co"># Trinomial model functions</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="kw">def</span> _gen_stock_vec(S, sigma, u, d, nb):</span>
+<span id="cb16-17"><a href="#cb16-17"></a>    vec_u <span class="op">=</span> u <span class="op">*</span> np.ones(nb)</span>
+<span id="cb16-18"><a href="#cb16-18"></a>    np.cumprod(vec_u, out<span class="op">=</span>vec_u)</span>
+<span id="cb16-19"><a href="#cb16-19"></a>    vec_d <span class="op">=</span> d <span class="op">*</span> np.ones(nb)</span>
+<span id="cb16-20"><a href="#cb16-20"></a>    np.cumprod(vec_d, out<span class="op">=</span>vec_d)</span>
+<span id="cb16-21"><a href="#cb16-21"></a>    res <span class="op">=</span> np.concatenate((vec_d[::<span class="op">-</span><span class="dv">1</span>], [<span class="fl">1.0</span>], vec_u))</span>
+<span id="cb16-22"><a href="#cb16-22"></a>    res <span class="op">*=</span> S</span>
+<span id="cb16-23"><a href="#cb16-23"></a>    <span class="cf">return</span> res</span>
+<span id="cb16-24"><a href="#cb16-24"></a></span>
+<span id="cb16-25"><a href="#cb16-25"></a><span class="kw">def</span> trinomial_factors(sigma, dt):</span>
+<span id="cb16-26"><a href="#cb16-26"></a>    u <span class="op">=</span> np.exp(sigma <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> dt))</span>
+<span id="cb16-27"><a href="#cb16-27"></a>    d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u  <span class="co"># down movement to force a "recombining tree"</span></span>
+<span id="cb16-28"><a href="#cb16-28"></a></span>
+<span id="cb16-29"><a href="#cb16-29"></a>    <span class="co"># Define risk-neutral probabilities:</span></span>
+<span id="cb16-30"><a href="#cb16-30"></a>    pu <span class="op">=</span> (</span>
+<span id="cb16-31"><a href="#cb16-31"></a>        (np.exp(r <span class="op">*</span> dt <span class="op">/</span> <span class="dv">2</span>) <span class="op">-</span> np.exp(<span class="op">-</span>sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb16-32"><a href="#cb16-32"></a>        <span class="op">/</span> (np.exp(sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)) <span class="op">-</span> np.exp(<span class="op">-</span>sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb16-33"><a href="#cb16-33"></a>    ) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb16-34"><a href="#cb16-34"></a>    pd <span class="op">=</span> (</span>
+<span id="cb16-35"><a href="#cb16-35"></a>        (<span class="op">-</span>np.exp(r <span class="op">*</span> dt <span class="op">/</span> <span class="dv">2</span>) <span class="op">+</span> np.exp(sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb16-36"><a href="#cb16-36"></a>        <span class="op">/</span> (np.exp(sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)) <span class="op">-</span> np.exp(<span class="op">-</span>sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb16-37"><a href="#cb16-37"></a>    ) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb16-38"><a href="#cb16-38"></a>    pm <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> pu <span class="op">-</span> pd</span>
+<span id="cb16-39"><a href="#cb16-39"></a>    <span class="cf">return</span> u, d, pu, pd, pm</span>
+<span id="cb16-40"><a href="#cb16-40"></a></span>
+<span id="cb16-41"><a href="#cb16-41"></a><span class="kw">def</span> price_european_option(S, K, r, sigma, T, steps, is_call<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb16-42"><a href="#cb16-42"></a>    dt <span class="op">=</span> T <span class="op">/</span> steps</span>
+<span id="cb16-43"><a href="#cb16-43"></a>    discount <span class="op">=</span> np.exp(<span class="op">-</span>r <span class="op">*</span> dt)</span>
+<span id="cb16-44"><a href="#cb16-44"></a>    u, d, pu, pd, pm <span class="op">=</span> trinomial_factors(sigma, dt)</span>
+<span id="cb16-45"><a href="#cb16-45"></a>    s <span class="op">=</span> _gen_stock_vec(S, sigma, u, d, steps)</span>
+<span id="cb16-46"><a href="#cb16-46"></a></span>
+<span id="cb16-47"><a href="#cb16-47"></a>    final_payoff <span class="op">=</span> np.maximum(s <span class="op">-</span> K, <span class="dv">0</span>) <span class="cf">if</span> is_call <span class="cf">else</span> np.maximum(K <span class="op">-</span> s, <span class="dv">0</span>)</span>
+<span id="cb16-48"><a href="#cb16-48"></a>    nxt_vec_prices <span class="op">=</span> final_payoff</span>
+<span id="cb16-49"><a href="#cb16-49"></a></span>
+<span id="cb16-50"><a href="#cb16-50"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb16-51"><a href="#cb16-51"></a>        vec_stock <span class="op">=</span> _gen_stock_vec(S, sigma, u, d, steps<span class="op">-</span>i)</span>
+<span id="cb16-52"><a href="#cb16-52"></a>        expectation <span class="op">=</span> np.zeros(vec_stock.size)</span>
+<span id="cb16-53"><a href="#cb16-53"></a></span>
+<span id="cb16-54"><a href="#cb16-54"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(expectation.size):</span>
+<span id="cb16-55"><a href="#cb16-55"></a>            tmp <span class="op">=</span> nxt_vec_prices[j] <span class="op">*</span> pd</span>
+<span id="cb16-56"><a href="#cb16-56"></a>            tmp <span class="op">+=</span> nxt_vec_prices[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">*</span> pm</span>
+<span id="cb16-57"><a href="#cb16-57"></a>            tmp <span class="op">+=</span> nxt_vec_prices[j <span class="op">+</span> <span class="dv">2</span>] <span class="op">*</span> pu</span>
+<span id="cb16-58"><a href="#cb16-58"></a></span>
+<span id="cb16-59"><a href="#cb16-59"></a>            expectation[j] <span class="op">=</span> tmp</span>
+<span id="cb16-60"><a href="#cb16-60"></a>        <span class="co"># Discount option payoff!</span></span>
+<span id="cb16-61"><a href="#cb16-61"></a>        nxt_vec_prices <span class="op">=</span> discount <span class="op">*</span> expectation</span>
+<span id="cb16-62"><a href="#cb16-62"></a>    <span class="cf">return</span> nxt_vec_prices[<span class="dv">0</span>]</span>
+<span id="cb16-63"><a href="#cb16-63"></a></span>
+<span id="cb16-64"><a href="#cb16-64"></a></span>
+<span id="cb16-65"><a href="#cb16-65"></a><span class="co"># Compute option price for different strikes</span></span>
+<span id="cb16-66"><a href="#cb16-66"></a>strikes <span class="op">=</span> S0<span class="op">*</span>np.array([<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="dv">1</span>, <span class="fl">1.05</span>, <span class="fl">1.10</span>])</span>
+<span id="cb16-67"><a href="#cb16-67"></a></span>
+<span id="cb16-68"><a href="#cb16-68"></a><span class="co"># Call prices</span></span>
+<span id="cb16-69"><a href="#cb16-69"></a>price_call_eur <span class="op">=</span> np.array([price_european_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb16-70"><a href="#cb16-70"></a></span>
+<span id="cb16-71"><a href="#cb16-71"></a><span class="co"># Put price</span></span>
+<span id="cb16-72"><a href="#cb16-72"></a>price_put_eur <span class="op">=</span> np.array([price_european_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb16-73"><a href="#cb16-73"></a></span>
+<span id="cb16-74"><a href="#cb16-74"></a>plt.plot(strikes, price_call_eur, label <span class="op">=</span> <span class="st">'European call'</span>)</span>
+<span id="cb16-75"><a href="#cb16-75"></a>plt.plot(strikes, price_put_eur, label <span class="op">=</span> <span class="st">'European put'</span>)</span>
+<span id="cb16-76"><a href="#cb16-76"></a>plt.xlabel(<span class="st">"Strikes"</span>)</span>
+<span id="cb16-77"><a href="#cb16-77"></a>plt.ylabel(<span class="st">"Price"</span>)</span>
+<span id="cb16-78"><a href="#cb16-78"></a>plt.legend()</span>
+<span id="cb16-79"><a href="#cb16-79"></a>plt.title(<span class="st">"European options price with trinomial tree"</span>)</span>
+<span id="cb16-80"><a href="#cb16-80"></a></span>
+<span id="cb16-81"><a href="#cb16-81"></a><span class="co"># Call-put parity</span></span>
+<span id="cb16-82"><a href="#cb16-82"></a>call_pur_parity_eur <span class="op">=</span> np.array([strikes,</span>
+<span id="cb16-83"><a href="#cb16-83"></a>                                price_call_eur,</span>
+<span id="cb16-84"><a href="#cb16-84"></a>                                price_put_eur,</span>
+<span id="cb16-85"><a href="#cb16-85"></a>                                price_call_eur <span class="op">+</span> strikes<span class="op">*</span>np.exp(<span class="op">-</span>r<span class="op">*</span>T),</span>
+<span id="cb16-86"><a href="#cb16-86"></a>                                price_put_eur <span class="op">+</span> S0])</span>
+<span id="cb16-87"><a href="#cb16-87"></a>call_pur_parity_eur <span class="op">=</span> call_pur_parity_eur.T.<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb16-88"><a href="#cb16-88"></a></span>
+<span id="cb16-89"><a href="#cb16-89"></a><span class="co"># Print results</span></span>
+<span id="cb16-90"><a href="#cb16-90"></a><span class="bu">print</span>(<span class="st">"European option pricing with trinomial tree: </span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb16-91"><a href="#cb16-91"></a>headers <span class="op">=</span> [<span class="st">"Strikes"</span>, <span class="st">"Call"</span>, <span class="st">"Put"</span>, <span class="st">"Call + K*e^(-rT)"</span>, <span class="st">"put + S"</span>]</span>
+<span id="cb16-92"><a href="#cb16-92"></a><span class="bu">print</span>(tabulate(call_pur_parity_eur, headers<span class="op">=</span>headers, tablefmt<span class="op">=</span><span class="st">"pretty"</span>, floatfmt<span class="op">=</span><span class="st">".4f"</span>))</span>
+<span id="cb16-93"><a href="#cb16-93"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>European option pricing with trinomial tree: 
+
++---------+-------+------+------------------+---------+
+| Strikes | Call  | Put  | Call + K*e^(-rT) | put + S |
++---------+-------+------+------------------+---------+
+|  90.0   | 11.67 | 0.55 |      100.55      | 100.55  |
+|  95.0   | 7.71  | 1.53 |      101.53      | 101.53  |
+|  100.0  | 4.61  | 3.36 |      103.36      | 103.36  |
+|  105.0  | 2.48  | 6.18 |      106.18      | 106.18  |
+|  110.0  | 1.19  | 9.83 |      109.83      | 109.83  |
++---------+-------+------+------------------+---------+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:663}}" data-outputid="818423e3-1f09-4229-9861-bfce42ff58bf">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-5"><a href="#cb18-5"></a></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="co"># Parameters</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>S0 <span class="op">=</span> <span class="dv">100</span>               <span class="co"># Spot price</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>r <span class="op">=</span> <span class="fl">0.05</span>               <span class="co"># Risk-free interest rate</span></span>
+<span id="cb18-9"><a href="#cb18-9"></a>sigma_20 <span class="op">=</span> <span class="fl">0.20</span>        <span class="co"># Initial volatility</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>sigma_25 <span class="op">=</span> <span class="fl">0.25</span>        <span class="co"># Volatility after 5% increase</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>T <span class="op">=</span> <span class="fl">0.25</span>               <span class="co"># Time to maturity (3 months)</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>steps <span class="op">=</span> <span class="bu">int</span>(T<span class="op">*</span><span class="dv">250</span>)            <span class="co"># Number of steps in the binomial tree</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a></span>
+<span id="cb18-14"><a href="#cb18-14"></a></span>
+<span id="cb18-15"><a href="#cb18-15"></a><span class="co"># Trinomial model functions</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a><span class="kw">def</span> _gen_stock_vec(S, sigma, u, d, nb):</span>
+<span id="cb18-17"><a href="#cb18-17"></a>    vec_u <span class="op">=</span> u <span class="op">*</span> np.ones(nb)</span>
+<span id="cb18-18"><a href="#cb18-18"></a>    np.cumprod(vec_u, out<span class="op">=</span>vec_u)</span>
+<span id="cb18-19"><a href="#cb18-19"></a>    vec_d <span class="op">=</span> d <span class="op">*</span> np.ones(nb)</span>
+<span id="cb18-20"><a href="#cb18-20"></a>    np.cumprod(vec_d, out<span class="op">=</span>vec_d)</span>
+<span id="cb18-21"><a href="#cb18-21"></a>    res <span class="op">=</span> np.concatenate((vec_d[::<span class="op">-</span><span class="dv">1</span>], [<span class="fl">1.0</span>], vec_u))</span>
+<span id="cb18-22"><a href="#cb18-22"></a>    res <span class="op">*=</span> S</span>
+<span id="cb18-23"><a href="#cb18-23"></a>    <span class="cf">return</span> res</span>
+<span id="cb18-24"><a href="#cb18-24"></a></span>
+<span id="cb18-25"><a href="#cb18-25"></a><span class="kw">def</span> trinomial_factors(sigma, dt):</span>
+<span id="cb18-26"><a href="#cb18-26"></a>    u <span class="op">=</span> np.exp(sigma <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> dt))</span>
+<span id="cb18-27"><a href="#cb18-27"></a>    d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u  <span class="co"># down movement to force a "recombining tree"</span></span>
+<span id="cb18-28"><a href="#cb18-28"></a></span>
+<span id="cb18-29"><a href="#cb18-29"></a>    <span class="co"># Define risk-neutral probabilities:</span></span>
+<span id="cb18-30"><a href="#cb18-30"></a>    pu <span class="op">=</span> (</span>
+<span id="cb18-31"><a href="#cb18-31"></a>        (np.exp(r <span class="op">*</span> dt <span class="op">/</span> <span class="dv">2</span>) <span class="op">-</span> np.exp(<span class="op">-</span>sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb18-32"><a href="#cb18-32"></a>        <span class="op">/</span> (np.exp(sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)) <span class="op">-</span> np.exp(<span class="op">-</span>sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb18-33"><a href="#cb18-33"></a>    ) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb18-34"><a href="#cb18-34"></a>    pd <span class="op">=</span> (</span>
+<span id="cb18-35"><a href="#cb18-35"></a>        (<span class="op">-</span>np.exp(r <span class="op">*</span> dt <span class="op">/</span> <span class="dv">2</span>) <span class="op">+</span> np.exp(sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb18-36"><a href="#cb18-36"></a>        <span class="op">/</span> (np.exp(sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)) <span class="op">-</span> np.exp(<span class="op">-</span>sigma <span class="op">*</span> np.sqrt(dt <span class="op">/</span> <span class="dv">2</span>)))</span>
+<span id="cb18-37"><a href="#cb18-37"></a>    ) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb18-38"><a href="#cb18-38"></a>    pm <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> pu <span class="op">-</span> pd</span>
+<span id="cb18-39"><a href="#cb18-39"></a>    <span class="cf">return</span> u, d, pu, pd, pm</span>
+<span id="cb18-40"><a href="#cb18-40"></a></span>
+<span id="cb18-41"><a href="#cb18-41"></a><span class="kw">def</span> price_american_option(S, K, r, sigma, T, steps, is_call<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb18-42"><a href="#cb18-42"></a>    dt <span class="op">=</span> T <span class="op">/</span> steps</span>
+<span id="cb18-43"><a href="#cb18-43"></a>    discount <span class="op">=</span> np.exp(<span class="op">-</span>r <span class="op">*</span> dt)</span>
+<span id="cb18-44"><a href="#cb18-44"></a>    u, d, pu, pd, pm <span class="op">=</span> trinomial_factors(sigma, dt)</span>
+<span id="cb18-45"><a href="#cb18-45"></a>    s <span class="op">=</span> _gen_stock_vec(S, sigma, u, d, steps)</span>
+<span id="cb18-46"><a href="#cb18-46"></a></span>
+<span id="cb18-47"><a href="#cb18-47"></a>    final_payoff <span class="op">=</span> np.maximum(s <span class="op">-</span> K, <span class="dv">0</span>) <span class="cf">if</span> is_call <span class="cf">else</span> np.maximum(K <span class="op">-</span> s, <span class="dv">0</span>)</span>
+<span id="cb18-48"><a href="#cb18-48"></a>    nxt_vec_prices <span class="op">=</span> final_payoff</span>
+<span id="cb18-49"><a href="#cb18-49"></a></span>
+<span id="cb18-50"><a href="#cb18-50"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb18-51"><a href="#cb18-51"></a>        vec_stock <span class="op">=</span> _gen_stock_vec(S, sigma, u, d, steps<span class="op">-</span>i)</span>
+<span id="cb18-52"><a href="#cb18-52"></a>        expectation <span class="op">=</span> np.zeros(vec_stock.size)</span>
+<span id="cb18-53"><a href="#cb18-53"></a></span>
+<span id="cb18-54"><a href="#cb18-54"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(expectation.size):</span>
+<span id="cb18-55"><a href="#cb18-55"></a>            tmp <span class="op">=</span> nxt_vec_prices[j] <span class="op">*</span> pd</span>
+<span id="cb18-56"><a href="#cb18-56"></a>            tmp <span class="op">+=</span> nxt_vec_prices[j <span class="op">+</span> <span class="dv">1</span>] <span class="op">*</span> pm</span>
+<span id="cb18-57"><a href="#cb18-57"></a>            tmp <span class="op">+=</span> nxt_vec_prices[j <span class="op">+</span> <span class="dv">2</span>] <span class="op">*</span> pu</span>
+<span id="cb18-58"><a href="#cb18-58"></a></span>
+<span id="cb18-59"><a href="#cb18-59"></a>            expectation[j] <span class="op">=</span> tmp</span>
+<span id="cb18-60"><a href="#cb18-60"></a>        <span class="co"># Discount option payoff!</span></span>
+<span id="cb18-61"><a href="#cb18-61"></a>        actual_payoff <span class="op">=</span> np.maximum(vec_stock <span class="op">-</span> K, <span class="dv">0</span>) <span class="cf">if</span> is_call <span class="cf">else</span> np.maximum(K <span class="op">-</span> vec_stock, <span class="dv">0</span>)</span>
+<span id="cb18-62"><a href="#cb18-62"></a>        nxt_vec_prices <span class="op">=</span> np.maximum(discount <span class="op">*</span> expectation, actual_payoff)</span>
+<span id="cb18-63"><a href="#cb18-63"></a>    <span class="cf">return</span> nxt_vec_prices[<span class="dv">0</span>]</span>
+<span id="cb18-64"><a href="#cb18-64"></a></span>
+<span id="cb18-65"><a href="#cb18-65"></a></span>
+<span id="cb18-66"><a href="#cb18-66"></a><span class="co"># Compute option price for different strikes</span></span>
+<span id="cb18-67"><a href="#cb18-67"></a>strikes <span class="op">=</span> S0<span class="op">*</span>np.array([<span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="dv">1</span>, <span class="fl">1.05</span>, <span class="fl">1.10</span>])</span>
+<span id="cb18-68"><a href="#cb18-68"></a></span>
+<span id="cb18-69"><a href="#cb18-69"></a><span class="co"># Call prices</span></span>
+<span id="cb18-70"><a href="#cb18-70"></a>price_call_am <span class="op">=</span> np.array([price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">True</span>) <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb18-71"><a href="#cb18-71"></a></span>
+<span id="cb18-72"><a href="#cb18-72"></a><span class="co"># Put price</span></span>
+<span id="cb18-73"><a href="#cb18-73"></a>price_put_am <span class="op">=</span> np.array([price_american_option(S0, K, r, sigma_20, T, steps, is_call<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> K <span class="kw">in</span> strikes])</span>
+<span id="cb18-74"><a href="#cb18-74"></a></span>
+<span id="cb18-75"><a href="#cb18-75"></a>plt.plot(strikes, price_call_am, label <span class="op">=</span> <span class="st">'American call'</span>)</span>
+<span id="cb18-76"><a href="#cb18-76"></a>plt.plot(strikes, price_put_am, label <span class="op">=</span> <span class="st">'American put'</span>)</span>
+<span id="cb18-77"><a href="#cb18-77"></a>plt.xlabel(<span class="st">"Strikes"</span>)</span>
+<span id="cb18-78"><a href="#cb18-78"></a>plt.ylabel(<span class="st">"Price"</span>)</span>
+<span id="cb18-79"><a href="#cb18-79"></a>plt.legend()</span>
+<span id="cb18-80"><a href="#cb18-80"></a>plt.title(<span class="st">"American options price with trinomial tree"</span>)</span>
+<span id="cb18-81"><a href="#cb18-81"></a></span>
+<span id="cb18-82"><a href="#cb18-82"></a><span class="co"># Call-put parity</span></span>
+<span id="cb18-83"><a href="#cb18-83"></a>call_pur_parity_am <span class="op">=</span> np.array([strikes,</span>
+<span id="cb18-84"><a href="#cb18-84"></a>                               price_call_am,</span>
+<span id="cb18-85"><a href="#cb18-85"></a>                               price_put_am,</span>
+<span id="cb18-86"><a href="#cb18-86"></a>                               price_call_am <span class="op">+</span> strikes<span class="op">*</span>np.exp(<span class="op">-</span>r<span class="op">*</span>T),</span>
+<span id="cb18-87"><a href="#cb18-87"></a>                               price_put_am <span class="op">+</span> S0])</span>
+<span id="cb18-88"><a href="#cb18-88"></a>call_pur_parity_am <span class="op">=</span> call_pur_parity_am.T.<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb18-89"><a href="#cb18-89"></a></span>
+<span id="cb18-90"><a href="#cb18-90"></a><span class="co"># Print results</span></span>
+<span id="cb18-91"><a href="#cb18-91"></a><span class="bu">print</span>(<span class="st">"American option pricing with trinomial tree: </span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb18-92"><a href="#cb18-92"></a>headers <span class="op">=</span> [<span class="st">"Strikes"</span>, <span class="st">"Call"</span>, <span class="st">"Put"</span>, <span class="st">"Call + K*e^(-rT)"</span>, <span class="st">"put + S"</span>]</span>
+<span id="cb18-93"><a href="#cb18-93"></a><span class="bu">print</span>(tabulate(call_pur_parity_am, headers<span class="op">=</span>headers, tablefmt<span class="op">=</span><span class="st">"pretty"</span>, floatfmt<span class="op">=</span><span class="st">".4f"</span>))</span>
+<span id="cb18-94"><a href="#cb18-94"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>American option pricing with trinomial tree: 
+
++---------+-------+-------+------------------+---------+
+| Strikes | Call  |  Put  | Call + K*e^(-rT) | put + S |
++---------+-------+-------+------------------+---------+
+|  90.0   | 11.67 | 0.56  |      100.55      | 100.56  |
+|  95.0   | 7.71  | 1.57  |      101.53      | 101.57  |
+|  100.0  | 4.61  | 3.47  |      103.36      | 103.47  |
+|  105.0  | 2.48  | 6.42  |      106.18      | 106.42  |
+|  110.0  | 1.19  | 10.33 |      109.83      | 110.33  |
++---------+-------+-------+------------------+---------+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Derivative Pricing 1_files/figure-html/cell-10-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Question 26: </strong> Using the same data from Q25, price an American Put option. Still, assume you are acting as the seller of this put. Consider now 25 steps in the tree (do this via python code).</p>
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="b202a649-ac68-444c-dbc6-5b0ff4010fa4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># Parameters</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>S0 <span class="op">=</span> <span class="dv">180</span>          <span class="co"># Initial stock price</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>K <span class="op">=</span> <span class="dv">182</span>           <span class="co"># Strike price</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>r <span class="op">=</span> <span class="fl">0.02</span>          <span class="co"># Risk-free rate</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>sigma <span class="op">=</span> <span class="fl">0.25</span>      <span class="co"># Volatility</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>T <span class="op">=</span> <span class="fl">0.5</span>           <span class="co"># Time to maturity (6 months)</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>steps <span class="op">=</span> <span class="dv">25</span>        <span class="co"># Number of steps in the binomial tree</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a></span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="co"># Binomial tree parameters</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a>dt <span class="op">=</span> T <span class="op">/</span> steps</span>
+<span id="cb20-14"><a href="#cb20-14"></a>u <span class="op">=</span> np.exp(sigma <span class="op">*</span> np.sqrt(dt))</span>
+<span id="cb20-15"><a href="#cb20-15"></a>d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u</span>
+<span id="cb20-16"><a href="#cb20-16"></a>p <span class="op">=</span> (np.exp(r <span class="op">*</span> dt) <span class="op">-</span> d) <span class="op">/</span> (u <span class="op">-</span> d)</span>
+<span id="cb20-17"><a href="#cb20-17"></a>discount <span class="op">=</span> np.exp(<span class="op">-</span>r <span class="op">*</span> dt)</span>
+<span id="cb20-18"><a href="#cb20-18"></a></span>
+<span id="cb20-19"><a href="#cb20-19"></a><span class="co"># Stock price tree</span></span>
+<span id="cb20-20"><a href="#cb20-20"></a>stock_tree <span class="op">=</span> np.zeros((steps <span class="op">+</span> <span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb20-21"><a href="#cb20-21"></a>stock_tree[<span class="dv">0</span>, <span class="dv">0</span>] <span class="op">=</span> S0</span>
+<span id="cb20-22"><a href="#cb20-22"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb20-23"><a href="#cb20-23"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb20-24"><a href="#cb20-24"></a>        stock_tree[i, j] <span class="op">=</span> S0 <span class="op">*</span> (u <span class="op">**</span> (i <span class="op">-</span> j)) <span class="op">*</span> (d <span class="op">**</span> j)</span>
+<span id="cb20-25"><a href="#cb20-25"></a></span>
+<span id="cb20-26"><a href="#cb20-26"></a><span class="co"># Option value tree (American put)</span></span>
+<span id="cb20-27"><a href="#cb20-27"></a>option_tree <span class="op">=</span> np.zeros((steps <span class="op">+</span> <span class="dv">1</span>, steps <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb20-28"><a href="#cb20-28"></a><span class="co"># Terminal payoffs</span></span>
+<span id="cb20-29"><a href="#cb20-29"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb20-30"><a href="#cb20-30"></a>    option_tree[steps, j] <span class="op">=</span> <span class="bu">max</span>(K <span class="op">-</span> stock_tree[steps, j], <span class="dv">0</span>)</span>
+<span id="cb20-31"><a href="#cb20-31"></a></span>
+<span id="cb20-32"><a href="#cb20-32"></a><span class="co"># Backward induction with early exercise</span></span>
+<span id="cb20-33"><a href="#cb20-33"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps <span class="op">-</span> <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb20-34"><a href="#cb20-34"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb20-35"><a href="#cb20-35"></a>        continuation <span class="op">=</span> discount <span class="op">*</span> (p <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>, j] <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>, j <span class="op">+</span> <span class="dv">1</span>])</span>
+<span id="cb20-36"><a href="#cb20-36"></a>        intrinsic <span class="op">=</span> <span class="bu">max</span>(K <span class="op">-</span> stock_tree[i, j], <span class="dv">0</span>)</span>
+<span id="cb20-37"><a href="#cb20-37"></a>        option_tree[i, j] <span class="op">=</span> <span class="bu">max</span>(continuation, intrinsic)</span>
+<span id="cb20-38"><a href="#cb20-38"></a></span>
+<span id="cb20-39"><a href="#cb20-39"></a><span class="co"># Delta tree</span></span>
+<span id="cb20-40"><a href="#cb20-40"></a>delta_tree <span class="op">=</span> np.zeros((steps, steps))</span>
+<span id="cb20-41"><a href="#cb20-41"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
+<span id="cb20-42"><a href="#cb20-42"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(i <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb20-43"><a href="#cb20-43"></a>        delta_tree[i, j] <span class="op">=</span> (option_tree[i <span class="op">+</span> <span class="dv">1</span>, j] <span class="op">-</span> option_tree[i <span class="op">+</span> <span class="dv">1</span>, j <span class="op">+</span> <span class="dv">1</span>]) <span class="op">/</span> (stock_tree[i <span class="op">+</span> <span class="dv">1</span>, j] <span class="op">-</span> stock_tree[i <span class="op">+</span> <span class="dv">1</span>, j <span class="op">+</span> <span class="dv">1</span>])</span>
+<span id="cb20-44"><a href="#cb20-44"></a></span>
+<span id="cb20-45"><a href="#cb20-45"></a><span class="co"># Print initial put price</span></span>
+<span id="cb20-46"><a href="#cb20-46"></a><span class="bu">print</span>(<span class="ss">f"American Put Price: </span><span class="sc">{</span>option_tree[<span class="dv">0</span>, <span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb20-47"><a href="#cb20-47"></a></span>
+<span id="cb20-48"><a href="#cb20-48"></a><span class="co"># For reference, store trees for later use</span></span>
+<span id="cb20-49"><a href="#cb20-49"></a>stock_tree_df <span class="op">=</span> pd.DataFrame(stock_tree)</span>
+<span id="cb20-50"><a href="#cb20-50"></a>option_tree_df <span class="op">=</span> pd.DataFrame(option_tree)</span>
+<span id="cb20-51"><a href="#cb20-51"></a>delta_tree_df <span class="op">=</span> pd.DataFrame(delta_tree)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>American Put Price: 13.04</code></pre>
+</div>
+</div>
+<p>Question 27. Asian ATM Put Option - 25 step: Using the same data from Q25, price an American Put option. Still, assume you are acting as the seller of this put. Consider now 25 steps in the tree (do this via python code).</p>
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0fc851db-3be9-4241-913c-8ef4a41b0a09">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">import</span> math</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># Parameters</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>S0 <span class="op">=</span> <span class="dv">180</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>r <span class="op">=</span> <span class="fl">0.02</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>sigma <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>T <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>K <span class="op">=</span> <span class="dv">182</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>N <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a></span>
+<span id="cb22-11"><a href="#cb22-11"></a><span class="co"># Binomial tree parameters</span></span>
+<span id="cb22-12"><a href="#cb22-12"></a>delta_t <span class="op">=</span> T <span class="op">/</span> N</span>
+<span id="cb22-13"><a href="#cb22-13"></a>u <span class="op">=</span> math.exp(sigma <span class="op">*</span> math.sqrt(delta_t))</span>
+<span id="cb22-14"><a href="#cb22-14"></a>d <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> u</span>
+<span id="cb22-15"><a href="#cb22-15"></a>p <span class="op">=</span> (math.exp(r <span class="op">*</span> delta_t) <span class="op">-</span> d) <span class="op">/</span> (u <span class="op">-</span> d)</span>
+<span id="cb22-16"><a href="#cb22-16"></a>q <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> p</span>
+<span id="cb22-17"><a href="#cb22-17"></a>discount <span class="op">=</span> math.exp(<span class="op">-</span>r <span class="op">*</span> T)</span>
+<span id="cb22-18"><a href="#cb22-18"></a></span>
+<span id="cb22-19"><a href="#cb22-19"></a><span class="co"># Calculate option price by enumerating all paths</span></span>
+<span id="cb22-20"><a href="#cb22-20"></a>total <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb22-21"><a href="#cb22-21"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span><span class="op">**</span>N):</span>
+<span id="cb22-22"><a href="#cb22-22"></a>    <span class="co"># Convert integer to binary string, representing path (0 = down, 1 = up)</span></span>
+<span id="cb22-23"><a href="#cb22-23"></a>    path <span class="op">=</span> <span class="bu">bin</span>(i)[<span class="dv">2</span>:].zfill(N)</span>
+<span id="cb22-24"><a href="#cb22-24"></a>    S <span class="op">=</span> S0</span>
+<span id="cb22-25"><a href="#cb22-25"></a>    sum_S <span class="op">=</span> S0  <span class="co"># Include S0 in the average</span></span>
+<span id="cb22-26"><a href="#cb22-26"></a>    prob <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb22-27"><a href="#cb22-27"></a>    <span class="co"># Follow the path to compute stock prices and probability</span></span>
+<span id="cb22-28"><a href="#cb22-28"></a>    <span class="cf">for</span> move <span class="kw">in</span> path:</span>
+<span id="cb22-29"><a href="#cb22-29"></a>        <span class="cf">if</span> move <span class="op">==</span> <span class="st">'0'</span>:  <span class="co"># Down move</span></span>
+<span id="cb22-30"><a href="#cb22-30"></a>            S <span class="op">*=</span> d</span>
+<span id="cb22-31"><a href="#cb22-31"></a>            prob <span class="op">*=</span> q</span>
+<span id="cb22-32"><a href="#cb22-32"></a>        <span class="cf">else</span>:  <span class="co"># Up move</span></span>
+<span id="cb22-33"><a href="#cb22-33"></a>            S <span class="op">*=</span> u</span>
+<span id="cb22-34"><a href="#cb22-34"></a>            prob <span class="op">*=</span> p</span>
+<span id="cb22-35"><a href="#cb22-35"></a>        sum_S <span class="op">+=</span> S</span>
+<span id="cb22-36"><a href="#cb22-36"></a>    <span class="co"># Compute average and payoff</span></span>
+<span id="cb22-37"><a href="#cb22-37"></a>    A <span class="op">=</span> sum_S <span class="op">/</span> (N <span class="op">+</span> <span class="dv">1</span>)  <span class="co"># N+1 points including S0</span></span>
+<span id="cb22-38"><a href="#cb22-38"></a>    payoff <span class="op">=</span> <span class="bu">max</span>(K <span class="op">-</span> A, <span class="dv">0</span>)</span>
+<span id="cb22-39"><a href="#cb22-39"></a>    total <span class="op">+=</span> payoff <span class="op">*</span> prob</span>
+<span id="cb22-40"><a href="#cb22-40"></a></span>
+<span id="cb22-41"><a href="#cb22-41"></a><span class="co"># Option price</span></span>
+<span id="cb22-42"><a href="#cb22-42"></a>option_price <span class="op">=</span> discount <span class="op">*</span> total</span>
+<span id="cb22-43"><a href="#cb22-43"></a><span class="bu">print</span>(<span class="ss">f"Asian Put Option Price with </span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> steps: </span><span class="sc">{</span>option_price<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Asian Put Option Price with 25 steps: 7.851</code></pre>
+</div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+
+  <div class="hero-content">
+
+    
+
+    <p class="hero-subtitle">
+
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+
+    </p>
+
+  </div>
+
+</hero>
+
+
+
+<main class="content">
+
+  
+
+</main>
+
+
+
+<footer class="quant-footer">
+
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
+
+  <p class="footer-sub">
+
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+
+  </p>
+
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Franck Deba">
+<meta name="dcterms.date" content="2025-05-05">
+
+<title>Introduction aux marchés financiers – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#marchés-des-actions" id="toc-marchés-des-actions" class="nav-link active" data-scroll-target="#marchés-des-actions">Marchés des actions</a>
+  <ul class="collapse">
+  <li><a href="#fixation-du-cours-dune-action" id="toc-fixation-du-cours-dune-action" class="nav-link" data-scroll-target="#fixation-du-cours-dune-action">Fixation du cours d’une action</a></li>
+  </ul></li>
+  <li><a href="#marché-obligataire" id="toc-marché-obligataire" class="nav-link" data-scroll-target="#marché-obligataire">Marché obligataire</a>
+  <ul class="collapse">
+  <li><a href="#caractéristiques-dune-obligation" id="toc-caractéristiques-dune-obligation" class="nav-link" data-scroll-target="#caractéristiques-dune-obligation">Caractéristiques d’une obligation</a></li>
+  <li><a href="#valorisation-dune-obligation" id="toc-valorisation-dune-obligation" class="nav-link" data-scroll-target="#valorisation-dune-obligation">Valorisation d’une obligation</a></li>
+  </ul></li>
+  <li><a href="#marché-des-produits-dérivés" id="toc-marché-des-produits-dérivés" class="nav-link" data-scroll-target="#marché-des-produits-dérivés">Marché des produits dérivés</a>
+  <ul class="collapse">
+  <li><a href="#forward" id="toc-forward" class="nav-link" data-scroll-target="#forward">Forward</a></li>
+  <li><a href="#options" id="toc-options" class="nav-link" data-scroll-target="#options">Options</a></li>
+  <li><a href="#futures" id="toc-futures" class="nav-link" data-scroll-target="#futures">Futures</a></li>
+  <li><a href="#swaps" id="toc-swaps" class="nav-link" data-scroll-target="#swaps">Swaps</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction aux marchés financiers</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Franck Deba </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 5, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Dans le secteur financier, le marché désigne l’endroit où se rencontrent l’offre et la demande de services ou de produits financiers. Il regroupe de nombreux acteurs, notamment les banques, les institutions financières, les entreprises et les particuliers. Parmi les différents produits financiers échangés, on trouve les actions, les obligations, les produits dérivés, les devises et les matières premières…</p>
+<p>Dans cet article, nous allons examiner trois types de marchés financiers, à savoir le marché des actions, des obligations et des produits dérivés, leurs caractéristiques ainsi que leur mode de fonctionnement.</p>
+<section id="marchés-des-actions" class="level2">
+<h2 class="anchored" data-anchor-id="marchés-des-actions">Marchés des actions</h2>
+<p>Le marché des actions permet aux entreprises de lever des fonds en émettant des titres de propriété (actions) que les investisseurs peuvent acheter. Ces actions sont ensuite échangées sur des bourses telles que Euronext Paris ou le New York Stock Exchange. Les prix des actions varient en fonction de l’offre et de la demande, influencées par les performances de l’entreprise, les conditions économiques et les sentiments du marché.</p>
+<p>Les acteurs principaux de ce marché sont les entreprises émettrices, les investisseurs institutionnels (fonds de pension, compagnies d’assurance) et les investisseurs individuels. Pour acheter ou vendre des actions, les investisseurs passent généralement par des courtiers en ligne ou des banques d’investissement. Ils emmettent des ordres d’achat (bid) ou de vente(ask), qu’on peut visualiser dans un carnet d’ordres, qui sont ensuite exécutés sur le marché. Il existe plusieurs types d’ordres :</p>
+<ul>
+<li><strong>Ordre au marché</strong> : achat ou vente immédiate au meilleur prix disponible.</li>
+<li><strong>Ordre à cours limité</strong> : permet d’acheter ou de vendre une quantité de titres avec une condition de prix, donc avec une maîtrise du cours auquel l’ordre sera exécuté.Il permet ainsi de fixer le cours d’objectif d’achat ou de vente.</li>
+<li><strong>Ordre à seuil de déclenchement</strong> : il s’agit d’un ordre qui ne sera exécuté que si le prix atteint un certain seuil. Il est souvent utilisé pour limiter les pertes ou sécuriser les gains. Pour un achat, il est placé en dessous du prix actuel du marché, et pour une vente, au dessus.</li>
+<li><strong>Ordre à plage de déclenchement</strong> : il s’agit d’un ordre qui ne sera exécuté que si le prix atteint un certain seuil, mais qui est limité dans le temps. Il est souvent utilisé pour limiter les pertes ou sécuriser les gains. Pour un achat, il est placé en dessous du prix actuel du marché, et pour une vente, au dessus.</li>
+<li><strong>Ordre suiveur</strong> : ce type d’ordre repose sur le même principe qu’un ordre à seuil de déclenchement à la différence que l’on saisira un pourcentage de variation et non un seuil en euros.</li>
+</ul>
+<p>Il existe également d’autres types dordres tactiques (ordre séquence, etc.) qui permettent de gérer des stratégies d’investissement plus complexes.</p>
+<blockquote class="blockquote">
+<p>💡 En France, l’Autorité des marchés financiers (AMF) supervise le marché pour assurer sa transparence et son bon fonctionnement.</p>
+</blockquote>
+<section id="fixation-du-cours-dune-action" class="level3">
+<h3 class="anchored" data-anchor-id="fixation-du-cours-dune-action">Fixation du cours d’une action</h3>
+<p>Le prix d’une action est déterminé par le jeu de l’offre et de la demande sur le marché. Lorsque la demande pour une action augmente, son prix tend à augmenter. Inversement, si l’offre dépasse la demande, le prix diminue. Le cours d’une action ne reflète pas directement le bid ni le ask, mais l’intersection effective entre eux, c’est-à-dire là où une offre et une demande se sont croisées.</p>
+<p>Ce prix est également influencé par des facteurs fondamentaux tels que : les bénéfices de l’entreprise, les dividendes distribués, les perspectives de croissance, ainsi que les conditions économiques générales.</p>
+<p>À la clôture de la bourse, le cours de clôture correspond au dernier prix auquel l’action a été échangée. Ce prix peut être différent du prix d’ouverture du lendemain en raison d’événements ou de mouvements de marché survenus en dehors des heures d’ouverture (after-hours trading).</p>
+</section>
+</section>
+<section id="marché-obligataire" class="level2">
+<h2 class="anchored" data-anchor-id="marché-obligataire">Marché obligataire</h2>
+<p>Le marché obligataire est un marché où les investisseurs achètent et vendent des obligations. Les obligations sont des titres de créance émis par des gouvernements ou des entreprises pour lever des fonds. Une obligation est un contrat entre un émetteur et un investisseur, dans lequel l’émetteur s’engage à rembourser l’investisseur à une date future, tout en lui versant des intérêts (appelés coupons) à intervalles réguliers.</p>
+<p>Dans ce contrat, l’émetteur contracte une dette sur le marché obligataire. L’investisseur prête de l’argent en achetant l’obligation, et en échange, il perçoit des intérêts jusqu’à l’échéance, date à laquelle il récupère le capital prêté (la valeur nominale).</p>
+<p>Les obligations sont généralement considérées comme des investissements à faible risque, car elles offrent souvent un rendement fixe et sont moins volatiles que les actions. Cependant, leur rendement est généralement inférieur à celui des actions, ce qui en fait un choix moins attrayant pour les investisseurs à la recherche de rendements élevés.</p>
+<p>Les obligations peuvent être classées selon leur émetteur, leur durée, et leur taux d’intérêt : - Les obligations d’État sont émises par les gouvernements. - Les obligations d’entreprise sont émises par des sociétés privées ou publiques. - Les obligations à court terme ont une durée inférieure à cinq ans, tandis que les obligations à long terme ont une durée supérieure à dix ans. - Le taux d’intérêt des obligations est généralement fixe, mais certaines peuvent avoir un taux variable. - Les obligations sont également classées selon leur notation de crédit, qui évalue la capacité de l’émetteur à rembourser la dette.</p>
+<section id="caractéristiques-dune-obligation" class="level3">
+<h3 class="anchored" data-anchor-id="caractéristiques-dune-obligation">Caractéristiques d’une obligation</h3>
+<p>Une obligation comprend plusieurs éléments clés : - Identité de l’émetteur : L’entité qui émet l’obligation (États, entreprises, banques, collectivités…) - Devise d’émission : La monnaie dans laquelle l’obligation est émise (euro, dollar, yen…) - Valeur nominale : Montant, notée N, que l’émetteur s’engage à rembourser à l’échéance. - Date de maturité : Date, notée T, à laquelle la valeur nominale doit être remboursée à l’investisseur. - Coupon (C) : Intérêts, notés C, versés périodiquement à l’investisseur jusqu’à la date de maturité. Cela est généralement exprimé en pourcentage de la valeur nominale afin de favoriser la comparaison entre les obligations.</p>
+<p style="text-align: center;">
+Schématisation d’une obligation (taux fixe, maturité 5 ans)
+</p>
+<p><img src="ressources/bond_description.png" alt="obligation" width="500" height="300" style="display: block; margin: auto;"></p>
+</section>
+<section id="valorisation-dune-obligation" class="level3">
+<h3 class="anchored" data-anchor-id="valorisation-dune-obligation">Valorisation d’une obligation</h3>
+<p>La valorisation d’une obligation consiste à déterminer sa valeur actuelle, c’est-à-dire le montant qu’un investisseur est prêt à payer pour l’acheter aujourd’hui. La valeur d’une obligation dépend de plusieurs facteurs,</p>
+<p><span class="math display">\[
+B(t,T) = \sum_{t=1}^{T} \frac{C}{(1+r)^t} + \frac{N}{(1+r)^T}
+\]</span></p>
+<p>Comme on peut le constater, cette valeur dépend de plusieurs facteurs, notamment : - Le taux d’intérêt du marché (<span class="math inline">\(r\)</span>) : Si le taux d’intérêt du marché augmente, la valeur des obligations existantes diminue, car les investisseurs préfèrent acheter de nouvelles obligations offrant des rendements plus élevés. - La durée restante jusqu’à l’échéance (<span class="math inline">\(T-t\)</span>) : Plus la durée restante est longue, plus la valeur de l’obligation est sensible aux variations des taux d’intérêt. - Le taux de coupon (<span class="math inline">\(c\)</span>): Un taux de coupon plus élevé rend l’obligation plus attrayante, ce qui augmente sa valeur.</p>
+<p>La valeur d’une obligation dépend également de la qualité de crédit de l’émetteur. Si la qualité de crédit de l’émetteur diminue, la valeur de l’obligation diminue également, car les investisseurs perçoivent un risque accru de défaut.</p>
+<blockquote class="blockquote">
+<p>💡 Lorsqu’une obligation est sans coupon, on l’appelle une obligation zéro coupon. Dans ce cas, la valorisation de l’obligation est plus simple, car il n’y a pas de paiements d’intérêts périodiques. La valeur actuelle d’une obligation zéro coupon est simplement la valeur nominale actualisée à la date d’échéance : <span class="math inline">\(B(t,T) = \frac{N}{(1+r)^{T-t}}\)</span>.</p>
+</blockquote>
+</section>
+</section>
+<section id="marché-des-produits-dérivés" class="level2">
+<h2 class="anchored" data-anchor-id="marché-des-produits-dérivés">Marché des produits dérivés</h2>
+<p>Les produits dérivés sont des instruments financiers dont la valeur dépend d’un actif sous-jacent. Parmi les produit dérivés, on trouve les options, les futures, les forwards, et les swaps. Ces instruments sont utilisés pour diverses raisons, notamment le hedging, la spéculation sur les mouvements de prix futurs, et l’arbitrage entre différents marchés.</p>
+<p>Un trader est en position de hedging lorsqu’il a une exposition au prix d’un actif et prend une position dans un dérivé pour compenser l’exposition. Dans une spéculation, le trader n’a pas d’exposition à compenser. Il parie sur les mouvements futurs du prix de l’actif pour se faire un profit. L’arbitrage implique de prendre une position sur deux ou plusieurs marchés différents pour avoir un profit sans risque, i.e.&nbsp;avec une certitude de gain.</p>
+<p><em>Exemple d’opportunité d’arbitrage : Soit un actif sous-jacent qui se négocie à 100 $ sur le marché A et à 105 $ sur le marché B. Un trader peut acheter l’actif sur le marché A et le vendre sur le marché B, réalisant ainsi un profit de 5 $ par unité sans risque.</em></p>
+<p>Les produits dérivés sont échangés sur des marchés organisés (marchés à terme) ou de gré à gré (Over-The-Counter, OTC). Les marchés organisés sont réglementés, centralisés et proposent des contrats standardisés (quantité, échéance, actif sous-jacent, etc.). Des bourses de contrats à terme telles que le CME (Chicago Mercantile Exchange) en sont des exemples. Ces marchés garantissent l’exécution des contrats grâce à une chambre de compensation, à travers l’utilisation de marges, c’est-à-dire le dépôt d’une fraction de la valeur totale du contrat pour ouvrir une position. Ces marges seront ajustées au fur et à mesure, à une fréquence quotidienne (daily settlement, marking to market) que le prix de l’actif sous-jacent fluctue pour tenir compte des gains ou des pertes réalisés sur la position. Cela permet aisi de réduire le risque de contrepartie.</p>
+<p>À l’inverse, les marchés OTC sont décentralisés, moins réglementés et permettent de conclure des contrats sur mesure directement entre deux contreparties.</p>
+<p>Sur ces marchés, les transactions sont déterminées par deux prix clés : le bid et le ask. Le bid est le prix auquel un acheteur est prêt à acheter l’actif, tandis que le ask est le prix auquel un vendeur est prêt à vendre. La différence entre ces deux prix est appelée le bid-ask spread, qui est un indicateur de la liquidité du marché : - Un spread étroit reflète un marché liquide et compétitif (souvent sur marchés organisés). - Un spread large reflète une liquidité plus faible ou une incertitude élevée (fréquent sur les marchés OTC).</p>
+<section id="forward" class="level3">
+<h3 class="anchored" data-anchor-id="forward">Forward</h3>
+<p>Un contrat forward est un accord entre deux parties pour acheter ou vendre un actif à un prix convenu <span class="math inline">\(K\)</span> à une date future <span class="math inline">\(T\)</span>. Contrairement aux contrats à terme (futures), les contrats forward sont négociés de gré à gré et ne sont pas standardisés. Généralement, les contrats forward sont hedgés par des institutions financières, car elles permettent de <em>neutraliser le risque</em>.</p>
+<p>Le payoff d’un contrat forward est donné par la formule suivante : <span class="math display">\[
+\text{Payoff}_{\text{long position}} = S_T - K, \quad
+\text{Payoff}_{\text{short position}} = K - S_T,
+\]</span></p>
+<p>où <span class="math inline">\(S_T\)</span> est le prix de l’actif sous-jacent à la date d’échéance, et <span class="math inline">\(K\)</span> est le prix convenu dans le contrat.</p>
+<blockquote class="blockquote">
+<p>💡 La vente d’un contrat à terme correspond à une position courte (short position), tandis que son achat correspond à une position longue (long position).</p>
+</blockquote>
+<p>Exemple : Soit une companie X qui doit payer £10 millions le 31 mars, sachant qu’on est le 31 décembre. Pour se protéger contre la hausse du prix de la livre sterling, la compagnie X peut acheter un contrat forward, i.e.&nbsp;il a l’obligation d’acheter le livre sterling à un prix convenu. Supposons que le prix convenu soit de £1,20. Si le prix de la livre sterling augmente à £1,30 à l’échéance, la compagnie X économise £1 million en utilisant le contrat forward. De ce fait, le risque est neutralisé.</p>
+<div style="text-align: center;">
+<p>
+Schématisation d’un contrat forward
+</p>
+<p><img src="ressources/payoff_long_fwd.png" alt="contrat_forward" width="500" height="300"></p>
+</div>
+</section>
+<section id="options" class="level3">
+<h3 class="anchored" data-anchor-id="options">Options</h3>
+<p>Les options sont des produits dérivés qui <strong>donnent à l’acheteur le droit, mais pas l’obligation</strong>, d’acheter ou de vendre un actif sous-jacent à un prix convenu (prix d’exercice) à une date future, échangés sur des marchés organisés ou de gré à gré. Il existe deux types d’options : les options d’achat (call options) et les options de vente (put options).</p>
+<blockquote class="blockquote">
+<p>💡 On dit qu’on est en position longue (long position) lorsqu’on achète une option, et en position courte (short position) lorsqu’on la vend. Le vendeur d’une option est appelé le “preneur de risque”, car il doit honorer l’option si l’acheteur décide de l’exercer. &gt; <em>Ex : Si l’on est en position courte sur une option de vente (put option), on a l’obligation d’acheter l’actif sous-jacent à un prix convenu si l’option est exercée. Si l’on est en position longue, on a le droit d’exiger la vente de l’actif sous-jacent à un prix convenu si l’option est exercée.</em></p>
+</blockquote>
+<p>L’on peut utiliser les options pour hedger ou pour spéculer sur la hausse ou la baisse de son prix. Les options sont également utilisées pour générer des revenus supplémentaires grâce à la vente d’options.</p>
+<p>Le payoff d’une option est donné par la formule suivante : <span class="math display">\[
+\text{Payoff}_{\text{call}} = \max(S_T - K, 0), \quad
+\text{Payoff}_{\text{put}} = \max(K - S_T, 0),
+\]</span> où <span class="math inline">\(S_T\)</span> est le prix de l’actif sous-jacent à la date d’échéance, et <span class="math inline">\(K\)</span> est le prix d’exercice de l’option. Le prix d’exercice est le prix auquel l’acheteur de l’option peut acheter ou vendre l’actif sous-jacent. Le prix d’exercice est fixé au moment de l’achat de l’option et reste constant jusqu’à l’échéance de l’option.</p>
+<div style="display: flex; justify-content: center; align-items: flex-start; gap: 40px;">
+<div style="text-align: center;">
+<p>
+Schématisation d’une option d’achat (call option) coûtant 2.5€
+</p>
+<p><img src="ressources/payoff_call.png" alt="option_call" width="80%"></p>
+</div>
+<div style="text-align: center;">
+<p>
+Schématisation d’une option de vente (put option) coûtant 2.5€
+</p>
+<p><img src="ressources/payoff_put.png" alt="option_put" width="80%"></p>
+</div>
+</div>
+</section>
+<section id="futures" class="level3">
+<h3 class="anchored" data-anchor-id="futures">Futures</h3>
+<p>Les contrats à terme (futures) sont des contrats standardisés négociés sur des marchés organisés, qui obligent l’acheteur à acheter et le vendeur à vendre un actif sous-jacent à un prix convenu à une date future. Contrairement aux contrats forward, les contrats futures sont standardisés en termes de taille de contrat, de lieux de livraison, de date d’échéance et de qualité de l’actif sous-jacent. Il existe également des limites de prix pour éviter des fluctuations excessives. Le payoff d’un contrat future est similaire à celui d’un contrat forward.</p>
+<p>Par ailleurs, les contrats futures sont réglés quotidiennement (daily settlement) par le biais d’une chambre de compensation, qui garantit l’exécution des contrats et réduit le risque de contrepartie. Cela signifie que les gains et les pertes sont calculés quotidiennement, et les marges sont ajustées en conséquence. Les traders doivent maintenir un niveau de marge minimum pour éviter d’être appelés à déposer des fonds supplémentaires (margin call) si la valeur de leur position diminue.</p>
+<p>De plus, pour éviter toute opportunité d’arbitrage, les prix des contrats futures convergent vers le prix au comptant de l’actif sous-jacent à l’échéance du contrat. Cela signifie qu’à la date d’échéance, le prix d’un contrat future doit être très proche du prix spot de l’actif sous-jacent. Dans le cas contraire, les traders pourraient réaliser un profit sans risque en achetant ou vendant l’actif sur le marché au comptant tout en prenant une position opposée sur le marché des futures.</p>
+</section>
+<section id="swaps" class="level3">
+<h3 class="anchored" data-anchor-id="swaps">Swaps</h3>
+<section id="to-do" class="level4">
+<h4 class="anchored" data-anchor-id="to-do">TO DO</h4>
+
+
+</section>
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+
+  <div class="hero-content">
+
+    <h1 class="hero-title"></h1>
+
+    <p class="hero-subtitle">
+
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+
+    </p>
+
+  </div>
+
+</hero>
+
+
+
+<main class="content">
+
+  
+
+</main>
+
+
+
+<footer class="quant-footer">
+
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
+
+  <p class="footer-sub">
+
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+
+  </p>
+
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

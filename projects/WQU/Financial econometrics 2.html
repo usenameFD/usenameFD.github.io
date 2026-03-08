@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Franck Deba">
+<meta name="description" content="VECM modelling and pair trading.">
+
+<title>Financial Econometrics II – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#challenge-2-modeling-non-stationarity-and-finding-an-equilibrium" id="toc-challenge-2-modeling-non-stationarity-and-finding-an-equilibrium" class="nav-link active" data-scroll-target="#challenge-2-modeling-non-stationarity-and-finding-an-equilibrium">Challenge 2: Modeling non-stationarity and finding an equilibrium</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">1. Definition</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">2. Description</a></li>
+  <li><a href="#demonstration" id="toc-demonstration" class="nav-link" data-scroll-target="#demonstration">3. Demonstration</a>
+  <ul class="collapse">
+  <li><a href="#fetching-data" id="toc-fetching-data" class="nav-link" data-scroll-target="#fetching-data">3.1. Fetching data</a></li>
+  <li><a href="#testing-for-stationarity" id="toc-testing-for-stationarity" class="nav-link" data-scroll-target="#testing-for-stationarity">3.2. Testing for stationarity</a></li>
+  </ul></li>
+  <li><a href="#testing-for-cointegration" id="toc-testing-for-cointegration" class="nav-link" data-scroll-target="#testing-for-cointegration">### 3.3. Testing for cointegration</a>
+  <ul class="collapse">
+  <li><a href="#calibrating-vecm-parameters" id="toc-calibrating-vecm-parameters" class="nav-link" data-scroll-target="#calibrating-vecm-parameters">3.4. Calibrating VECM parameters</a></li>
+  <li><a href="#diagnosis" id="toc-diagnosis" class="nav-link" data-scroll-target="#diagnosis">3.5. Diagnosis</a></li>
+  <li><a href="#damage" id="toc-damage" class="nav-link" data-scroll-target="#damage">3.6. Damage</a></li>
+  <li><a href="#directions" id="toc-directions" class="nav-link" data-scroll-target="#directions">3.7. Directions</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">3.8. Deployment</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Financial Econometrics II</h1>
+</div>
+
+<div>
+  <div class="description">
+    VECM modelling and pair trading.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Franck Deba </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="challenge-2-modeling-non-stationarity-and-finding-an-equilibrium" class="level1">
+<h1>Challenge 2: Modeling non-stationarity and finding an equilibrium</h1>
+<section id="definition" class="level2">
+<h2 class="anchored" data-anchor-id="definition">1. Definition</h2>
+<p>Vector error correlation models are related to vector autoregressive models (VARs). Given a n-dimensional of cointegrated time series <span class="math inline">\(X_t = (X_{1,t}, X_{2,t}, ..., X_{n,t})\)</span> the VECM is specified as:</p>
+<p><span class="math display">\[ \Delta X_t = C + \alpha \beta' X_{t-1} + \sum_{i=1}^{p-1} \Gamma_i \Delta X_{t-i} + \epsilon_t \]</span></p>
+<p>Where</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(C\)</span> is the deterministic vector or matrix depending if there are constants and/or linear trend <br> <span class="math inline">\(\beta\)</span> is the cointegrating vector (long-run equilibrium relationship) <br> <span class="math inline">\(\alpha\)</span> speed of adjustment coefficients (how fast variables revert to equilibrium) <br> <span class="math inline">\(\Gamma_i\)</span> is a nXn matrix for coefficients of lagged differences of <span class="math inline">\(X\)</span> (short-term dynamic coefficients) <br> <span class="math inline">\(\epsilon_t\)</span> is a white noise nX1 vector with <span class="math inline">\(0\)</span> means and stable covariance <br></p>
+</blockquote>
+</section>
+<section id="description" class="level2">
+<h2 class="anchored" data-anchor-id="description">2. Description</h2>
+<p>Adjustment vectors contain the coefficients that can bring the short-term deviation of the time series back to their long-term equilibrium relationship. The coefficients in adjustment vectors are error correction coefficients. Therefore, <span class="math inline">\(\Pi = \alpha \beta'\)</span> corrects the error gap that happened in the last period and brings short-term disequilibrium among time series back to their long-term equilibrium.</p>
+</section>
+<section id="demonstration" class="level2">
+<h2 class="anchored" data-anchor-id="demonstration">3. Demonstration</h2>
+<p>In this challenge, we aim to calibrate a Vector Error Correction Model (VECM), which requires the presence of cointegrated time series. As highlighted in the literature, financial time series—particularly stock prices—are often non-stationary but may exhibit long-run equilibrium relationships, making them suitable candidates for cointegration analysis.</p>
+<p>For this purpose, we consider daily adjusted stock prices for four major technology companies: Google, Apple, Microsoft, and Nvidia, spanning the period from 2016 to 2021. These firms operate within the same sector and are likely influenced by common macroeconomic and industry-specific factors, which may induce cointegrated behavior among their price series.</p>
+<div id="cell-2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#pip install arch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Load packages</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="im">from</span> arch.unitroot <span class="im">import</span> ADF, KPSS</span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="im">from</span> statsmodels.tsa.api <span class="im">import</span> VAR</span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="im">from</span> statsmodels.tsa.vector_ar.vecm <span class="im">import</span> VECM, coint_johansen</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf</span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">16</span>, <span class="dv">9</span>)  <span class="co"># Figure size and width</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="fetching-data" class="level3">
+<h3 class="anchored" data-anchor-id="fetching-data">3.1. Fetching data</h3>
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:800,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947064947,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="22f04f91-c8a8-499e-9051-f8f4aff751d7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Import data</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>tickers <span class="op">=</span> [<span class="st">'NVDA'</span>, <span class="st">'AAPL'</span>, <span class="st">'GOOGL'</span>, <span class="st">"MSFT"</span>]</span>
+<span id="cb3-3"><a href="#cb3-3"></a>data <span class="op">=</span> yf.download(tickers, start<span class="op">=</span><span class="st">'2016-01-01'</span>, end<span class="op">=</span><span class="st">'2021-12-31'</span>)[<span class="st">'Close'</span>]</span>
+<span id="cb3-4"><a href="#cb3-4"></a>data <span class="op">=</span> data.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>YF.download() has changed argument auto_adjust default to True</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[*********************100%***********************]  4 of 4 completed</code></pre>
+</div>
+</div>
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:2487,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947067435,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="59eac5fe-ddd7-4d79-8c31-45fc6de91bd3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Stock price from 2016 to 2021</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>ax <span class="op">=</span> ax.flatten()</span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(data.columns):</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    data[[col]].plot(title<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss"> Stock Price from 2016 to 2021"</span>, ax<span class="op">=</span>ax[i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="testing-for-stationarity" class="level3">
+<h3 class="anchored" data-anchor-id="testing-for-stationarity">3.2. Testing for stationarity</h3>
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:2404,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947069845,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="aa6589a5-03cb-455e-c0d4-c4f514a5293f">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Stock price ACF</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>ax <span class="op">=</span> ax.flatten()</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(data.columns):</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    plot_acf(data[col], title<span class="op">=</span><span class="ss">f"ACF plot (</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">)"</span>, ax<span class="op">=</span>ax[i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:2412,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947072255,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="bb52ec66-4f7e-4ac2-a75f-1a01de9666a0">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Stock price ACF</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>ax <span class="op">=</span> ax.flatten()</span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(data.columns):</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    plot_acf(data.diff().dropna()[col], title<span class="op">=</span><span class="ss">f"ACF plot of first difference (</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">)"</span>, ax<span class="op">=</span>ax[i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To formally test for stationarity, we often use the Augmented Dickey-Fuller (ADF) test and Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test.</p>
+<p>ADF Test hypotheses: &gt; <span class="math inline">\(H_0\)</span>: The time series is non-stationary (unit root)<br> &gt; <span class="math inline">\(H_1\)</span>: The time series is stationary <br></p>
+<p>KPSS Test hypotheses: &gt; <span class="math inline">\(H_0\)</span>: The time series is stationary (around a level or trend)<br> &gt; <span class="math inline">\(H_1\)</span>: The time series is non-stationary<br></p>
+<p>These are complementary tests that have opposite null hypotheses.</p>
+<p>Decision rule</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Test</td>
+<td style="text-align: left;">Null hypothesis</td>
+<td style="text-align: left;">Reject <span class="math inline">\(H_0\)</span> if</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ADF</td>
+<td style="text-align: left;">non-stationary</td>
+<td style="text-align: left;">Test stat &lt; critical value</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">KPSS</td>
+<td style="text-align: left;">stationary</td>
+<td style="text-align: left;">Test stat &gt; critical value</td>
+</tr>
+</tbody>
+</table>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:253,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947072511,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="b2e22cc9-846d-4897-f634-5eefa2dd2c85">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># ADF Test Results with 5% Significance Level for GOOGLE, APPLE, NVIDIA, GOLD</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">def</span> stationary_test(data):</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    result_adf <span class="op">=</span> {}</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(data.columns):</span>
+<span id="cb9-5"><a href="#cb9-5"></a>        temp <span class="op">=</span> ADF(data[col], trend<span class="op">=</span><span class="st">"n"</span>, method<span class="op">=</span><span class="st">"bic"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a>        temp_kpss <span class="op">=</span> KPSS(data[col], trend<span class="op">=</span><span class="st">"ct"</span>, lags<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a>        <span class="cf">if</span> temp.stat <span class="op">&gt;</span> temp.critical_values[<span class="st">"5%"</span>]:</span>
+<span id="cb9-9"><a href="#cb9-9"></a>            temp_diff <span class="op">=</span> ADF(data[[col]].diff().dropna(), trend<span class="op">=</span><span class="st">"n"</span>, method<span class="op">=</span><span class="st">"bic"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10"></a>            temp_kpss_diff <span class="op">=</span> KPSS(data[[col]].diff().dropna(), trend<span class="op">=</span><span class="st">"ct"</span>, lags<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a>            <span class="cf">if</span> (temp_diff.stat <span class="op">&lt;</span> temp_diff.critical_values[<span class="st">"5%"</span>]) <span class="kw">and</span> (temp_kpss_diff.stat <span class="op">&lt;</span> temp_kpss_diff.critical_values[<span class="st">"5%"</span>]):</span>
+<span id="cb9-13"><a href="#cb9-13"></a>                result_adf[col] <span class="op">=</span> (temp.stat, temp_diff.stat, temp.critical_values[<span class="st">"5%"</span>],</span>
+<span id="cb9-14"><a href="#cb9-14"></a>                                   temp_kpss.stat,  temp_kpss_diff.stat, temp_kpss.critical_values[<span class="st">"5%"</span>],</span>
+<span id="cb9-15"><a href="#cb9-15"></a>                                   <span class="st">"I(1)"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16"></a>        <span class="cf">elif</span> (temp_kpss.stat <span class="op">&lt;</span> temp_kpss.critical_values[<span class="st">"5%"</span>]):</span>
+<span id="cb9-17"><a href="#cb9-17"></a>            result_adf[col] <span class="op">=</span> (temp.stat, <span class="st">" "</span> , temp.critical_values[<span class="st">"5%"</span>],</span>
+<span id="cb9-18"><a href="#cb9-18"></a>                               temp_kpss.stat, <span class="st">" "</span>, temp_kpss.critical_values[<span class="st">"5%"</span>],</span>
+<span id="cb9-19"><a href="#cb9-19"></a>                               <span class="st">"I(0)"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="cf">return</span> pd.DataFrame(</span>
+<span id="cb9-21"><a href="#cb9-21"></a>        result_adf,</span>
+<span id="cb9-22"><a href="#cb9-22"></a>        index<span class="op">=</span>[<span class="st">"ADF Test Statistic (Level)"</span>, <span class="st">"ADF Test Statistic (1st Diff)"</span>,  <span class="st">"ADF 5% Critical Value"</span>,</span>
+<span id="cb9-23"><a href="#cb9-23"></a>               <span class="st">"KPSS Test Statistic (Level)"</span>, <span class="st">"KPSS Test Statistic (1st Diff)"</span>,  <span class="st">"KPSS 5% Critical Value"</span>,</span>
+<span id="cb9-24"><a href="#cb9-24"></a>               <span class="st">"Decision"</span>],</span>
+<span id="cb9-25"><a href="#cb9-25"></a>        )</span>
+<span id="cb9-26"><a href="#cb9-26"></a></span>
+<span id="cb9-27"><a href="#cb9-27"></a>stationary_test(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div id="df-89564676-ff5e-4031-b9d5-c76e46ff9e12" class="colab-df-container">
+    <div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">AAPL</th>
+<th data-quarto-table-cell-role="th">GOOGL</th>
+<th data-quarto-table-cell-role="th">MSFT</th>
+<th data-quarto-table-cell-role="th">NVDA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ADF Test Statistic (Level)</th>
+<td>3.518281</td>
+<td>3.04482</td>
+<td>4.135637</td>
+<td>3.138927</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">ADF Test Statistic (1st Diff)</th>
+<td>-42.425634</td>
+<td>-42.370787</td>
+<td>-47.944152</td>
+<td>-13.583352</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">ADF 5% Critical Value</th>
+<td>-1.94118</td>
+<td>-1.94118</td>
+<td>-1.94118</td>
+<td>-1.94118</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">KPSS Test Statistic (Level)</th>
+<td>1.294035</td>
+<td>1.055377</td>
+<td>1.309525</td>
+<td>0.994498</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">KPSS Test Statistic (1st Diff)</th>
+<td>0.044809</td>
+<td>0.080339</td>
+<td>0.030492</td>
+<td>0.124489</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">KPSS 5% Critical Value</th>
+<td>0.1479</td>
+<td>0.1479</td>
+<td>0.1479</td>
+<td>0.1479</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Decision</th>
+<td>I(1)</td>
+<td>I(1)</td>
+<td>I(1)</td>
+<td>I(1)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-89564676-ff5e-4031-b9d5-c76e46ff9e12')" title="Convert this dataframe to an interactive table." style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-89564676-ff5e-4031-b9d5-c76e46ff9e12 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-89564676-ff5e-4031-b9d5-c76e46ff9e12');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-4bccbb86-2aaf-4bf5-8ad4-e5dc984f91b4">
+  <button class="colab-df-quickchart" onclick="quickchart('df-4bccbb86-2aaf-4bf5-8ad4-e5dc984f91b4')" title="Suggest charts" style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-4bccbb86-2aaf-4bf5-8ad4-e5dc984f91b4 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div>
+</div>
+</section>
+</section>
+<section id="testing-for-cointegration" class="level2">
+<h2 class="anchored" data-anchor-id="testing-for-cointegration">### 3.3. Testing for cointegration</h2>
+<p>Cointegration tests are used to determine whether two or more time series, which are individually I(1), have a long-term equilibrium relationship. This is particularly relevant when analysing technology stock prices, as these stocks may exhibit common trends in the long run, even though their short-term behaviors might diverge due to volatility, market reactions, or other temporary factors.</p>
+<p>If time series are cointegrated, it implies that there is a long-term equilibrium relationship between them. In other words, despite short-term fluctuations and individual trends, the series tend to move together over time.</p>
+<p>The Johansen cointegration test is one of the most popular methods for testing for cointegration. It provides a framework to test for the number of cointegrating relationships in a multivariate setting. The Johansen test works under the assumption that the time series are I(1) and tests whether there exists a linear combination of these series that is stationary.</p>
+<p>One key step in performing the Johansen cointegration test is to specify the number of lags to be used in the Vector Autoregression (VAR) model. The lag length is important because it determines the number of past values of the series included in the model, which influences the dynamics and the results of the cointegration test.</p>
+<p>To determine the appropriate number of lags, a lag selection procedure is performed. This is typically done using VAR specification, where the optimal lag length is selected based on various criteria, such as AIC and BIC.</p>
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:648,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947073154,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="5ca7cec1-53e8-400d-e744-f4cd2e565f81">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Selection of Number of Lags for VEC Model</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co"># Fit VAR model and run lag selection tool</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>model <span class="op">=</span> VAR(data)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>x <span class="op">=</span> model.select_order(maxlags<span class="op">=</span><span class="dv">10</span>, trend<span class="op">=</span><span class="st">"c"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>x.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.11/dist-packages/statsmodels/tsa/base/tsa_model.py:473: ValueWarning: A date index has been provided, but it has no associated frequency information and so will be ignored when e.g. forecasting.
+  self._init_dates(dates, freq)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<table class="simpletable caption-top table table-sm table-striped small">
+<caption>VAR Order Selection (* highlights the minimums)</caption>
+<tbody>
+<tr class="odd">
+<td></td>
+<th data-quarto-table-cell-role="th">AIC</th>
+<th data-quarto-table-cell-role="th">BIC</th>
+<th data-quarto-table-cell-role="th">FPE</th>
+<th data-quarto-table-cell-role="th">HQIC</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">0</th>
+<td>17.81</td>
+<td>17.83</td>
+<td>5.452e+07</td>
+<td>17.82</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1</th>
+<td>-1.495</td>
+<td>-1.424*</td>
+<td>0.2242</td>
+<td>-1.469</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2</th>
+<td>-1.551</td>
+<td>-1.423</td>
+<td>0.2121</td>
+<td>-1.503</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">3</th>
+<td>-1.549</td>
+<td>-1.364</td>
+<td>0.2125</td>
+<td>-1.480</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">4</th>
+<td>-1.571</td>
+<td>-1.331</td>
+<td>0.2077</td>
+<td>-1.482</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">5</th>
+<td>-1.588</td>
+<td>-1.291</td>
+<td>0.2043</td>
+<td>-1.477</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">6</th>
+<td>-1.622</td>
+<td>-1.268</td>
+<td>0.1974</td>
+<td>-1.491</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">7</th>
+<td>-1.681</td>
+<td>-1.270</td>
+<td>0.1863</td>
+<td>-1.528*</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">8</th>
+<td>-1.693*</td>
+<td>-1.226</td>
+<td>0.1839*</td>
+<td>-1.519</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">9</th>
+<td>-1.691</td>
+<td>-1.167</td>
+<td>0.1844</td>
+<td>-1.496</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">10</th>
+<td>-1.689</td>
+<td>-1.108</td>
+<td>0.1847</td>
+<td>-1.473</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-14" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Cointegration test (Johansen)</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">def</span> johansen_test(data, lag<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    jtest <span class="op">=</span> coint_johansen(data, det_order<span class="op">=</span><span class="dv">0</span>, k_ar_diff<span class="op">=</span>lag)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="co"># Print the results</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="bu">print</span>(<span class="ss">f"Eigenvalues of VECM coefficient matrix : </span><span class="sc">{</span>jtest<span class="sc">.</span>eig<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a>    result <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb12-8"><a href="#cb12-8"></a>        {</span>
+<span id="cb12-9"><a href="#cb12-9"></a>            <span class="st">"Test statistic"</span>: jtest.trace_stat,</span>
+<span id="cb12-10"><a href="#cb12-10"></a>            <span class="st">"Critical values (90%)"</span>: jtest.trace_stat_crit_vals[:, <span class="dv">0</span>],</span>
+<span id="cb12-11"><a href="#cb12-11"></a>            <span class="st">"Critical values (95%)"</span>: jtest.trace_stat_crit_vals[:, <span class="dv">1</span>],</span>
+<span id="cb12-12"><a href="#cb12-12"></a>            <span class="st">"Critical values (99%)"</span>: jtest.trace_stat_crit_vals[:, <span class="dv">2</span>],</span>
+<span id="cb12-13"><a href="#cb12-13"></a>        },</span>
+<span id="cb12-14"><a href="#cb12-14"></a>        index<span class="op">=</span>[<span class="st">"rank=0"</span>, <span class="st">"rank&lt;=1"</span>, <span class="st">"rank&lt;=2"</span>, <span class="st">"rank&lt;=3"</span>],</span>
+<span id="cb12-15"><a href="#cb12-15"></a>    )</span>
+<span id="cb12-16"><a href="#cb12-16"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:52,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947073238,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="1fb82559-81d7-4073-f7aa-13fb476cc9cb">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>johansen_test(data, lag<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Eigenvalues of VECM coefficient matrix : [0.02012039 0.01370545 0.00474875 0.00013249]
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div id="df-e3e8cdfe-4dc0-4d80-a789-f760785eebfb" class="colab-df-container">
+    <div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Test statistic</th>
+<th data-quarto-table-cell-role="th">Critical values (90%)</th>
+<th data-quarto-table-cell-role="th">Critical values (95%)</th>
+<th data-quarto-table-cell-role="th">Critical values (99%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">rank=0</th>
+<td>58.839683</td>
+<td>44.4929</td>
+<td>47.8545</td>
+<td>54.6815</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">rank&lt;=1</th>
+<td>28.188739</td>
+<td>27.0669</td>
+<td>29.7961</td>
+<td>35.4628</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">rank&lt;=2</th>
+<td>7.377985</td>
+<td>13.4294</td>
+<td>15.4943</td>
+<td>19.9349</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">rank&lt;=3</th>
+<td>0.199807</td>
+<td>2.7055</td>
+<td>3.8415</td>
+<td>6.6349</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e3e8cdfe-4dc0-4d80-a789-f760785eebfb')" title="Convert this dataframe to an interactive table." style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-e3e8cdfe-4dc0-4d80-a789-f760785eebfb button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-e3e8cdfe-4dc0-4d80-a789-f760785eebfb');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-c5042c14-84b6-439a-93fe-ce3392588810">
+  <button class="colab-df-quickchart" onclick="quickchart('df-c5042c14-84b6-439a-93fe-ce3392588810')" title="Suggest charts" style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-c5042c14-84b6-439a-93fe-ce3392588810 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+    </div>
+  </div>
+</div>
+</div>
+<p>for the first step, we test &gt; <span class="math inline">\(H_0\)</span>: rank = 0 <br> &gt; <span class="math inline">\(H_1\)</span>: rank &gt;= 1 <br></p>
+<p>since the test stat is greater than the critical value (5% significance level), <span class="math inline">\(H_0\)</span> is rejected. There is at least one cointegrating relationship. Thus we move to the second step to test &gt; <span class="math inline">\(H_0\)</span>: rank = 1 <br> &gt; <span class="math inline">\(H_1\)</span>: rank &gt;= 2 <br></p>
+<p>the test stat is lower than the critical value (5% significance level), <span class="math inline">\(H_0\)</span> is not rejected. We conclude that there is exactly one cointegrating relationship.</p>
+<p>This means that the stock prices of the companies analyzed have a long-term equilibrium relationship—they are cointegrated with exactly one cointegrating vector.</p>
+<section id="calibrating-vecm-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="calibrating-vecm-parameters">3.4. Calibrating VECM parameters</h3>
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:225,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947073465,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="7fbcac65-fc84-48bb-b280-d55f1bda8272">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># VECM model</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>vecm_model <span class="op">=</span> VECM(endog<span class="op">=</span>data, k_ar_diff<span class="op">=</span><span class="dv">1</span>, deterministic<span class="op">=</span><span class="st">"ci"</span>).fit()</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="bu">print</span>(vecm_model.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/usr/local/lib/python3.11/dist-packages/statsmodels/tsa/base/tsa_model.py:473: ValueWarning: A date index has been provided, but it has no associated frequency information and so will be ignored when e.g. forecasting.
+  self._init_dates(dates, freq)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Det. terms outside the coint. relation &amp; lagged endog. parameters for equation AAPL
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.AAPL       -0.0299      0.037     -0.812      0.417      -0.102       0.042
+L1.GOOGL       0.0570      0.049      1.161      0.246      -0.039       0.153
+L1.MSFT       -0.1050      0.026     -4.037      0.000      -0.156      -0.054
+L1.NVDA        0.3324      0.156      2.126      0.033       0.026       0.639
+Det. terms outside the coint. relation &amp; lagged endog. parameters for equation GOOGL
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.AAPL       -0.0057      0.029     -0.193      0.847      -0.063       0.052
+L1.GOOGL       0.0193      0.039      0.492      0.623      -0.058       0.096
+L1.MSFT       -0.0973      0.021     -4.686      0.000      -0.138      -0.057
+L1.NVDA        0.4488      0.125      3.595      0.000       0.204       0.693
+Det. terms outside the coint. relation &amp; lagged endog. parameters for equation MSFT
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.AAPL        0.0440      0.064      0.686      0.493      -0.082       0.170
+L1.GOOGL       0.0155      0.086      0.180      0.857      -0.153       0.184
+L1.MSFT       -0.2846      0.045     -6.272      0.000      -0.374      -0.196
+L1.NVDA        0.7323      0.273      2.684      0.007       0.197       1.267
+Det. terms outside the coint. relation &amp; lagged endog. parameters for equation NVDA
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+L1.AAPL       -0.0063      0.008     -0.838      0.402      -0.021       0.008
+L1.GOOGL       0.0052      0.010      0.518      0.604      -0.015       0.025
+L1.MSFT       -0.0151      0.005     -2.832      0.005      -0.026      -0.005
+L1.NVDA       -0.0272      0.032     -0.847      0.397      -0.090       0.036
+                Loading coefficients (alpha) for equation AAPL                
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ec1           -0.0188      0.004     -4.999      0.000      -0.026      -0.011
+               Loading coefficients (alpha) for equation GOOGL                
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ec1           -0.0036      0.003     -1.214      0.225      -0.010       0.002
+                Loading coefficients (alpha) for equation MSFT                
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ec1           -0.0132      0.007     -2.010      0.044      -0.026      -0.000
+                Loading coefficients (alpha) for equation NVDA                
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ec1           -0.0024      0.001     -3.117      0.002      -0.004      -0.001
+          Cointegration relations for loading-coefficients-column 1           
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+beta.1         1.0000          0          0      0.000       1.000       1.000
+beta.2         0.6624      0.292      2.272      0.023       0.091       1.234
+beta.3        -0.5198      0.084     -6.163      0.000      -0.685      -0.354
+beta.4        -3.6798      1.029     -3.576      0.000      -5.696      -1.663
+const        -16.5637      8.496     -1.950      0.051     -33.216       0.088
+==============================================================================</code></pre>
+</div>
+</div>
+</section>
+<section id="diagnosis" class="level3">
+<h3 class="anchored" data-anchor-id="diagnosis">3.5. Diagnosis</h3>
+<p><strong>Long-run equilibrium equation</strong></p>
+<p><span class="math display">\[
+S_t = -16.5637 + 1*AAPL_t + 0.6624*GOOGL_t \\
+- 0.5198*MSFT_t - 3.6798*NVDA_t
+\]</span></p>
+<p><strong>Long-run equilibrium stationarity</strong></p>
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:820,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947074304,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="4ff6ee28-c65a-4cb9-e804-5ae434df9421">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Time Plot for Deviation from Long-Term Equilibrium</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="co">"""</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="co">The precise coefficients of the linear combination are in:</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="co">vecm_model.const_coint and vecm_model.beta</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="co">S = -16.5637 + 1*data.AAPL + 0.6624*data.GOOGL - 0.5198*data.MSFT - 3.6798*data.NVDA</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="co">"""</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>S <span class="op">=</span> (</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    vecm_model.const_coint[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    <span class="op">+</span> vecm_model.beta[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"AAPL"</span>]</span>
+<span id="cb18-10"><a href="#cb18-10"></a>    <span class="op">+</span> vecm_model.beta[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"GOOGL"</span>]</span>
+<span id="cb18-11"><a href="#cb18-11"></a>    <span class="op">+</span> vecm_model.beta[<span class="dv">2</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"MSFT"</span>]</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    <span class="op">+</span> vecm_model.beta[<span class="dv">3</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"NVDA"</span>]</span>
+<span id="cb18-13"><a href="#cb18-13"></a>)</span>
+<span id="cb18-14"><a href="#cb18-14"></a>plt.plot(S)</span>
+<span id="cb18-15"><a href="#cb18-15"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:442,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947074750,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="6e73c1b1-876c-45af-fdb6-bbb94e961beb">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># ADF Test Result for Deviation from Long-Term Equilibrium</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>S_adf <span class="op">=</span> ADF(S, trend<span class="op">=</span><span class="st">"n"</span>, method<span class="op">=</span><span class="st">"bic"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(<span class="st">"Augmented Dickey-Fuller Unit Root Test</span><span class="ch">\n</span><span class="st">"</span>, S_adf.regression.summary())</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Test statistics and critical values: </span><span class="ch">\n</span><span class="st">"</span>, S_adf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Augmented Dickey-Fuller Unit Root Test
+                                  OLS Regression Results                                
+=======================================================================================
+Dep. Variable:                      y   R-squared (uncentered):                   0.003
+Model:                            OLS   Adj. R-squared (uncentered):              0.002
+Method:                 Least Squares   F-statistic:                              4.342
+Date:                Sun, 06 Apr 2025   Prob (F-statistic):                      0.0373
+Time:                        13:44:34   Log-Likelihood:                         -2610.1
+No. Observations:                1509   AIC:                                      5222.
+Df Residuals:                    1508   BIC:                                      5227.
+Df Model:                           1                                                  
+Covariance Type:            nonrobust                                                  
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Level.L1      -0.0074      0.004     -2.084      0.037      -0.014      -0.000
+==============================================================================
+Omnibus:                      356.175   Durbin-Watson:                   2.127
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             7471.429
+Skew:                          -0.557   Prob(JB):                         0.00
+Kurtosis:                      13.844   Cond. No.                         1.00
+==============================================================================
+
+Notes:
+[1] R² is computed without centering (uncentered) since the model does not contain a constant.
+[2] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Test statistics and critical values: 
+    Augmented Dickey-Fuller Results   
+=====================================
+Test Statistic                 -2.084
+P-value                         0.036
+Lags                                0
+-------------------------------------
+
+Trend: No Trend
+Critical Values: -2.57 (1%), -1.94 (5%), -1.62 (10%)
+Null Hypothesis: The process contains a unit root.
+Alternative Hypothesis: The process is weakly stationary.</code></pre>
+</div>
+</div>
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:709,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947075474,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="11eb1096-f47b-424a-d8dc-8d979904819a">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Residuals</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a>plt.plot(vecm_model.resid, label<span class="op">=</span><span class="st">"VECM residuals"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="damage" class="level3">
+<h3 class="anchored" data-anchor-id="damage">3.6. Damage</h3>
+<p>It looks like the variance depends on time. The kurtosis show an excess kurtosis of 10.844 meaning that the long-run relation exhibits fat tails.</p>
+<ol start="6" type="1">
+<li>Damage (Model Limitations)</li>
+</ol>
+<blockquote class="blockquote">
+<p>Volatility Clustering (ARCH effects in residuals) <br> Structural Breaks ( 2020 COVID shock) <br></p>
+</blockquote>
+</section>
+<section id="directions" class="level3">
+<h3 class="anchored" data-anchor-id="directions">3.7. Directions</h3>
+<p>These issues might be resolve by stabilising variance with a log transforamtion of the series. When doing that on our data set, the Johansen test results shows and absence of cointegration between log series, despite the are I(1). In that situation, a VAR model on the first difference is more suitable to model the log series.</p>
+<blockquote class="blockquote">
+<p>GARCH-VECM: Model volatility explicitly <br> Regime-Switching VECM: Capture structural breaks <br> Shorter Time Window: Reduce impact of regime shifts</p>
+</blockquote>
+</section>
+<section id="deployment" class="level3">
+<h3 class="anchored" data-anchor-id="deployment">3.8. Deployment</h3>
+<blockquote class="blockquote">
+<p>Pairs Trading: <br> &gt; When equilibrium deviation &gt; 1.5σ, short GOOGL and buy hedge portfolio (0.85 AAPL + 0.32 MSFT + 0.15 NVDA) <br> &gt;Close position when spread reverts to mean.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Risk Management:<br> &gt;Monitor equilibrium for regime shifts.<br> &gt;Hedge tech exposure during large deviations.<br></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Asset Allocation<br> &gt;Dynamic weights based on rolling β.<br> &gt;Rebalance when equilibrium breaks down.<br></p>
+</blockquote>
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:1368,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947076845,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="fb0b6831-74cb-479a-fd23-8ec36e99ab0d">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Forcast</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>vecm_model.plot_forecast(<span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-25" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Assuming vecm_model is your fitted VECM model</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>long_run_equilibrium <span class="op">=</span> (</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    vecm_model.const_coint[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>    vecm_model.beta[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"AAPL"</span>] <span class="op">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    vecm_model.beta[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"GOOGL"</span>] <span class="op">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    vecm_model.beta[<span class="dv">2</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"MSFT"</span>] <span class="op">+</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>    vecm_model.beta[<span class="dv">3</span>][<span class="dv">0</span>] <span class="op">*</span> data[<span class="st">"NVDA"</span>]</span>
+<span id="cb23-8"><a href="#cb23-8"></a>)</span>
+<span id="cb23-9"><a href="#cb23-9"></a></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="co"># Normalized equilibrium (mean = 0, std = 1)</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>equilibrium_z <span class="op">=</span> (long_run_equilibrium <span class="op">-</span> long_run_equilibrium.mean()) <span class="op">/</span> long_run_equilibrium.std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-26" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">class</span> CointegrationTradingStrategy:</span>
+<span id="cb24-2"><a href="#cb24-2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, data, beta, const, lookback<span class="op">=</span><span class="dv">63</span>, entry_z<span class="op">=</span><span class="fl">1.5</span>, exit_z<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb24-3"><a href="#cb24-3"></a>        <span class="co">"""</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co">        Initialize the cointegration trading strategy.</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="co">        Parameters:</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co">        - data: DataFrame of asset prices (columns: ['AAPL', 'GOOGL', 'MSFT', 'NVDA'])</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="co">        - beta: List of cointegration coefficients</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="co">        - const: Constant term from cointegration relationship</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="co">        - lookback: Rolling window size for statistics (default 63 trading days ~ 3 months)</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="co">        - entry_z: Z-score threshold for entering trades (default 1.5)</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co">        - exit_z: Z-score threshold for exiting trades (default 0.5)</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="co">        """</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a>        <span class="va">self</span>.data <span class="op">=</span> data.dropna().copy()</span>
+<span id="cb24-15"><a href="#cb24-15"></a>        <span class="va">self</span>.beta <span class="op">=</span> np.array(beta)</span>
+<span id="cb24-16"><a href="#cb24-16"></a>        <span class="va">self</span>.const <span class="op">=</span> const</span>
+<span id="cb24-17"><a href="#cb24-17"></a>        <span class="va">self</span>.lookback <span class="op">=</span> <span class="bu">max</span>(lookback, <span class="dv">20</span>)  <span class="co"># Minimum 20 periods for stability</span></span>
+<span id="cb24-18"><a href="#cb24-18"></a>        <span class="va">self</span>.entry_z <span class="op">=</span> entry_z</span>
+<span id="cb24-19"><a href="#cb24-19"></a>        <span class="va">self</span>.exit_z <span class="op">=</span> exit_z</span>
+<span id="cb24-20"><a href="#cb24-20"></a></span>
+<span id="cb24-21"><a href="#cb24-21"></a>        <span class="cf">if</span> <span class="bu">len</span>(beta) <span class="op">!=</span> <span class="bu">len</span>(data.columns):</span>
+<span id="cb24-22"><a href="#cb24-22"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">"Number of beta coefficients must match data columns"</span>)</span>
+<span id="cb24-23"><a href="#cb24-23"></a></span>
+<span id="cb24-24"><a href="#cb24-24"></a>    <span class="kw">def</span> calculate_spread(<span class="va">self</span>):</span>
+<span id="cb24-25"><a href="#cb24-25"></a>        <span class="co">"""Calculate the cointegration spread using the VECM coefficients"""</span></span>
+<span id="cb24-26"><a href="#cb24-26"></a>        spread <span class="op">=</span> np.full(<span class="bu">len</span>(<span class="va">self</span>.data), <span class="va">self</span>.const)</span>
+<span id="cb24-27"><a href="#cb24-27"></a>        <span class="cf">for</span> i, ticker <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.data.columns):</span>
+<span id="cb24-28"><a href="#cb24-28"></a>            spread <span class="op">+=</span> <span class="va">self</span>.beta[i] <span class="op">*</span> <span class="va">self</span>.data[ticker].values</span>
+<span id="cb24-29"><a href="#cb24-29"></a>        <span class="cf">return</span> pd.Series(spread, index<span class="op">=</span><span class="va">self</span>.data.index, name<span class="op">=</span><span class="st">'spread'</span>)</span>
+<span id="cb24-30"><a href="#cb24-30"></a></span>
+<span id="cb24-31"><a href="#cb24-31"></a>    <span class="kw">def</span> generate_signals(<span class="va">self</span>):</span>
+<span id="cb24-32"><a href="#cb24-32"></a>        <span class="co">"""</span></span>
+<span id="cb24-33"><a href="#cb24-33"></a><span class="co">        Generate trading signals based on z-score thresholds.</span></span>
+<span id="cb24-34"><a href="#cb24-34"></a></span>
+<span id="cb24-35"><a href="#cb24-35"></a><span class="co">        Returns:</span></span>
+<span id="cb24-36"><a href="#cb24-36"></a><span class="co">        - DataFrame with columns: ['position', 'spread', 'z_score']</span></span>
+<span id="cb24-37"><a href="#cb24-37"></a><span class="co">        """</span></span>
+<span id="cb24-38"><a href="#cb24-38"></a>        spread <span class="op">=</span> <span class="va">self</span>.calculate_spread()</span>
+<span id="cb24-39"><a href="#cb24-39"></a></span>
+<span id="cb24-40"><a href="#cb24-40"></a>        <span class="co"># Calculate rolling statistics with minimum periods</span></span>
+<span id="cb24-41"><a href="#cb24-41"></a>        mean <span class="op">=</span> spread.rolling(<span class="va">self</span>.lookback, min_periods<span class="op">=</span><span class="dv">10</span>).mean()</span>
+<span id="cb24-42"><a href="#cb24-42"></a>        std <span class="op">=</span> spread.rolling(<span class="va">self</span>.lookback, min_periods<span class="op">=</span><span class="dv">10</span>).std()</span>
+<span id="cb24-43"><a href="#cb24-43"></a>        z_score <span class="op">=</span> ((spread <span class="op">-</span> mean) <span class="op">/</span> std).fillna(<span class="dv">0</span>)</span>
+<span id="cb24-44"><a href="#cb24-44"></a></span>
+<span id="cb24-45"><a href="#cb24-45"></a>        signals <span class="op">=</span> pd.DataFrame(index<span class="op">=</span><span class="va">self</span>.data.index,</span>
+<span id="cb24-46"><a href="#cb24-46"></a>                             columns<span class="op">=</span>[<span class="st">'position'</span>, <span class="st">'spread'</span>, <span class="st">'z_score'</span>])</span>
+<span id="cb24-47"><a href="#cb24-47"></a>        position <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb24-48"><a href="#cb24-48"></a></span>
+<span id="cb24-49"><a href="#cb24-49"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(<span class="va">self</span>.data)):</span>
+<span id="cb24-50"><a href="#cb24-50"></a>            <span class="cf">if</span> i <span class="op">&lt;</span> <span class="va">self</span>.lookback:</span>
+<span id="cb24-51"><a href="#cb24-51"></a>                signals.iloc[i] <span class="op">=</span> [<span class="dv">0</span>, spread.iloc[i], z_score.iloc[i]]</span>
+<span id="cb24-52"><a href="#cb24-52"></a>                <span class="cf">continue</span></span>
+<span id="cb24-53"><a href="#cb24-53"></a></span>
+<span id="cb24-54"><a href="#cb24-54"></a>            <span class="co"># Exit conditions first (important for realistic execution)</span></span>
+<span id="cb24-55"><a href="#cb24-55"></a>            <span class="cf">if</span> position <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb24-56"><a href="#cb24-56"></a>                <span class="cf">if</span> (position <span class="op">==</span> <span class="op">-</span><span class="dv">1</span> <span class="kw">and</span> z_score.iloc[i] <span class="op">&lt;</span> <span class="va">self</span>.exit_z) <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb24-57"><a href="#cb24-57"></a>                   (position <span class="op">==</span> <span class="dv">1</span> <span class="kw">and</span> z_score.iloc[i] <span class="op">&gt;</span> <span class="op">-</span><span class="va">self</span>.exit_z):</span>
+<span id="cb24-58"><a href="#cb24-58"></a>                    position <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb24-59"><a href="#cb24-59"></a></span>
+<span id="cb24-60"><a href="#cb24-60"></a>            <span class="co"># Entry conditions</span></span>
+<span id="cb24-61"><a href="#cb24-61"></a>            <span class="cf">if</span> position <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb24-62"><a href="#cb24-62"></a>                <span class="cf">if</span> z_score.iloc[i] <span class="op">&gt;</span> <span class="va">self</span>.entry_z:</span>
+<span id="cb24-63"><a href="#cb24-63"></a>                    position <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>  <span class="co"># Short spread (buy hedge, sell tech)</span></span>
+<span id="cb24-64"><a href="#cb24-64"></a>                <span class="cf">elif</span> z_score.iloc[i] <span class="op">&lt;</span> <span class="op">-</span><span class="va">self</span>.entry_z:</span>
+<span id="cb24-65"><a href="#cb24-65"></a>                    position <span class="op">=</span> <span class="dv">1</span>   <span class="co"># Long spread (sell hedge, buy tech)</span></span>
+<span id="cb24-66"><a href="#cb24-66"></a></span>
+<span id="cb24-67"><a href="#cb24-67"></a>            signals.iloc[i] <span class="op">=</span> [position, spread.iloc[i], z_score.iloc[i]]</span>
+<span id="cb24-68"><a href="#cb24-68"></a></span>
+<span id="cb24-69"><a href="#cb24-69"></a>        <span class="cf">return</span> signals.dropna()</span>
+<span id="cb24-70"><a href="#cb24-70"></a></span>
+<span id="cb24-71"><a href="#cb24-71"></a>    <span class="kw">def</span> backtest(<span class="va">self</span>, initial_capital<span class="op">=</span><span class="dv">100000</span>, risk_pct<span class="op">=</span><span class="fl">0.01</span>, tcost_bps<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb24-72"><a href="#cb24-72"></a>        <span class="co">"""</span></span>
+<span id="cb24-73"><a href="#cb24-73"></a><span class="co">        Backtest the trading strategy with realistic assumptions.</span></span>
+<span id="cb24-74"><a href="#cb24-74"></a></span>
+<span id="cb24-75"><a href="#cb24-75"></a><span class="co">        Parameters:</span></span>
+<span id="cb24-76"><a href="#cb24-76"></a><span class="co">        - initial_capital: Starting capital (default $100,000)</span></span>
+<span id="cb24-77"><a href="#cb24-77"></a><span class="co">        - risk_pct: Percentage of capital to risk per trade (default 1%)</span></span>
+<span id="cb24-78"><a href="#cb24-78"></a><span class="co">        - tcost_bps: Transaction cost in basis points (default 5bps)</span></span>
+<span id="cb24-79"><a href="#cb24-79"></a></span>
+<span id="cb24-80"><a href="#cb24-80"></a><span class="co">        Returns:</span></span>
+<span id="cb24-81"><a href="#cb24-81"></a><span class="co">        - portfolio: DataFrame with performance metrics</span></span>
+<span id="cb24-82"><a href="#cb24-82"></a><span class="co">        - signals: DataFrame with trading signals</span></span>
+<span id="cb24-83"><a href="#cb24-83"></a><span class="co">        """</span></span>
+<span id="cb24-84"><a href="#cb24-84"></a>        signals <span class="op">=</span> <span class="va">self</span>.generate_signals()</span>
+<span id="cb24-85"><a href="#cb24-85"></a>        aligned_data <span class="op">=</span> <span class="va">self</span>.data.loc[signals.index]</span>
+<span id="cb24-86"><a href="#cb24-86"></a></span>
+<span id="cb24-87"><a href="#cb24-87"></a>        portfolio <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>signals.index,</span>
+<span id="cb24-88"><a href="#cb24-88"></a>                               columns<span class="op">=</span>[<span class="st">'value'</span>, <span class="st">'returns'</span>, <span class="st">'drawdown'</span>, <span class="st">'position'</span>])</span>
+<span id="cb24-89"><a href="#cb24-89"></a>        portfolio.iloc[<span class="dv">0</span>] <span class="op">=</span> [initial_capital, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb24-90"><a href="#cb24-90"></a></span>
+<span id="cb24-91"><a href="#cb24-91"></a>        peak <span class="op">=</span> initial_capital  <span class="co"># Track peak for drawdown calculation</span></span>
+<span id="cb24-92"><a href="#cb24-92"></a></span>
+<span id="cb24-93"><a href="#cb24-93"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(signals)):</span>
+<span id="cb24-94"><a href="#cb24-94"></a>            current_position <span class="op">=</span> signals[<span class="st">'position'</span>].iloc[i]</span>
+<span id="cb24-95"><a href="#cb24-95"></a>            prev_position <span class="op">=</span> portfolio[<span class="st">'position'</span>].iloc[i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb24-96"><a href="#cb24-96"></a>            prev_value <span class="op">=</span> portfolio[<span class="st">'value'</span>].iloc[i<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb24-97"><a href="#cb24-97"></a></span>
+<span id="cb24-98"><a href="#cb24-98"></a>            <span class="co"># Calculate dollar weights based on cointegration relationship</span></span>
+<span id="cb24-99"><a href="#cb24-99"></a>            tech_dollar <span class="op">=</span> <span class="va">self</span>.beta[<span class="dv">0</span>] <span class="op">*</span> aligned_data[<span class="st">'AAPL'</span>].iloc[i] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb24-100"><a href="#cb24-100"></a>                          <span class="va">self</span>.beta[<span class="dv">1</span>] <span class="op">*</span> aligned_data[<span class="st">'GOOGL'</span>].iloc[i]</span>
+<span id="cb24-101"><a href="#cb24-101"></a>            hedge_dollar <span class="op">=</span> <span class="va">self</span>.beta[<span class="dv">2</span>] <span class="op">*</span> aligned_data[<span class="st">'MSFT'</span>].iloc[i] <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb24-102"><a href="#cb24-102"></a>                           <span class="va">self</span>.beta[<span class="dv">3</span>] <span class="op">*</span> aligned_data[<span class="st">'NVDA'</span>].iloc[i]</span>
+<span id="cb24-103"><a href="#cb24-103"></a>            total_dollar <span class="op">=</span> <span class="bu">abs</span>(tech_dollar) <span class="op">+</span> <span class="bu">abs</span>(hedge_dollar)</span>
+<span id="cb24-104"><a href="#cb24-104"></a></span>
+<span id="cb24-105"><a href="#cb24-105"></a>            <span class="co"># Position sizing with risk management</span></span>
+<span id="cb24-106"><a href="#cb24-106"></a>            risk_amount <span class="op">=</span> prev_value <span class="op">*</span> risk_pct</span>
+<span id="cb24-107"><a href="#cb24-107"></a>            position_size <span class="op">=</span> <span class="bu">min</span>(risk_amount <span class="op">/</span> (signals[<span class="st">'spread'</span>].std() <span class="op">+</span> <span class="fl">1e-6</span>),  <span class="co"># Avoid division by zero</span></span>
+<span id="cb24-108"><a href="#cb24-108"></a>                              prev_value <span class="op">*</span> <span class="fl">0.5</span>)  <span class="co"># Cap at 50% of capital</span></span>
+<span id="cb24-109"><a href="#cb24-109"></a></span>
+<span id="cb24-110"><a href="#cb24-110"></a>            <span class="co"># Calculate weighted returns</span></span>
+<span id="cb24-111"><a href="#cb24-111"></a>            tech_ret <span class="op">=</span> (aligned_data[[<span class="st">'AAPL'</span>, <span class="st">'GOOGL'</span>]].pct_change().iloc[i].values <span class="op">@</span> <span class="va">self</span>.beta[:<span class="dv">2</span>])</span>
+<span id="cb24-112"><a href="#cb24-112"></a>            hedge_ret <span class="op">=</span> (aligned_data[[<span class="st">'MSFT'</span>, <span class="st">'NVDA'</span>]].pct_change().iloc[i].values <span class="op">@</span> <span class="va">self</span>.beta[<span class="dv">2</span>:])</span>
+<span id="cb24-113"><a href="#cb24-113"></a>            strategy_ret <span class="op">=</span> current_position <span class="op">*</span> position_size <span class="op">*</span> (tech_ret <span class="op">-</span> hedge_ret)</span>
+<span id="cb24-114"><a href="#cb24-114"></a></span>
+<span id="cb24-115"><a href="#cb24-115"></a>            <span class="co"># Transaction costs (only applied when position changes)</span></span>
+<span id="cb24-116"><a href="#cb24-116"></a>            tcost <span class="op">=</span> <span class="bu">abs</span>(current_position <span class="op">-</span> prev_position) <span class="op">*</span> position_size <span class="op">*</span> (tcost_bps <span class="op">/</span> <span class="dv">10000</span>)</span>
+<span id="cb24-117"><a href="#cb24-117"></a></span>
+<span id="cb24-118"><a href="#cb24-118"></a>            <span class="co"># Update portfolio values</span></span>
+<span id="cb24-119"><a href="#cb24-119"></a>            new_value <span class="op">=</span> prev_value <span class="op">+</span> strategy_ret <span class="op">-</span> tcost</span>
+<span id="cb24-120"><a href="#cb24-120"></a>            peak <span class="op">=</span> <span class="bu">max</span>(peak, new_value)  <span class="co"># Update peak value</span></span>
+<span id="cb24-121"><a href="#cb24-121"></a></span>
+<span id="cb24-122"><a href="#cb24-122"></a>            portfolio.iloc[i] <span class="op">=</span> [</span>
+<span id="cb24-123"><a href="#cb24-123"></a>                new_value,</span>
+<span id="cb24-124"><a href="#cb24-124"></a>                (new_value <span class="op">-</span> prev_value) <span class="op">/</span> prev_value,  <span class="co"># Daily return</span></span>
+<span id="cb24-125"><a href="#cb24-125"></a>                (peak <span class="op">-</span> new_value) <span class="op">/</span> peak,             <span class="co"># Current drawdown</span></span>
+<span id="cb24-126"><a href="#cb24-126"></a>                current_position</span>
+<span id="cb24-127"><a href="#cb24-127"></a>            ]</span>
+<span id="cb24-128"><a href="#cb24-128"></a></span>
+<span id="cb24-129"><a href="#cb24-129"></a>        <span class="cf">return</span> portfolio, signals</span>
+<span id="cb24-130"><a href="#cb24-130"></a></span>
+<span id="cb24-131"><a href="#cb24-131"></a>    <span class="kw">def</span> calculate_performance_metrics(<span class="va">self</span>, portfolio):</span>
+<span id="cb24-132"><a href="#cb24-132"></a>        <span class="co">"""Calculate key performance metrics from backtest results"""</span></span>
+<span id="cb24-133"><a href="#cb24-133"></a>        returns <span class="op">=</span> portfolio[<span class="st">'returns'</span>]</span>
+<span id="cb24-134"><a href="#cb24-134"></a>        total_return <span class="op">=</span> portfolio[<span class="st">'value'</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> portfolio[<span class="st">'value'</span>].iloc[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb24-135"><a href="#cb24-135"></a>        annualized_return <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> total_return) <span class="op">**</span> (<span class="dv">252</span><span class="op">/</span><span class="bu">len</span>(portfolio)) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb24-136"><a href="#cb24-136"></a>        volatility <span class="op">=</span> returns.std() <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span>
+<span id="cb24-137"><a href="#cb24-137"></a>        sharpe_ratio <span class="op">=</span> annualized_return <span class="op">/</span> volatility</span>
+<span id="cb24-138"><a href="#cb24-138"></a>        max_drawdown <span class="op">=</span> portfolio[<span class="st">'drawdown'</span>].<span class="bu">max</span>()</span>
+<span id="cb24-139"><a href="#cb24-139"></a></span>
+<span id="cb24-140"><a href="#cb24-140"></a>        <span class="cf">return</span> {</span>
+<span id="cb24-141"><a href="#cb24-141"></a>            <span class="st">'Total Return'</span>: total_return,</span>
+<span id="cb24-142"><a href="#cb24-142"></a>            <span class="st">'Annualized Return'</span>: annualized_return,</span>
+<span id="cb24-143"><a href="#cb24-143"></a>            <span class="st">'Annualized Volatility'</span>: volatility,</span>
+<span id="cb24-144"><a href="#cb24-144"></a>            <span class="st">'Sharpe Ratio'</span>: sharpe_ratio,</span>
+<span id="cb24-145"><a href="#cb24-145"></a>            <span class="st">'Max Drawdown'</span>: max_drawdown,</span>
+<span id="cb24-146"><a href="#cb24-146"></a>            <span class="st">'Calmar Ratio'</span>: annualized_return <span class="op">/</span> max_drawdown <span class="cf">if</span> max_drawdown <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> np.nan</span>
+<span id="cb24-147"><a href="#cb24-147"></a>        }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-27" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Extract coefficients from VECM</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>beta_coefficients <span class="op">=</span> [vecm_model.beta[i][<span class="dv">0</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb25-3"><a href="#cb25-3"></a>const_term <span class="op">=</span> vecm_model.const_coint[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb25-4"><a href="#cb25-4"></a></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="co"># Initialize and run strategy</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>strategy <span class="op">=</span> CointegrationTradingStrategy(</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    data<span class="op">=</span>data[[<span class="st">'AAPL'</span>, <span class="st">'GOOGL'</span>, <span class="st">'MSFT'</span>, <span class="st">'NVDA'</span>]],</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    beta<span class="op">=</span>beta_coefficients,</span>
+<span id="cb25-9"><a href="#cb25-9"></a>    const<span class="op">=</span>const_term,</span>
+<span id="cb25-10"><a href="#cb25-10"></a>    lookback<span class="op">=</span><span class="dv">63</span>,      <span class="co"># 3-month rolling window</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a>    entry_z<span class="op">=</span><span class="fl">1.5</span>,      <span class="co"># 1.5 standard deviation entry</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a>    exit_z<span class="op">=</span><span class="fl">0.05</span>        <span class="co"># 0.5 standard deviation exit</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a>)</span>
+<span id="cb25-14"><a href="#cb25-14"></a></span>
+<span id="cb25-15"><a href="#cb25-15"></a>portfolio, signals <span class="op">=</span> strategy.backtest(risk_pct<span class="op">=</span><span class="fl">.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:16,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947090545,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="88915ecb-d6f0-4289-833a-6fad22cfe3b7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">def</span> analyze_performance(portfolio):</span>
+<span id="cb26-2"><a href="#cb26-2"></a>    returns <span class="op">=</span> portfolio[<span class="st">'returns'</span>]</span>
+<span id="cb26-3"><a href="#cb26-3"></a></span>
+<span id="cb26-4"><a href="#cb26-4"></a>    metrics <span class="op">=</span> {</span>
+<span id="cb26-5"><a href="#cb26-5"></a>        <span class="st">'Total Return'</span>: portfolio[<span class="st">'value'</span>].iloc[<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> portfolio[<span class="st">'value'</span>].iloc[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">1</span>,</span>
+<span id="cb26-6"><a href="#cb26-6"></a>        <span class="st">'Annualized Return'</span>: np.mean(returns) <span class="op">*</span> <span class="dv">252</span>,</span>
+<span id="cb26-7"><a href="#cb26-7"></a>        <span class="st">'Annualized Volatility'</span>: np.std(returns) <span class="op">*</span> np.sqrt(<span class="dv">252</span>),</span>
+<span id="cb26-8"><a href="#cb26-8"></a>        <span class="st">'Sharpe Ratio'</span>: np.mean(returns) <span class="op">/</span> np.std(returns) <span class="op">*</span> np.sqrt(<span class="dv">252</span>),</span>
+<span id="cb26-9"><a href="#cb26-9"></a>        <span class="st">'Max Drawdown'</span>: portfolio[<span class="st">'drawdown'</span>].<span class="bu">max</span>(),</span>
+<span id="cb26-10"><a href="#cb26-10"></a>        <span class="st">'Win Rate'</span>: (returns <span class="op">&gt;</span> <span class="dv">0</span>).mean(),</span>
+<span id="cb26-11"><a href="#cb26-11"></a>        <span class="st">'Profit Factor'</span>: returns[returns <span class="op">&gt;</span> <span class="dv">0</span>].<span class="bu">sum</span>() <span class="op">/</span> (<span class="fl">1e-10</span> <span class="op">+</span> <span class="bu">abs</span>(returns[returns <span class="op">&lt;</span> <span class="dv">0</span>].<span class="bu">sum</span>()))</span>
+<span id="cb26-12"><a href="#cb26-12"></a>    }</span>
+<span id="cb26-13"><a href="#cb26-13"></a></span>
+<span id="cb26-14"><a href="#cb26-14"></a>    <span class="cf">return</span> pd.Series(metrics)</span>
+<span id="cb26-15"><a href="#cb26-15"></a></span>
+<span id="cb26-16"><a href="#cb26-16"></a>performance <span class="op">=</span> analyze_performance(portfolio)</span>
+<span id="cb26-17"><a href="#cb26-17"></a><span class="bu">print</span>(performance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total Return             0.023979
+Annualized Return        0.004157
+Annualized Volatility    0.020013
+Sharpe Ratio             0.207735
+Max Drawdown             0.060447
+Win Rate                 0.332671
+Profit Factor            1.048591
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-29" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:741,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1743947091276,&quot;user&quot;:{&quot;displayName&quot;:&quot;DEBA Franck&quot;,&quot;userId&quot;:&quot;14607420244226369738&quot;},&quot;user_tz&quot;:-120}}" data-outputid="5fc5b793-4442-47fe-d767-0095ea3e8809">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">def</span> plot_strategy(portfolio, signals):</span>
+<span id="cb28-2"><a href="#cb28-2"></a>    fig, (ax1, ax2, ax3) <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">12</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="co"># Equilibrium spread</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>    ax1.plot(signals[<span class="st">'spread'</span>], label<span class="op">=</span><span class="st">'Equilibrium Spread'</span>)</span>
+<span id="cb28-6"><a href="#cb28-6"></a>    ax1.axhline(signals[<span class="st">'spread'</span>].mean(), color<span class="op">=</span><span class="st">'k'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb28-7"><a href="#cb28-7"></a>    ax1.fill_between(signals.index,</span>
+<span id="cb28-8"><a href="#cb28-8"></a>                     signals[<span class="st">'spread'</span>].mean() <span class="op">-</span> <span class="fl">1.5</span><span class="op">*</span>signals[<span class="st">'spread'</span>].std(),</span>
+<span id="cb28-9"><a href="#cb28-9"></a>                     signals[<span class="st">'spread'</span>].mean() <span class="op">+</span> <span class="fl">1.5</span><span class="op">*</span>signals[<span class="st">'spread'</span>].std(),</span>
+<span id="cb28-10"><a href="#cb28-10"></a>                     alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb28-11"><a href="#cb28-11"></a>    ax1.set_title(<span class="st">'Cointegration Spread with Trading Bands'</span>)</span>
+<span id="cb28-12"><a href="#cb28-12"></a>    ax1.legend()</span>
+<span id="cb28-13"><a href="#cb28-13"></a></span>
+<span id="cb28-14"><a href="#cb28-14"></a>    <span class="co"># Z-score with positions</span></span>
+<span id="cb28-15"><a href="#cb28-15"></a>    ax2.plot(signals[<span class="st">'z_score'</span>], label<span class="op">=</span><span class="st">'Z-Score'</span>)</span>
+<span id="cb28-16"><a href="#cb28-16"></a>    ax2.axhline(<span class="fl">1.5</span>, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb28-17"><a href="#cb28-17"></a>    ax2.axhline(<span class="op">-</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">'g'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb28-18"><a href="#cb28-18"></a>    ax2.plot(signals[<span class="st">'position'</span>], <span class="st">'k-'</span>, alpha<span class="op">=</span><span class="fl">0.3</span>, label<span class="op">=</span><span class="st">'Position'</span>)</span>
+<span id="cb28-19"><a href="#cb28-19"></a>    ax2.set_title(<span class="st">'Trading Signals'</span>)</span>
+<span id="cb28-20"><a href="#cb28-20"></a>    ax2.legend()</span>
+<span id="cb28-21"><a href="#cb28-21"></a></span>
+<span id="cb28-22"><a href="#cb28-22"></a>    <span class="co"># Portfolio value</span></span>
+<span id="cb28-23"><a href="#cb28-23"></a>    ax3.plot(portfolio[<span class="st">'value'</span>], label<span class="op">=</span><span class="st">'Portfolio Value'</span>)</span>
+<span id="cb28-24"><a href="#cb28-24"></a>    ax3.set_title(<span class="st">'Strategy Performance'</span>)</span>
+<span id="cb28-25"><a href="#cb28-25"></a>    ax3.legend()</span>
+<span id="cb28-26"><a href="#cb28-26"></a></span>
+<span id="cb28-27"><a href="#cb28-27"></a>    plt.tight_layout()</span>
+<span id="cb28-28"><a href="#cb28-28"></a>    plt.show()</span>
+<span id="cb28-29"><a href="#cb28-29"></a></span>
+<span id="cb28-30"><a href="#cb28-30"></a>plot_strategy(portfolio, signals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Financial econometrics 2_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+
+  <div class="hero-content">
+
+    <h1 class="hero-title"></h1>
+
+    <p class="hero-subtitle">
+
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+
+    </p>
+
+  </div>
+
+</hero>
+
+
+
+<main class="content">
+
+  
+
+</main>
+
+
+
+<footer class="quant-footer">
+
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
+
+  <p class="footer-sub">
+
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+
+  </p>
+
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

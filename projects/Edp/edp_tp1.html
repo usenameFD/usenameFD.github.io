@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>edp_tp1 – Franck Deba - Quantitative Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_stat.html"> 
+<span class="menu-text">Modélisation Stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_gdr.html"> 
+<span class="menu-text">Gestion des Risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="hero-title title display-7"></h1></header>
+
+
+
+
+
+<div id="f2235428" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="1531d088" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb2-3"><a href="#cb2-3"></a>df.index <span class="op">=</span> df[<span class="st">'date'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="8ba7fff9" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th">open</th>
+<th data-quarto-table-cell-role="th">high</th>
+<th data-quarto-table-cell-role="th">low</th>
+<th data-quarto-table-cell-role="th">close</th>
+<th data-quarto-table-cell-role="th">volume</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">date</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2020-06-01</th>
+<td>2020-06-01</td>
+<td>3070.54</td>
+<td>3090.54</td>
+<td>2828.91</td>
+<td>3056.79</td>
+<td>93211560</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2020-06-02</th>
+<td>2020-06-02</td>
+<td>3056.79</td>
+<td>3062.19</td>
+<td>2804.19</td>
+<td>2858.28</td>
+<td>124020000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2020-06-03</th>
+<td>2020-06-03</td>
+<td>2858.28</td>
+<td>2900.16</td>
+<td>2826.51</td>
+<td>2900.16</td>
+<td>65300040</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">2020-06-04</th>
+<td>2020-06-04</td>
+<td>2900.16</td>
+<td>2959.32</td>
+<td>2847.27</td>
+<td>2938.32</td>
+<td>69458220</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2020-06-05</th>
+<td>2020-06-05</td>
+<td>2938.32</td>
+<td>2953.83</td>
+<td>2888.61</td>
+<td>2889.36</td>
+<td>61664850</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="9973b16d" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df[[<span class="st">'close'</span>]].plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="edp_tp1_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="7156e24f" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df[<span class="st">'% Change'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].pct_change().fillna(<span class="dv">0</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>mask_max <span class="op">=</span> df[<span class="st">'% Change'</span>].idxmin()</span>
+<span id="cb5-3"><a href="#cb5-3"></a>df.loc[mask_max]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>date        2021-05-19 00:00:00
+open                   12869.19
+high                   13054.98
+low                     9078.51
+close                  11016.15
+volume                 71030700
+% Change               -0.14399
+Name: 2021-05-19 00:00:00, dtype: object</code></pre>
+</div>
+</div>
+<div id="87a5790a" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df[<span class="st">'AbsIntChg'</span>] <span class="op">=</span> <span class="bu">round</span>(<span class="bu">abs</span>(df[<span class="st">'% Change'</span>]) <span class="op">*</span> <span class="dv">100</span>, <span class="dv">0</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>df[<span class="st">'Is Trade'</span>] <span class="op">=</span> (df[<span class="st">'AbsIntChg'</span>] <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>) <span class="op">&amp;</span> ((df[<span class="st">'AbsIntChg'</span>] <span class="op">&gt;</span> <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="5321074d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>df[<span class="st">'Is Trade'</span>].<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>np.int64(124)</code></pre>
+</div>
+</div>
+<div id="768fda7d" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df[<span class="st">'Trade Group'</span>] <span class="op">=</span> (df[<span class="st">'Is Trade'</span>] <span class="op">!=</span> df[<span class="st">'Is Trade'</span>].shift()).cumsum()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="b832998e" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df.loc[df[<span class="st">'Is Trade'</span>], <span class="st">'% Change'</span>].cumsum()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>date
+2020-06-02   -0.064941
+2020-06-05   -0.081603
+2020-06-11   -0.141894
+2020-06-12   -0.122138
+2020-06-22   -0.080477
+                ...   
+2021-05-19    0.473977
+2021-05-21    0.389988
+2021-05-24    0.507374
+2021-05-26    0.530066
+2021-05-27    0.508871
+Name: % Change, Length: 124, dtype: float64</code></pre>
+</div>
+</div>
+<div id="7676e92d" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co"># 1. PRÉPARATION DES DONNÉES</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a></span>
+<span id="cb13-9"><a href="#cb13-9"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb13-10"><a href="#cb13-10"></a></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co"># 2. CALCUL DU % CHANGE ET DES TRADES</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="co"># Calculer le pourcentage de changement</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>df[<span class="st">'% Change'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].pct_change().fillna(<span class="dv">0</span>)</span>
+<span id="cb13-17"><a href="#cb13-17"></a></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="co"># Calculer Absolute Integer Change selon les règles</span></span>
+<span id="cb13-19"><a href="#cb13-19"></a>df[<span class="st">'Abs_Integer_Change'</span>] <span class="op">=</span> (<span class="bu">abs</span>(df[<span class="st">'% Change'</span>]) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb13-20"><a href="#cb13-20"></a></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="co"># Déterminer Is Trade: True si Abs_Integer_Change est pair et &gt; 0</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a>df[<span class="st">'Is Trade'</span>] <span class="op">=</span> (df[<span class="st">'Abs_Integer_Change'</span>] <span class="op">&gt;</span> <span class="dv">0</span>) <span class="op">&amp;</span> ((df[<span class="st">'Abs_Integer_Change'</span>] <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>) <span class="op">|</span> ((df[<span class="st">'Abs_Integer_Change'</span>] <span class="op">-</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>))</span>
+<span id="cb13-23"><a href="#cb13-23"></a></span>
+<span id="cb13-24"><a href="#cb13-24"></a></span>
+<span id="cb13-25"><a href="#cb13-25"></a><span class="co">#df['Is Trade'] = (df['Abs_Integer_Change'] &gt; 0) &amp; (df['Abs_Integer_Change'] % 2 == 0)</span></span>
+<span id="cb13-26"><a href="#cb13-26"></a></span>
+<span id="cb13-27"><a href="#cb13-27"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-28"><a href="#cb13-28"></a><span class="co"># 3. RÉPONSE À LA QUESTION 3: Nombre total de trades</span></span>
+<span id="cb13-29"><a href="#cb13-29"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-30"><a href="#cb13-30"></a></span>
+<span id="cb13-31"><a href="#cb13-31"></a>total_trades <span class="op">=</span> df[<span class="st">'Is Trade'</span>].<span class="bu">sum</span>()</span>
+<span id="cb13-32"><a href="#cb13-32"></a><span class="bu">print</span>(<span class="ss">f"3. Nombre total de trades: </span><span class="sc">{</span>total_trades<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-33"><a href="#cb13-33"></a></span>
+<span id="cb13-34"><a href="#cb13-34"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-35"><a href="#cb13-35"></a><span class="co"># 4. RÉPONSE À LA QUESTION 4: Plus grand nombre de jours consécutifs sans trade</span></span>
+<span id="cb13-36"><a href="#cb13-36"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-37"><a href="#cb13-37"></a></span>
+<span id="cb13-38"><a href="#cb13-38"></a><span class="co"># Trouver les séquences sans trade</span></span>
+<span id="cb13-39"><a href="#cb13-39"></a>df[<span class="st">'Trade Group'</span>] <span class="op">=</span> (df[<span class="st">'Is Trade'</span>] <span class="op">!=</span> df[<span class="st">'Is Trade'</span>].shift()).cumsum()</span>
+<span id="cb13-40"><a href="#cb13-40"></a></span>
+<span id="cb13-41"><a href="#cb13-41"></a><span class="co"># Compter les jours consécutifs sans trade</span></span>
+<span id="cb13-42"><a href="#cb13-42"></a>no_trade_sequences <span class="op">=</span> df[<span class="op">~</span>df[<span class="st">'Is Trade'</span>]].groupby(<span class="st">'Trade Group'</span>).size()</span>
+<span id="cb13-43"><a href="#cb13-43"></a>max_consecutive_no_trade <span class="op">=</span> no_trade_sequences.<span class="bu">max</span>() <span class="cf">if</span> <span class="kw">not</span> no_trade_sequences.empty <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb13-44"><a href="#cb13-44"></a></span>
+<span id="cb13-45"><a href="#cb13-45"></a><span class="bu">print</span>(<span class="ss">f"4. Plus grand nombre de jours consécutifs sans trade: </span><span class="sc">{</span>max_consecutive_no_trade<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-46"><a href="#cb13-46"></a></span>
+<span id="cb13-47"><a href="#cb13-47"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-48"><a href="#cb13-48"></a><span class="co"># 5. CALCUL DES PROFITS ET RÉPONSE À LA QUESTION 5</span></span>
+<span id="cb13-49"><a href="#cb13-49"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-50"><a href="#cb13-50"></a></span>
+<span id="cb13-51"><a href="#cb13-51"></a><span class="co"># Calculer le profit pour chaque jour de trade</span></span>
+<span id="cb13-52"><a href="#cb13-52"></a>profit <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb13-53"><a href="#cb13-53"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb13-54"><a href="#cb13-54"></a>    <span class="cf">if</span> df.iloc[i][<span class="st">'Is Trade'</span>]:</span>
+<span id="cb13-55"><a href="#cb13-55"></a>        buy_price <span class="op">=</span> df.iloc[i][<span class="st">'close'</span>]</span>
+<span id="cb13-56"><a href="#cb13-56"></a>        sell_price <span class="op">=</span> df.iloc[i <span class="op">+</span> <span class="dv">1</span>][<span class="st">'close'</span>]</span>
+<span id="cb13-57"><a href="#cb13-57"></a>        profit.append((sell_price <span class="op">-</span> buy_price) <span class="op">/</span> buy_price)</span>
+<span id="cb13-58"><a href="#cb13-58"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-59"><a href="#cb13-59"></a>        profit.append(<span class="fl">0.0</span>)</span>
+<span id="cb13-60"><a href="#cb13-60"></a></span>
+<span id="cb13-61"><a href="#cb13-61"></a><span class="co"># Calculer le profit moyen par trade</span></span>
+<span id="cb13-62"><a href="#cb13-62"></a>df[<span class="st">'Profit'</span>] <span class="op">=</span> profit</span>
+<span id="cb13-63"><a href="#cb13-63"></a>trade_profits <span class="op">=</span> df[df[<span class="st">'Is Trade'</span>]][<span class="st">'Profit'</span>]</span>
+<span id="cb13-64"><a href="#cb13-64"></a>avg_profit <span class="op">=</span> trade_profits.mean() <span class="op">*</span> <span class="dv">100</span> <span class="cf">if</span> <span class="kw">not</span> trade_profits.empty <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb13-65"><a href="#cb13-65"></a>avg_profit_rounded <span class="op">=</span> <span class="bu">round</span>(avg_profit, <span class="dv">2</span>)</span>
+<span id="cb13-66"><a href="#cb13-66"></a></span>
+<span id="cb13-67"><a href="#cb13-67"></a><span class="bu">print</span>(<span class="ss">f"5. Profit moyen par trade: </span><span class="sc">{</span>avg_profit_rounded<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-68"><a href="#cb13-68"></a></span>
+<span id="cb13-69"><a href="#cb13-69"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-70"><a href="#cb13-70"></a><span class="co"># 6. CALCUL DES PROFITS TOTAUX ET RÉPONSE À LA QUESTION 6</span></span>
+<span id="cb13-71"><a href="#cb13-71"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-72"><a href="#cb13-72"></a></span>
+<span id="cb13-73"><a href="#cb13-73"></a><span class="co"># Calculer les profits totaux cumulés</span></span>
+<span id="cb13-74"><a href="#cb13-74"></a>df[<span class="st">'Total Profit'</span>] <span class="op">=</span> df[<span class="st">'Profit'</span>].cumsum() <span class="op">*</span> <span class="dv">100</span>  <span class="co"># En pourcentage</span></span>
+<span id="cb13-75"><a href="#cb13-75"></a></span>
+<span id="cb13-76"><a href="#cb13-76"></a><span class="co"># Profit total final</span></span>
+<span id="cb13-77"><a href="#cb13-77"></a>total_profit_final <span class="op">=</span> df[<span class="st">'Total Profit'</span>].iloc[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb13-78"><a href="#cb13-78"></a>total_profit_rounded <span class="op">=</span> <span class="bu">round</span>(total_profit_final, <span class="dv">2</span>)</span>
+<span id="cb13-79"><a href="#cb13-79"></a></span>
+<span id="cb13-80"><a href="#cb13-80"></a><span class="bu">print</span>(<span class="ss">f"6. Profit total de la stratégie: </span><span class="sc">{</span>total_profit_rounded<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-81"><a href="#cb13-81"></a></span>
+<span id="cb13-82"><a href="#cb13-82"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-83"><a href="#cb13-83"></a><span class="co"># 7. RÉPONSE À LA QUESTION 7: Dates des profits totaux max et min</span></span>
+<span id="cb13-84"><a href="#cb13-84"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-85"><a href="#cb13-85"></a></span>
+<span id="cb13-86"><a href="#cb13-86"></a><span class="co"># Trouver les dates des profits totaux maximum et minimum</span></span>
+<span id="cb13-87"><a href="#cb13-87"></a>max_profit_idx <span class="op">=</span> df[<span class="st">'Total Profit'</span>].idxmax()</span>
+<span id="cb13-88"><a href="#cb13-88"></a>min_profit_idx <span class="op">=</span> df[<span class="st">'Total Profit'</span>].idxmin()</span>
+<span id="cb13-89"><a href="#cb13-89"></a></span>
+<span id="cb13-90"><a href="#cb13-90"></a>max_profit_date <span class="op">=</span> df.loc[max_profit_idx, <span class="st">'date'</span>].strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb13-91"><a href="#cb13-91"></a>min_profit_date <span class="op">=</span> df.loc[min_profit_idx, <span class="st">'date'</span>].strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb13-92"><a href="#cb13-92"></a></span>
+<span id="cb13-93"><a href="#cb13-93"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">7. Dates des profits totaux max et min:"</span>)</span>
+<span id="cb13-94"><a href="#cb13-94"></a><span class="bu">print</span>(<span class="ss">f"   Maximum profit date: </span><span class="sc">{</span>max_profit_date<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-95"><a href="#cb13-95"></a><span class="bu">print</span>(<span class="ss">f"   Minimum profit date: </span><span class="sc">{</span>min_profit_date<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-96"><a href="#cb13-96"></a></span>
+<span id="cb13-97"><a href="#cb13-97"></a><span class="co"># Vérifier les dates fournies</span></span>
+<span id="cb13-98"><a href="#cb13-98"></a>check_dates_q7 <span class="op">=</span> [</span>
+<span id="cb13-99"><a href="#cb13-99"></a>    <span class="st">'2020-06-01'</span>, <span class="st">'2021-01-10'</span>, <span class="st">'2020-12-01'</span>,</span>
+<span id="cb13-100"><a href="#cb13-100"></a>    <span class="st">'2020-06-12'</span>, <span class="st">'2020-11-30'</span>, <span class="st">'2021-05-10'</span></span>
+<span id="cb13-101"><a href="#cb13-101"></a>]</span>
+<span id="cb13-102"><a href="#cb13-102"></a></span>
+<span id="cb13-103"><a href="#cb13-103"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">   Checking which dates match:"</span>)</span>
+<span id="cb13-104"><a href="#cb13-104"></a><span class="cf">for</span> date_str <span class="kw">in</span> check_dates_q7:</span>
+<span id="cb13-105"><a href="#cb13-105"></a>    <span class="cf">if</span> date_str <span class="op">==</span> max_profit_date <span class="kw">or</span> date_str <span class="op">==</span> min_profit_date:</span>
+<span id="cb13-106"><a href="#cb13-106"></a>        <span class="bu">print</span>(<span class="ss">f"   ✓ </span><span class="sc">{</span>date_str<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-107"><a href="#cb13-107"></a>    <span class="cf">else</span>:</span>
+<span id="cb13-108"><a href="#cb13-108"></a>        <span class="bu">print</span>(<span class="ss">f"   ✗ </span><span class="sc">{</span>date_str<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-109"><a href="#cb13-109"></a></span>
+<span id="cb13-110"><a href="#cb13-110"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-111"><a href="#cb13-111"></a><span class="co"># 8. CALCUL DU MAXIMUM DRAWDOWN ET RÉPONSE À LA QUESTION 8</span></span>
+<span id="cb13-112"><a href="#cb13-112"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-113"><a href="#cb13-113"></a></span>
+<span id="cb13-114"><a href="#cb13-114"></a><span class="co"># Calculer le maximum drawdown</span></span>
+<span id="cb13-115"><a href="#cb13-115"></a>df[<span class="st">'Running Max'</span>] <span class="op">=</span> df[<span class="st">'Total Profit'</span>].cummax()</span>
+<span id="cb13-116"><a href="#cb13-116"></a>df[<span class="st">'Drawdown'</span>] <span class="op">=</span> df[<span class="st">'Total Profit'</span>] <span class="op">-</span> df[<span class="st">'Running Max'</span>]</span>
+<span id="cb13-117"><a href="#cb13-117"></a></span>
+<span id="cb13-118"><a href="#cb13-118"></a><span class="co"># Le maximum drawdown est la valeur la plus négative (ou la plus petite)</span></span>
+<span id="cb13-119"><a href="#cb13-119"></a>max_drawdown <span class="op">=</span> <span class="bu">abs</span>(df[<span class="st">'Drawdown'</span>].<span class="bu">min</span>())</span>
+<span id="cb13-120"><a href="#cb13-120"></a>max_drawdown_rounded <span class="op">=</span> <span class="bu">round</span>(max_drawdown, <span class="dv">2</span>)</span>
+<span id="cb13-121"><a href="#cb13-121"></a></span>
+<span id="cb13-122"><a href="#cb13-122"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">8. Maximum Drawdown: </span><span class="sc">{</span>max_drawdown_rounded<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-123"><a href="#cb13-123"></a></span>
+<span id="cb13-124"><a href="#cb13-124"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-125"><a href="#cb13-125"></a><span class="co"># AFFICHAGE DES RÉSULTATS DÉTAILLÉS</span></span>
+<span id="cb13-126"><a href="#cb13-126"></a><span class="co"># ============================================================================</span></span>
+<span id="cb13-127"><a href="#cb13-127"></a></span>
+<span id="cb13-128"><a href="#cb13-128"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb13-129"><a href="#cb13-129"></a><span class="bu">print</span>(<span class="st">"RÉSULTATS DÉTAILLÉS"</span>)</span>
+<span id="cb13-130"><a href="#cb13-130"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb13-131"><a href="#cb13-131"></a></span>
+<span id="cb13-132"><a href="#cb13-132"></a><span class="co"># Afficher les premières lignes avec toutes les colonnes</span></span>
+<span id="cb13-133"><a href="#cb13-133"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Premières lignes du DataFrame:"</span>)</span>
+<span id="cb13-134"><a href="#cb13-134"></a>display_cols <span class="op">=</span> [<span class="st">'date'</span>, <span class="st">'close'</span>, <span class="st">'% Change'</span>, <span class="st">'Abs_Integer_Change'</span>, </span>
+<span id="cb13-135"><a href="#cb13-135"></a>                <span class="st">'Is Trade'</span>, <span class="st">'Profit'</span>, <span class="st">'Total Profit'</span>]</span>
+<span id="cb13-136"><a href="#cb13-136"></a><span class="bu">print</span>(df[display_cols].head(<span class="dv">10</span>).to_string())</span>
+<span id="cb13-137"><a href="#cb13-137"></a></span>
+<span id="cb13-138"><a href="#cb13-138"></a><span class="co"># Résumé des trades</span></span>
+<span id="cb13-139"><a href="#cb13-139"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Résumé des trades:"</span>)</span>
+<span id="cb13-140"><a href="#cb13-140"></a><span class="bu">print</span>(<span class="ss">f"- Nombre total de jours: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-141"><a href="#cb13-141"></a><span class="bu">print</span>(<span class="ss">f"- Nombre de jours avec trade: </span><span class="sc">{</span>total_trades<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb13-142"><a href="#cb13-142"></a><span class="bu">print</span>(<span class="ss">f"- Pourcentage de jours avec trade: </span><span class="sc">{</span>total_trades<span class="op">/</span><span class="bu">len</span>(df)<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-143"><a href="#cb13-143"></a></span>
+<span id="cb13-144"><a href="#cb13-144"></a><span class="co"># Informations sur les profits</span></span>
+<span id="cb13-145"><a href="#cb13-145"></a><span class="cf">if</span> <span class="kw">not</span> trade_profits.empty:</span>
+<span id="cb13-146"><a href="#cb13-146"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Analyse des profits par trade:"</span>)</span>
+<span id="cb13-147"><a href="#cb13-147"></a>    <span class="bu">print</span>(<span class="ss">f"- Profit moyen: </span><span class="sc">{</span>trade_profits<span class="sc">.</span>mean()<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-148"><a href="#cb13-148"></a>    <span class="bu">print</span>(<span class="ss">f"- Profit médian: </span><span class="sc">{</span>trade_profits<span class="sc">.</span>median()<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-149"><a href="#cb13-149"></a>    <span class="bu">print</span>(<span class="ss">f"- Profit maximum: </span><span class="sc">{</span>trade_profits<span class="sc">.</span><span class="bu">max</span>()<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-150"><a href="#cb13-150"></a>    <span class="bu">print</span>(<span class="ss">f"- Profit minimum: </span><span class="sc">{</span>trade_profits<span class="sc">.</span><span class="bu">min</span>()<span class="op">*</span><span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb13-151"><a href="#cb13-151"></a>    <span class="bu">print</span>(<span class="ss">f"- Nombre de trades profitables: </span><span class="sc">{</span>(trade_profits <span class="op">&gt;</span> <span class="dv">0</span>)<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span><span class="bu">len</span>(trade_profits)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3. Nombre total de trades: 249
+4. Plus grand nombre de jours consécutifs sans trade: 252
+5. Profit moyen par trade: 0.40%
+6. Profit total de la stratégie: 123.01%
+
+7. Dates des profits totaux max et min:
+   Maximum profit date: 2021-05-08
+   Minimum profit date: 2020-06-27
+
+   Checking which dates match:
+   ✗ 2020-06-01
+   ✗ 2021-01-10
+   ✗ 2020-12-01
+   ✗ 2020-06-12
+   ✗ 2020-11-30
+   ✗ 2021-05-10
+
+8. Maximum Drawdown: 37.26%
+
+================================================================================
+RÉSULTATS DÉTAILLÉS
+================================================================================
+
+Premières lignes du DataFrame:
+                          date    close  % Change  Abs_Integer_Change  Is Trade    Profit  Total Profit
+date                                                                                                   
+2020-06-01 00:00:00 2020-06-01  3056.79  0.000000                   0     False  0.000000      0.000000
+2020-06-02 00:00:00 2020-06-02  2858.28 -0.064941                   6      True  0.000000      0.000000
+2020-06-03 00:00:00 2020-06-03  2900.16  0.014652                   1      True  0.014652      1.465217
+2020-06-04 00:00:00 2020-06-04  2938.32  0.013158                   1      True  0.013158      2.781006
+2020-06-05 00:00:00 2020-06-05  2889.36 -0.016663                   2      True -0.016663      1.114748
+2020-06-06 00:00:00 2020-06-06  2900.88  0.003987                   0     False  0.003987      1.513452
+2020-06-07 00:00:00 2020-06-07  2922.78  0.007549                   1      True  0.000000      1.513452
+2020-06-08 00:00:00 2020-06-08  2933.37  0.003623                   0     False  0.003623      1.875779
+2020-06-09 00:00:00 2020-06-09  2930.64 -0.000931                   0     False  0.000000      1.875779
+2020-06-10 00:00:00 2020-06-10  2963.64  0.011260                   1      True  0.000000      1.875779
+
+Résumé des trades:
+- Nombre total de jours: 614
+- Nombre de jours avec trade: 249
+- Pourcentage de jours avec trade: 40.6%
+
+Analyse des profits par trade:
+- Profit moyen: 0.40%
+- Profit médian: 0.00%
+- Profit maximum: 19.41%
+- Profit minimum: -14.40%
+- Nombre de trades profitables: 97/249</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;positron-console-cell-23&gt;:16: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.</code></pre>
+</div>
+</div>
+<div id="53d92070" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Calculer le Maximum Drawdown</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co"># 1. Calculer le running maximum (peak)</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>df[<span class="st">'Running Max'</span>] <span class="op">=</span> df[<span class="st">'close'</span>].cummax()</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="co"># 2. Calculer le drawdown à chaque point</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>df[<span class="st">'Drawdown'</span>] <span class="op">=</span> (df[<span class="st">'close'</span>] <span class="op">-</span> df[<span class="st">'Running Max'</span>]) <span class="op">/</span> df[<span class="st">'Running Max'</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="co"># 3. Trouver le maximum drawdown (le plus négatif)</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>max_drawdown <span class="op">=</span> df[<span class="st">'Drawdown'</span>].<span class="bu">min</span>()</span>
+<span id="cb16-10"><a href="#cb16-10"></a>max_drawdown_rounded <span class="op">=</span> <span class="bu">round</span>(max_drawdown, <span class="dv">2</span>)</span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">8. Maximum Drawdown: </span><span class="sc">{</span>max_drawdown_rounded<span class="sc">:.2f}</span><span class="ss">%"</span>)</span>
+<span id="cb16-13"><a href="#cb16-13"></a></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="co"># Trouver la date du maximum drawdown</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>max_dd_idx <span class="op">=</span> df[<span class="st">'Drawdown'</span>].idxmin()</span>
+<span id="cb16-16"><a href="#cb16-16"></a>max_dd_date <span class="op">=</span> df.loc[max_dd_idx, <span class="st">'date'</span>].strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">'</span>)</span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="bu">print</span>(<span class="ss">f"   Date of maximum drawdown: </span><span class="sc">{</span>max_dd_date<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+8. Maximum Drawdown: -45.57%
+   Date of maximum drawdown: 2021-05-29</code></pre>
+</div>
+</div>
+<div id="2e25ce89" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df[[<span class="st">'Profit'</span>]].plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="edp_tp1_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="9484448b" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">def</span> price(T):</span>
+<span id="cb19-2"><a href="#cb19-2"></a>    payoff <span class="op">=</span> <span class="fl">3.5</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,T):</span>
+<span id="cb19-4"><a href="#cb19-4"></a>        <span class="bu">sum</span> <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>        <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">7</span>):</span>
+<span id="cb19-6"><a href="#cb19-6"></a>            <span class="bu">sum</span> <span class="op">+=</span> <span class="bu">max</span>(payoff, x)</span>
+<span id="cb19-7"><a href="#cb19-7"></a>        payoff <span class="op">=</span> <span class="bu">sum</span><span class="op">/</span><span class="dv">6</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>        <span class="cf">if</span> <span class="bu">round</span>(payoff, <span class="dv">4</span>) <span class="op">&gt;=</span> <span class="fl">6.0</span>:</span>
+<span id="cb19-9"><a href="#cb19-9"></a>            <span class="cf">return</span> <span class="bu">round</span>(payoff, <span class="dv">4</span>), t</span>
+<span id="cb19-10"><a href="#cb19-10"></a>    <span class="cf">return</span> <span class="bu">round</span>(payoff, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<hero class="hero-banner">
+
+  <div class="hero-content">
+
+    
+
+    <p class="hero-subtitle">
+
+      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
+
+    </p>
+
+  </div>
+
+</hero>
+
+
+
+<main class="content">
+
+  
+
+</main>
+
+
+
+<footer class="quant-footer">
+
+  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
+
+  <p class="footer-sub">
+
+    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
+
+  </p>
+
+</footer>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
