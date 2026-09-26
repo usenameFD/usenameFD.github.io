@@ -1,8 +1,11 @@
 ---
-title: "Calibration avec le modèle d'Heston"
+title: "Pricing et calibration du modèle de Heston"
+description: "Prix d'un call sous modèle de Heston par forme fermée puis par Monte-Carlo (schéma d'Euler), et calibration du modèle sur des prix d'options."
 format: html
 author: "Franck Deba"
 date: "2025-02-06"
+categories:
+  - Processus stochastiques
 ---
 
 ```{r setup, include=FALSE}

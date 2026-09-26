@@ -1,0 +1,46 @@
+/*-- scss:defaults --*/
+
+// ===========================================================================
+//  Dark mode overrides. Loaded after styles/theme.scss, so the Sass defaults
+//  declared here take precedence. Only surface-level values belong in this
+//  file; every component rule lives in styles/theme.scss.
+// ===========================================================================
+
+$body-bg: #0f1722 !default;
+$body-color: #e3eaf2 !default;
+
+$primary: #6fb2e8 !default;
+$link-color: #6fb2e8 !default;
+$link-hover-color: #9bcbf0 !default;
+
+$card-bg: #17212e !default;
+$card-border-color: #2b3949 !default;
+
+$border-color: #2b3949 !default;
+$table-border-color: #2b3949 !default;
+
+$navbar-bg: #0c1420 !default;
+$navbar-fg: #e3eaf2 !default;
+$footer-bg: #0c1420 !default;
+$footer-fg: #9aa9b8 !default;
+
+$code-bg: #17212e !default;
+$code-color: #9bcbf0 !default;
+
+/*-- scss:rules --*/
+
+// Keep stored notebook figures (rendered on a white matplotlib canvas)
+// readable against the dark page background.
+.cell-output-display img,
+.quarto-figure img,
+figure img {
+  background: #fff;
+  border-radius: 0.25rem;
+}
+
+// The site logo is already exported on a dark-friendly background.
+.navbar-brand img,
+.qf-tag,
+.listing-category {
+  background: inherit;
+}

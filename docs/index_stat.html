@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Parcours guidé en modélisation statistique appliquée à la finance : théorie des valeurs extrêmes, séries financières, apprentissage supervisé, apprentissage profond et traitement du langage naturel.">
 
-<title>index_stat – Franck Deba - Quantitative Research</title>
+<title>Parcours modélisation statistique — Franck Deba – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -33,22 +37,21 @@ ul.task-list li input[type="checkbox"] {
 <link href="./img/logo-bg.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -58,27 +61,35 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
 
-<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Parcours modélisation statistique — Franck Deba">
+<meta property="og:description" content="Des valeurs extrêmes à l’apprentissage profond appliqué aux marchés">
+<meta property="og:site_name" content="Franck Deba">
+<meta name="twitter:title" content="Parcours modélisation statistique — Franck Deba">
+<meta name="twitter:description" content="Des valeurs extrêmes à l’apprentissage profond appliqué aux marchés">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -248,15 +259,15 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="./img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="./img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="./img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -266,21 +277,42 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./index_stat.html" aria-current="page"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="./projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./index_gdr.html"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="./notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="./repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="./about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -288,126 +320,139 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
-  <li><a href="#théorie-des-valeurs-extrêmes" id="toc-théorie-des-valeurs-extrêmes" class="nav-link active" data-scroll-target="#théorie-des-valeurs-extrêmes">Théorie des valeurs extrêmes</a>
-  <ul class="collapse">
-  <li><a href="#résumé-de-la-théorie-des-valeurs-extrêmes" id="toc-résumé-de-la-théorie-des-valeurs-extrêmes" class="nav-link" data-scroll-target="#résumé-de-la-théorie-des-valeurs-extrêmes">Résumé de la théorie des valeurs extrêmes</a></li>
-  </ul></li>
-  <li><a href="#analyse-des-séries-financières" id="toc-analyse-des-séries-financières" class="nav-link" data-scroll-target="#analyse-des-séries-financières">Analyse des séries financières</a></li>
-  <li><a href="#apprentissage-supervisé" id="toc-apprentissage-supervisé" class="nav-link" data-scroll-target="#apprentissage-supervisé">Apprentissage supervisé</a></li>
-  <li><a href="#deep-learning-nlp" id="toc-deep-learning-nlp" class="nav-link" data-scroll-target="#deep-learning-nlp">Deep Learning &amp; NLP</a></li>
+  <li><a href="#dépendance-et-valeurs-extrêmes" id="toc-dépendance-et-valeurs-extrêmes" class="nav-link active" data-scroll-target="#dépendance-et-valeurs-extrêmes">1. Dépendance et valeurs extrêmes</a></li>
+  <li><a href="#analyse-des-séries-financières" id="toc-analyse-des-séries-financières" class="nav-link" data-scroll-target="#analyse-des-séries-financières">2. Analyse des séries financières</a></li>
+  <li><a href="#apprentissage-supervisé" id="toc-apprentissage-supervisé" class="nav-link" data-scroll-target="#apprentissage-supervisé">3. Apprentissage supervisé</a></li>
+  <li><a href="#apprentissage-profond-et-nlp" id="toc-apprentissage-profond-et-nlp" class="nav-link" data-scroll-target="#apprentissage-profond-et-nlp">4. Apprentissage profond et NLP</a></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="hero-title title display-7"></h1></header>
+<main class="content" id="quarto-document-content">
 
 
-
-
-
-<section id="théorie-des-valeurs-extrêmes" class="level1">
-<h1>Théorie des valeurs extrêmes</h1>
-<div class="card-grid">
-<section id="résumé-de-la-théorie-des-valeurs-extrêmes" class="level3 card">
-<h3 class="anchored" data-anchor-id="résumé-de-la-théorie-des-valeurs-extrêmes">Résumé de la théorie des valeurs extrêmes</h3>
-<p><a href="3A/rapports/projet_EVT.pdf">Accéder au PDF →</a></p>
-</section>
-</div>
-<hr>
-</section>
-<section id="analyse-des-séries-financières" class="level1">
-<h1>Analyse des séries financières</h1>
-<div class="card-grid">
-<section id="feature-selection-criterion" class="level3 card">
-<h3 class="anchored" data-anchor-id="feature-selection-criterion">Feature Selection Criterion</h3>
-<p><a href="./projects/WQU/Financial Data 1.html">Notebook →</a></p>
-</section>
-<section id="non-stationarity-unit-root-testing" class="level3 card">
-<h3 class="anchored" data-anchor-id="non-stationarity-unit-root-testing">Non-Stationarity &amp; Unit Root Testing</h3>
-<p><a href="./projects/WQU/Financial Data 2.html">Notebook →</a></p>
-</section>
-<section id="vecm-modeling-pair-trading" class="level3 card">
-<h3 class="anchored" data-anchor-id="vecm-modeling-pair-trading">VECM Modeling &amp; Pair Trading</h3>
-<p><a href="./projects/WQU/Financial Econometrics 2.html">Notebook →</a></p>
-</section>
-</div>
-<hr>
-</section>
-<section id="apprentissage-supervisé" class="level1">
-<h1>Apprentissage supervisé</h1>
-<div class="card-grid">
-<section id="régression-linéaire" class="level3 card">
-<h3 class="anchored" data-anchor-id="régression-linéaire">Régression linéaire</h3>
-<p><a href="./2A/App_sup/reg_lin.html">Document →</a></p>
-</section>
-<section id="kernel-trick-svm" class="level3 card">
-<h3 class="anchored" data-anchor-id="kernel-trick-svm">Kernel Trick &amp; SVM</h3>
-<p><a href="./3A/Apprentisage-stat/Tp2.html">Document →</a></p>
-</section>
-<section id="gradient-boosting" class="level3 card">
-<h3 class="anchored" data-anchor-id="gradient-boosting">Gradient Boosting</h3>
-<p><a href="./3A/Apprentisage-stat/Tp3.html">Document →</a></p>
-</section>
-<section id="feature-selection" class="level3 card">
-<h3 class="anchored" data-anchor-id="feature-selection">Feature Selection</h3>
-<p><a href="./3A/Apprentisage-stat/Tp4.html">Document →</a></p>
-</section>
-<section id="régression-ridge-lasso" class="level3 card">
-<h3 class="anchored" data-anchor-id="régression-ridge-lasso">Régression Ridge &amp; Lasso</h3>
-<p><a href="./3A/Apprentisage-stat/Tp1.html">Document →</a></p>
-</section>
-<section id="cart-random-forest" class="level3 card">
-<h3 class="anchored" data-anchor-id="cart-random-forest">CART &amp; Random Forest</h3>
-<p><a href="2A/App_sup/arbres_&amp;_forets_aleatoires.html">HTML →</a></p>
-</section>
-</div>
-<hr>
-</section>
-<section id="deep-learning-nlp" class="level1">
-<h1>Deep Learning &amp; NLP</h1>
-<div class="card-grid">
-<section id="deep-learning" class="level3 card">
-<h3 class="anchored" data-anchor-id="deep-learning">Deep Learning</h3>
-<p><a href="./projects/WQU/timingStock_HPO.html">Deep learning for finance (Notebook) →</a> <a href="./projects/DeepLearning/DL.html">Other (Notebook) →</a></p>
-</section>
-<section id="nlp" class="level3 card">
-<h3 class="anchored" data-anchor-id="nlp">NLP</h3>
-<p><a href="./projects/DeepLearning/NLP.html">Notebook →</a></p>
-</section>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Parcours — Modélisation statistique</h1>
+<p class="subtitle lead">Des valeurs extrêmes à l’apprentissage profond appliqué aux marchés</p>
 </div>
 
 
-</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
+<div class="quarto-title-meta">
+
     
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
   
-</main>
+    
+  </div>
+  
 
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+
+</header>
+
+
+<p>Ce parcours propose une lecture guidée des contenus de <strong>modélisation statistique</strong>, du diagnostic des séries financières aux méthodes d’apprentissage.</p>
+<p>Pour une liste complète et filtrable, voir la <a href="./projects/index.html">page Projets</a> et la page <a href="./notes/index.html">Notes &amp; recherche</a>.</p>
+<section id="dépendance-et-valeurs-extrêmes" class="level2">
+<h2 class="anchored" data-anchor-id="dépendance-et-valeurs-extrêmes">1. Dépendance et valeurs extrêmes</h2>
+<div class="qf-grid">
+<section id="théorie-des-valeurs-extrêmes" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="théorie-des-valeurs-extrêmes">Théorie des valeurs extrêmes</h3>
+<p>Note de synthèse sur la modélisation des queues de distribution.</p>
+<p><a href="3A/rapports/projet_EVT.pdf">Télécharger le PDF →</a></p>
+</section>
+<section id="spearman-et-pearson" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="spearman-et-pearson">Spearman et Pearson</h3>
+<p>Mesures de concordance, invariance et lien avec les copules.</p>
+<p><a href="./autres/spearman-pearson.html">Accéder au document →</a></p>
+</section>
+<section id="copules-et-creditvar" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="copules-et-creditvar">Copules et CreditVaR</h3>
+<p>Structures de dépendance et agrégation de risques de crédit.</p>
+<p><a href="./projects/creditvar-copules.html">Fiche projet →</a></p>
+</section>
+</div>
+</section>
+<section id="analyse-des-séries-financières" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-des-séries-financières">2. Analyse des séries financières</h2>
+<div class="qf-grid">
+<section id="non-stationnarité-cointégration-et-vecm" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="non-stationnarité-cointégration-et-vecm">Non-stationnarité, cointégration et VECM</h3>
+<p>Tests de racine unitaire, cointégration et stratégie de pair trading.</p>
+<p><a href="./projects/econometrie-financiere-vecm.html">Fiche projet →</a></p>
+</section>
+<section id="volatilité-stochastique" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="volatilité-stochastique">Volatilité stochastique</h3>
+<p>Modèle log-SV de Taylor estimé par filtrage.</p>
+<p><a href="./projects/volatilite-stochastique-taylor.html">Fiche projet →</a></p>
+</section>
+<section id="séries-temporelles" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="séries-temporelles">Séries temporelles</h3>
+<p>Rapport d’analyse et de prévision de séries financières.</p>
+<p><a href="3A/rapports/rapport_series_temporelles.pdf">Télécharger le PDF →</a></p>
+</section>
+</div>
+</section>
+<section id="apprentissage-supervisé" class="level2">
+<h2 class="anchored" data-anchor-id="apprentissage-supervisé">3. Apprentissage supervisé</h2>
+<div class="qf-grid">
+<section id="régression-linéaire" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="régression-linéaire">Régression linéaire</h3>
+<p>Modèle linéaire, estimation et diagnostic.</p>
+<p><a href="./2A/App_sup/reg_lin.html">Accéder au document →</a></p>
+</section>
+<section id="régression-ridge-et-lasso" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="régression-ridge-et-lasso">Régression ridge et lasso</h3>
+<p>Régularisation et compromis biais-variance.</p>
+<p><a href="./3A/Apprentisage-stat/Tp1.html">Accéder au document →</a></p>
+</section>
+<section id="kernel-trick-et-svm" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="kernel-trick-et-svm">Kernel trick et SVM</h3>
+<p>Régression ridge à noyau et machines à vecteurs de support.</p>
+<p><a href="./3A/Apprentisage-stat/Tp2.html">Accéder au document →</a></p>
+</section>
+<section id="gradient-boosting" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="gradient-boosting">Gradient boosting</h3>
+<p>Algorithme SAMME et boosting de gradient.</p>
+<p><a href="./3A/Apprentisage-stat/Tp3.html">Accéder au document →</a></p>
+</section>
+<section id="sélection-de-variables" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="sélection-de-variables">Sélection de variables</h3>
+<p>Information mutuelle et critère HSIC.</p>
+<p><a href="./3A/Apprentisage-stat/Tp4.html">Accéder au document →</a></p>
+</section>
+<section id="cart-et-forêts-aléatoires" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="cart-et-forêts-aléatoires">CART et forêts aléatoires</h3>
+<p>Arbres de décision et méthodes d’ensemble.</p>
+<p><a href="2A/App_sup/arbres_&amp;_forets_aleatoires.html">Consulter le document HTML →</a></p>
+</section>
+</div>
+</section>
+<section id="apprentissage-profond-et-nlp" class="level2">
+<h2 class="anchored" data-anchor-id="apprentissage-profond-et-nlp">4. Apprentissage profond et NLP</h2>
+<div class="qf-grid">
+<section id="market-timing-par-mlp" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="market-timing-par-mlp">Market timing par MLP</h3>
+<p>Classification du signe du rendement futur et backtest de la stratégie.</p>
+<p><a href="./projects/market-timing-mlp.html">Fiche projet →</a></p>
+</section>
+<section id="deep-learning-et-nlp" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="deep-learning-et-nlp">Deep learning et NLP</h3>
+<p>Séquences, attention, vision et extraction d’entités nommées.</p>
+<p><a href="./projects/deep-learning-nlp.html">Fiche projet →</a></p>
+</section>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -446,12 +491,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -494,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -508,6 +553,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -822,8 +872,67 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="./projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

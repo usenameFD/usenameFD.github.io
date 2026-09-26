@@ -1,0 +1,224 @@
+---
+title: "Pricing d'options exotiques sous Heston, Bates et CIR"
+subtitle: "Calibration à volatilité stochastique avec sauts et simulation du taux forward"
+description: "Calibration des modèles de Heston (1993) et de Bates (1996) par la méthode de Lewis, pricing d'options asiatiques par Monte-Carlo, et simulation du taux Euribor 12 mois sous modèle CIR."
+date: 2024-02-01
+categories:
+  - Dérivés & pricing
+  - Volatilité stochastique
+  - Taux & fixed income
+order: 6
+image: ../img/stoMod.png
+image-alt: "Surface de volatilité implicite et trajectoires simulées pour le pricing d'options exotiques"
+project-status: "Terminé"
+featured: false
+draft: false
+github: "https://github.com/usenameFD/Quantitative-finance-Projects"
+notebook: "WQU/Stochastic Modeling 1.ipynb"
+report: "WQU/reports/Stochatic Modeling 1.pdf"
+technologies: [Python, NumPy, SciPy, pandas, Matplotlib]
+methods: [Modèle de Heston, Modèle de Bates, Méthode de Lewis, Monte-Carlo, Options asiatiques, Modèle CIR]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Dérivés & pricing · Volatilité stochastique
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Contexte
+:   Projet de cours — WorldQuant University, *Stochastic Modeling*
+:::
+
+## Vue d'ensemble
+
+Un client souhaite acquérir un dérivé de maturité très courte, de l'ordre de
+quinze jours. Cette contrainte change complètement le problème de
+modélisation : à horizon très court, la diffusion pure ne produit pas assez de
+masse dans les queues pour reproduire le smile de volatilité observé, et les
+sauts deviennent le mécanisme dominant.
+
+Ce projet calibre successivement deux modèles sur les mêmes données de marché —
+Heston (1993), à volatilité stochastique pure, et Bates (1996), qui ajoute une
+composante de sauts — puis valorise une option asiatique sous chacun d'eux. Un
+troisième volet calibre un modèle CIR (1985) sur la courbe de taux courante et
+simule le taux Euribor 12 mois.
+
+## Contexte financier
+
+**Choix de modèle à maturité courte.** Le smile de volatilité implicite
+s'accentue fortement lorsque la maturité diminue. Un modèle à volatilité
+stochastique seul peine à le reproduire, car la variance a besoin de temps pour
+générer de la non-normalité. L'ajout d'une composante de sauts produit
+immédiatement de la kurtosis et de l'asymétrie, ce qui le rend structurellement
+plus adapté.
+
+**Options asiatiques.** Leur payoff dépend de la moyenne du sous-jacent sur la
+période, ce qui réduit la sensibilité aux manipulations de prix en fin de vie
+et abaisse la volatilité effective. Elles n'admettent pas de formule fermée
+sous Heston ou Bates : le Monte-Carlo est incontournable.
+
+**Taux forward.** La valorisation d'un produit indexé sur l'Euribor exige de
+simuler la dynamique du taux, ce que le modèle CIR permet en garantissant la
+positivité et le retour à la moyenne.
+
+## Méthodologie
+
+**Étape 1 — Modèle de Heston.** Mise en place d'une architecture de calibration
+sur la surface de volatilité implicite par minimisation de l'erreur de pricing,
+les prix modèles étant obtenus par la méthode de Lewis (inversion de la
+fonction caractéristique). Puis construction d'un pricer Monte-Carlo pour
+l'option asiatique.
+
+**Étape 2 — Modèle de Bates.** Même protocole appliqué au modèle de Bates, qui
+superpose au modèle de Heston un processus de Poisson composé à sauts
+log-normaux. Le pricing de la même option asiatique permet une comparaison
+directe des deux modèles sur un instrument identique.
+
+**Étape 3 — Modèle CIR.** Calibration sur les taux courants, puis simulation
+quotidienne du taux Euribor 12 mois sur un an avec **100 000 trajectoires**
+Monte-Carlo, et analyse de la distribution obtenue.
+
+Deux projets complémentaires du même cursus élargissent le champ : pricing
+européen, américain et d'un *up-and-in call* sous Heston, et méthodes
+numériques de pricing de dérivés.
+
+## Cadre mathématique
+
+**Modèle de Heston (1993).**
+$$
+\begin{cases}
+\mathrm{d}S_t = r\,S_t\,\mathrm{d}t + \sqrt{v_t}\,S_t\,\mathrm{d}W_t^S \\[2pt]
+\mathrm{d}v_t = \kappa(\theta - v_t)\,\mathrm{d}t + \sigma\sqrt{v_t}\,\mathrm{d}W_t^v \\[2pt]
+\mathrm{d}W_t^S\,\mathrm{d}W_t^v = \rho\,\mathrm{d}t
+\end{cases}
+$$
+
+**Modèle de Bates (1996).** Le rendement reçoit une composante de sauts :
+$$
+\mathrm{d}S_t = (r - \lambda\,\bar{k})\,S_t\,\mathrm{d}t
++ \sqrt{v_t}\,S_t\,\mathrm{d}W_t^S
++ S_{t^-}\,\mathrm{d}\!\left(\sum_{j=1}^{N_t} (Y_j - 1)\right),
+$$
+où $N_t$ est un processus de Poisson d'intensité $\lambda$, $\log Y_j \sim
+\mathcal{N}(\mu_J, \delta^2)$ et $\bar{k} = \mathbb{E}[Y_j - 1]$ est le
+compensateur assurant la propriété de martingale du prix actualisé.
+
+**Méthode de Lewis.** Le prix d'un call s'exprime comme une intégrale de la
+fonction caractéristique $\varphi_T$ du log-prix :
+$$
+C_0 = S_0 - \frac{\sqrt{S_0 K}\,e^{-rT}}{\pi}
+\int_0^{\infty}
+\mathrm{Re}\!\left[ e^{\mathrm{i} u z}\,
+\varphi_T\!\left(u - \tfrac{\mathrm{i}}{2}\right) \right]
+\frac{\mathrm{d}u}{u^2 + \tfrac{1}{4}},
+\qquad z = \ln \frac{S_0}{K} + rT .
+$$
+La fonction caractéristique de Bates étant le produit de celle de Heston et de
+celle du processus de sauts, la même routine d'intégration sert aux deux
+modèles — ce qui rend la comparaison numériquement cohérente.
+
+**Option asiatique.** Pour une moyenne arithmétique discrète sur $N$ dates :
+$$
+C_0^{\text{asian}} = e^{-rT}\,
+\mathbb{E}^{\mathbb{Q}}\!\left[
+\left( \frac{1}{N}\sum_{i=1}^{N} S_{t_i} - K \right)^{+}
+\right],
+$$
+estimée par moyenne empirique sur les trajectoires simulées.
+
+**Modèle CIR (1985).**
+$$
+\mathrm{d}r_t = \kappa\,(\theta - r_t)\,\mathrm{d}t + \sigma\sqrt{r_t}\,\mathrm{d}W_t ,
+$$
+avec condition de Feller $2\kappa\theta > \sigma^2$ garantissant
+$r_t > 0$. L'espérance et la variance conditionnelles sont connues en forme
+fermée, ce qui facilite la calibration :
+$$
+\mathbb{E}[r_t \mid r_0] = r_0 e^{-\kappa t} + \theta\left(1 - e^{-\kappa t}\right).
+$$
+
+## Données
+
+Surface de volatilité implicite et courbe de taux de marché fournies dans
+l'énoncé du projet, complétées par les taux Euribor courants pour la
+calibration du modèle CIR.
+
+## Implémentation
+
+Trois briques indépendantes et réutilisables :
+
+1. une **architecture de calibration** séparant la fonction objectif, le
+   pricer semi-analytique et l'optimiseur, ce qui permet de changer de modèle
+   sans réécrire la boucle ;
+2. un **pricer Monte-Carlo** générique pour les payoffs path-dependent ;
+3. un **simulateur CIR** exploité sur 100 000 trajectoires.
+
+## Résultats
+
+Prix calibrés, paramètres estimés, prix d'options asiatiques sous Heston et
+sous Bates, et distribution simulée du taux Euribor 12 mois sont présentés dans
+le notebook et le rapport associé.
+
+[Consulter le notebook complet](WQU/Stochastic Modeling 1.ipynb)
+
+[Télécharger le rapport (PDF)](WQU/reports/Stochatic Modeling 1.pdf)
+
+Travaux complémentaires du même cursus :
+
+- [Pricing sous Heston — européennes, américaines, up-and-in call](WQU/Derivative Pricing 2.ipynb)
+  ([rapport PDF](WQU/reports/Derivative Pricing 2.pdf))
+- [Méthodes numériques de pricing de dérivés](WQU/Derivative Pricing 1.ipynb)
+  ([rapport PDF](WQU/reports/Derivative Pricing 1.pdf))
+
+## Interprétation
+
+La comparaison Heston / Bates sur un même instrument isole la contribution
+propre des sauts. À maturité courte, l'écart de prix entre les deux modèles est
+l'expression directe de la masse de probabilité que la diffusion seule ne sait
+pas créer : ignorer les sauts revient à vendre trop bon marché la protection
+contre un mouvement brutal.
+
+Pour le volet taux, la simulation CIR fournit la distribution complète du taux
+à un an, et non un simple point central. C'est cette distribution — et
+notamment ses quantiles bas, contraints par la positivité du processus — qui
+détermine la valeur d'un produit structuré indexé sur l'Euribor.
+
+## Limites et risque de modèle
+
+- **Identifiabilité.** Volatilité stochastique et sauts expliquent tous deux
+  l'excès de kurtosis ; leur séparation est instable si la surface de
+  volatilité ne couvre pas suffisamment de maturités courtes.
+- **Erreur Monte-Carlo.** Le prix de l'option asiatique est entaché d'une
+  erreur d'échantillonnage en $O(1/\sqrt{M})$ ; l'usage de variables de
+  contrôle réduirait cette variance.
+- **Calibration risque-neutre.** Les paramètres obtenus sont valides pour la
+  valorisation, pas pour une projection historique.
+- **CIR.** Le modèle à un facteur ne reproduit pas les déformations de pente et
+  de courbure de la courbe des taux.
+- **Stabilité temporelle.** Les paramètres calibrés dérivent d'un jour à
+  l'autre, ce qui impose une recalibration régulière et crée un risque de
+  modèle sur le *hedging*.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [NumPy]{.qf-tag} [SciPy]{.qf-tag} [pandas]{.qf-tag}
+[Matplotlib]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook complet](WQU/Stochastic Modeling 1.ipynb)
+- [Télécharger le rapport (PDF)](WQU/reports/Stochatic Modeling 1.pdf)
+- [Consulter le dépôt GitHub](https://github.com/usenameFD/Quantitative-finance-Projects)
+- Projet connexe : [Calibration du modèle de Heston par filtrage particulaire](calibration-heston-filtrage.qmd)
+- Projet connexe : [Bibliothèque de pricing et application Dash](bibliotheque-pricing-dash.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

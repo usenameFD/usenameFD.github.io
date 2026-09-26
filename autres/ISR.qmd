@@ -1,7 +1,10 @@
 ---
-title: "Investissement Socialement Responsable (ISR): De quoi parle-t-on ?"
+title: "Investissement socialement responsable : de quoi parle-t-on ?"
+description: "Définition de l'ISR, place des critères ESG dans la décision d'investissement et présentation des principales approches de gestion responsable."
 sidebar: auto
 date: "2024-06-28"
+categories:
+  - Finance durable
 ---
 
 ## Qu'est-ce-que l'Investissement Socialement Responsable ?

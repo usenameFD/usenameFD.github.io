@@ -1,0 +1,244 @@
+---
+title: "Code et dépôts publics"
+subtitle: "Sélection de dépôts GitHub liés aux projets du portfolio"
+pagetitle: "Code et dépôts publics — Franck Deba"
+description-meta: >-
+  Dépôts GitHub publics de Franck Deba en finance quantitative : gestion des
+  risques extrêmes, pricing et gestion d'actifs, courbes de taux, projets
+  WorldQuant University, deep learning et NLP.
+toc: true
+toc-location: right
+---
+
+Cette page présente une **sélection** de mes dépôts publics, retenus pour leur
+pertinence quantitative et leur niveau de documentation. Elle ne reproduit pas
+l'intégralité de mon compte GitHub.
+
+::: {.callout-note collapse="true"}
+## Critères de sélection
+
+Un dépôt figure ici s'il remplit les trois conditions suivantes : il relève de
+la finance quantitative, de la modélisation statistique ou de la donnée
+appliquée ; il est suffisamment documenté pour être lu sans contexte
+supplémentaire ; et il correspond à un travail dont je suis l'auteur ou le
+co-auteur. Sont exclus les *forks* sans contribution substantielle, les
+exercices de cours isolés et les dépôts sans documentation.
+
+Les métadonnées affichées (nom, description, langage, licence) ont été
+vérifiées manuellement. Aucun appel à l'API GitHub n'est effectué lors de la
+consultation ou de la génération de ce site.
+:::
+
+::: {.qf-grid .qf-grid-2}
+
+::: {.qf-card}
+### STATISTIQUES-RISQUES-EXTREMES
+
+Application Dash de gestion des risques extrêmes sur actions et indices cotés.
+Calibration de la VaR (historique, gaussienne, skew-Student, valeurs extrêmes),
+Expected Shortfall et protocole de backtesting avec recalibrage dynamique.
+
+::: {.qf-tags}
+[Python]{.qf-tag} [Dash]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/STATISTIQUES-RISQUES-EXTREMES) ·
+[Projet associé](../projects/value-at-risk.qmd)
+
+::: {.qf-card-meta}
+Risque de marché
+:::
+:::
+
+::: {.qf-card}
+### Risk-Management
+
+Modélisation et gestion des risques en finance : mesures de risque extrêmes,
+pricing obligataire et construction de portefeuilles liquides. Contient les
+modules `var.py` et `skew_student.py` utilisés dans mes travaux sur les copules
+et la liquidité.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [Python]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Risk-Management) ·
+[CreditVaR par copules](../projects/creditvar-copules.qmd) ·
+[Asset management](../projects/risques-asset-management.qmd)
+
+::: {.qf-card-meta}
+Risque de marché · Crédit · Liquidité
+:::
+:::
+
+::: {.qf-card}
+### Asset-management-Dash
+
+Pricing d'options et de produits dérivés sous Black-Scholes et optimisation de
+portefeuille selon Markowitz, exposés dans une application Dash. Extraction de
+la courbe zéro-coupon de la Banque de France, pricing d'obligations, de swaps
+et de futures.
+
+::: {.qf-tags}
+[Python]{.qf-tag} [Dash]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Asset-management-Dash) ·
+[Projet associé](../projects/bibliotheque-pricing-dash.qmd)
+
+::: {.qf-card-meta}
+Dérivés · Taux · Allocation
+:::
+:::
+
+::: {.qf-card}
+### Mod-les-de-courbes-de-taux
+
+Reconstruction d'une courbe zéro-coupon par bootstrapping et interpolation
+spline, construction des taux forward, valorisation de caplets et de swaptions,
+et calibration d'un modèle de Hull-White dérivé du cadre HJM.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [Python]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Mod-les-de-courbes-de-taux) ·
+[Projet associé](../projects/courbes-de-taux.qmd)
+
+::: {.qf-card-meta}
+Taux & fixed income
+:::
+:::
+
+::: {.qf-card}
+### Quantitative-finance-Projects
+
+Projets de finance quantitative réalisés dans le cadre du cursus WorldQuant
+University : pricing de dérivés, modélisation stochastique, machine learning
+appliqué à la finance et économétrie financière, avec les rapports associés.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [Python]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Quantitative-finance-Projects) ·
+[Options exotiques](../projects/options-exotiques-bates-heston.qmd) ·
+[Économétrie financière](../projects/econometrie-financiere-vecm.qmd)
+
+::: {.qf-card-meta}
+Dérivés · Économétrie
+:::
+:::
+
+::: {.qf-card}
+### Deep-Learning-NLP
+
+Travaux d'apprentissage profond et de traitement du langage naturel :
+classification de séquences par GRU bidirectionnel et mécanisme d'attention,
+vision, et pipeline d'extraction d'entités nommées sur flux d'actualités.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [PyTorch]{.qf-tag} [spaCy]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Deep-Learning-NLP) ·
+[Projet associé](../projects/deep-learning-nlp.qmd)
+
+::: {.qf-card-meta}
+Machine learning · NLP
+:::
+:::
+
+::: {.qf-card}
+### Stock-Price-Prediction
+
+Prévision du cours d'une action combinant modélisation FARIMA-GARCH en R,
+réseaux LSTM et Prophet, avec intégration d'indicateurs macroéconomiques et de
+sentiment issus de la base FRED.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [R]{.qf-tag} [Python]{.qf-tag} [MIT]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Stock-Price-Prediction)
+
+::: {.qf-card-meta}
+Séries temporelles · Machine learning
+:::
+:::
+
+::: {.qf-card}
+### Asset-management
+
+Travaux complémentaires de pricing et de gestion d'actifs.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [Python]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Asset-management)
+
+::: {.qf-card-meta}
+Gestion d'actifs
+:::
+:::
+
+::: {.qf-card}
+### Numerical_methods
+
+Implémentations de méthodes numériques utilisées en finance quantitative.
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [Python]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Numerical_methods)
+
+::: {.qf-card-meta}
+Méthodes numériques
+:::
+:::
+
+::: {.qf-card}
+### Conjecture-de-Collatz
+
+Reformulation analytique de la conjecture de Collatz par les chaînes de Markov
+et la caractérisation des lois stationnaires.
+
+::: {.qf-tags}
+[Mathématiques]{.qf-tag} [Chaînes de Markov]{.qf-tag}
+:::
+
+[Dépôt GitHub](https://github.com/usenameFD/Conjecture-de-Collatz)
+
+::: {.qf-card-meta}
+Probabilités
+:::
+:::
+
+:::
+
+## Code hébergé sur ce dépôt
+
+Certains modules ne font pas l'objet d'un dépôt dédié et sont versionnés
+directement avec ce site :
+
+| Module | Contenu |
+|---|---|
+| [`projects/VaR/functions.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/VaR/functions.py) | estimateurs de VaR et d'ES, ajustements GEV et GPD, backtesting |
+| [`projects/Copulus/var.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Copulus/var.py) | classe `Var` : estimation, valeurs extrêmes, VaR dynamique |
+| [`projects/Calibration/heston.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Calibration/heston.py) | pricing Heston, filtre bootstrap et auxiliary particle filter |
+| [`projects/Options/`](https://github.com/usenameFD/usenameFD.github.io/tree/main/projects/Options) | bibliothèque de pricing d'options et de grecques |
+| [`projects/BondSwap/`](https://github.com/usenameFD/usenameFD.github.io/tree/main/projects/BondSwap) | courbe sans risque, obligations, FRA et swaps |
+| [`projects/Climate/Notebooks/`](https://github.com/usenameFD/usenameFD.github.io/tree/main/projects/Climate/Notebooks) | traitement géospatial et critère HSIC |
+
+## Projets collaboratifs
+
+- [Asset-Pricing-and-Management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
+  — dépôt du projet collectif de pricing et de gestion d'actifs auquel se
+  rattache l'application Dash.
+
+---
+
+Le compte complet reste consultable sur
+[github.com/usenameFD](https://github.com/usenameFD).

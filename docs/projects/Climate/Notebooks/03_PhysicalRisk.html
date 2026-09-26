@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Donnée de catastrophes naturelles reconnues – Franck Deba - Quantitative Research</title>
+<title>Donnée de catastrophes naturelles reconnues – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -68,22 +71,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../img/logo-bg.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -93,30 +95,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
 
-<link rel="stylesheet" href="../../../styles.css">
+<meta property="og:title" content="Donnée de catastrophes naturelles reconnues – Franck Deba">
+<meta property="og:image" content="https://usenameFD.github.io/projects/Climate/Notebooks/03_PhysicalRisk_files/figure-html/cell-22-output-1.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="822">
+<meta property="og:image:width" content="864">
+<meta name="twitter:title" content="Donnée de catastrophes naturelles reconnues – Franck Deba">
+<meta name="twitter:image" content="https://usenameFD.github.io/projects/Climate/Notebooks/03_PhysicalRisk_files/figure-html/cell-22-output-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="822">
+<meta name="twitter:image-width" content="864">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -286,15 +300,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="../../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="../../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -304,21 +318,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../index_stat.html"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="../../../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../index_gdr.html"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="../../../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../../../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../../../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -326,8 +361,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
@@ -338,10 +374,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#discrétisation" id="toc-discrétisation" class="nav-link" data-scroll-target="#discrétisation">Discrétisation</a></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -382,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pprint</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> myFunctions <span class="im">import</span> <span class="op">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> myFunctions <span class="im">import</span> <span class="op">*</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="1b52345c-4dcc-4528-b53d-e008e24bc939" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:44.355454Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:44.353696Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:45.073357Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:45.071973Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:44.355366Z&quot;}}" data-execution_count="2">
@@ -393,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>risque <span class="op">=</span> pd.read_csv(<span class="st">"../Data/risq_gaspar.csv"</span>, sep <span class="op">=</span> <span class="st">";"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># catnat reconnues</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>catnat <span class="op">=</span> pd.read_csv(<span class="st">"../Data/catnat_gaspar.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>catnat <span class="op">=</span> pd.read_csv(<span class="st">"../Data/catnat_gaspar.csv"</span>, sep<span class="op">=</span><span class="st">";"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_42680\2434091482.py:6: DtypeWarning: Columns (3) have mixed types. Specify dtype option on import or set low_memory=False.
@@ -429,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Phénomène atmosphérique"</span>,</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Feu de forêt'</span>,</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">"Inondation"</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Mouvement de Terrain'</span> ])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                                         <span class="st">'Mouvement de Terrain'</span> ])]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="b53ab265-664a-4c56-b30a-35fa34d97d23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:45.798764Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:45.797079Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:46.105047Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:46.102228Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:45.798659Z&quot;}}" data-execution_count="4">
@@ -439,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>catnat.dat_fin <span class="op">=</span> pd.to_datetime(catnat.dat_fin)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>catnat.dat_pub_arrete <span class="op">=</span> pd.to_datetime(catnat.dat_pub_arrete)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>catnat.dat_pub_jo <span class="op">=</span> pd.to_datetime(catnat.dat_pub_jo)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>catnat.dat_maj <span class="op">=</span> pd.to_datetime(catnat.dat_maj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>catnat.dat_maj <span class="op">=</span> pd.to_datetime(catnat.dat_maj)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="433da8bf-0b61-47d3-81f7-3e8f1b322ce3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:46.400259Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:46.399803Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:46.455582Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:46.454021Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:46.400222Z&quot;}}" data-execution_count="5">
@@ -462,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvements de terrain différentiels consécutifs à la sécheresse et à la réhydratation des sols'</span>,</span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Glissement et Eboulement Rocheux'</span>, </span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">'Mouvements de terrains (hors sécheresse géotechnique)'</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                                 ]), <span class="st">"lib_risque_jo"</span>] <span class="op">=</span> <span class="st">'Mouvement de Terrain'</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="180bddb0-b159-4110-a0e4-233f4a9a161f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:47.594719Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:47.592988Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:47.648519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:47.647260Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:47.594627Z&quot;}}" data-execution_count="6">
@@ -472,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>catnat_flood <span class="op">=</span> catnat[catnat.lib_risque_jo.isin([<span class="st">'Inondation'</span>])]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>catnat_flood.rename(columns <span class="op">=</span> {<span class="st">'lib_risque_jo'</span>: <span class="st">'lib_risque'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>catnat_flood.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>catnat_flood.head()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_42680\3926924251.py:3: SettingWithCopyWarning: 
@@ -578,7 +610,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"duree"</span>] <span class="op">=</span> catnat_flood.dat_fin <span class="op">-</span> catnat_flood.dat_deb</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"dat_fin"</span>] <span class="op">=</span> catnat_flood.dat_fin.dt.year </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"dat_deb"</span>] <span class="op">=</span> catnat_flood.dat_deb.dt.year </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>catnat_flood[<span class="st">"dat_deb"</span>] <span class="op">=</span> catnat_flood.dat_deb.dt.year </span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_42680\3439210746.py:1: SettingWithCopyWarning: 
@@ -604,7 +636,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div id="65a7d673-4e3c-4798-b398-d6cc6af761f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:20:50.140185Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:20:50.138238Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:20:50.279195Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:20:50.277703Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:20:50.140100Z&quot;}}" data-execution_count="8">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>catnat_flood.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>catnat_flood.info()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -638,13 +670,13 @@ memory usage: 12.4+ MB</code></pre>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> Path(<span class="st">"../Carte France/communes-france-avec-polygon-2025.json"</span>)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Communes de france</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>geo_data <span class="op">=</span> json.loads(file_path.read_text(encoding<span class="op">=</span><span class="st">'utf-8'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>geo_data <span class="op">=</span> json.loads(file_path.read_text(encoding<span class="op">=</span><span class="st">'utf-8'</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="54c90ec8-8057-40b8-bd1f-dba18a1cc266" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.859529Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.859143Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.867260Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.866182Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.859492Z&quot;}}" data-execution_count="10">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>geo_data.keys()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>geo_data.keys()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>dict_keys(['metadata', 'colonnes', 'data'])</code></pre>
@@ -653,7 +685,7 @@ memory usage: 12.4+ MB</code></pre>
 <div id="34061364-6cbb-4dec-b1f2-b6c314dcdaeb" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.885039Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.884593Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.898132Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.896928Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.884985Z&quot;}}" data-execution_count="11">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(geo_data[<span class="st">'metadata'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(geo_data[<span class="st">'metadata'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'Description': 'Données principales des communes / villes en France avec les '
@@ -665,7 +697,7 @@ memory usage: 12.4+ MB</code></pre>
 <div id="1a9e0077-0354-4db5-92af-ad3d8e5e5b54" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.900069Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.899752Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:02.927274Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:02.924018Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.900043Z&quot;}}" data-execution_count="12">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(geo_data[<span class="st">'colonnes'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pprint.pprint(geo_data[<span class="st">'colonnes'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'academie_code': "Code de l'académie de rattachement des écoles de la commune",
@@ -744,7 +776,7 @@ memory usage: 12.4+ MB</code></pre>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">'code_postal'</span>,</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">'latitude_centre'</span>,</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">'longitude_centre'</span>,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">'polygone'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">'polygone'</span>]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="f7da63a9-14e4-4680-94f1-4f713c453eab" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:02.942926Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:02.942519Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:03.706882Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:03.705699Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:02.942887Z&quot;}}" data-execution_count="14">
@@ -757,13 +789,13 @@ memory usage: 12.4+ MB</code></pre>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>geo_data_commune <span class="op">=</span> gpd.GeoDataFrame(geo_data_commune,</span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                                   geometry<span class="op">=</span>gpd.points_from_xy(geo_data_commune[<span class="st">'latitude_centre'</span>], geo_data_commune[<span class="st">'longitude_centre'</span>]),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                                   crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>                                   crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="f2802bd4-1e1f-4fec-a823-1e1caafd2df1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:03.708342Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:03.708061Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:03.717822Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:03.716970Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:03.708318Z&quot;}}" data-execution_count="15">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>geo_data_commune.loc[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>geo_data_commune.loc[<span class="dv">1</span>]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>code_insee                                                      01002
@@ -789,13 +821,13 @@ Name: 1, dtype: object</code></pre>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        geo_data_commune.loc[i,<span class="st">'polygone'</span>] <span class="op">=</span> Polygon(polygon)</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        geo_data_commune.loc[i,<span class="st">'polygone'</span>] <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        empty_polygon.append(i)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        empty_polygon.append(i)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="fe9ea936-a6e2-4d4e-8f05-d653a0697e52" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:14:18.874475Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:14:18.873764Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:14:18.880082Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:14:18.879429Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:14:18.874444Z&quot;}}" data-execution_count="17">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(empty_polygon)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(empty_polygon)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>107</code></pre>
@@ -811,7 +843,7 @@ Name: 1, dtype: object</code></pre>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">'reg_nom'</span>:<span class="st">'lib_reg'</span>,</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">'geometry'</span>: <span class="st">'centre_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>carte_france.rename(columns <span class="op">=</span> {<span class="st">'insee'</span>: <span class="st">'cod_commune'</span>, <span class="st">'nom'</span>: <span class="st">'lib_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>carte_france.rename(columns <span class="op">=</span> {<span class="st">'insee'</span>: <span class="st">'cod_commune'</span>, <span class="st">'nom'</span>: <span class="st">'lib_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="b2e7181f-d5a5-41fd-ac09-7620d4c9eb14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:17:48.989767Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:17:48.988328Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:17:49.001070Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:17:48.998561Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:17:48.989686Z&quot;}}" data-execution_count="19">
@@ -823,7 +855,7 @@ Name: 1, dtype: object</code></pre>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a> <span class="st">'cod_dep'</span>,</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a> <span class="st">'lib_dep'</span>,</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a> <span class="st">'code_postal'</span>,</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a> <span class="st">'centre_commune'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a> <span class="st">'centre_commune'</span>]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="adbcc29a-f5bf-4ae3-81a5-acd49539979b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:17:50.340097Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:17:50.338453Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:17:50.592086Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:17:50.589869Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:17:50.339978Z&quot;}}" data-execution_count="20">
@@ -834,13 +866,13 @@ Name: 1, dtype: object</code></pre>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>dom_tom_com <span class="op">=</span> [<span class="st">'971'</span>, <span class="st">'972'</span>, <span class="st">'973'</span>, <span class="st">'974'</span>, <span class="st">'976'</span>, <span class="co"># DOM</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'975'</span>, <span class="st">'977'</span>, <span class="st">'978'</span>, <span class="st">'986'</span>, <span class="st">'987'</span>, <span class="st">'988'</span>, <span class="st">'984'</span>, <span class="st">'989'</span>] <span class="co"># TOM/ COM </span></span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>hexagone <span class="op">=</span> carte_france[<span class="op">~</span>carte_france.cod_dep.isin(dom_tom_com)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>hexagone <span class="op">=</span> carte_france[<span class="op">~</span>carte_france.cod_dep.isin(dom_tom_com)]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="a4354e3d-8f7d-41c7-88fd-eb8dce98f10c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T15:25:15.355867Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T15:25:15.354306Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T15:25:27.588442Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T15:25:27.587243Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T15:25:15.355790Z&quot;}}" data-execution_count="21">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hexagone.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hexagone.plot()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -869,7 +901,7 @@ Name: 1, dtype: object</code></pre>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>data_climat_rcp26.columns <span class="op">=</span> header</span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> pd.concat([data_climat_ref, data_climat_rcp26])</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
@@ -969,7 +1001,7 @@ Name: 1, dtype: object</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> gpd.GeoDataFrame(data_climat,</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                                  geometry<span class="op">=</span>gpd.points_from_xy(data_climat[<span class="st">'latitude'</span>], data_climat[<span class="st">'longitude'</span>]),</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                                   crs<span class="op">=</span><span class="st">"EPSG:4326"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>data_climat.rename(columns<span class="op">=</span>{<span class="st">'geometry'</span>:<span class="st">'centre_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>data_climat.rename(columns<span class="op">=</span>{<span class="st">'geometry'</span>:<span class="st">'centre_commune'</span>}, inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="142a2e36-52e1-48c4-a9df-3a694572f79f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:26:55.914089Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:26:55.913204Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:26:56.279461Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:26:56.278184Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:26:55.914019Z&quot;}}" data-execution_count="24">
@@ -980,7 +1012,7 @@ Name: 1, dtype: object</code></pre>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>carte_france.set_geometry(<span class="st">'centre_commune'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> gpd.sjoin_nearest(data_climat, carte_france, how<span class="op">=</span><span class="st">'left'</span>, max_distance<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>D:\deb\MyWebSite\franckdeba-ws\.venv\Lib\site-packages\geopandas\array.py:408: UserWarning: Geometry is in a geographic CRS. Results from 'sjoin_nearest' are likely incorrect. Use 'GeoSeries.to_crs()' to re-project geometries to a projected CRS before this operation.
@@ -1164,7 +1196,7 @@ Name: 1, dtype: object</code></pre>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">'cod_dep'</span>,</span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">'lib_dep'</span>,</span>
 <span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">'code_postal'</span>,</span>
-<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>           <span class="st">'geometry'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>           <span class="st">'geometry'</span>]]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1173,7 +1205,7 @@ Name: 1, dtype: object</code></pre>
 <div id="b271dbcb-0cb8-4c4f-bb61-204bf65e3d56" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:19:05.253233Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:19:05.251854Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:19:07.462063Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:19:07.460514Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:19:05.253158Z&quot;}}" data-execution_count="26">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data_climat.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data_climat.plot()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1187,7 +1219,7 @@ Name: 1, dtype: object</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data_climat.set_geometry(<span class="st">'geometry'</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data_climat.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data_climat.plot()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1200,13 +1232,13 @@ Name: 1, dtype: object</code></pre>
 <div id="ebc31ad8-ae9a-414a-ab66-313c0a70d2e8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:27:03.619248Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:27:03.618414Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:27:03.745954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:27:03.744774Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:27:03.619159Z&quot;}}" data-execution_count="28">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> data_climat.merge(catnat_flood[[<span class="st">'cod_commune'</span>, <span class="st">'dat_deb'</span>, <span class="st">'dat_fin'</span>, <span class="st">'duree'</span>]], on <span class="op">=</span> [<span class="st">"dat_deb"</span>, <span class="st">"cod_commune"</span>], how<span class="op">=</span><span class="st">'left'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data_climat <span class="op">=</span> data_climat.merge(catnat_flood[[<span class="st">'cod_commune'</span>, <span class="st">'dat_deb'</span>, <span class="st">'dat_fin'</span>, <span class="st">'duree'</span>]], on <span class="op">=</span> [<span class="st">"dat_deb"</span>, <span class="st">"cod_commune"</span>], how<span class="op">=</span><span class="st">'left'</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="e85eb42b-3310-401a-8a8a-bd440a8cce63" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:27:05.024830Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:27:05.023985Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:27:05.191709Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:27:05.190714Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:27:05.024759Z&quot;}}" data-execution_count="29">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data_climat.head()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <div>
@@ -1352,7 +1384,7 @@ Name: 1, dtype: object</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data_climat[<span class="st">'cat_nat'</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data_climat.loc[data_climat.dat_fin.isna(), <span class="st">'cat_nat'</span>] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data_climat.loc[data_climat.dat_fin.isna(), <span class="st">'cat_nat'</span>] <span class="op">=</span> <span class="dv">0</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -1364,7 +1396,7 @@ Name: 1, dtype: object</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data_climat[[<span class="st">'contexte'</span>, <span class="st">'dat_deb'</span>, <span class="st">'TAV'</span>, <span class="st">'PN20MM'</span>, <span class="st">'PQ90'</span>, <span class="st">'PQ99'</span>, <span class="st">'RR99'</span>,<span class="st">'cat_nat'</span>]]</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data_rcp <span class="op">=</span> data[data.contexte <span class="op">!=</span> <span class="st">'REF'</span>] </span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>train_test_oot <span class="op">=</span> data[data.contexte <span class="op">==</span> <span class="st">'REF'</span>]</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>train_test_oot.drop(columns<span class="op">=</span>[<span class="st">'contexte'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>train_test_oot.drop(columns<span class="op">=</span>[<span class="st">'contexte'</span>], inplace<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\DEBA\AppData\Local\Temp\ipykernel_42680\514289987.py:4: SettingWithCopyWarning: 
@@ -1377,7 +1409,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div id="995f8e53-1b16-431d-aae7-4e2ca056d9ac" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:39:28.432284Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:39:28.430166Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:39:28.475779Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:39:28.474112Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:39:28.432160Z&quot;}}" data-execution_count="32">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>train_test_oot.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>train_test_oot.describe()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <div>
@@ -1491,7 +1523,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>data_oot <span class="op">=</span> train_test_oot[train_test_oot.dat_deb <span class="op">&gt;</span> <span class="dv">2000</span>]</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>train_test <span class="op">=</span> train_test_oot[train_test_oot.dat_deb <span class="op">&lt;=</span> <span class="dv">2000</span>]</span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>data_train, data_test <span class="op">=</span> sampleData(train_test, [<span class="st">'dat_deb'</span>, <span class="st">'cat_nat'</span>], frac <span class="op">=</span> <span class="fl">.2</span>, rand_state<span class="op">=</span><span class="dv">49</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>data_train, data_test <span class="op">=</span> sampleData(train_test, [<span class="st">'dat_deb'</span>, <span class="st">'cat_nat'</span>], frac <span class="op">=</span> <span class="fl">.2</span>, rand_state<span class="op">=</span><span class="dv">49</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>D:\deb\MyWebSite\franckdeba-ws\projects\Climate\Notebooks\myFunctions.py:19: SettingWithCopyWarning: 
@@ -1505,7 +1537,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div id="61d3b52b-04d3-4cfd-8a1f-a6188a2f7e58" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2025-04-28T16:46:31.287664Z&quot;,&quot;iopub.status.busy&quot;:&quot;2025-04-28T16:46:31.287044Z&quot;,&quot;iopub.status.idle&quot;:&quot;2025-04-28T16:46:31.458883Z&quot;,&quot;shell.execute_reply&quot;:&quot;2025-04-28T16:46:31.457611Z&quot;,&quot;shell.execute_reply.started&quot;:&quot;2025-04-28T16:46:31.287610Z&quot;}}" data-execution_count="34">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>describe_cat(data_train[[<span class="st">'dat_deb'</span>, <span class="st">'cat_nat'</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>describe_cat(data_train[[<span class="st">'dat_deb'</span>, <span class="st">'cat_nat'</span>]])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -1553,14 +1585,14 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="df18be44" class="cell" data-execution_count="36">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 15 vs autres</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> stabilite_structurelle(data_train, <span class="st">'cat_nat'</span>, <span class="st">'dat_deb'</span>, <span class="st">"Evolution temporelle du taux de commune touchées par une catastrophe naturelle"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> stabilite_structurelle(data_train, <span class="st">'cat_nat'</span>, <span class="st">'dat_deb'</span>, <span class="st">"Evolution temporelle du taux de commune touchées par une catastrophe naturelle"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1586,7 +1618,7 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1625,7 +1657,7 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Feature'</span>)</span>
 <span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Metric'</span>)</span>
 <span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1639,13 +1671,13 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Var significatives</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>results_df[<span class="st">'significant'</span>] <span class="op">=</span> results_df[<span class="st">'p_value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>results_df[<span class="st">'significant'</span>] <span class="op">=</span> results_df[<span class="st">'p_value'</span>] <span class="op">&lt;</span> <span class="fl">0.05</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="9f610ad7" class="cell" data-execution_count="40">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>results_df[results_df[<span class="st">'significant'</span>]].sort_values(<span class="st">'stat'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>results_df[results_df[<span class="st">'significant'</span>]].sort_values(<span class="st">'stat'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <div>
@@ -1714,7 +1746,7 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.5</span> <span class="co"># Transparency of the fill</span></span>
 <span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1848,13 +1880,13 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <span id="cb55-91"><a href="#cb55-91" aria-hidden="true" tabindex="-1"></a>            fig.savefig(output_path, bbox_inches<span class="op">=</span><span class="st">'tight'</span>, dpi<span class="op">=</span><span class="dv">300</span>)</span>
 <span id="cb55-92"><a href="#cb55-92" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Saved plot for HRC_</span><span class="sc">{</span>cl_chr<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb55-93"><a href="#cb55-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-94"><a href="#cb55-94" aria-hidden="true" tabindex="-1"></a>        plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb55-94"><a href="#cb55-94" aria-hidden="true" tabindex="-1"></a>        plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="540a4593" class="cell" data-execution_count="43">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>col_num</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>col_num</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>['TAV', 'PN20MM', 'PQ90', 'PQ99', 'RR99']</code></pre>
@@ -1881,7 +1913,7 @@ _._._._._._._._._._._._._._._._._._._.__._._</code></pre>
 <span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Relative Deviation</span></span>
 <span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(resultats)</span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#taux_defaut(df, feat)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">#taux_defaut(df, feat)</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2225,26 +2257,7 @@ CHR
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
-    <h1 class="hero-title"></h1>
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
-  
-</main>
-
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -2283,12 +2296,12 @@ CHR
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -2331,7 +2344,7 @@ CHR
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2345,6 +2358,11 @@ CHR
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -2659,8 +2677,67 @@ CHR
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

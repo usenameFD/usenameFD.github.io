@@ -1,40 +1,162 @@
 project:
   type: website
   output-dir: docs
+  preview:
+    port: 4321
+    browser: false
+  render:
+    # --- Presentation layer -------------------------------------------------
+    - "index.qmd"
+    - "about.qmd"
+    - "cv.qmd"
+    - "contact.qmd"
+    - "404.qmd"
+    - "index_gdr.qmd"
+    - "index_stat.qmd"
+    - "projects/index.qmd"
+    - "projects/*.qmd"
+    - "notes/*.qmd"
+    - "repositories/*.qmd"
+    # --- Research & computation layer (published from stored outputs only) --
+    - "projects/**/*.ipynb"
+    - "projects/WQU/*.qmd"
+    - "00_Assets/markets_intro.qmd"
+    - "2A/**/*.qmd"
+    - "3A/**/*.qmd"
+    - "autres/*.qmd"
+    # --- Never published ----------------------------------------------------
+    - "!Brouillon.ipynb"
+    - "!00_Assets/markets_intro.ipynb"
+    - "!templates/"
+  resources:
+    - "assets/**"
+    - "img/**"
+    - "CV/*.pdf"
+    - "3A/rapports/projet_EVT.pdf"
+    - "3A/rapports/Copulas.pdf"
+    - "3A/rapports/rapport_series_temporelles.pdf"
+    - "projects/WQU/reports/*.pdf"
+    - "2A/App_sup/arbres_&_forets_aleatoires.html"
+    # Internship / third-party reports kept in the repo but not republished.
+    - "!3A/rapports/PFE_EY.pdf"
+
+# ---------------------------------------------------------------------------
+# EXECUTION SAFETY
+# Nothing on this site is recomputed by a build. Notebooks are published from
+# the outputs already stored inside the .ipynb files, and executable code in
+# .qmd documents is displayed as source only. Do not set `enabled: true`.
+# ---------------------------------------------------------------------------
+execute:
+  enabled: false
+
+lang: fr
 
 website:
-  title: "Franck Deba - Quantitative Research"
+  title: "Franck Deba"
+  site-url: "https://usenameFD.github.io"
+  repo-url: "https://github.com/usenameFD/usenameFD.github.io"
+  description: >-
+    Portfolio quantitatif de Franck Deba : risque de marché, pricing de dérivés,
+    courbes de taux, gestion de portefeuille, risque climatique et machine
+    learning appliqué à la finance.
   favicon: img/logo-bg.png
   back-to-top-navigation: true
+  page-navigation: true
+  open-graph: true
+  twitter-card:
+    card-style: summary_large_image
+
+  search:
+    location: navbar
+    type: overlay
+    copy-button: true
 
   navbar:
     logo: img/logo-bg.png
+    logo-alt: "Logo de Franck Deba"
+    title: "Franck Deba"
+    collapse-below: lg
     left:
       - href: index.qmd
         text: Accueil
-      - href: index_stat.qmd
-        text: Modélisation Stat.
-      - href: index_gdr.qmd
-        text: Gestion des Risques
-      - href: about.qmd
-        text: À propos
+      - href: projects/index.qmd
+        text: Projets
+      - href: notes/index.qmd
+        text: Notes & recherche
+      - href: repositories/index.qmd
+        text: Code
+      - text: Profil
+        menu:
+          - href: about.qmd
+            text: À propos
+          - href: cv.qmd
+            text: CV
+          - href: contact.qmd
+            text: Contact
+    tools:
+      - icon: github
+        href: https://github.com/usenameFD
+        text: "Profil GitHub de Franck Deba"
+      - icon: linkedin
+        href: https://www.linkedin.com/in/deba-franck
+        text: "Profil LinkedIn de Franck Deba"
 
-execute:
-  enabled: false
-  except:
-    - "**/*.ipynb"
+  page-footer:
+    border: true
+    left: |
+      © 2026 Franck Deba — Quantitative Research
+    center:
+      - text: "Projets"
+        href: projects/index.qmd
+      - text: "Notes & recherche"
+        href: notes/index.qmd
+      - text: "Code"
+        href: repositories/index.qmd
+      - text: "CV"
+        href: cv.qmd
+      - text: "Contact"
+        href: contact.qmd
+    right:
+      - icon: github
+        href: https://github.com/usenameFD
+        aria-label: "GitHub"
+      - icon: linkedin
+        href: https://www.linkedin.com/in/deba-franck
+        aria-label: "LinkedIn"
+      - icon: envelope
+        href: "mailto:debafranck@gmail.com"
+        aria-label: "Email"
 
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
-    css: styles.css
-    include-after-body:
-      - _layouts/risk-management.html
+      light: [cosmo, styles/theme.scss]
+      dark: [darkly, styles/theme.scss, styles/dark.scss]
+    include-in-header:
+      - text: |
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500&display=swap">
     toc: true
-    toc-location: left
+    toc-location: right
+    toc-depth: 3
     toc-title: "Sommaire"
+    toc-expand: 2
+    anchor-sections: true
+    smooth-scroll: true
     code-fold: true
     code-summary: "Afficher le code"
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
     df-print: paged
+    fig-align: center
+    fig-responsive: true
+    link-external-newwindow: true
+    link-external-icon: false
+    citations-hover: true
+    footnotes-hover: true
+    grid:
+      sidebar-width: 280px
+      body-width: 980px
+      margin-width: 260px

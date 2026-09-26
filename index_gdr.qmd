@@ -1,264 +1,203 @@
 ---
-title: "Gestion des Risques"
-layout: risk-management
+title: "Parcours — Gestion des risques"
+subtitle: "Du bilan d'entreprise aux mesures de risque et à la calibration de modèles"
+pagetitle: "Parcours gestion des risques — Franck Deba"
+description-meta: >-
+  Parcours guidé en gestion des risques : analyse financière, réglementation
+  prudentielle, Value-at-Risk, risque climatique, calibration de modèles
+  stochastiques, asset management et finance durable.
+toc: true
+toc-location: right
 ---
 
-# Gestion des risques
+Ce parcours propose une lecture guidée des contenus liés au **risk
+management**, organisée selon les principaux piliers méthodologiques de la
+discipline. Chaque entrée renvoie soit vers une note théorique, soit vers une
+fiche projet détaillée.
 
-Cette section rassemble l’ensemble des ressources liées au **Risk Management** : analyse financière, risques de marché, risques de crédit, risques climatiques, calibration de modèles stochastiques, asset management, asset pricing et travaux académiques.  
-Les contenus sont structurés selon les principaux piliers méthodologiques de la discipline.
+Pour une liste complète et filtrable, voir la [page Projets](projects/index.qmd)
+et la page [Notes & recherche](notes/index.qmd).
 
----
+## 1. Analyse financière
 
-# 1. Analyse financière  
-## 1.1 Concepts fondamentaux
+::: {.qf-grid}
+::: {.qf-card}
+### Bilan et compte de résultat
 
-::: {.card-grid}
+Lecture des états financiers et critères de santé financière.
 
-::: {.card}
-### Structure du bilan d'entreprise  
 [Accéder au document →](3A/bilan_entreprise.qmd)
 :::
 
-::: {.card}
-### Règlementation prudentielle  
-CRR2, CRD5, Solvabilité II  
+::: {.qf-card}
+### Réglementation prudentielle
+
+CRR2, CRD5 et Solvabilité II.
+
 [Accéder au document →](3A/reglementation_prudentielle.qmd)
 :::
 
+::: {.qf-card}
+### Marchés financiers
+
+Actions, obligations et produits dérivés : acteurs et mécanismes.
+
+[Accéder au document →](00_Assets/markets_intro.qmd)
+:::
 :::
 
----
+## 2. Risques financiers
 
-# 2. Risques financiers  
-Présentation des notions fondamentales liées aux risques quantifiables (marché, crédit, liquidité, opérationnel, climatique).
+### 2.1 Notions générales
 
-## 2.1 Notions générales
+::: {.qf-grid}
+::: {.qf-card}
+### Définition du risque financier
 
-::: {.card-grid}
+Risque, incertitude et typologie des risques bancaires.
 
-::: {.card}
-### Définition du risque financier  
-[Accéder →](3A/risque_def.qmd)
+[Accéder au document →](3A/risque_def.qmd)
+:::
 :::
 
+### 2.2 Mesures de risque — Value-at-Risk
+
+::: {.qf-grid}
+::: {.qf-card}
+### Théorie de la VaR
+
+Principes, hypothèses, portefeuilles linéaires et non linéaires.
+
+[Note théorique →](3A/value-at-risk/var_def.qmd)
 :::
 
-## 2.2 Mesures de Risque — Value-at-Risk (VaR)
+::: {.qf-card}
+### VaR, ES et valeurs extrêmes
 
-::: {.card-grid}
+Estimation historique, paramétrique, Monte-Carlo et TVE, avec backtesting.
 
-::: {.card}
-### Théorie de la VaR  
-Principes, hypothèses, cohérence  
-[Document théorique →](3A/value-at-risk/var_def.qmd)
+[Fiche projet →](projects/value-at-risk.qmd)
 :::
 
-::: {.card}
-### Implémentation Python  
-Historique, paramétrique, Monte Carlo  
-[Notebook →](projects/VaR/VaR.ipynb)
+::: {.qf-card}
+### CreditVaR et copules
+
+Probabilités de défaut implicites, recouvrement et dépendance de queue.
+
+[Fiche projet →](projects/creditvar-copules.qmd)
+:::
 :::
 
-::: {.card}
-### CreditVaR & Liquidité (copules)  
-[Notebook →](projects/Liquidity/AssetLiquidity.ipynb)
+## 3. Risque climatique
+
+::: {.qf-grid}
+::: {.qf-card}
+### Exposition des communes françaises
+
+Indice d'exposition, discrétisation de Jenks et cartographie.
+
+[Fiche projet →](projects/risque-climatique-communes.qmd)
+:::
 :::
 
+## 4. Calibration de modèles stochastiques
+
+### 4.1 Modèles classiques
+
+::: {.qf-grid}
+::: {.qf-card}
+### Modèle de Black-Scholes
+
+Pricing, grecques et volatilité implicite.
+
+[Accéder au document →](3A/proc_stochastique/modele_bs.qmd)
+:::
 :::
 
----
+### 4.2 Volatilité stochastique
 
-# 3. Risques climatiques  
-Approche quantitative du risque physique appliquée au territoire français.
+::: {.qf-grid}
+::: {.qf-card}
+### Modèle de Taylor — filtrage
 
-::: {.card-grid}
+Filtre de Kalman et filtrage particulaire sur la log-volatilité latente.
 
-::: {.card}
-### Exposition territoriale  
-Cartographie des catastrophes naturelles  
-[Notebook →](projects/Climate/Notebooks/02_ExpoClimatCommune.ipynb)
+[Fiche projet →](projects/volatilite-stochastique-taylor.qmd)
 :::
 
-::: {.card}
-### Modélisation prédictive  
-Inondations & aléas naturels  
-[Notebook →](projects/Climate/Notebooks/03_PhysicalRisk.ipynb)
+::: {.qf-card}
+### Modèle de Heston — filtrage
+
+Filtre bootstrap et auxiliary particle filter sur prix d'options.
+
+[Fiche projet →](projects/calibration-heston-filtrage.qmd)
+:::
 :::
 
+### 4.3 Modèles avancés
+
+::: {.qf-grid}
+::: {.qf-card}
+### Courbes de taux
+
+Courbe zéro-coupon, taux forward, caplets, swaptions et Hull-White.
+
+[Fiche projet →](projects/courbes-de-taux.qmd)
 :::
 
----
+::: {.qf-card}
+### Options exotiques
 
-# 4. Calibration de modèles stochastiques  
+Calibration Heston et Bates par la méthode de Lewis, options asiatiques, CIR.
 
-## 4.1 Modèles classiques
-
-::: {.card-grid}
-
-::: {.card}
-### Modèle de Black-Scholes  
-Calibration et volatilité  
-[Accéder →](3A/proc_stochastique/modele_bs.qmd)
+[Fiche projet →](projects/options-exotiques-bates-heston.qmd)
+:::
 :::
 
+## 5. Gestion d'actifs
+
+::: {.qf-grid}
+::: {.qf-card}
+### Risques d'un portefeuille
+
+Markowitz, stress tests, profils d'écoulement de liquidité et VaR obligataire.
+
+[Fiche projet →](projects/risques-asset-management.qmd)
 :::
 
-## 4.2 Volatilité stochastique
+::: {.qf-card}
+### Bibliothèque de pricing et Dash
 
-::: {.card-grid}
+Options, obligations, swaps et allocation dans une application interactive.
 
-::: {.card}
-### Taylor — Filtre de Kalman  
-[Document →](3A/proc_stochastique/modele_log_sv-part1.qmd)
+[Fiche projet →](projects/bibliotheque-pricing-dash.qmd)
+:::
 :::
 
-::: {.card}
-### Taylor — Filtre particulaire  
-[Document →](3A/proc_stochastique/modele_log_sv-part2.qmd)
+## 6. Finance durable
+
+::: {.qf-grid}
+::: {.qf-card}
+### Univers d'investissement ESG
+
+Exclusion normative et sectorielle, sélection best-in-class.
+
+[Fiche projet →](projects/univers-investissement-esg.qmd)
 :::
 
+::: {.qf-card}
+### Investissement socialement responsable
+
+Définition de l'ISR et approches de gestion responsable.
+
+[Accéder au document →](autres/ISR.qmd)
 :::
 
-## 4.3 Modèles avancés
+::: {.qf-card}
+### Cadre de la finance durable
 
-::: {.card-grid}
+Objectifs, indicateurs et cadres réglementaires.
 
-::: {.card}
-### Modèle de Heston  
-[Notebook complet →](projects/Calibration/HestonModel.ipynb)
+[Accéder au document →](autres/finance_durable.qmd)
 :::
-
-::: {.card}
-### Courbes de taux (ZC, OIS) — Hull-White  
-[Notebook →](projects/Yield%20Curve/Projet_courbe_taux.ipynb)
-:::
-
-::: {.card}
-### Pricing d'option exotiques 
-[Notebook complet →](projects/WQU/Stochastic%20Modeling%201.ipynb)
-:::
-
-:::
-
----
-
-# 5. Asset Management  
-
-::: {.card-grid}
-
-::: {.card}
-### Risques des portefeuilles  
-Marché, liquidité (implémentations Python)  
-[Notebook →](projects/Liquidity/AssetLiquidity.ipynb)
-:::
-
-:::
-
----
-
-# 6. Asset Pricing  
-
-::: {.card-grid}
-
-::: {.card}
-### Options & dérivés  
-[Notebook →](projects/main_options.ipynb)
-:::
-
-::: {.card}
-### Pricing avancé  
-[Derivative Pricing 1 →](projects/WQU/Derivative%20Pricing%201.ipynb)  
-[Derivative Pricing 2 →](projects/WQU/Derivative%20Pricing%202.ipynb)
-:::
-
-:::
-
----
-
-# 7. Finance durable  
-
-::: {.card-grid}
-
-::: {.card}
-### Investissement Socialement Responsable  
-[Accéder →](autres/ISR.qmd)
-:::
-
-::: {.card}
-### Finance durable  
-Indicateurs, cadres réglementaires  
-[Accéder →](autres/finance_durable.qmd)
-:::
-
-::: {.card}
-### Corrélations Spearman vs Pearson  
-[Analyse →](autres/spearman-pearson.qmd)
-:::
-
-:::
-
----
-
-# 8. Projets académiques  
-
-## 8.1 Projets de semestre
-
-::: {.card-grid}
-
-::: {.card}
-### Séries temporelles  
-[PDF →](3A/rapports/rapport_series_temporelles.pdf)
-:::
-
-::: {.card}
-### Copules & multi-risques  
-[PDF →](3A/rapports/Copulas.pdf)
-:::
-
-::: {.card}
-### Théorie des valeurs extrêmes  
-[PDF →](3A/rapports/projet_EVT.pdf)
-:::
-
-:::
-
-## 8.2 Projets de fin d’étude
-
-::: {.card-grid}
-
-::: {.card}
-### Margin of Conservatism  
-[PDF →](3A/rapports/PFE_EY.pdf)
-:::
-
-::: {.card}
-### Stress Test Climatique  
-Version à venir  
-[PDF →](3A/rapports/PFE_EY.pdf)
-:::
-
-:::
-
----
-
-# 9. Applications & dépôts GitHub
-
-::: {.card-grid}
-
-::: {.card}
-### Stock Price Prediction  
-[GitHub →](https://github.com/usenameFD/Stock-Price-Prediction)
-:::
-
-::: {.card}
-### Asset Pricing & Management  
-[GitHub →](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
-:::
-
-::: {.card}
-### Back-testing de la VaR  
-[GitHub →](https://github.com/usenameFD/Risk-Management)
-:::
-
 :::

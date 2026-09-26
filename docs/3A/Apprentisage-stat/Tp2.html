@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-10-04">
+<meta name="description" content="Régression ridge à noyau et machines à vecteurs de support : passage dans un espace de plus grande dimension et choix du noyau.">
 
-<title>Kernel Trick and SVM – Franck Deba - Quantitative Research</title>
+<title>Kernel trick et SVM – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,22 +72,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../img/logo-bg.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -94,24 +96,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -140,10 +145,15 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Kernel trick et SVM – Franck Deba">
+<meta property="og:description" content="Régression ridge à noyau et machines à vecteurs de support : passage dans un espace de plus grande dimension et choix du noyau.">
+<meta property="og:site_name" content="Franck Deba">
+<meta name="twitter:title" content="Kernel trick et SVM – Franck Deba">
+<meta name="twitter:description" content="Régression ridge à noyau et machines à vecteurs de support : passage dans un espace de plus grande dimension et choix du noyau.">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -313,15 +323,15 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -331,21 +341,42 @@ window.Quarto = {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -353,8 +384,9 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
@@ -383,10 +415,6 @@ window.Quarto = {
   </ul></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -394,18 +422,26 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Kernel Trick and SVM</h1>
-</div>
+<h1 class="title">Kernel trick et SVM</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Apprentissage statistique</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Régression ridge à noyau et machines à vecteurs de support : passage dans un espace de plus grande dimension et choix du noyau.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 4, 2024</p>
+      <p class="date">4 octobre 2024</p>
     </div>
   </div>
   
@@ -439,7 +475,7 @@ window.Quarto = {
 <p>In problem which involves a distance between point, it is a common practice to normalize the data. In this notebook, we are going to normalize the data by dividing the time by 60 to convert it from minutes to hours (and have values between 0 and 1). We are going to use the <code>KernelRidge</code> class from the <code>sklearn</code> library to fit the KRR model. We will start by using the Gaussian/RBF kernel which is defined by: <span class="math display">\[
 K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 \]</span> where <span class="math inline">\(\gamma\)</span> is an hyperparameter.</p>
-<div id="eabe5f86" class="cell">
+<div id="cde31569" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries</span></span>
@@ -460,51 +496,51 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="6f0b5bfd" class="cell">
+<div id="fe4f9d82" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mcycle_data <span class="op">=</span> pd.read_csv(<span class="st">"Data/mcycle.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mcycle_data[<span class="st">"times"</span>] <span class="op">=</span> mcycle_data[<span class="st">"times"</span>]<span class="op">/</span><span class="dv">60</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mcycle_data.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>mcycle_data.describe()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="3e86980f" class="cell">
+<div id="5376ea7d" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into train and test sample</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mcycle_data[[<span class="st">"times"</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mcycle_data[[<span class="st">"accel"</span>]]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="training-and-testing-rbf-kernel-ridge-regression" class="level3">
 <h3 class="anchored" data-anchor-id="training-and-testing-rbf-kernel-ridge-regression">1. Training and testing RBF kernel ridge regression</h3>
 <p>Since we have two hyperparameter (<span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\lambda\)</span>) to tune, we can use the GridSearchCV function from scikit-learn to find the best hyperparameter.</p>
-<div id="6e4dafe4" class="cell">
+<div id="fd9f8e94" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rbf_krr_model <span class="op">=</span> KernelRidge(kernel<span class="op">=</span><span class="st">"rbf"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>grid_eval <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">50</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"alpha"</span>: grid_eval, <span class="st">"gamma"</span>: grid_eval}</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>rbf_krr_model_cv <span class="op">=</span> GridSearchCV(rbf_krr_model, param_grid).fit(X_train,y_train)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>rbf_krr_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>rbf_krr_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0672f96f" class="cell">
+<div id="0569baaf" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>best_model <span class="op">=</span> KernelRidge(kernel<span class="op">=</span><span class="st">"rbf"</span>, alpha<span class="op">=</span>rbf_krr_model_cv.best_params_[<span class="st">"alpha"</span>], gamma<span class="op">=</span>rbf_krr_model_cv.best_params_[<span class="st">"gamma"</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>best_model.fit(X_train, y_train)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root mean square error: </span><span class="sc">{</span>math<span class="sc">.</span>sqrt(mean_squared_error(y_test, y_pred))<span class="sc">: .2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root mean square error: </span><span class="sc">{</span>math<span class="sc">.</span>sqrt(mean_squared_error(y_test, y_pred))<span class="sc">: .2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="a30badbd" class="cell">
+<div id="8fc86e2a" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort X_test and corresponding y_pred values</span></span>
@@ -518,7 +554,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Input Feature (X)"</span>)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Target (y)"</span>)</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"best"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -526,7 +562,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <section id="ii.-ridge-regression" class="level2">
 <h2 class="anchored" data-anchor-id="ii.-ridge-regression">II. Ridge regression</h2>
 <p>Now we are going to use the basic ridge regression to predict the target variable. There is only one hyperparameter to tune which is the regularization parameter <span class="math inline">\(\lambda\)</span>.</p>
-<div id="70ff57cf" class="cell">
+<div id="2ca8cc1e" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ridge_model <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>grid_eval).fit(X_train, y_train)</span>
@@ -536,11 +572,11 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_test, y_test, color<span class="op">=</span><span class="st">"black"</span>)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.plot(X_test, y_pred_ridge, color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Ridge Regression"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Ridge Regression"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>As we can see, the solelly use of the ridge regression is not enough to predict the target variable. We can try to transform the data by using a sinusoïdal transformation. If we try a transformation of the covariable <span class="math inline">\(x\)</span> by <span class="math inline">\(\tilde{x}=\frac{\sqrt(2)}{\pi}\cos(\pi x)\)</span> and apply the ridge regression, we have a slightly different problem. But still, the performance of the model is not good.</p>
-<div id="c815c627" class="cell">
+<div id="f1ebfec8" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a function that apply transformation to the features</span></span>
@@ -553,10 +589,10 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>X_test_cos <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">11</span>):</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    X_train_cos[<span class="ss">f"X</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> X_train[<span class="st">"times"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: apply_cos(x,j))</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    X_test_cos[<span class="ss">f"X</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> X_test[<span class="st">"times"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: apply_cos(x,j))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    X_test_cos[<span class="ss">f"X</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> X_test[<span class="st">"times"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: apply_cos(x,j))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="b78005c1" class="cell">
+<div id="fd457547" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the Ridge regression model</span></span>
@@ -573,11 +609,11 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Input Feature (X)"</span>)</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Target (y)"</span>)</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"best"</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Even though, the only transformation applied is the cosinus transformation, the RMSE is lower than the RMSE of the simple Ridge Regression. This is due to the fact that the cosinus transformation is able to capture a little bit of the periodicity of the data. Let’s try to use many sinusoidal transformation to see if we can improve the performance of the model. We will fit y using <span class="math inline">\(\tilde{x} = \left[ \frac{\sqrt(2)}{J\pi}\cos(J\pi x)  \right]_{J=1,\dots,10}\)</span></p>
-<div id="e95d7568" class="cell">
+<div id="3b041547" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New ridge with many transformated features</span></span>
@@ -593,7 +629,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Input Feature (X)"</span>)</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Target (y)"</span>)</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"best"</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We observe that the more we increase the number of transformations, the more the performance of the model is improved and close to the performance of the kernel ridge regression using the gaussian kernel. The performance of the model is similar to the performance of the kernel ridge regression. This is due to the fact that the kernel ridge regression is equivalent to use an infinite number of transformations on the features. It is hence useful to use the kernel trick when we have a non-linear relationship between the target variable and the features.</p>
@@ -609,7 +645,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 \]</span></p>
 <section id="kernel-de-sobolev" class="level3">
 <h3 class="anchored" data-anchor-id="kernel-de-sobolev">Kernel de sobolev</h3>
-<div id="88eaf383" class="cell">
+<div id="95423718" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sobolev_kernel(x,y):</span>
@@ -619,19 +655,19 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> B1(x):</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x <span class="op">-</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">+</span> B2(<span class="bu">abs</span>(x<span class="op">-</span>y)<span class="op">/</span><span class="dv">2</span>) <span class="op">+</span> B2((x<span class="op">+</span>y)<span class="op">/</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">+</span> B2(<span class="bu">abs</span>(x<span class="op">-</span>y)<span class="op">/</span><span class="dv">2</span>) <span class="op">+</span> B2((x<span class="op">+</span>y)<span class="op">/</span><span class="dv">2</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="bace17de" class="cell">
+<div id="f5e9d5aa" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>krr_model_sobolev <span class="op">=</span> KernelRidge(kernel<span class="op">=</span>sobolev_kernel)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"alpha"</span>: grid_eval}</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>grid_sobolev <span class="op">=</span> GridSearchCV(krr_model_sobolev, param_grid).fit(X_train,y_train)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>grid_sobolev.best_params_</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>grid_sobolev.best_params_</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d38d7b2e" class="cell">
+<div id="f9d7163c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute rmse</span></span>
@@ -645,7 +681,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the results</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_test, y_test, color<span class="op">=</span><span class="st">"black"</span>)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.plot(X_test_sorted, y_pred_sobolev_sorted,color<span class="op">=</span><span class="st">"red"</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sobolev Kernel Ridge Regression"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Sobolev Kernel Ridge Regression"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -658,26 +694,26 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <section id="i.-toy-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="i.-toy-dataset">I. Toy dataset</h2>
 <p>Here is the toy dataset that we are going to use to illustrate the SVM. The dataset is composed of two features and the target variable is binary. As we can see, the dataset is not linearly separable. We are going to use the SVM with a gaussian kernel to classify the data, and compare it to a classic classifier such as the k-nearest neighbors and the logistic regression.</p>
-<div id="220bdd32" class="cell">
+<div id="e496e436" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>two_moon_data <span class="op">=</span> pd.read_csv(<span class="st">"Data/DataTwoMoons.csv"</span>,header<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>two_moon_data.columns <span class="op">=</span> [<span class="st">"X1"</span>,<span class="st">"X2"</span>,<span class="st">"y"</span>]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(two_moon_data[<span class="st">"X1"</span>], two_moon_data[<span class="st">"X2"</span>], c<span class="op">=</span>two_moon_data[<span class="st">"y"</span>])</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Two moons dataset"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Two moons dataset"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="0de65c51" class="cell">
+<div id="5ac9517f" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into train and test sample</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(two_moon_data[[<span class="st">"X1"</span>,<span class="st">"X2"</span>]], two_moon_data[<span class="st">"y"</span>], test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(two_moon_data[[<span class="st">"X1"</span>,<span class="st">"X2"</span>]], two_moon_data[<span class="st">"y"</span>], test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="k-nearest-neighbors" class="level3">
 <h3 class="anchored" data-anchor-id="k-nearest-neighbors">1. K-nearest neighbors</h3>
-<div id="0a565a9e" class="cell">
+<div id="1f055cad" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN with cross validation</span></span>
@@ -699,10 +735,10 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification report for detailed metrics</span></span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="32ac375a" class="cell">
+<div id="0b47f30f" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>disp_knn <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
@@ -713,13 +749,13 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>disp_knn.ax_.scatter(two_moon_data[<span class="st">"X1"</span>],two_moon_data[<span class="st">"X2"</span>], c<span class="op">=</span>two_moon_data[<span class="st">"y"</span>])</span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"KNN Decision Boundary"</span>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="logistic-regression" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression">2. Logistic regression</h3>
-<div id="83f8883e" class="cell">
+<div id="6807ec71" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute logistic regression</span></span>
@@ -737,10 +773,10 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification report for detailed metrics</span></span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="1dc37b04" class="cell">
+<div id="324603c4" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>disp_log_reg <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
@@ -751,23 +787,23 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>disp_log_reg.ax_.scatter(two_moon_data[<span class="st">"X1"</span>],two_moon_data[<span class="st">"X2"</span>], c<span class="op">=</span>two_moon_data[<span class="st">"y"</span>], edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Logistic Regression Decision Boundary"</span>)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="svm" class="level3">
 <h3 class="anchored" data-anchor-id="svm">3. SVM</h3>
-<div id="3bbc8b7a" class="cell">
+<div id="ba56ef21" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>grid_eval <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">50</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"C"</span>: grid_eval, <span class="st">"gamma"</span>: grid_eval}</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>svm_model <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>svm_model_cv <span class="op">=</span> GridSearchCV(svm_model, param_grid).fit(X_train,y_train)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>svm_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>svm_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="a94faf1b" class="cell">
+<div id="a400b217" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the accuracy</span></span>
@@ -782,10 +818,10 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification report for detailed metrics</span></span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="42ec4df9" class="cell">
+<div id="18360c71" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>disp_svm <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
@@ -796,7 +832,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>disp_svm.ax_.scatter(two_moon_data[<span class="st">"X1"</span>],two_moon_data[<span class="st">"X2"</span>], c<span class="op">=</span>two_moon_data[<span class="st">"y"</span>], edgecolor<span class="op">=</span><span class="st">"k"</span>)</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"SVM Decision Boundary"</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -812,7 +848,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <h2 class="anchored" data-anchor-id="ii.-image-dataset">II. Image dataset</h2>
 <p>The SVM is also useful for image classification. In this part, we are going to use the famous MNIST dataset to classify the images. The MNIST dataset is composed of 20 000 images (10 000 in the training dataset, and 10 000 also in the test dataset) of handwritten digits from 0 to 9. Each image is a resolution 28x28 pixels that is represented by a matrix of shape (28, 28), with each element being the pixel intensity (values from 0 to 255). We are going to use the SVM with the gaussian kernel to classify the images.</p>
 <p>We will start by normalizing the data to ensure that all the features contribute equally, and then use the GridSearchCV function from scikit-learn to find the best hyperparameter.</p>
-<div id="091cae85" class="cell">
+<div id="0a754c69" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_train <span class="op">=</span> pd.read_csv(<span class="st">"Data/mnist_train_small.csv"</span>)</span>
@@ -820,10 +856,10 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Description of train dataset : </span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>data_train.iloc[:,<span class="dv">1</span>:].describe()</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>data_train[<span class="st">"label"</span>].value_counts()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>data_train[<span class="st">"label"</span>].value_counts()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="a5c2bf78" class="cell">
+<div id="1a81c683" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize the data</span></span>
@@ -833,28 +869,28 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>X_train  <span class="op">=</span> scaler.fit_transform(data_train.iloc[:, <span class="dv">1</span>:])</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> data_train[<span class="st">"label"</span>]</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>X_test  <span class="op">=</span> scaler.transform(data_test.iloc[:, <span class="dv">1</span>:])</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> data_test[<span class="st">"label"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> data_test[<span class="st">"label"</span>]</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>As we can see from the umap plot, which is a dimensionality reduction technique, the data is not always linearly separable. We are going to use the SVM with the gaussian kernel to classify the images.</p>
-<div id="5a3daf7e" class="cell">
+<div id="44fef39c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the data with UMAP</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>reducer <span class="op">=</span> umap.UMAP(random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>embedding <span class="op">=</span> reducer.fit_transform(X_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>embedding <span class="op">=</span> reducer.fit_transform(X_train)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="cdb1eff7" class="cell">
+<div id="f68e3b89" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(embedding[:, <span class="dv">0</span>], embedding[:, <span class="dv">1</span>], c<span class="op">=</span>data_train[<span class="st">"label"</span>], cmap<span class="op">=</span><span class="st">'Spectral'</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>, <span class="st">'datalim'</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'UMAP projection of the MNIST dataset'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'UMAP projection of the MNIST dataset'</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="59efc5dd" class="cell">
+<div id="a44a9113" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>svm_model <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>)</span>
@@ -866,12 +902,12 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"C"</span>: grid_eval_C, <span class="st">"gamma"</span>: grid_eval_gamma}</span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>svm_model_cv <span class="op">=</span> GridSearchCV(svm_model, param_grid).fit(X_train, y_train)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>svm_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>svm_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>As we can see, the model performs well with an accuracy of 0.88 . As expected from the umap visualization, the model is able to separate the classes well, however there are some errors in the classification. The confusion matrix shows that the model has some difficulty to distinguish between some digits such as 4 and 9, 3.</p>
 <p>The SVM is a good choice for image classification, however, the model is not able to capture the complexity of the data. In this case, we can use a deep learning model such as the convolutional neural network (CNN) which is able to capture the complexity of the data.</p>
-<div id="c5a6c7c8" class="cell">
+<div id="5fb7b504" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the accuracy</span></span>
@@ -886,10 +922,10 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification report for detailed metrics</span></span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5211bef1" class="cell">
+<div id="ad110bca" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ROC CURVE</span></span>
@@ -916,7 +952,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'True Positive Rate'</span>)</span>
 <span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ROC Curve'</span>)</span>
 <span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -924,26 +960,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
-    <h1 class="hero-title"></h1>
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
-  
-</main>
-
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -982,12 +999,12 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -1030,7 +1047,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1044,6 +1061,11 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1358,8 +1380,67 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

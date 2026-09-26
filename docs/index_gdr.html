@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Parcours guidé en gestion des risques : analyse financière, réglementation prudentielle, Value-at-Risk, risque climatique, calibration de modèles stochastiques, asset management et finance durable.">
 
-<title>Gestion des Risques – Franck Deba - Quantitative Research</title>
+<title>Parcours gestion des risques — Franck Deba – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -33,22 +37,21 @@ ul.task-list li input[type="checkbox"] {
 <link href="./img/logo-bg.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -58,27 +61,35 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
 
-<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Parcours gestion des risques — Franck Deba">
+<meta property="og:description" content="Du bilan d’entreprise aux mesures de risque et à la calibration de modèles">
+<meta property="og:site_name" content="Franck Deba">
+<meta name="twitter:title" content="Parcours gestion des risques — Franck Deba">
+<meta name="twitter:description" content="Du bilan d’entreprise aux mesures de risque et à la calibration de modèles">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -248,15 +259,15 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="./img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="./img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="./img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -266,21 +277,42 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./index_stat.html"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="./projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./index_gdr.html" aria-current="page"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="./notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="./repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="./about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -288,52 +320,34 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
-  <li><a href="#gestion-des-risques" id="toc-gestion-des-risques" class="nav-link active" data-scroll-target="#gestion-des-risques">Gestion des risques</a></li>
-  <li><a href="#analyse-financière" id="toc-analyse-financière" class="nav-link" data-scroll-target="#analyse-financière">1. Analyse financière</a>
-  <ul class="collapse">
-  <li><a href="#concepts-fondamentaux" id="toc-concepts-fondamentaux" class="nav-link" data-scroll-target="#concepts-fondamentaux">1.1 Concepts fondamentaux</a></li>
-  </ul></li>
+  <li><a href="#analyse-financière" id="toc-analyse-financière" class="nav-link active" data-scroll-target="#analyse-financière">1. Analyse financière</a></li>
   <li><a href="#risques-financiers" id="toc-risques-financiers" class="nav-link" data-scroll-target="#risques-financiers">2. Risques financiers</a>
   <ul class="collapse">
-  <li><a href="#notions-générales" id="toc-notions-générales" class="nav-link" data-scroll-target="#notions-générales">2.1 Notions générales</a>
-  <ul class="collapse">
+  <li><a href="#notions-générales" id="toc-notions-générales" class="nav-link" data-scroll-target="#notions-générales">2.1 Notions générales</a></li>
   <li><a href="#définition-du-risque-financier" id="toc-définition-du-risque-financier" class="nav-link" data-scroll-target="#définition-du-risque-financier">Définition du risque financier</a></li>
+  <li><a href="#mesures-de-risque-value-at-risk" id="toc-mesures-de-risque-value-at-risk" class="nav-link" data-scroll-target="#mesures-de-risque-value-at-risk">2.2 Mesures de risque — Value-at-Risk</a></li>
   </ul></li>
-  <li><a href="#mesures-de-risque-value-at-risk-var" id="toc-mesures-de-risque-value-at-risk-var" class="nav-link" data-scroll-target="#mesures-de-risque-value-at-risk-var">2.2 Mesures de Risque — Value-at-Risk (VaR)</a></li>
+  <li><a href="#risque-climatique" id="toc-risque-climatique" class="nav-link" data-scroll-target="#risque-climatique">3. Risque climatique</a>
+  <ul class="collapse">
+  <li><a href="#exposition-des-communes-françaises" id="toc-exposition-des-communes-françaises" class="nav-link" data-scroll-target="#exposition-des-communes-françaises">Exposition des communes françaises</a></li>
   </ul></li>
-  <li><a href="#risques-climatiques" id="toc-risques-climatiques" class="nav-link" data-scroll-target="#risques-climatiques">3. Risques climatiques</a></li>
   <li><a href="#calibration-de-modèles-stochastiques" id="toc-calibration-de-modèles-stochastiques" class="nav-link" data-scroll-target="#calibration-de-modèles-stochastiques">4. Calibration de modèles stochastiques</a>
   <ul class="collapse">
-  <li><a href="#modèles-classiques" id="toc-modèles-classiques" class="nav-link" data-scroll-target="#modèles-classiques">4.1 Modèles classiques</a>
-  <ul class="collapse">
+  <li><a href="#modèles-classiques" id="toc-modèles-classiques" class="nav-link" data-scroll-target="#modèles-classiques">4.1 Modèles classiques</a></li>
   <li><a href="#modèle-de-black-scholes" id="toc-modèle-de-black-scholes" class="nav-link" data-scroll-target="#modèle-de-black-scholes">Modèle de Black-Scholes</a></li>
-  </ul></li>
   <li><a href="#volatilité-stochastique" id="toc-volatilité-stochastique" class="nav-link" data-scroll-target="#volatilité-stochastique">4.2 Volatilité stochastique</a></li>
   <li><a href="#modèles-avancés" id="toc-modèles-avancés" class="nav-link" data-scroll-target="#modèles-avancés">4.3 Modèles avancés</a></li>
   </ul></li>
-  <li><a href="#asset-management" id="toc-asset-management" class="nav-link" data-scroll-target="#asset-management">5. Asset Management</a>
-  <ul class="collapse">
-  <li><a href="#risques-des-portefeuilles" id="toc-risques-des-portefeuilles" class="nav-link" data-scroll-target="#risques-des-portefeuilles">Risques des portefeuilles</a></li>
-  </ul></li>
-  <li><a href="#asset-pricing" id="toc-asset-pricing" class="nav-link" data-scroll-target="#asset-pricing">6. Asset Pricing</a></li>
-  <li><a href="#finance-durable" id="toc-finance-durable" class="nav-link" data-scroll-target="#finance-durable">7. Finance durable</a></li>
-  <li><a href="#projets-académiques" id="toc-projets-académiques" class="nav-link" data-scroll-target="#projets-académiques">8. Projets académiques</a>
-  <ul class="collapse">
-  <li><a href="#projets-de-semestre" id="toc-projets-de-semestre" class="nav-link" data-scroll-target="#projets-de-semestre">8.1 Projets de semestre</a></li>
-  <li><a href="#projets-de-fin-détude" id="toc-projets-de-fin-détude" class="nav-link" data-scroll-target="#projets-de-fin-détude">8.2 Projets de fin d’étude</a></li>
-  </ul></li>
-  <li><a href="#applications-dépôts-github" id="toc-applications-dépôts-github" class="nav-link" data-scroll-target="#applications-dépôts-github">9. Applications &amp; dépôts GitHub</a></li>
+  <li><a href="#gestion-dactifs" id="toc-gestion-dactifs" class="nav-link" data-scroll-target="#gestion-dactifs">5. Gestion d’actifs</a></li>
+  <li><a href="#finance-durable" id="toc-finance-durable" class="nav-link" data-scroll-target="#finance-durable">6. Finance durable</a></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -341,7 +355,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Gestion des Risques</h1>
+<h1 class="title">Parcours — Gestion des risques</h1>
+<p class="subtitle lead">Du bilan d’entreprise aux mesures de risque et à la calibration de modèles</p>
 </div>
 
 
@@ -358,244 +373,153 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="gestion-des-risques" class="level1">
-<h1>Gestion des risques</h1>
-<p>Cette section rassemble l’ensemble des ressources liées au <strong>Risk Management</strong> : analyse financière, risques de marché, risques de crédit, risques climatiques, calibration de modèles stochastiques, asset management, asset pricing et travaux académiques.<br>
-Les contenus sont structurés selon les principaux piliers méthodologiques de la discipline.</p>
-<hr>
-</section>
-<section id="analyse-financière" class="level1">
-<h1>1. Analyse financière</h1>
-<section id="concepts-fondamentaux" class="level2">
-<h2 class="anchored" data-anchor-id="concepts-fondamentaux">1.1 Concepts fondamentaux</h2>
-<div class="card-grid">
-<section id="structure-du-bilan-dentreprise" class="level3 card">
-<h3 class="anchored" data-anchor-id="structure-du-bilan-dentreprise">Structure du bilan d’entreprise</h3>
+<p>Ce parcours propose une lecture guidée des contenus liés au <strong>risk management</strong>, organisée selon les principaux piliers méthodologiques de la discipline. Chaque entrée renvoie soit vers une note théorique, soit vers une fiche projet détaillée.</p>
+<p>Pour une liste complète et filtrable, voir la <a href="./projects/index.html">page Projets</a> et la page <a href="./notes/index.html">Notes &amp; recherche</a>.</p>
+<section id="analyse-financière" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-financière">1. Analyse financière</h2>
+<div class="qf-grid">
+<section id="bilan-et-compte-de-résultat" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="bilan-et-compte-de-résultat">Bilan et compte de résultat</h3>
+<p>Lecture des états financiers et critères de santé financière.</p>
 <p><a href="./3A/bilan_entreprise.html">Accéder au document →</a></p>
 </section>
-<section id="règlementation-prudentielle" class="level3 card">
-<h3 class="anchored" data-anchor-id="règlementation-prudentielle">Règlementation prudentielle</h3>
-<p>CRR2, CRD5, Solvabilité II<br>
-<a href="./3A/reglementation_prudentielle.html">Accéder au document →</a></p>
+<section id="réglementation-prudentielle" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="réglementation-prudentielle">Réglementation prudentielle</h3>
+<p>CRR2, CRD5 et Solvabilité II.</p>
+<p><a href="./3A/reglementation_prudentielle.html">Accéder au document →</a></p>
+</section>
+<section id="marchés-financiers" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="marchés-financiers">Marchés financiers</h3>
+<p>Actions, obligations et produits dérivés : acteurs et mécanismes.</p>
+<p><a href="./00_Assets/markets_intro.html">Accéder au document →</a></p>
 </section>
 </div>
-<hr>
 </section>
+<section id="risques-financiers" class="level2">
+<h2 class="anchored" data-anchor-id="risques-financiers">2. Risques financiers</h2>
+<section id="notions-générales" class="level3">
+<h3 class="anchored" data-anchor-id="notions-générales">2.1 Notions générales</h3>
 </section>
-<section id="risques-financiers" class="level1">
-<h1>2. Risques financiers</h1>
-<p>Présentation des notions fondamentales liées aux risques quantifiables (marché, crédit, liquidité, opérationnel, climatique).</p>
-<section id="notions-générales" class="level2">
-<h2 class="anchored" data-anchor-id="notions-générales">2.1 Notions générales</h2>
-<div class="card-grid">
-<section id="définition-du-risque-financier" class="level3 card">
+<div class="qf-grid">
+<section id="définition-du-risque-financier" class="level3 qf-card">
 <h3 class="anchored" data-anchor-id="définition-du-risque-financier">Définition du risque financier</h3>
-<p><a href="./3A/risque_def.html">Accéder →</a></p>
+<p>Risque, incertitude et typologie des risques bancaires.</p>
+<p><a href="./3A/risque_def.html">Accéder au document →</a></p>
 </section>
 </div>
+<section id="mesures-de-risque-value-at-risk" class="level3">
+<h3 class="anchored" data-anchor-id="mesures-de-risque-value-at-risk">2.2 Mesures de risque — Value-at-Risk</h3>
 </section>
-<section id="mesures-de-risque-value-at-risk-var" class="level2">
-<h2 class="anchored" data-anchor-id="mesures-de-risque-value-at-risk-var">2.2 Mesures de Risque — Value-at-Risk (VaR)</h2>
-<div class="card-grid">
-<section id="théorie-de-la-var" class="level3 card">
+<div class="qf-grid">
+<section id="théorie-de-la-var" class="level3 qf-card">
 <h3 class="anchored" data-anchor-id="théorie-de-la-var">Théorie de la VaR</h3>
-<p>Principes, hypothèses, cohérence<br>
-<a href="./3A/value-at-risk/var_def.html">Document théorique →</a></p>
+<p>Principes, hypothèses, portefeuilles linéaires et non linéaires.</p>
+<p><a href="./3A/value-at-risk/var_def.html">Note théorique →</a></p>
 </section>
-<section id="implémentation-python" class="level3 card">
-<h3 class="anchored" data-anchor-id="implémentation-python">Implémentation Python</h3>
-<p>Historique, paramétrique, Monte Carlo<br>
-<a href="./projects/VaR/VaR.html">Notebook →</a></p>
+<section id="var-es-et-valeurs-extrêmes" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="var-es-et-valeurs-extrêmes">VaR, ES et valeurs extrêmes</h3>
+<p>Estimation historique, paramétrique, Monte-Carlo et TVE, avec backtesting.</p>
+<p><a href="./projects/value-at-risk.html">Fiche projet →</a></p>
 </section>
-<section id="creditvar-liquidité-copules" class="level3 card">
-<h3 class="anchored" data-anchor-id="creditvar-liquidité-copules">CreditVaR &amp; Liquidité (copules)</h3>
-<p><a href="./projects/Liquidity/AssetLiquidity.html">Notebook →</a></p>
-</section>
-</div>
-<hr>
-</section>
-</section>
-<section id="risques-climatiques" class="level1">
-<h1>3. Risques climatiques</h1>
-<p>Approche quantitative du risque physique appliquée au territoire français.</p>
-<div class="card-grid">
-<section id="exposition-territoriale" class="level3 card">
-<h3 class="anchored" data-anchor-id="exposition-territoriale">Exposition territoriale</h3>
-<p>Cartographie des catastrophes naturelles<br>
-<a href="./projects/Climate/Notebooks/02_ExpoClimatCommune.html">Notebook →</a></p>
-</section>
-<section id="modélisation-prédictive" class="level3 card">
-<h3 class="anchored" data-anchor-id="modélisation-prédictive">Modélisation prédictive</h3>
-<p>Inondations &amp; aléas naturels<br>
-<a href="./projects/Climate/Notebooks/03_PhysicalRisk.html">Notebook →</a></p>
+<section id="creditvar-et-copules" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="creditvar-et-copules">CreditVaR et copules</h3>
+<p>Probabilités de défaut implicites, recouvrement et dépendance de queue.</p>
+<p><a href="./projects/creditvar-copules.html">Fiche projet →</a></p>
 </section>
 </div>
-<hr>
 </section>
-<section id="calibration-de-modèles-stochastiques" class="level1">
-<h1>4. Calibration de modèles stochastiques</h1>
-<section id="modèles-classiques" class="level2">
-<h2 class="anchored" data-anchor-id="modèles-classiques">4.1 Modèles classiques</h2>
-<div class="card-grid">
-<section id="modèle-de-black-scholes" class="level3 card">
+<section id="risque-climatique" class="level2">
+<h2 class="anchored" data-anchor-id="risque-climatique">3. Risque climatique</h2>
+<div class="qf-grid">
+<section id="exposition-des-communes-françaises" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="exposition-des-communes-françaises">Exposition des communes françaises</h3>
+<p>Indice d’exposition, discrétisation de Jenks et cartographie.</p>
+<p><a href="./projects/risque-climatique-communes.html">Fiche projet →</a></p>
+</section>
+</div>
+</section>
+<section id="calibration-de-modèles-stochastiques" class="level2">
+<h2 class="anchored" data-anchor-id="calibration-de-modèles-stochastiques">4. Calibration de modèles stochastiques</h2>
+<section id="modèles-classiques" class="level3">
+<h3 class="anchored" data-anchor-id="modèles-classiques">4.1 Modèles classiques</h3>
+</section>
+<div class="qf-grid">
+<section id="modèle-de-black-scholes" class="level3 qf-card">
 <h3 class="anchored" data-anchor-id="modèle-de-black-scholes">Modèle de Black-Scholes</h3>
-<p>Calibration et volatilité<br>
-<a href="./3A/proc_stochastique/modele_bs.html">Accéder →</a></p>
+<p>Pricing, grecques et volatilité implicite.</p>
+<p><a href="./3A/proc_stochastique/modele_bs.html">Accéder au document →</a></p>
+</section>
+</div>
+<section id="volatilité-stochastique" class="level3">
+<h3 class="anchored" data-anchor-id="volatilité-stochastique">4.2 Volatilité stochastique</h3>
+</section>
+<div class="qf-grid">
+<section id="modèle-de-taylor-filtrage" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="modèle-de-taylor-filtrage">Modèle de Taylor — filtrage</h3>
+<p>Filtre de Kalman et filtrage particulaire sur la log-volatilité latente.</p>
+<p><a href="./projects/volatilite-stochastique-taylor.html">Fiche projet →</a></p>
+</section>
+<section id="modèle-de-heston-filtrage" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="modèle-de-heston-filtrage">Modèle de Heston — filtrage</h3>
+<p>Filtre bootstrap et auxiliary particle filter sur prix d’options.</p>
+<p><a href="./projects/calibration-heston-filtrage.html">Fiche projet →</a></p>
+</section>
+</div>
+<section id="modèles-avancés" class="level3">
+<h3 class="anchored" data-anchor-id="modèles-avancés">4.3 Modèles avancés</h3>
+</section>
+<div class="qf-grid">
+<section id="courbes-de-taux" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="courbes-de-taux">Courbes de taux</h3>
+<p>Courbe zéro-coupon, taux forward, caplets, swaptions et Hull-White.</p>
+<p><a href="./projects/courbes-de-taux.html">Fiche projet →</a></p>
+</section>
+<section id="options-exotiques" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="options-exotiques">Options exotiques</h3>
+<p>Calibration Heston et Bates par la méthode de Lewis, options asiatiques, CIR.</p>
+<p><a href="./projects/options-exotiques-bates-heston.html">Fiche projet →</a></p>
 </section>
 </div>
 </section>
-<section id="volatilité-stochastique" class="level2">
-<h2 class="anchored" data-anchor-id="volatilité-stochastique">4.2 Volatilité stochastique</h2>
-<div class="card-grid">
-<section id="taylor-filtre-de-kalman" class="level3 card">
-<h3 class="anchored" data-anchor-id="taylor-filtre-de-kalman">Taylor — Filtre de Kalman</h3>
-<p><a href="./3A/proc_stochastique/modele_log_sv-part1.html">Document →</a></p>
+<section id="gestion-dactifs" class="level2">
+<h2 class="anchored" data-anchor-id="gestion-dactifs">5. Gestion d’actifs</h2>
+<div class="qf-grid">
+<section id="risques-dun-portefeuille" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="risques-dun-portefeuille">Risques d’un portefeuille</h3>
+<p>Markowitz, stress tests, profils d’écoulement de liquidité et VaR obligataire.</p>
+<p><a href="./projects/risques-asset-management.html">Fiche projet →</a></p>
 </section>
-<section id="taylor-filtre-particulaire" class="level3 card">
-<h3 class="anchored" data-anchor-id="taylor-filtre-particulaire">Taylor — Filtre particulaire</h3>
-<p><a href="./3A/proc_stochastique/modele_log_sv-part2.html">Document →</a></p>
-</section>
-</div>
-</section>
-<section id="modèles-avancés" class="level2">
-<h2 class="anchored" data-anchor-id="modèles-avancés">4.3 Modèles avancés</h2>
-<div class="card-grid">
-<section id="modèle-de-heston" class="level3 card">
-<h3 class="anchored" data-anchor-id="modèle-de-heston">Modèle de Heston</h3>
-<p><a href="./projects/Calibration/HestonModel.html">Notebook complet →</a></p>
-</section>
-<section id="courbes-de-taux-zc-ois-hull-white" class="level3 card">
-<h3 class="anchored" data-anchor-id="courbes-de-taux-zc-ois-hull-white">Courbes de taux (ZC, OIS) — Hull-White</h3>
-<p><a href="./projects/Yield Curve/Projet_courbe_taux.html">Notebook →</a></p>
-</section>
-<section id="pricing-doption-exotiques" class="level3 card">
-<h3 class="anchored" data-anchor-id="pricing-doption-exotiques">Pricing d’option exotiques</h3>
-<p><a href="./projects/WQU/Stochastic Modeling 1.html">Notebook complet →</a></p>
-</section>
-</div>
-<hr>
-</section>
-</section>
-<section id="asset-management" class="level1">
-<h1>5. Asset Management</h1>
-<div class="card-grid">
-<section id="risques-des-portefeuilles" class="level3 card">
-<h3 class="anchored" data-anchor-id="risques-des-portefeuilles">Risques des portefeuilles</h3>
-<p>Marché, liquidité (implémentations Python)<br>
-<a href="./projects/Liquidity/AssetLiquidity.html">Notebook →</a></p>
-</section>
-</div>
-<hr>
-</section>
-<section id="asset-pricing" class="level1">
-<h1>6. Asset Pricing</h1>
-<div class="card-grid">
-<section id="options-dérivés" class="level3 card">
-<h3 class="anchored" data-anchor-id="options-dérivés">Options &amp; dérivés</h3>
-<p><a href="./projects/main_options.html">Notebook →</a></p>
-</section>
-<section id="pricing-avancé" class="level3 card">
-<h3 class="anchored" data-anchor-id="pricing-avancé">Pricing avancé</h3>
-<p><a href="./projects/WQU/Derivative Pricing 1.html">Derivative Pricing 1 →</a><br>
-<a href="./projects/WQU/Derivative Pricing 2.html">Derivative Pricing 2 →</a></p>
-</section>
-</div>
-<hr>
-</section>
-<section id="finance-durable" class="level1">
-<h1>7. Finance durable</h1>
-<div class="card-grid">
-<section id="investissement-socialement-responsable" class="level3 card">
-<h3 class="anchored" data-anchor-id="investissement-socialement-responsable">Investissement Socialement Responsable</h3>
-<p><a href="./autres/ISR.html">Accéder →</a></p>
-</section>
-<section id="finance-durable-1" class="level3 card">
-<h3 class="anchored" data-anchor-id="finance-durable-1">Finance durable</h3>
-<p>Indicateurs, cadres réglementaires<br>
-<a href="./autres/finance_durable.html">Accéder →</a></p>
-</section>
-<section id="corrélations-spearman-vs-pearson" class="level3 card">
-<h3 class="anchored" data-anchor-id="corrélations-spearman-vs-pearson">Corrélations Spearman vs Pearson</h3>
-<p><a href="./autres/spearman-pearson.html">Analyse →</a></p>
-</section>
-</div>
-<hr>
-</section>
-<section id="projets-académiques" class="level1">
-<h1>8. Projets académiques</h1>
-<section id="projets-de-semestre" class="level2">
-<h2 class="anchored" data-anchor-id="projets-de-semestre">8.1 Projets de semestre</h2>
-<div class="card-grid">
-<section id="séries-temporelles" class="level3 card">
-<h3 class="anchored" data-anchor-id="séries-temporelles">Séries temporelles</h3>
-<p><a href="3A/rapports/rapport_series_temporelles.pdf">PDF →</a></p>
-</section>
-<section id="copules-multi-risques" class="level3 card">
-<h3 class="anchored" data-anchor-id="copules-multi-risques">Copules &amp; multi-risques</h3>
-<p><a href="3A/rapports/Copulas.pdf">PDF →</a></p>
-</section>
-<section id="théorie-des-valeurs-extrêmes" class="level3 card">
-<h3 class="anchored" data-anchor-id="théorie-des-valeurs-extrêmes">Théorie des valeurs extrêmes</h3>
-<p><a href="3A/rapports/projet_EVT.pdf">PDF →</a></p>
+<section id="bibliothèque-de-pricing-et-dash" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="bibliothèque-de-pricing-et-dash">Bibliothèque de pricing et Dash</h3>
+<p>Options, obligations, swaps et allocation dans une application interactive.</p>
+<p><a href="./projects/bibliotheque-pricing-dash.html">Fiche projet →</a></p>
 </section>
 </div>
 </section>
-<section id="projets-de-fin-détude" class="level2">
-<h2 class="anchored" data-anchor-id="projets-de-fin-détude">8.2 Projets de fin d’étude</h2>
-<div class="card-grid">
-<section id="margin-of-conservatism" class="level3 card">
-<h3 class="anchored" data-anchor-id="margin-of-conservatism">Margin of Conservatism</h3>
-<p><a href="3A/rapports/PFE_EY.pdf">PDF →</a></p>
+<section id="finance-durable" class="level2">
+<h2 class="anchored" data-anchor-id="finance-durable">6. Finance durable</h2>
+<div class="qf-grid">
+<section id="univers-dinvestissement-esg" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="univers-dinvestissement-esg">Univers d’investissement ESG</h3>
+<p>Exclusion normative et sectorielle, sélection best-in-class.</p>
+<p><a href="./projects/univers-investissement-esg.html">Fiche projet →</a></p>
 </section>
-<section id="stress-test-climatique" class="level3 card">
-<h3 class="anchored" data-anchor-id="stress-test-climatique">Stress Test Climatique</h3>
-<p>Version à venir<br>
-<a href="3A/rapports/PFE_EY.pdf">PDF →</a></p>
+<section id="investissement-socialement-responsable" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="investissement-socialement-responsable">Investissement socialement responsable</h3>
+<p>Définition de l’ISR et approches de gestion responsable.</p>
+<p><a href="./autres/ISR.html">Accéder au document →</a></p>
 </section>
-</div>
-<hr>
-</section>
-</section>
-<section id="applications-dépôts-github" class="level1">
-<h1>9. Applications &amp; dépôts GitHub</h1>
-<div class="card-grid">
-<section id="stock-price-prediction" class="level3 card">
-<h3 class="anchored" data-anchor-id="stock-price-prediction">Stock Price Prediction</h3>
-<p><a href="https://github.com/usenameFD/Stock-Price-Prediction">GitHub →</a></p>
-</section>
-<section id="asset-pricing-management" class="level3 card">
-<h3 class="anchored" data-anchor-id="asset-pricing-management">Asset Pricing &amp; Management</h3>
-<p><a href="https://github.com/Niyo-D-JC/Asset-Pricing-and-Management">GitHub →</a></p>
-</section>
-<section id="back-testing-de-la-var" class="level3 card">
-<h3 class="anchored" data-anchor-id="back-testing-de-la-var">Back-testing de la VaR</h3>
-<p><a href="https://github.com/usenameFD/Risk-Management">GitHub →</a></p>
+<section id="cadre-de-la-finance-durable" class="level3 qf-card">
+<h3 class="anchored" data-anchor-id="cadre-de-la-finance-durable">Cadre de la finance durable</h3>
+<p>Objectifs, indicateurs et cadres réglementaires.</p>
+<p><a href="./autres/finance_durable.html">Accéder au document →</a></p>
 </section>
 </div>
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
-    <h1 class="hero-title"></h1>
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
-  
-</main>
-
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -634,12 +558,12 @@ Les contenus sont structurés selon les principaux piliers méthodologiques de l
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -682,7 +606,7 @@ Les contenus sont structurés selon les principaux piliers méthodologiques de l
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -696,6 +620,11 @@ Les contenus sont structurés selon les principaux piliers méthodologiques de l
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1010,8 +939,67 @@ Les contenus sont structurés selon les principaux piliers méthodologiques de l
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="./projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

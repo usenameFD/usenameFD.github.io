@@ -1,7 +1,10 @@
 ---
-title: "Calibration du modèle à volatilité stochastique de Taylor : Filtre particulaire"
+title: "Modèle à volatilité stochastique de Taylor : filtre particulaire"
+description: "Estimation de la log-volatilité latente par filtre particulaire bootstrap, sur les rendements puis sur la formulation log-SV."
 author: "Franck Deba"
 date: "2025-01-21"
+categories:
+  - Processus stochastiques
 ---
 
 

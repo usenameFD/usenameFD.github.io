@@ -1,0 +1,94 @@
+---
+title: "Notes & recherche"
+subtitle: "Notes méthodologiques, travaux théoriques et rapports"
+pagetitle: "Notes & recherche — Franck Deba"
+description-meta: >-
+  Notes méthodologiques en finance quantitative : marchés et instruments,
+  risque et réglementation, processus stochastiques, apprentissage statistique
+  et finance durable.
+toc: false
+listing:
+  - id: notes
+    contents:
+      - "../00_Assets/markets_intro.qmd"
+      - "../2A/App_sup/*.qmd"
+      - "../3A/*.qmd"
+      - "../3A/value-at-risk/*.qmd"
+      - "../3A/proc_stochastique/*.qmd"
+      - "../3A/Apprentisage-stat/*.qmd"
+      - "../autres/*.qmd"
+    type: default
+    fields: [title, description, categories, date]
+    sort: "date desc"
+    sort-ui: false
+    filter-ui: true
+    categories: numbered
+    page-size: 30
+---
+
+Cette section rassemble les notes de fond qui accompagnent les
+[projets](../projects/index.qmd) : définitions, démonstrations, cadres
+réglementaires et travaux dirigés. Elles constituent la couche théorique sur
+laquelle s'appuient les implémentations.
+
+Utilisez le champ de recherche ou les thèmes affichés en marge pour filtrer.
+
+## Parcours thématiques
+
+Deux entrées organisées par discipline, si vous préférez une lecture guidée
+plutôt qu'une liste.
+
+::: {.qf-grid .qf-grid-2}
+::: {.qf-card}
+### Gestion des risques
+
+Analyse financière, réglementation prudentielle, mesures de risque,
+calibration de modèles stochastiques, asset management et finance durable.
+
+[Suivre le parcours →](../index_gdr.qmd)
+:::
+
+::: {.qf-card}
+### Modélisation statistique
+
+Valeurs extrêmes, séries financières, apprentissage supervisé, apprentissage
+profond et traitement du langage naturel.
+
+[Suivre le parcours →](../index_stat.qmd)
+:::
+:::
+
+## Rapports et mémoires
+
+::: {.qf-grid}
+::: {.qf-card}
+### Théorie des valeurs extrêmes
+
+Note de synthèse sur la modélisation des queues de distribution appliquée à la
+mesure du risque de marché.
+
+[Télécharger le PDF →](../3A/rapports/projet_EVT.pdf)
+:::
+
+::: {.qf-card}
+### Copules et risques multiples
+
+Rapport détaillant la modélisation de la dépendance et le calcul de la
+CreditVaR d'un portefeuille de créances.
+
+[Télécharger le PDF →](../3A/rapports/Copulas.pdf)
+:::
+
+::: {.qf-card}
+### Séries temporelles
+
+Rapport d'analyse et de prévision de séries financières.
+
+[Télécharger le PDF →](../3A/rapports/rapport_series_temporelles.pdf)
+:::
+:::
+
+## Toutes les notes
+
+::: {#notes}
+:::

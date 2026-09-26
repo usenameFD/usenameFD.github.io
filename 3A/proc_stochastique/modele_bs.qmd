@@ -1,7 +1,10 @@
 ---
-title: 'Calibration du modèle Black-Scholes'
+title: 'Calibration du modèle de Black-Scholes'
+description: "Pricing d'un call sous mouvement brownien géométrique, calcul des grecques et calibration de la volatilité implicite."
 jupyter: python3
 date: "2025-01-06"
+categories:
+  - Processus stochastiques
 ---
 
 

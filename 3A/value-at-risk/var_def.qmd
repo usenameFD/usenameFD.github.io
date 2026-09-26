@@ -1,9 +1,12 @@
 ---
-title: "La VaR"
+title: "La Value-at-Risk"
+description: "Définition de la VaR, calcul analytique pour portefeuilles linéaires et non linéaires, modèles factoriels de risque, VaR historique et Monte-Carlo, et principe du backtesting."
 author: "Franck Deba"
 sidebar: auto
 number-sections: true
 date: "2024-05-06"
+categories:
+  - Risque & réglementation
 ---
 
 La mesure de risque réglementaire correspond à la valeur en risque ou value at-risk (VaR) qui est le quantile de perte (ou perte maximale subie). Il s'agit dans cette section de développer la notion de VaR pour des portefeuilles linéaires et non linéaires.

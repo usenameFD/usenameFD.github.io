@@ -1,40 +1,54 @@
 [
   {
+    "listing": "/notes/index.html",
+    "items": [
+      "/00_Assets/markets_intro.html",
+      "/autres/finance_durable.html",
+      "/3A/proc_stochastique/APF_filter.html",
+      "/autres/spearman-pearson.html",
+      "/3A/proc_stochastique/modele_heston.html",
+      "/3A/proc_stochastique/modele_log_sv-part2.html",
+      "/3A/proc_stochastique/modele_log_sv-part1.html",
+      "/3A/proc_stochastique/modele_bs.html",
+      "/3A/Apprentisage-stat/Tp4.html",
+      "/3A/Apprentisage-stat/Tp3.html",
+      "/3A/Apprentisage-stat/Tp2.html",
+      "/3A/Apprentisage-stat/Tp1.html",
+      "/3A/reglementation_prudentielle.html",
+      "/autres/ISR.html",
+      "/3A/risque_def.html",
+      "/2A/App_sup/reg_lin.html",
+      "/3A/bilan_entreprise.html",
+      "/3A/value-at-risk/var_def.html"
+    ]
+  },
+  {
+    "listing": "/projects/index.html",
+    "items": [
+      "/projects/value-at-risk.html",
+      "/projects/creditvar-copules.html",
+      "/projects/risques-asset-management.html",
+      "/projects/calibration-heston-filtrage.html",
+      "/projects/volatilite-stochastique-taylor.html",
+      "/projects/options-exotiques-bates-heston.html",
+      "/projects/bibliotheque-pricing-dash.html",
+      "/projects/courbes-de-taux.html",
+      "/projects/univers-investissement-esg.html",
+      "/projects/risque-climatique-communes.html",
+      "/projects/econometrie-financiere-vecm.html",
+      "/projects/market-timing-mlp.html",
+      "/projects/deep-learning-nlp.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
-      "/3A/proc_stochastique/APF_filter.html",
-      "/projects/DeepLearning/NLP.html",
-      "/projects/WQU/Financial Data 2.html",
-      "/3A/proc_stochastique/modele_heston.html",
-      "/3A/proc_stochastique/modele_bs.html",
-      "/3A/proc_stochastique/modele_log_sv-part1.html",
-      "/3A/proc_stochastique/modele_log_sv-part2.html",
-      "/3A/bilan_entreprise.html",
-      "/projects/Climate/Notebooks/03_PhysicalRisk.html",
-      "/3A/Apprentisage-stat/Tp4.html",
-      "/projects/WQU/Financial Econometrics 2.html",
-      "/projects/Copulus/copule.html",
-      "/3A/Apprentisage-stat/Tp3.html",
-      "/projects/Calibration/HestonModel.html",
-      "/projects/Liquidity/AssetLiquidity.html",
-      "/projects/Climate/Notebooks/02_ExpoClimatCommune.html",
-      "/3A/Apprentisage-stat/Tp2.html",
-      "/3A/value-at-risk/var_def.html",
-      "/3A/reglementation_prudentielle.html",
-      "/2A/App_sup/reg_lin.html",
-      "/3A/risque_def.html",
-      "/projects/Yield Curve/Projet_courbe_taux.html",
-      "/projects/WQU/timingStock.html",
-      "/projects/WQU/timingStock_HPO.html",
-      "/projects/main_options.html",
-      "/projects/WQU/Financial Data 1.html",
-      "/projects/WQU/Stochastic Modeling 1.html",
-      "/projects/DeepLearning/DL.html",
-      "/3A/Apprentisage-stat/Tp1.html",
-      "/projects/WQU/Derivative Pricing 2.html",
-      "/projects/Responsible Investment/esg.html",
-      "/projects/VaR/VaR.html",
-      "/projects/WQU/Derivative Pricing 1.html"
+      "/projects/value-at-risk.html",
+      "/projects/creditvar-copules.html",
+      "/projects/calibration-heston-filtrage.html",
+      "/projects/bibliotheque-pricing-dash.html",
+      "/projects/courbes-de-taux.html",
+      "/projects/risque-climatique-communes.html"
     ]
   }
 ]

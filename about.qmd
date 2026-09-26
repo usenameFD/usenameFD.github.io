@@ -1,27 +1,128 @@
 ---
-title: "Franck DEBA"
+title: "Franck Deba"
+subtitle: "Finance quantitative · Gestion des risques · Modélisation statistique"
+pagetitle: "À propos — Franck Deba"
+description-meta: >-
+  Franck Deba, ingénieur data scientist diplômé de l'ENSAI et étudiant du M2MO,
+  spécialisé en finance de marché, mesure des risques et modélisation
+  stochastique.
 about:
   template: trestles
   image: img/profile.jpg
+  image-alt: "Portrait de Franck Deba"
+  image-width: 14em
+  image-shape: rounded
   links:
-    - icon: mailbox-flag
+    - icon: envelope
       text: Email
       href: mailto:debafranck@gmail.com
     - icon: github
-      text: Github
-      href: https://github.com/usernameFD
+      text: GitHub
+      href: https://github.com/usenameFD
     - icon: linkedin
-      text: Linkedin
-      href: https://linkedin.com/in/deba-franck
-    - icon: file-pdf
+      text: LinkedIn
+      href: https://www.linkedin.com/in/deba-franck
+    - icon: file-earmark-pdf
       text: CV
       href: CV/Franck_DEBA_Resume.pdf
+toc: false
 ---
 
-Je suis [Franck Deba](CV/Franck_DEBA_Resume.pdf), ingénieur Data Scientist diplômé de l'ENSAI et actuellement étudiant au M2MO (ex-DEA Laure-Elie). Je me spécialise en finance de marché après un parcours en gestion des risques bancaires.
+## Parcours
 
-Ce site web, conçu avec Quarto, s'adresse principalement aux étudiants intéressés par la finance de marché et ses métiers. L'accent est mis sur la pédagogie pour appréhender les défis académiques que j'ai rencontrés et que beaucoup vivent durant leur formation.
+Je suis ingénieur data scientist diplômé de l'**ENSAI** et actuellement
+étudiant du **M2 Modélisation Aléatoire** (M2MO, ex-DEA Laure-Élie). Je me
+spécialise en finance de marché après un parcours en gestion des risques
+bancaires.
 
-Il ne prétend en aucun cas se substituer à un cours - la rigueur et l'expertise des enseignants restent essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j'ai réalisés.
+Ce double parcours oriente ma manière de travailler : je m'intéresse autant à
+la rigueur statistique — estimation, validation, quantification de
+l'incertitude — qu'aux mécanismes de marché qui donnent un sens financier aux
+modèles : liquidité, volatilité, structure par terme des taux, dépendances
+extrêmes.
 
-Au-delà des étudiants, ce site constitue également une ressource pour les professionnels souhaitant revisiter certains concepts clés en gestion des risques ou en statistiques. Il propose des exemples concrets et des pistes de réflexion adaptées aux problématiques actuelles.
+## Ce que contient ce site
+
+Le site est organisé en deux couches complémentaires.
+
+::: {.qf-grid .qf-grid-2}
+::: {.qf-card}
+### Projets
+
+Des fiches structurées présentant, pour chaque travail quantitatif, le problème
+financier traité, la méthodologie, le cadre mathématique, les résultats
+obtenus, leur interprétation et les limites du modèle.
+
+[Parcourir les projets →](projects/index.qmd)
+:::
+
+::: {.qf-card}
+### Notes & recherche
+
+Les notes théoriques qui sous-tendent les projets : définitions, cadres
+réglementaires, démonstrations et travaux dirigés.
+
+[Parcourir les notes →](notes/index.qmd)
+:::
+:::
+
+Au-delà de la présentation de mes travaux, ce site s'adresse aussi aux
+**étudiants** intéressés par la finance de marché et ses métiers. L'accent est
+mis sur la pédagogie : il s'agit d'aider à appréhender les difficultés
+académiques que j'ai rencontrées et que beaucoup rencontrent pendant leur
+formation.
+
+Il ne prétend en aucun cas se substituer à un cours — la rigueur et l'expertise
+des enseignants restent essentielles. Son objectif est de compléter leur
+travail en partageant mes expériences personnelles et les projets que j'ai
+réalisés.
+
+Pour les **professionnels** du risque et de la recherche quantitative, il
+constitue une ressource pour revisiter certains concepts clés, avec des
+exemples concrets et des pistes de réflexion adaptées aux problématiques
+actuelles.
+
+## Axes de travail
+
+::: {.qf-grid}
+::: {.qf-card}
+### Mesure et validation des risques
+
+VaR, Expected Shortfall, théorie des valeurs extrêmes, backtesting et
+réglementation prudentielle.
+:::
+
+::: {.qf-card}
+### Modélisation stochastique
+
+Volatilité stochastique, méthodes de filtrage, calibration sur prix d'options
+et pricing de dérivés.
+:::
+
+::: {.qf-card}
+### Structures de dépendance
+
+Copules, mesures de concordance, dépendance de queue et agrégation de risques.
+:::
+
+::: {.qf-card}
+### Données et apprentissage
+
+Économétrie des séries financières, apprentissage statistique, données
+géospatiales et extra-financières.
+:::
+:::
+
+## Méthode de publication
+
+Les résultats publiés proviennent des exécutions d'origine conservées dans les
+notebooks et les rapports. La génération de ce site **ne relance aucun calcul** :
+aucune simulation, aucune calibration et aucun téléchargement de données de
+marché n'est déclenché lors du rendu. Les chiffres et les graphiques affichés
+sont donc exactement ceux des analyses initiales.
+
+::: {.qf-actions}
+[Voir les projets](projects/index.qmd){.qf-btn}
+[Télécharger le CV](CV/Franck_DEBA_Resume.pdf){.qf-btn .qf-btn-outline}
+[Me contacter](contact.qmd){.qf-btn .qf-btn-outline}
+:::

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Franck Deba">
-<meta name="dcterms.date" content="2024-02-01">
 <meta name="description" content="Historical, parametric and Monte-Carlo VaR implementation with backtesting.">
 
-<title>Value-at-Risk Estimation – Franck Deba - Quantitative Research</title>
+<title>Value-at-Risk Estimation – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -71,22 +73,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../img/logo-bg.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -96,27 +97,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -145,10 +149,21 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Value-at-Risk Estimation – Franck Deba">
+<meta property="og:description" content="Historical, parametric and Monte-Carlo VaR implementation with backtesting.">
+<meta property="og:image" content="https://usenameFD.github.io/img/var-cover.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="547">
+<meta property="og:image:width" content="1021">
+<meta name="twitter:title" content="Value-at-Risk Estimation – Franck Deba">
+<meta name="twitter:description" content="Historical, parametric and Monte-Carlo VaR implementation with backtesting.">
+<meta name="twitter:image" content="https://usenameFD.github.io/img/var-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="547">
+<meta name="twitter:image-width" content="1021">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -318,15 +333,15 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -336,21 +351,42 @@ window.Quarto = {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -358,8 +394,9 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
@@ -386,10 +423,6 @@ window.Quarto = {
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -410,16 +443,16 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Auteur·rice</div>
     <div class="quarto-title-meta-contents">
              <p>Franck Deba </p>
           </div>
   </div>
     
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 1, 2024</p>
+      <p class="date">1 février 2024</p>
     </div>
   </div>
   
@@ -448,7 +481,7 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ticker_symbol <span class="op">=</span> <span class="st">"^FCHI"</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df_close <span class="op">=</span> yf.download(ticker_symbol, start<span class="op">=</span><span class="st">"2008-10-15"</span>, end <span class="op">=</span> <span class="st">"2024-06-11"</span>)[<span class="st">"Close"</span>]</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df_close.columns <span class="op">=</span> [<span class="st">'Close'</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df_close.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df_close.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>[*********************100%***********************]  1 of 1 completed</code></pre>
@@ -491,7 +524,7 @@ window.Quarto = {
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>missing_values <span class="op">=</span> df_close.isnull().<span class="bu">sum</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nombre de valeurs manquantes dans la colonne 'Close': </span><span class="sc">{</span>missing_values[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Nombre de valeurs manquantes dans la colonne 'Close': </span><span class="sc">{</span>missing_values[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nombre de valeurs manquantes dans la colonne 'Close': 0</code></pre>
@@ -503,7 +536,7 @@ window.Quarto = {
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df_close[<span class="st">'Close'</span>].describe()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Résumé descriptif des prix de clôture :"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -525,7 +558,7 @@ Name: Close, dtype: float64</code></pre>
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_close[<span class="st">'Log Return'</span>] <span class="op">=</span> np.log(df_close[<span class="st">'Close'</span>] <span class="op">/</span> df_close[<span class="st">'Close'</span>].shift(<span class="dv">1</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df_close <span class="op">=</span> df_close.dropna()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_close.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_close.head(<span class="dv">2</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <div>
@@ -583,7 +616,7 @@ Name: Close, dtype: float64</code></pre>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout des titres et légendes</span></span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Évolution des prix de clôture et des Log Returns (Eurostocks50)"</span>)</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()  </span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -613,7 +646,7 @@ Name: Close, dtype: float64</code></pre>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher les tailles des ensembles</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taille de l'ensemble d'entraînement: </span><span class="sc">{</span>train_data<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> jours"</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taille de l'ensemble de test: </span><span class="sc">{</span>test_data<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> jours"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taille de l'ensemble de test: </span><span class="sc">{</span>test_data<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> jours"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Taille de l'ensemble d'entraînement: 3522 jours
@@ -631,7 +664,7 @@ Taille de l'ensemble de test: 479 jours</code></pre>
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>resultat <span class="op">=</span> functions.descriptive_statistics(train_data, train_data.columns)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>resultat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>resultat</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="73">
 <div>
@@ -716,7 +749,7 @@ Taille de l'ensemble de test: 479 jours</code></pre>
 <div id="cell-17" class="cell" data-execution_count="74">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>functions.plot_histograms(train_data, train_data.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>functions.plot_histograms(train_data, train_data.columns)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -736,7 +769,7 @@ Taille de l'ensemble de test: 479 jours</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>stat_test <span class="op">=</span> functions.descriptive_statistics(test_data, test_data.columns)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stat_test</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stat_test</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <div>
@@ -821,7 +854,7 @@ Taille de l'ensemble de test: 479 jours</code></pre>
 <div id="cell-21" class="cell" data-execution_count="76">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>functions.plot_histograms(test_data, test_data.columns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>functions.plot_histograms(test_data, test_data.columns)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -849,7 +882,7 @@ Taille de l'ensemble de test: 479 jours</code></pre>
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>var_99_hist <span class="op">=</span> functions.VaR_Hist(train_data[<span class="st">'Log Return'</span>])</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR historique à 99% sur un  horizon d'un jour : </span><span class="sc">{</span>var_99_hist<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR historique à 99% sur un  horizon d'un jour : </span><span class="sc">{</span>var_99_hist<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR historique à 99% sur un  horizon d'un jour : -4.0517%</code></pre>
@@ -869,7 +902,7 @@ Taille de l'ensemble de test: 479 jours</code></pre>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR Bootstrap à 99% sur un jour : </span><span class="sc">{</span>var_bootstrap_99<span class="sc">:.4%}</span><span class="ss">"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intervalle de confiance à 95% : [</span><span class="sc">{</span>var_ci[<span class="dv">0</span>]<span class="sc">:.4%}</span><span class="ss">, </span><span class="sc">{</span>var_ci[<span class="dv">1</span>]<span class="sc">:.4%}</span><span class="ss">]"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intervalle de confiance à 95% : [</span><span class="sc">{</span>var_ci[<span class="dv">0</span>]<span class="sc">:.4%}</span><span class="ss">, </span><span class="sc">{</span>var_ci[<span class="dv">1</span>]<span class="sc">:.4%}</span><span class="ss">]"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR Bootstrap à 99% sur un jour : -4.0517%
@@ -881,7 +914,7 @@ Intervalle de confiance à 95% : [-4.3588%, -3.8138%]</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>functions.var_exceptions(test_data, var_99_hist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>functions.var_exceptions(test_data, var_99_hist)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nombre d'exceptions (log-returns inférieurs à la VaR à 99%) : 0
@@ -918,7 +951,7 @@ p_{\text{uc}} = 1 - \chi^2_{\text{cdf}}(LR_{\text{uc}}, df=1)
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>LR_uc, p_value <span class="op">=</span> functions.unconditional_coverage_test(test_data, var_99_hist, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>LR_uc, p_value <span class="op">=</span> functions.unconditional_coverage_test(test_data, var_99_hist, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nombre d'exceptions observées : 0
@@ -947,7 +980,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>var_gauss <span class="op">=</span> functions.VaR_Gauss(train_data, alpha<span class="op">=</span><span class="fl">0.99</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR Gaussienne à 99% sur un jour : </span><span class="sc">{</span>var_gauss<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR Gaussienne à 99% sur un jour : </span><span class="sc">{</span>var_gauss<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR Gaussienne à 99% sur un jour : -3.2172%</code></pre>
@@ -961,7 +994,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>functions.plot_kde_vs_gauss(train_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>functions.plot_kde_vs_gauss(train_data)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -978,7 +1011,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>functions.plot_qq(train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>functions.plot_qq(train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1000,7 +1033,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>functions.ks_test(train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>functions.ks_test(train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Statistique KS: 0.0803
@@ -1013,7 +1046,7 @@ Resultat du test : Rejet de l'hypothèse de normalité au seuil de 5% </code></p
 <div id="cell-52" class="cell" data-execution_count="86">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>functions.unconditional_coverage_test(train_data, var_gauss, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>functions.unconditional_coverage_test(train_data, var_gauss, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nombre d'exceptions observées : 78
@@ -1045,7 +1078,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>var_10j <span class="op">=</span> functions.var_gauss_horizon(var_gauss, horizon<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>var_10j <span class="op">=</span> functions.var_gauss_horizon(var_gauss, horizon<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR à 10 jours : -10.17%</code></pre>
@@ -1081,7 +1114,7 @@ dS = S \cdot \mu \cdot dt + S \cdot \sigma \cdot Z \cdot \sqrt{dt}
 <span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>log_returns <span class="op">=</span> functions.calculate_log_returns(St, S0)</span>
 <span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la VaR  à 99%</span></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>var_99 <span class="op">=</span> functions.calculate_var(log_returns)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>var_99 <span class="op">=</span> functions.calculate_var(log_returns)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR diffusée à 99.0% pour un horizon de 10 jours : -0.0996</code></pre>
@@ -1094,7 +1127,7 @@ dS = S \cdot \mu \cdot dt + S \cdot \sigma \cdot Z \cdot \sqrt{dt}
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>num_trajectoires <span class="op">=</span><span class="dv">10</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>functions.plot_simulations(St, num_trajectoires, t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>functions.plot_simulations(St, num_trajectoires, t)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1125,7 +1158,7 @@ dS = S \cdot \mu \cdot dt + S \cdot \sigma \cdot Z \cdot \sqrt{dt}
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"L'ecart-type non pondéré des log rendements dans l'echantillon train est : "</span>, train_data[<span class="st">'Log Return'</span>].std())</span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">50</span>)</span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"La moyenne non pondérée des log rendements dans l'echantillon train est : "</span>, train_data[<span class="st">'Log Return'</span>].mean())</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">50</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pour λ = 0.9:
@@ -1161,7 +1194,7 @@ La moyenne non pondérée des log rendements dans l'echantillon train est :  0.0
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lambda_ <span class="kw">in</span> lambdas:</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    var_ewma <span class="op">=</span> functions.calculate_var_gauss_ewma(train_data[<span class="st">'Log Return'</span>], lambda_, alpha<span class="op">=</span><span class="fl">0.99</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    var_ewma <span class="op">=</span> functions.calculate_var_gauss_ewma(train_data[<span class="st">'Log Return'</span>], lambda_, alpha<span class="op">=</span><span class="fl">0.99</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pour λ = 0.9:
@@ -1194,7 +1227,7 @@ VaR gaussienne EWMA à 1 jour (α = 99.0%): -0.0640
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>var_ewma <span class="op">=</span> functions.calculate_var_gauss_ewma(train_data[<span class="st">'Log Return'</span>], <span class="fl">0.9</span>, alpha<span class="op">=</span><span class="fl">0.99</span>)</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>LR_uc, p_value <span class="op">=</span> functions.unconditional_coverage_test(test_data, var_ewma, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pour λ = 0.9:
@@ -1224,7 +1257,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>var_ewma <span class="op">=</span> functions.calculate_var_gauss_ewma(train_data[<span class="st">'Log Return'</span>], <span class="fl">0.95</span>, alpha<span class="op">=</span><span class="fl">0.99</span>)</span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>LR_uc, p_value <span class="op">=</span> functions.unconditional_coverage_test(test_data, var_ewma, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pour λ = 0.95:
@@ -1254,7 +1287,7 @@ L'hypothèse nulle est rejetée : Le modèle de VaR ne couvre pas correctement l
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>var_ewma <span class="op">=</span> functions.calculate_var_gauss_ewma(train_data[<span class="st">'Log Return'</span>], <span class="fl">0.99</span>, alpha<span class="op">=</span><span class="fl">0.99</span>)</span>
 <span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>LR_uc, p_value <span class="op">=</span> functions.unconditional_coverage_test(test_data, var_ewma, significance_level<span class="op">=</span><span class="fl">0.01</span>)</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pour λ = 0.99:
@@ -1326,7 +1359,7 @@ f_{\\{skew-student}}(x) = 2 \times f(x) \times F(x)
 <span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" - Skewness (gamma) : </span><span class="sc">{</span>gamma_opt<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f" - Degrés de liberté (nu) : </span><span class="sc">{</span>nu_opt<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"L'optimisation a échoué."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"L'optimisation a échoué."</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Paramètres estimés de la loi Skew Student :
@@ -1343,7 +1376,7 @@ f_{\\{skew-student}}(x) = 2 \times f(x) \times F(x)
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>functions.plot_skew_student_fit(log_returns, mu_opt, sigma_opt, gamma_opt, nu_opt, functions.f_skew_student)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>functions.plot_skew_student_fit(log_returns, mu_opt, sigma_opt, gamma_opt, nu_opt, functions.f_skew_student)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1366,7 +1399,7 @@ f_{\\{skew-student}}(x) = 2 \times f(x) \times F(x)
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>df_observed <span class="op">=</span> train_data[<span class="st">'Log Return'</span>]</span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> functions.qqplot(df_observed, df_simulated)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1392,7 +1425,7 @@ f_{\\{skew-student}}(x) = 2 \times f(x) \times F(x)
 <span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>mu_skew, sigma_skew, gamma_skew, nu_skew <span class="op">=</span> mu_opt, sigma_opt, gamma_opt, nu_opt</span>
 <span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Génération des QQ plots</span></span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>functions.qqplot_gaussian_skew(train_data[<span class="st">'Log Return'</span>], mu_gauss, sigma_gauss, mu_skew, sigma_skew, gamma_skew, nu_skew)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>functions.qqplot_gaussian_skew(train_data[<span class="st">'Log Return'</span>], mu_gauss, sigma_gauss, mu_skew, sigma_skew, gamma_skew, nu_skew)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1410,7 +1443,7 @@ f_{\\{skew-student}}(x) = 2 \times f(x) \times F(x)
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>VaR_skew <span class="op">=</span> functions.Var_param_student(train_data[<span class="st">'Log Return'</span>], confidence_level<span class="op">=</span><span class="fl">0.99</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>VaR_skew <span class="op">=</span> functions.Var_param_student(train_data[<span class="st">'Log Return'</span>], confidence_level<span class="op">=</span><span class="fl">0.99</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR Skewed Student au niveau de confiance 99.0% est de : -0.0370</code></pre>
@@ -1430,7 +1463,7 @@ f_{\\{skew-student}}(x) = 2 \times f(x) \times F(x)
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"La VaR historique (niveau 99%) est : "</span>, <span class="bu">round</span>(var_99_hist, <span class="dv">4</span>))</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>ES_hist <span class="op">=</span>functions.ES_Hist(train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>ES_hist <span class="op">=</span>functions.ES_Hist(train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR historique (niveau 99%) est :  -0.0405
@@ -1445,7 +1478,7 @@ L'Expected Shortfall empirique historique au niveau de confiance 99.0% est : -0.
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"La VaR gaussienne (niveau 99%) est : "</span>, <span class="bu">round</span>(var_gauss, <span class="dv">4</span>))</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>ES_emp_gauss <span class="op">=</span> functions.ES_emp_gauss(train_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>ES_emp_gauss <span class="op">=</span> functions.ES_emp_gauss(train_data)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR gaussienne (niveau 99%) est :  -0.0322
@@ -1460,7 +1493,7 @@ L'Expected Shortfall empirique gaussien au niveau de confiance 99.0% est : -0.04
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"La VaR gaussienne (niveau 99%) est : "</span>, <span class="bu">round</span>(var_gauss, <span class="dv">4</span>))</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>ES_gauss <span class="op">=</span> functions.ES_gauss(train_data, confidence_level<span class="op">=</span><span class="fl">0.99</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>ES_gauss <span class="op">=</span> functions.ES_gauss(train_data, confidence_level<span class="op">=</span><span class="fl">0.99</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR gaussienne (niveau 99%) est :  -0.0322
@@ -1474,7 +1507,7 @@ ES théorique gaussien (niveau 99.0%) : -0.036884</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>ES_emp_skew_student <span class="op">=</span> functions.ES_emp_skew_student(train_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>ES_emp_skew_student <span class="op">=</span> functions.ES_emp_skew_student(train_data)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR Skewed Student au niveau de confiance 99.0% est de : -0.0370
@@ -1489,7 +1522,7 @@ L'Expected Shortfall empirique skewed-student au niveau de confiance 99.0% est :
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"La VaR skew-student (niveau 99%) est : "</span>, <span class="bu">round</span>(VaR_skew, <span class="dv">4</span>))</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>ES_skew_student <span class="op">=</span> functions.ES_skew_student(mu_opt, sigma_opt, gamma_opt, nu_opt, train_data, VaR_skew)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>ES_skew_student <span class="op">=</span> functions.ES_skew_student(mu_opt, sigma_opt, gamma_opt, nu_opt, train_data, VaR_skew)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR skew-student (niveau 99%) est :  -0.037
@@ -1544,7 +1577,7 @@ Cela garantit que le modèle reste pertinent même lorsqu’il semble bien fonct
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>result_var, result_date_recalib, jours_recalibrage <span class="op">=</span> functions.adaptive_backtesting(train_data, test_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>result_var, result_date_recalib, jours_recalibrage <span class="op">=</span> functions.adaptive_backtesting(train_data, test_data)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR est recalibrée à la date 2023-03-16
@@ -1591,7 +1624,7 @@ La valeur de la nouvelle VaR recalibrée est : -0.02862514975428418
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>functions.gumbel_plot(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>functions.gumbel_plot(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1616,7 +1649,7 @@ La valeur de la nouvelle VaR recalibrée est : -0.02862514975428418
 <span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shape (ξ): </span><span class="sc">{</span>shape<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'-'</span><span class="op">*</span><span class="dv">50</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Location (μ): </span><span class="sc">{</span>loc<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'-'</span><span class="op">*</span><span class="dv">50</span><span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scale (σ): </span><span class="sc">{</span>scale<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'-'</span><span class="op">*</span><span class="dv">50</span><span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Negative Log-Likelihood: </span><span class="sc">{</span>neg_log_likelihood_value<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'-'</span><span class="op">*</span><span class="dv">50</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Negative Log-Likelihood: </span><span class="sc">{</span>neg_log_likelihood_value<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span><span class="st">'-'</span><span class="op">*</span><span class="dv">50</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Shape (ξ): -0.1340739024682368
@@ -1639,7 +1672,7 @@ Negative Log-Likelihood: 529.2834672681624
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>functions.gev_plot(block_max , shape, loc, scale)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>functions.gev_plot(block_max , shape, loc, scale)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1655,7 +1688,7 @@ Negative Log-Likelihood: 529.2834672681624
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>functions.ks_test_gev(block_max, shape, loc, scale, alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>functions.ks_test_gev(block_max, shape, loc, scale, alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------
@@ -1678,7 +1711,7 @@ La loi GEV est acceptable.
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>loc_g, scale_g, neg_log_likelihood_value_g <span class="op">=</span> functions.fit_gumbel(block_max)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>loc_g, scale_g, neg_log_likelihood_value_g <span class="op">=</span> functions.fit_gumbel(block_max)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><strong>On réalise ensuite notre test de rapport de vraisemblance</strong></p>
@@ -1686,7 +1719,7 @@ La loi GEV est acceptable.
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>functions.LR_test(neg_log_likelihood_value_g, neg_log_likelihood_value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>functions.LR_test(neg_log_likelihood_value_g, neg_log_likelihood_value)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------
@@ -1712,7 +1745,7 @@ Résultat : pas d'amélioration significative par rapport au modèle Gumbel.
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>VaR_Gumbel <span class="op">=</span> functions.calcul_VaR_Gumbel (loc_g, scale_g, block_size<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>VaR_Gumbel <span class="op">=</span> functions.calcul_VaR_Gumbel (loc_g, scale_g, block_size<span class="op">=</span><span class="dv">20</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La VaR Gumbel est : -0.03492178637571426
@@ -1729,7 +1762,7 @@ Résultat : pas d'amélioration significative par rapport au modèle Gumbel.
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>functions.mean_excess_plot(<span class="op">-</span>train_data, u_min<span class="op">=</span><span class="dv">0</span>, u_max<span class="op">=</span><span class="va">None</span>, step<span class="op">=</span><span class="fl">0.001</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>functions.mean_excess_plot(<span class="op">-</span>train_data, u_min<span class="op">=</span><span class="dv">0</span>, u_max<span class="op">=</span><span class="va">None</span>, step<span class="op">=</span><span class="fl">0.001</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1754,7 +1787,7 @@ Résultat : pas d'amélioration significative par rapport au modèle Gumbel.
 <span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shape (ξ)  : </span><span class="sc">{</span>shape<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Loc        : </span><span class="sc">{</span>loc<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Scale (σ)  : </span><span class="sc">{</span>scale<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------
@@ -1775,7 +1808,7 @@ Scale (σ)  : 0.0115
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">0.028</span></span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>gpd_validation <span class="op">=</span> functions.gpd_validation(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>].to_numpy(), u, shape, scale)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>gpd_validation <span class="op">=</span> functions.gpd_validation(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>].to_numpy(), u, shape, scale)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1792,7 +1825,7 @@ Scale (σ)  : 0.0115
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>functions.gpd_ks_test(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>], u, shape, scale, alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>functions.gpd_ks_test(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>], u, shape, scale, alpha<span class="op">=</span><span class="fl">0.05</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------
@@ -1818,7 +1851,7 @@ Conclusion : la loi GPD est acceptable pour les excès.
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
 <span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"la VaR TVE par PoT à un niveau de confiance 99 </span><span class="sc">% e</span><span class="st">st :</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb85-5"><a href="#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR TVE  : </span><span class="sc">{</span>var_tve_pot_result <span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb85-6"><a href="#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>--------------------------------------------------
@@ -1839,7 +1872,7 @@ VaR TVE  : -0.0412
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> functions.calibrate_u(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>].to_numpy(), alpha<span class="op">=</span><span class="fl">0.99</span>, step<span class="op">=</span><span class="fl">0.0001</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> functions.calibrate_u(<span class="op">-</span>train_data[<span class="st">'Log Return'</span>].to_numpy(), alpha<span class="op">=</span><span class="fl">0.99</span>, step<span class="op">=</span><span class="fl">0.0001</span>) </span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-143" class="cell" data-execution_count="167">
@@ -1847,7 +1880,7 @@ VaR TVE  : -0.0412
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">40</span>)</span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Le paramètre u optimal dans le cadre de notre exercice présent est"</span>, u)</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-'</span><span class="op">*</span><span class="dv">40</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>----------------------------------------
@@ -1891,7 +1924,7 @@ Le paramètre u optimal dans le cadre de notre exercice présent est 0.027347459
 <span id="cb90-21"><a href="#cb90-21" aria-hidden="true" tabindex="-1"></a><span class="co"># On ajuste un modèle AR(1) sur nos rendements</span></span>
 <span id="cb90-22"><a href="#cb90-22" aria-hidden="true" tabindex="-1"></a>ar_model <span class="op">=</span> ARIMA(train_data[<span class="st">'Log Return'</span>], order<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)).fit()</span>
 <span id="cb90-23"><a href="#cb90-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ar_model.summary())</span>
-<span id="cb90-24"><a href="#cb90-24" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb90-24"><a href="#cb90-24" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1946,7 +1979,7 @@ Warnings:
 <span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
 <span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>plot_pacf(residuals<span class="op">**</span><span class="dv">2</span>, lags<span class="op">=</span><span class="dv">20</span>, ax<span class="op">=</span>plt.gca())</span>
 <span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PACF of Squared Residuals'</span>)</span>
-<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1962,7 +1995,7 @@ Warnings:
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>ljung_box_pvalues_squared <span class="op">=</span> acorr_ljungbox(residuals, lags<span class="op">=</span>[<span class="dv">10</span>], return_df<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Résultats du test de Ljung-Box sur les résidus  :"</span>)</span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ljung_box_pvalues_squared)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ljung_box_pvalues_squared)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Résultats du test de Ljung-Box sur les résidus  :
@@ -1988,7 +2021,7 @@ Warnings:
 <span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>garch_residuals <span class="op">=</span> garch_fit.resid</span>
 <span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>plot_acf(garch_residuals, lags<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'ACF of GARCH Residuals'</span>)</span>
-<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteration:      1,   Func. Count:      6,   Neg. LLF: 23102908148.648552
@@ -2046,7 +2079,7 @@ Covariance estimator: robust</code></pre>
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>combined_model <span class="op">=</span> arch_model(train_data[<span class="st">'Log Return'</span>], mean<span class="op">=</span><span class="st">'AR'</span>, lags<span class="op">=</span><span class="dv">1</span>, vol<span class="op">=</span><span class="st">'Garch'</span>, p<span class="op">=</span><span class="dv">1</span>, q<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>combined_fit <span class="op">=</span> combined_model.fit()</span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined_fit.summary())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined_fit.summary())</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteration:      1,   Func. Count:      7,   Neg. LLF: 24436065804.187126
@@ -2102,7 +2135,7 @@ Covariance estimator: robust</code></pre>
 <span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>ljung_box_pvalues <span class="op">=</span> acorr_ljungbox(residuals, lags<span class="op">=</span>[<span class="dv">10</span>], return_df<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb99-7"><a href="#cb99-7" aria-hidden="true" tabindex="-1"></a>ljung_box_pvalues_squared <span class="op">=</span> acorr_ljungbox(residuals<span class="op">**</span><span class="dv">2</span>, lags<span class="op">=</span>[<span class="dv">10</span>], return_df<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb99-8"><a href="#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Résultats du test de Ljung-Box sur les résidus :"</span>)</span>
-<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ljung_box_pvalues)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb99-9"><a href="#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ljung_box_pvalues)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Résultats du test de Ljung-Box sur les résidus :
@@ -2120,7 +2153,7 @@ Covariance estimator: robust</code></pre>
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>ljung_box_pvalues_squared <span class="op">=</span> acorr_ljungbox(residuals<span class="op">**</span><span class="dv">2</span>, lags<span class="op">=</span>[<span class="dv">10</span>], return_df<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Résultats du test de Ljung-Box sur les résidus au carré :"</span>)</span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ljung_box_pvalues_squared)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ljung_box_pvalues_squared)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Résultats du test de Ljung-Box sur les résidus au carré :
@@ -2142,7 +2175,7 @@ Covariance estimator: robust</code></pre>
 <span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Valeurs des résidus"</span>)</span>
 <span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Densité"</span>)</span>
 <span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2160,7 +2193,7 @@ Covariance estimator: robust</code></pre>
 <span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>stats.probplot(residuals, dist<span class="op">=</span><span class="st">"norm"</span>, plot<span class="op">=</span>plt)</span>
 <span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"QQ Plot des résidus vs Distribution Normale"</span>)</span>
 <span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb104-6"><a href="#cb104-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2178,7 +2211,7 @@ Covariance estimator: robust</code></pre>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>jb_stat, jb_pvalue <span class="op">=</span> jarque_bera(residuals)</span>
 <span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Résultat du test de Jarque-Bera :"</span>)</span>
-<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"JB-stat = </span><span class="sc">{</span>jb_stat<span class="sc">:.3f}</span><span class="ss">, p-value = </span><span class="sc">{</span>jb_pvalue<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"JB-stat = </span><span class="sc">{</span>jb_stat<span class="sc">:.3f}</span><span class="ss">, p-value = </span><span class="sc">{</span>jb_pvalue<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2193,7 +2226,7 @@ JB-stat = 861.878, p-value = 0.000</code></pre>
 <span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>shapiro_stat, shapiro_pvalue <span class="op">=</span> shapiro(residuals)</span>
 <span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Résultat du test de Shapiro-Wilk :"</span>)</span>
-<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Statistique W = </span><span class="sc">{</span>shapiro_stat<span class="sc">:.3f}</span><span class="ss">, p-value = </span><span class="sc">{</span>shapiro_pvalue<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Statistique W = </span><span class="sc">{</span>shapiro_stat<span class="sc">:.3f}</span><span class="ss">, p-value = </span><span class="sc">{</span>shapiro_pvalue<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2212,7 +2245,7 @@ Statistique W = 0.978, p-value = 0.000</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">### On regarde la forme du combined plot pour notre modèle.</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>combined_fit.plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>combined_fit.plot()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="179">
 <div>
@@ -2254,7 +2287,7 @@ Statistique W = 0.978, p-value = 0.000</code></pre>
 <span id="cb110-17"><a href="#cb110-17" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"VaR"</span>] <span class="op">=</span> data[<span class="st">"mu"</span>] <span class="op">+</span> data[<span class="st">"vol"</span>]<span class="op">*</span>q</span>
 <span id="cb110-18"><a href="#cb110-18" aria-hidden="true" tabindex="-1"></a>data.head(<span class="dv">2</span>)  </span>
 <span id="cb110-19"><a href="#cb110-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-20"><a href="#cb110-20" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb110-20"><a href="#cb110-20" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="196">
 <div>
@@ -2346,7 +2379,7 @@ Statistique W = 0.978, p-value = 0.000</code></pre>
 <span id="cb112-22"><a href="#cb112-22" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb112-23"><a href="#cb112-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb112-24"><a href="#cb112-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher le graphique</span></span>
-<span id="cb112-25"><a href="#cb112-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb112-25"><a href="#cb112-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2368,7 +2401,7 @@ Statistique W = 0.978, p-value = 0.000</code></pre>
 <span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="co"># On recupère les residus</span></span>
 <span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>std_residuals <span class="op">=</span> combined_fit.std_resid.dropna().to_numpy()</span>
-<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>std_residuals <span class="op">=</span> <span class="op">-</span>std_residuals</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>std_residuals <span class="op">=</span> <span class="op">-</span>std_residuals</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iteration:      1,   Func. Count:      7,   Neg. LLF: 24436065804.187126
@@ -2385,7 +2418,7 @@ Optimization terminated successfully    (Exit mode 0)
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>importlib.<span class="bu">reload</span>(functions)</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>functions.compute_and_plot_var_GPD(std_residuals, alpha, combined_fit, train_data, test_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>functions.compute_and_plot_var_GPD(std_residuals, alpha, combined_fit, train_data, test_data)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2413,26 +2446,7 @@ Optimization terminated successfully    (Exit mode 0)
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
-    <h1 class="hero-title"></h1>
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
-  
-</main>
-
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -2471,12 +2485,12 @@ Optimization terminated successfully    (Exit mode 0)
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -2519,7 +2533,7 @@ Optimization terminated successfully    (Exit mode 0)
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2533,6 +2547,11 @@ Optimization terminated successfully    (Exit mode 0)
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -2847,8 +2866,67 @@ Optimization terminated successfully    (Exit mode 0)
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

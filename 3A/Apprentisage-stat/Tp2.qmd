@@ -1,7 +1,10 @@
 ---
-title: 'Kernel Trick and SVM'
+title: 'Kernel trick et SVM'
+description: "Régression ridge à noyau et machines à vecteurs de support : passage dans un espace de plus grande dimension et choix du noyau."
 jupyter: python3
 date: "2024-10-04"
+categories:
+  - Apprentissage statistique
 ---
 
 # Activity 1 : Kernel Ridge Regression (KRR)

@@ -1,9 +1,12 @@
 ---
 title: "Comment fonctionne le bilan et le compte de résultat d'une entreprise"
+description: "Lecture des états financiers d'une entreprise et identification des critères de santé financière servant de base à l'analyse du risque de crédit."
 sidebar: auto
 author:
   name: Franck Deba
 date: "2024-05-15"
+categories:
+  - Analyse financière
 ---
 
 L'analyse financière constitue l'ensemble des outils permettant de donner un avis objectif d'une organisation (entreprises, fondations, etc.) sur la santé finanière et les risques financiers auxquels elle sera confrontée. Il s'agit de determiner quels sont les critères d'une santé financière, qu'est le risque, comment formalise-t-on le risque, comment le mesure-t-on et comment le gère-t-on.

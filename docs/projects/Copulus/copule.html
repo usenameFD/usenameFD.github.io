@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="">
-<meta name="dcterms.date" content="2025-03-24">
 
-<title>Gestion des risques multiples – Franck Deba - Quantitative Research</title>
+<title>Gestion des risques multiples – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -70,22 +72,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../img/logo-bg.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -95,27 +96,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -144,10 +148,21 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Gestion des risques multiples – Franck Deba">
+<meta property="og:description" content="Portfolio quantitatif de Franck Deba : risque de marché, pricing de dérivés, courbes de taux, gestion de portefeuille, risque climatique et machine learning appliqué à la finance.">
+<meta property="og:image" content="https://usenameFD.github.io/projects/Copulus/copule_files/figure-html/cell-7-output-1.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="558">
+<meta property="og:image:width" content="701">
+<meta name="twitter:title" content="Gestion des risques multiples – Franck Deba">
+<meta name="twitter:description" content="Portfolio quantitatif de Franck Deba : risque de marché, pricing de dérivés, courbes de taux, gestion de portefeuille, risque climatique et machine learning appliqué à la finance.">
+<meta name="twitter:image" content="https://usenameFD.github.io/projects/Copulus/copule_files/figure-html/cell-7-output-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="558">
+<meta name="twitter:image-width" content="701">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -317,15 +332,15 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -335,21 +350,42 @@ window.Quarto = {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -357,8 +393,9 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
@@ -398,10 +435,6 @@ window.Quarto = {
   <li><a href="#calcul-de-la-creditvar-à-99-avec-simulation-de-monte-carlo" id="toc-calcul-de-la-creditvar-à-99-avec-simulation-de-monte-carlo" class="nav-link" data-scroll-target="#calcul-de-la-creditvar-à-99-avec-simulation-de-monte-carlo">Calcul de la CreditVar à 99% avec simulation de Monte Carlo</a></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -417,16 +450,16 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Auteur·rice</div>
     <div class="quarto-title-meta-contents">
              <p>ABOULA EDANG Jean GrivoDEBA WANDJI Franck DelmaKOUGOUM MOKO MANI Marilene </p>
           </div>
   </div>
     
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 24, 2025</p>
+      <p class="date">24 mars 2025</p>
     </div>
   </div>
   
@@ -459,7 +492,7 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binom, norm, skew, kurtosis, t, beta</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-5" class="cell" data-execution_count="2">
@@ -473,7 +506,7 @@ window.Quarto = {
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    spread <span class="op">=</span> spread_bp <span class="op">/</span> <span class="dv">10000</span>  </span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    lambda_ <span class="op">=</span> spread <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> recovery)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    pd <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span>lambda_ <span class="op">*</span> maturity)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-6" class="cell" data-execution_count="3">
@@ -490,7 +523,7 @@ window.Quarto = {
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PD BNP 4 ans :"</span>, pd_bnp_4y)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PD BNP 5 ans :"</span>, pd_bnp_5y)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PD SG 4 ans :"</span>, pd_sg_4y)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PD SG 5 ans :"</span>, pd_sg_5y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PD SG 5 ans :"</span>, pd_sg_5y)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>PD BNP 4 ans : 0.06449301496838222
@@ -516,7 +549,7 @@ PD SG 5 ans : 0.11750309741540454</code></pre>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    a_chapeau <span class="op">=</span> (mean<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> mean))<span class="op">/</span>(vol<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> mean</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    b_chapeau <span class="op">=</span> (mean<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> mean)<span class="op">**</span><span class="dv">2</span>)<span class="op">/</span>(mean <span class="op">*</span> vol<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> (<span class="dv">1</span><span class="op">-</span> mean)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a_chapeau, b_chapeau</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a_chapeau, b_chapeau</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-9" class="cell" data-execution_count="5">
@@ -533,7 +566,7 @@ PD SG 5 ans : 0.11750309741540454</code></pre>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>a_chapeau_sg, b_chapeau_sg<span class="op">=</span> beta_params(mean_sg, vol_sg)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"BNP Beta parameters: alpha ="</span>, a_chapeau_bnp, <span class="st">"beta ="</span>, b_chapeau_bnp)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SG Beta parameters: alpha ="</span>, a_chapeau_sg, <span class="st">"beta ="</span>, b_chapeau_sg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SG Beta parameters: alpha ="</span>, a_chapeau_sg, <span class="st">"beta ="</span>, b_chapeau_sg)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>BNP Beta parameters: alpha = 5.8 beta = 3.8666666666666676
@@ -581,7 +614,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>plot_beta_distribution(a_chapeau_bnp, b_chapeau_bnp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>plot_beta_distribution(a_chapeau_bnp, b_chapeau_bnp)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -594,7 +627,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <div id="cell-13" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_beta_distribution(a_chapeau_sg, b_chapeau_sg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_beta_distribution(a_chapeau_sg, b_chapeau_sg)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -642,7 +675,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>plot_beta_distribution(a_chapeau_bnp, b_chapeau_bnp, a_chapeau_sg, b_chapeau_sg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>plot_beta_distribution(a_chapeau_bnp, b_chapeau_bnp, a_chapeau_sg, b_chapeau_sg)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -670,7 +703,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement des données</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"data.txt"</span>, sep<span class="op">=</span><span class="st">"</span><span class="er">\</span><span class="st">s+"</span>, header<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -722,7 +755,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## principales caractéristiques de tendances centrales et de dispersion  des prix des actions</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data.describe()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -786,14 +819,14 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <div id="cell-20" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calcul des log rendements</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Calcul des log rendements</span></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-21" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data_returns <span class="op">=</span> np.log(data<span class="op">/</span>data.shift(<span class="dv">1</span>)).dropna()</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data_returns.head(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data_returns.head(<span class="dv">3</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
@@ -833,7 +866,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">## principales caractéristiques de tendances centrales et de dispersion log rendements des actions</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data_returns.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data_returns.describe()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -943,7 +976,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>data_bnp <span class="op">=</span> pd.concat([data[<span class="st">"BNP"</span>], data_returns[<span class="st">"BNP"</span>]], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>data_bnp.columns <span class="op">=</span> [<span class="st">'Close'</span>, <span class="st">'Rendement'</span>]  <span class="co"># Renommage des colonnes</span></span>
 <span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>analyze_data(data_bnp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>analyze_data(data_bnp)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -1037,7 +1070,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data_sg <span class="op">=</span> pd.concat([data[<span class="st">"SG"</span>], data_returns[<span class="st">"SG"</span>]], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>data_sg.columns <span class="op">=</span> [<span class="st">'Close'</span>, <span class="st">'Rendement'</span>]  <span class="co"># Renommage des colonnes</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>analyze_data(data_sg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>analyze_data(data_sg)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -1146,7 +1179,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis<span class="op">=</span><span class="st">'both'</span>, which<span class="op">=</span><span class="st">'major'</span>, labelsize<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1180,7 +1213,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>ax2.legend(loc<span class="op">=</span><span class="st">'best'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
 <span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1229,7 +1262,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>HistogPlot(data_returns[<span class="st">"BNP"</span>], <span class="st">"Densité des rendements d'actions BNP"</span>)</span>
 <span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> plt.subplot(<span class="dv">132</span>)</span>
 <span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>HistogPlot(data_returns[<span class="st">"SG"</span>], <span class="st">"Densité des rendements d'action SG"</span>)</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1324,7 +1357,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a>        <span class="st">"p-value Normale"</span>: ks_pval_norm, </span>
 <span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a>        <span class="st">"p-value Student"</span>: ks_pval_t, </span>
 <span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a>        <span class="st">"p-value Skew-Student"</span>: ks_pval_skew</span>
-<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-36" class="cell" data-execution_count="20">
@@ -1341,7 +1374,7 @@ SG Beta parameters: alpha = 0.708 beta = 1.652</code></pre>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Modélisation des rendements des actions SG</span><span class="ch">\n</span><span class="st">"</span>)</span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>resultats_SG <span class="op">=</span> modeliser_distribution(data_returns[<span class="st">"SG"</span>])</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Modélisation des rendements des actions BNP
@@ -1430,7 +1463,7 @@ KS Test - Loi Skew-Student: Stat=0.029, p-value=0.373
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>spearman_corr, p_value_spearman <span class="op">=</span> spearmanr(data_uniform[<span class="st">'BNP'</span>], data_uniform[<span class="st">'SG'</span>])</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tau de Kendall: </span><span class="sc">{</span>tau<span class="sc">:.4f}</span><span class="ss"> (p-value: </span><span class="sc">{</span>p_value_tau<span class="sc">:.4f}</span><span class="ss">)"</span>)</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coefficient de Spearman: </span><span class="sc">{</span>spearman_corr<span class="sc">:.4f}</span><span class="ss"> (p-value: </span><span class="sc">{</span>p_value_spearman<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coefficient de Spearman: </span><span class="sc">{</span>spearman_corr<span class="sc">:.4f}</span><span class="ss"> (p-value: </span><span class="sc">{</span>p_value_spearman<span class="sc">:.4f}</span><span class="ss">)"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tau de Kendall: 0.6691 (p-value: 0.0000)
@@ -1453,7 +1486,7 @@ Coefficient de Spearman: 0.8410 (p-value: 0.0000)</code></pre>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"BNP"</span>)</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"SG"</span>)</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter plot BNP vs SG"</span>)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1508,7 +1541,7 @@ Coefficient de Spearman: 0.8410 (p-value: 0.0000)</code></pre>
 <span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Copule Gaussienne : Réelles vs simulées"</span>)</span>
 <span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1521,7 +1554,7 @@ Coefficient de Spearman: 0.8410 (p-value: 0.0000)</code></pre>
 <div id="cell-48" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Afficher le code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>copula_gaussian.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>copula_gaussian.summary()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
@@ -1694,7 +1727,7 @@ Coefficient de Spearman: 0.8410 (p-value: 0.0000)</code></pre>
 <span id="cb33-133"><a href="#cb33-133" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Paramètre r estimé = </span><span class="sc">{</span>result[<span class="st">'r'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb33-134"><a href="#cb33-134" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Paramètre df estimé = </span><span class="sc">{</span>result[<span class="st">'df'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb33-135"><a href="#cb33-135" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-vraisemblance  = </span><span class="sc">{</span>result[<span class="st">'logLik'</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Convergence :"</span>, result[<span class="st">'success'</span>], <span class="st">"|"</span>, result[<span class="st">'message'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-136"><a href="#cb33-136" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Convergence :"</span>, result[<span class="st">'success'</span>], <span class="st">"|"</span>, result[<span class="st">'message'</span>])</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Estimation Copule t-Student Bivariée ===
@@ -1751,7 +1784,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb35-42"><a href="#cb35-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-43"><a href="#cb35-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats</span></span>
 <span id="cb35-44"><a href="#cb35-44" aria-hidden="true" tabindex="-1"></a>results_df <span class="op">=</span> pd.DataFrame(results, columns<span class="op">=</span>[<span class="st">"Copule"</span>, <span class="st">"Log-Vraisemblance"</span>, <span class="st">"Erreur Kendall Tau"</span>, <span class="st">"Erreur Spearman Rho"</span>])</span>
-<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df.sort_values(by<span class="op">=</span><span class="st">"Log-Vraisemblance"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-45"><a href="#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df.sort_values(by<span class="op">=</span><span class="st">"Log-Vraisemblance"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Copule  Log-Vraisemblance  Erreur Kendall Tau  Erreur Spearman Rho
@@ -1778,7 +1811,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
 <span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1855,7 +1888,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb38-62"><a href="#cb38-62" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>)</span>
 <span id="cb38-63"><a href="#cb38-63" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-64"><a href="#cb38-64" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb38-65"><a href="#cb38-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-65"><a href="#cb38-65" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1941,7 +1974,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb39-71"><a href="#cb39-71" aria-hidden="true" tabindex="-1"></a>    fig.colorbar(cf_theo, ax<span class="op">=</span>ax_theo, orientation<span class="op">=</span><span class="st">'vertical'</span>, shrink<span class="op">=</span><span class="fl">0.9</span>)</span>
 <span id="cb39-72"><a href="#cb39-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-73"><a href="#cb39-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-74"><a href="#cb39-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1980,7 +2013,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
 <span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2101,7 +2134,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Statistique Cramér-von Mises"</span>: <span class="bu">round</span>(stat, <span class="dv">4</span>),</span>
 <span id="cb41-107"><a href="#cb41-107" aria-hidden="true" tabindex="-1"></a>        <span class="st">"P-valeur"</span>: <span class="bu">round</span>(p, <span class="dv">4</span>)</span>
 <span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a>    bootstrap_results[copula_name] <span class="op">=</span> {<span class="st">"obs"</span>: stat, <span class="st">"boot"</span>: boot_stats}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a>    bootstrap_results[copula_name] <span class="op">=</span> {<span class="st">"obs"</span>: stat, <span class="st">"boot"</span>: boot_stats}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-58" class="cell" data-execution_count="32">
@@ -2112,7 +2145,7 @@ Convergence : True | Optimization terminated successfully.</code></pre>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des résultats avec le format demandé</span></span>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== Résultats du test d'adéquation (bootstrap paramétrique) ==="</span>)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df.set_index(<span class="st">"Copula"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_df.set_index(<span class="st">"Copula"</span>))</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2148,7 +2181,7 @@ clayton                           0.8648     0.002</code></pre>
 <span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    fig.delaxes(axes[i])</span>
 <span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2182,7 +2215,7 @@ clayton                           0.8648     0.002</code></pre>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> mu<span class="op">*</span>(mu<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>mu)<span class="op">/</span>sigma<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span>(<span class="dv">1</span><span class="op">-</span> mu)<span class="op">*</span>(mu<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>mu)<span class="op">/</span>sigma<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span>
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>  np.random.beta(a,b, size<span class="op">=</span>size)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-63" class="cell" data-execution_count="35">
@@ -2233,7 +2266,7 @@ clayton                           0.8648     0.002</code></pre>
 <span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Loss function</span></span>
 <span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>        L <span class="op">=</span> EAD_bnp<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>recovery_bnp)<span class="op">*</span>default_bnp <span class="op">+</span> EAD_sg<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>recovery_sg)<span class="op">*</span>default_sg</span>
 <span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>        CVar[t] <span class="op">=</span> np.quantile(L, <span class="fl">0.99</span>)</span>
-<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CVar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CVar</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>          var_bnp      var_sg
@@ -2265,14 +2298,14 @@ max      0.999000    0.999000</code></pre>
 <span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Loss function</span></span>
 <span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> EAD_bnp<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>recovery_bnp)<span class="op">*</span>default_bnp <span class="op">+</span> EAD_sg<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>recovery_sg)<span class="op">*</span>default_sg</span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    CVar[t] <span class="op">=</span> np.quantile(L, <span class="fl">0.99</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    CVar[t] <span class="op">=</span> np.quantile(L, <span class="fl">0.99</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-65" class="cell" data-execution_count="37">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation de 10_000 scénarios de pertes</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>HistogPlot(L, label<span class="op">=</span><span class="st">"Loss function"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>HistogPlot(L, label<span class="op">=</span><span class="st">"Loss function"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2286,7 +2319,7 @@ max      0.999000    0.999000</code></pre>
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimation d'une CVaR à 99%</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>HistogPlot(CVar, label<span class="op">=</span><span class="st">"CVar à 99%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>HistogPlot(CVar, label<span class="op">=</span><span class="st">"CVar à 99%"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2303,7 +2336,7 @@ max      0.999000    0.999000</code></pre>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CVaR à 99%:</span><span class="ch">\t</span><span class="st">"</span>, <span class="bu">round</span>(CVar.mean(),<span class="dv">2</span>))</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IC à 95</span><span class="sc">% d</span><span class="st">e la CVaR à 99% :</span><span class="ch">\t</span><span class="st"> ["</span>, <span class="bu">round</span>(np.quantile(CVar, <span class="dv">1</span> <span class="op">-</span> <span class="fl">0.975</span>),<span class="dv">2</span>),</span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="bu">round</span>(np.quantile(CVar, <span class="fl">0.975</span>),<span class="dv">2</span>),</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"]"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>                                       <span class="st">"]"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>CVaR à 99%:  1287.03
@@ -2332,7 +2365,7 @@ IC à 95% de la CVaR à 99% :  [ 1245.81 1327.01 ]</code></pre>
 <span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Évolution du CVaR avec Intervalle de Confiance à 95%"</span>)</span>
 <span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -2346,26 +2379,7 @@ IC à 95% de la CVaR à 99% :  [ 1245.81 1327.01 ]</code></pre>
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
-    <h1 class="hero-title"></h1>
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
-  
-</main>
-
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -2404,12 +2418,12 @@ IC à 95% de la CVaR à 99% :  [ 1245.81 1327.01 ]</code></pre>
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -2452,7 +2466,7 @@ IC à 95% de la CVaR à 99% :  [ 1245.81 1327.01 ]</code></pre>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2466,6 +2480,11 @@ IC à 95% de la CVaR à 99% :  [ 1245.81 1327.01 ]</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -2780,8 +2799,67 @@ IC à 95% de la CVaR à 99% :  [ 1245.81 1327.01 ]</code></pre>
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -1,0 +1,207 @@
+---
+title: "Volatilité stochastique de Taylor : Kalman et filtrage particulaire"
+subtitle: "Estimation de la log-volatilité latente d'une série de rendements"
+description: "Calibration du modèle log-SV de Taylor par linéarisation et filtre de Kalman, puis par filtrage particulaire bootstrap, avec comparaison des erreurs d'estimation de l'état latent."
+date: 2025-01-21
+categories:
+  - Volatilité stochastique
+  - Filtrage
+  - Économétrie
+order: 5
+image: ../3A/proc_stochastique/data/APF.png
+image-alt: "Trajectoire de log-volatilité latente estimée par filtrage comparée à la trajectoire simulée"
+project-status: "Terminé"
+featured: false
+draft: false
+technologies: [Python, R, NumPy, SciPy, Matplotlib]
+methods: [Modèle log-SV de Taylor, Filtre de Kalman, Filtre particulaire bootstrap, Linéarisation, Maximum de vraisemblance]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Volatilité stochastique · Filtrage · Économétrie des séries financières
+
+Statut
+:   Terminé
+
+Langages
+:   Python, R
+
+Livrables
+:   Deux documents analytiques (Kalman, filtrage particulaire)
+:::
+
+## Vue d'ensemble
+
+Le modèle à volatilité stochastique de Taylor est le modèle de référence pour
+représenter le regroupement de volatilité (*volatility clustering*) observé sur
+les rendements financiers : la log-volatilité y suit un processus autorégressif
+gaussien, et le rendement observé est le produit de cette volatilité par un
+bruit indépendant.
+
+Le problème d'estimation est le même que pour Heston — la volatilité n'est pas
+observée — mais la structure du modèle autorise deux voies distinctes :
+linéariser pour appliquer un filtre de Kalman, ou traiter le modèle
+non linéaire directement par filtrage particulaire. Ce projet met en œuvre et
+compare les deux approches.
+
+## Contexte financier
+
+L'estimation de la volatilité conditionnelle intervient partout : calcul de
+VaR, dimensionnement de positions, *hedging* en vega, tarification d'options
+et construction d'indicateurs de stress.
+
+Deux familles de modèles coexistent. Les modèles GARCH rendent la volatilité
+fonction déterministe du passé observé, ce qui rend la vraisemblance
+immédiatement calculable. Les modèles à volatilité stochastique introduisent
+une source d'aléa propre à la volatilité — hypothèse plus réaliste et
+cohérente avec les modèles de pricing à volatilité stochastique — au prix
+d'une vraisemblance non explicite. Ce sont précisément les méthodes de filtrage
+qui rendent l'estimation possible.
+
+## Méthodologie
+
+**1. Simulation du modèle.** Génération d'une trajectoire de log-volatilité et
+des rendements associés, à partir de la loi stationnaire de l'état comme
+condition initiale. Disposer de l'état vrai permet de mesurer objectivement
+l'erreur de filtrage.
+
+**2. Linéarisation et filtre de Kalman.** En passant au logarithme du carré des
+rendements, le modèle devient linéaire en l'état, avec un bruit d'observation
+de loi log-$\chi^2_1$. Les bruits sont recentrés pour satisfaire les hypothèses
+du filtre de Kalman, qui est ensuite appliqué d'abord à paramètres connus, puis
+avec estimation des paramètres.
+
+**3. Filtrage particulaire bootstrap.** Le modèle est traité sans linéarisation
+ni approximation gaussienne : les particules sont propagées selon la dynamique
+autorégressive exacte de l'état, puis repondérées par la vraisemblance
+d'observation. Le filtre est appliqué d'abord sur les rendements, puis sur la
+formulation log-SV avec densité de log-$\chi^2$.
+
+**4. Comparaison.** Les deux filtres sont évalués par erreur quadratique
+moyenne sur la trajectoire de log-volatilité reconstituée, et par superposition
+graphique avec l'état simulé de référence.
+
+## Cadre mathématique
+
+**Modèle de Taylor.** Pour $t = 1,\dots,n$ :
+$$
+r_t = \exp\!\left(\tfrac{x_t}{2}\right)\varepsilon_t,
+\qquad
+x_t = \mu + \phi\,x_{t-1} + \sigma\,\eta_t ,
+$$
+avec $\varepsilon_t \sim \mathcal{N}(0,1)$ et $\eta_t \sim \mathcal{N}(0,1)$
+indépendants. La condition $|\phi| < 1$ assure la stationnarité, la loi
+initiale étant
+$$
+x_0 \sim \mathcal{N}\!\left( \frac{\mu}{1-\phi},\; \frac{\sigma^2}{1-\phi^2} \right).
+$$
+
+**Linéarisation.** En élevant au carré et en passant au logarithme :
+$$
+\log r_t^2 = x_t + \log \varepsilon_t^2 ,
+$$
+où $\log \varepsilon_t^2$ suit une loi log-$\chi^2_1$ d'espérance
+$-1{,}2704$ et de variance $\pi^2/2 \approx 4{,}9348$. En recentrant
+l'observation, on obtient un modèle **linéaire** mais à bruit d'observation
+**non gaussien** :
+$$
+\underbrace{\log r_t^2 + 1{,}2704}_{y_t} = x_t + \xi_t ,
+\qquad \mathbb{E}[\xi_t] = 0,\;\; \mathrm{Var}(\xi_t) = \tfrac{\pi^2}{2}.
+$$
+
+**Filtre de Kalman.** Appliqué à ce système, il fournit le meilleur estimateur
+linéaire de l'état. Les récursions de prédiction et de mise à jour s'écrivent
+$$
+\hat{x}_{t\mid t-1} = \mu + \phi\,\hat{x}_{t-1\mid t-1},
+\qquad
+P_{t\mid t-1} = \phi^2 P_{t-1\mid t-1} + \sigma^2 ,
+$$
+$$
+K_t = \frac{P_{t\mid t-1}}{P_{t\mid t-1} + \pi^2/2},
+\qquad
+\hat{x}_{t\mid t} = \hat{x}_{t\mid t-1} + K_t\bigl(y_t - \hat{x}_{t\mid t-1}\bigr).
+$$
+L'approximation gaussienne du bruit log-$\chi^2_1$, fortement asymétrique, est
+la principale source d'erreur de cette approche.
+
+**Filtre particulaire bootstrap.** Il évite toute approximation en
+échantillonnant directement selon la dynamique de l'état :
+$$
+x_t^{(i)} \sim \mathcal{N}\!\left(\mu + \phi\,x_{t-1}^{(i)},\; \sigma^2\right),
+\qquad
+w_t^{(i)} \propto w_{t-1}^{(i)}\;
+\frac{1}{\exp\!\left(x_t^{(i)}/2\right)}\,
+\varphi\!\left(\frac{r_t}{\exp\!\left(x_t^{(i)}/2\right)}\right),
+$$
+où $\varphi$ désigne la densité normale centrée réduite. Un rééchantillonnage
+est déclenché lorsque la taille effective d'échantillon devient trop faible.
+
+## Données
+
+Trajectoires simulées sous le modèle de Taylor, conservées dans
+`3A/proc_stochastique/mod_log_sv.csv` et
+`3A/proc_stochastique/true_sv_taylor.csv`. Le recours à des données simulées
+est ici méthodologiquement nécessaire : c'est la seule manière de disposer de
+l'état latent vrai et donc d'un critère d'erreur non ambigu.
+
+## Implémentation
+
+Deux documents analytiques distincts :
+
+- **Partie 1 — filtre de Kalman** : simulation, construction du modèle
+  log-SV linéarisé, filtre à paramètres connus puis estimés ;
+- **Partie 2 — filtrage particulaire** : filtre bootstrap sur les rendements
+  puis sur la formulation log-SV, calcul des erreurs quadratiques moyennes et
+  superposition des trajectoires.
+
+## Résultats
+
+[Partie 1 — Calibration par filtre de Kalman](../3A/proc_stochastique/modele_log_sv-part1.qmd)
+
+[Partie 2 — Calibration par filtrage particulaire](../3A/proc_stochastique/modele_log_sv-part2.qmd)
+
+## Interprétation
+
+La comparaison illustre un arbitrage classique en estimation de modèles à
+espace d'états. Le filtre de Kalman est rapide, déterministe et fournit une
+vraisemblance explicite, mais il paie l'approximation gaussienne d'un bruit
+d'observation très asymétrique — l'erreur se concentre sur les périodes de
+faible volatilité, où $\log r_t^2$ prend des valeurs extrêmement négatives.
+
+Le filtre particulaire est sans biais d'approximation mais introduit une
+variance de simulation, sensible au nombre de particules, et un coût de calcul
+proportionnel. Sur ce modèle, il constitue la référence contre laquelle la
+qualité de l'approximation de Kalman est mesurée.
+
+## Limites et risque de modèle
+
+- **Approximation gaussienne.** Elle dégrade l'estimation dans les régimes de
+  faible volatilité et biaise l'estimation des paramètres.
+- **Variance de simulation.** La précision du filtre particulaire dépend du
+  nombre de particules ; les résultats ne sont pas déterministes.
+- **Estimation des paramètres.** L'estimation jointe état-paramètres reste
+  délicate : la vraisemblance obtenue par filtrage est bruitée, ce qui
+  complique son optimisation.
+- **Spécification.** Le modèle de Taylor suppose un unique facteur de
+  volatilité gaussien autorégressif, sans effet de levier ni sauts.
+- **Données simulées.** Les performances mesurées sont optimistes par rapport à
+  un cadre réel où le modèle est mal spécifié.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [R]{.qf-tag} [NumPy]{.qf-tag} [SciPy]{.qf-tag}
+[Matplotlib]{.qf-tag}
+:::
+
+## Ressources
+
+- [Partie 1 — Filtre de Kalman](../3A/proc_stochastique/modele_log_sv-part1.qmd)
+- [Partie 2 — Filtrage particulaire](../3A/proc_stochastique/modele_log_sv-part2.qmd)
+- Note associée : [Calibration du modèle de Black-Scholes](../3A/proc_stochastique/modele_bs.qmd)
+- Projet connexe : [Calibration du modèle de Heston par filtrage particulaire](calibration-heston-filtrage.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

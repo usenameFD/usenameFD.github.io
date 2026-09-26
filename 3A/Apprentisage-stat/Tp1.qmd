@@ -1,7 +1,10 @@
 ---
-title : Ridge regression vs. Lasso regression
+title: "Régression ridge et régression lasso"
+description: "Variantes régularisées des moindres carrés : effet du paramètre de pénalisation sur le compromis biais-variance."
 jupyter: python3
 date: "2024-09-25"
+categories:
+  - Apprentissage statistique
 ---
 
 # Activity 1 : Variants of OLS

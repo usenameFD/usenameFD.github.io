@@ -1,0 +1,224 @@
+---
+title: "Gestion des risques en asset management"
+subtitle: "Construction de portefeuille, profil d'écoulement de liquidité et risque de crédit obligataire"
+description: "Cadre intégré de suivi des risques d'un portefeuille : optimisation de Markowitz, stress tests, profils d'écoulement de liquidité et VaR obligataire avec risque de taux et de contrepartie."
+date: 2025-03-18
+categories:
+  - Gestion de portefeuille
+  - Risque de liquidité
+  - Risque de crédit
+order: 3
+image: ../img/liquidity.png
+image-alt: "Illustration du suivi de la liquidité d'un portefeuille d'actifs"
+project-status: "Terminé"
+featured: false
+draft: false
+github: "https://github.com/usenameFD/Risk-Management"
+notebook: "Liquidity/AssetLiquidity.ipynb"
+technologies: [Python, NumPy, pandas, SciPy, Matplotlib]
+methods: [Optimisation de Markowitz, Stress test, Profil d'écoulement, Sensibilité obligataire, Z-VaR, Triangle de crédit]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Gestion de portefeuille · Liquidité · Crédit
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Travail
+:   Projet collectif — F. D. Deba Wandji, M. Kougoum Moko Mani
+:::
+
+## Vue d'ensemble
+
+Un gérant d'actifs ne pilote pas un seul risque mais un système de risques
+couplés : le risque de marché détermine la volatilité de la valeur liquidative,
+le risque de liquidité détermine la capacité à honorer les rachats, et le
+risque de crédit détermine la valorisation de la poche obligataire.
+
+Ce projet construit un cadre de suivi couvrant ces trois dimensions sur un même
+portefeuille : construction d'un portefeuille diversifié par optimisation
+moyenne-variance, suivi des encours et de la performance, stress tests, puis
+analyse du profil d'écoulement de liquidité et de la VaR d'une position
+obligataire soumise conjointement au risque de taux et au risque de
+contrepartie.
+
+## Contexte financier
+
+**Liquidité.** Le profil d'écoulement — la vitesse à laquelle un portefeuille
+peut être converti en cash — conditionne la capacité d'un fonds à faire face
+aux demandes de rachat. Les régulateurs européens imposent des exercices de
+stress de liquidité et la mise à disposition d'outils de gestion (*swing
+pricing*, *gates*). La notion de **taille optimale du portefeuille** en découle
+directement : au-delà d'un certain encours, les positions ne sont plus
+liquidables dans un délai compatible avec le passif du fonds.
+
+**Crédit et taux.** Sur la poche obligataire, deux facteurs se combinent : la
+courbe des taux sans risque et le spread de crédit de l'émetteur. Leur
+variation conjointe, et non leur variation isolée, détermine la perte
+potentielle — d'où le calcul d'une VaR bidimensionnelle.
+
+## Méthodologie
+
+**1. Construction du portefeuille.** Optimisation moyenne-variance de
+Markowitz : calcul des rendements et volatilités annualisés des log-rendements
+de chaque actif, résolution du programme d'optimisation sous contrainte de
+rendement cible, illustration pour une cible de 10 %.
+
+**2. Suivi.** Mesure des encours sous gestion (AUM) et décomposition de la
+performance du portefeuille.
+
+**3. Stress test.** Application de chocs au portefeuille afin d'observer la
+dégradation de sa valeur et de ses caractéristiques de liquidité.
+
+**4. Profil d'écoulement de liquidité.** Construction du profil d'écoulement
+selon quatre configurations croisant deux axes :
+
+|  | Conditions normales | Conditions stressées |
+|---|---|---|
+| **Avec déformation** | écoulement ajusté du comportement de marché | écoulement ajusté en stress |
+| **Sans déformation** | écoulement contractuel | écoulement contractuel en stress |
+
+La comparaison des quatre profils permet d'en déduire une **taille optimale du
+portefeuille** compatible avec une contrainte d'écoulement donnée.
+
+**5. Risque de crédit et de taux.** Valorisation d'une obligation à coupons
+avec taux de recouvrement historique de 40 % appliqué au nominal ; étude de
+l'évolution du prix en fonction du temps et du niveau de taux ; calcul de la
+sensibilité et de son évolution avec la maturité ; estimation de la VaR
+obligataire par deux voies — par la sensibilité (Z-VaR) et par repricing
+complet.
+
+**6. Risque de contrepartie.** Relation entre CDS et obligation via la formule
+du triangle de crédit, sensibilité de crédit, puis estimation de la VaR par
+variation conjointe du taux d'intérêt et du spread de crédit.
+
+**7. Ouverture.** Le notebook se termine sur le risque de modèle et le risque
+climatique, prolongés dans le projet
+[Exposition des communes françaises au risque climatique](risque-climatique-communes.qmd).
+
+## Cadre mathématique
+
+**Optimisation moyenne-variance.** Pour un vecteur de poids $w$, un vecteur de
+rendements espérés $\mu$ et une matrice de covariance $\Sigma$ :
+$$
+\min_{w}\; w^{\top} \Sigma\, w
+\quad \text{s.c.} \quad
+w^{\top}\mu = \mu_{\text{cible}}, \quad w^{\top}\mathbf{1} = 1 .
+$$
+
+**Valorisation obligataire avec risque de défaut.** En notant $C_t$ les flux
+contractuels, $B(0,t)$ les facteurs d'actualisation, $\lambda$ l'intensité de
+défaut et $R$ le taux de recouvrement :
+$$
+P_0 = \sum_{t} C_t\, B(0,t)\, e^{-\lambda t}
+\;+\; R \cdot N \int_0^{T} B(0,u)\, \lambda e^{-\lambda u}\, \mathrm{d}u .
+$$
+
+**Sensibilité et Z-VaR.** La sensibilité $S$ relie la variation relative du
+prix à une variation de taux :
+$$
+S = -\frac{1}{P}\frac{\partial P}{\partial r},
+\qquad
+\frac{\Delta P}{P} \simeq -S\,\Delta r ,
+$$
+d'où une VaR analytique de première approximation
+$$
+\mathrm{Z\text{-}VaR}_\alpha = P \cdot S \cdot \sigma_{\Delta r}\, z_\alpha .
+$$
+Une variation de taux de 1 % fait donc varier le prix de l'obligation d'environ
+$-S$ %.
+
+**Triangle de crédit.** La relation approchée entre spread, intensité de défaut
+et recouvrement s'écrit
+$$
+s \simeq \lambda\,(1 - R) .
+$$
+
+**VaR jointe taux / spread.** Avec $\sigma_r$, $\sigma_s$ les volatilités des
+deux facteurs, $\rho$ leur corrélation et $S_r$, $S_s$ les sensibilités
+correspondantes :
+$$
+\mathrm{VaR}_\alpha
+= P\, z_\alpha \sqrt{S_r^2 \sigma_r^2 + S_s^2 \sigma_s^2
++ 2\,\rho\, S_r S_s\, \sigma_r \sigma_s } .
+$$
+
+## Données
+
+- Historique de cours des actifs composant le portefeuille ;
+- Grille de caractéristiques de marché par ligne (`grid1_1x443gcb.xlsx`) ;
+- Paramètres de crédit utilisés pour le triangle de crédit
+  (`PS_triangle_credit.xlsx`).
+
+Ces fichiers sont conservés dans le dépôt pour la reproductibilité de l'analyse
+d'origine et ne sont pas rejoués lors de la génération du site.
+
+## Implémentation
+
+L'ensemble est développé dans un notebook unique structuré comme un parcours
+progressif : risque de marché, suivi, stress test, liquidité, crédit et taux,
+contrepartie. Chaque notion est introduite analytiquement puis implémentée en
+Python avec visualisation systématique des sensibilités.
+
+## Résultats
+
+Le notebook présente la frontière efficiente et le portefeuille optimisé, les
+indicateurs d'encours et de performance, les quatre profils d'écoulement, la
+taille optimale de portefeuille associée, les courbes de prix et de sensibilité
+obligataires, et les VaR obtenues par sensibilité, par repricing et par
+variation conjointe taux/spread.
+
+[Consulter le notebook complet](Liquidity/AssetLiquidity.ipynb)
+
+## Interprétation
+
+Le résultat le plus opérationnel est la mise en évidence du lien entre taille
+du portefeuille et liquidité : le profil d'écoulement se dégrade non
+linéairement avec l'encours, et bien plus fortement en conditions stressées
+qu'en conditions normales. La contrainte de liquidité doit donc être intégrée
+*en amont*, au moment de la construction du portefeuille, et non contrôlée
+*a posteriori* comme un simple indicateur de reporting.
+
+Sur la poche obligataire, la comparaison entre Z-VaR et VaR par repricing
+quantifie l'erreur d'une approximation au premier ordre : l'écart croît avec
+l'amplitude du choc et avec la convexité de l'instrument, ce qui limite
+l'usage de la sensibilité seule en scénario de stress.
+
+## Limites et risque de modèle
+
+- **Markowitz.** L'optimisation moyenne-variance est très sensible aux
+  rendements espérés estimés ; sans régularisation ni contraintes, les poids
+  obtenus sont instables.
+- **Écoulement.** Les hypothèses de déformation reposent sur des paramètres
+  comportementaux qui ne sont pas directement observables.
+- **Approximation au premier ordre.** La Z-VaR ignore la convexité ; elle
+  sous-estime le risque pour de fortes variations de taux.
+- **Recouvrement constant.** Le taux de 40 % est une convention de place, pas
+  une estimation ; sa variabilité est traitée dans le projet
+  [CreditVaR par copules](creditvar-copules.qmd).
+- **Corrélation taux / spread.** Elle est supposée stable, alors qu'elle change
+  de signe selon les régimes (fuite vers la qualité).
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [NumPy]{.qf-tag} [pandas]{.qf-tag} [SciPy]{.qf-tag}
+[Matplotlib]{.qf-tag} [openpyxl]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook complet](Liquidity/AssetLiquidity.ipynb)
+- [Consulter le dépôt GitHub associé](https://github.com/usenameFD/Risk-Management)
+- Projet connexe : [CreditVaR d'un portefeuille de créances par copules](creditvar-copules.qmd)
+- Note théorique associée : [Le risque, qu'est-ce que c'est ?](../3A/risque_def.qmd)
+- Note théorique associée : [La réglementation prudentielle](../3A/reglementation_prudentielle.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

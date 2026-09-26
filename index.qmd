@@ -1,15 +1,199 @@
 ---
-title: "Tous les contenus"
+pagetitle: "Franck Deba — Finance quantitative et gestion des risques"
+description-meta: >-
+  Portfolio quantitatif de Franck Deba : Value-at-Risk et backtesting, copules,
+  calibration de modèles à volatilité stochastique, courbes de taux, gestion de
+  portefeuille, risque climatique et machine learning appliqué à la finance.
+page-layout: full
+toc: false
+anchor-sections: false
 listing:
-  contents: 
-    - 3A/**/*.qmd
-    - 3A/**/*.ipynb
-    - projects/**/*.qmd
-    - projects/**/*.ipynb
-    - 2A/**/*.qmd
-  type: grid
-  sort: "title"         # car la plupart de tes fichiers n'ont PAS de date
-  image-placeholder: img/logo.svg
-  fields: [image, title, description]   # champs réellement disponibles
-  categories: false
+  - id: featured-projects
+    contents: "projects/*.qmd"
+    include:
+      featured: true
+    type: grid
+    grid-columns: 3
+    fields: [image, title, description, categories]
+    image-height: "170px"
+    image-placeholder: img/logo.svg
+    sort: "order"
+    max-items: 6
+    categories: false
+    sort-ui: false
+    filter-ui: false
 ---
+
+::: {.qf-hero}
+<span class="qf-eyebrow">Finance quantitative · Gestion des risques</span>
+
+# Franck Deba {#hero-title}
+
+::: {.qf-hero-sub}
+Ingénieur data scientist (ENSAI), étudiant du M2 Modélisation Aléatoire
+(M2MO, ex-DEA Laure-Élie). Je conçois, calibre et valide des modèles
+quantitatifs pour le risque de marché, le pricing de dérivés et la gestion de
+portefeuille.
+:::
+
+::: {.qf-hero-body}
+Ce site rassemble mes travaux quantitatifs : mesures de risque et backtesting,
+modèles à volatilité stochastique et filtrage, structures de dépendance par
+copules, courbes de taux, allocation de portefeuille sous contraintes, risque
+climatique et apprentissage statistique appliqué aux marchés. Chaque projet
+présente le problème financier traité, la méthodologie, le cadre mathématique
+et un lien direct vers l'implémentation complète.
+:::
+
+::: {.qf-actions}
+[Voir les projets](projects/index.qmd){.qf-btn}
+[Notes & recherche](notes/index.qmd){.qf-btn .qf-btn-outline}
+[Code source](repositories/index.qmd){.qf-btn .qf-btn-outline}
+[Télécharger le CV](CV/Franck_DEBA_Resume.pdf){.qf-btn .qf-btn-outline}
+:::
+:::
+
+## Projets en vedette
+
+Une sélection de travaux représentatifs. L'intégralité du portefeuille est
+disponible sur la [page Projets](projects/index.qmd).
+
+::: {#featured-projects}
+:::
+
+[Voir les 13 projets →](projects/index.qmd)
+
+## Domaines d'expertise
+
+::: {.qf-grid}
+::: {.qf-card}
+### Risque de marché
+
+VaR historique, paramétrique et Monte-Carlo, Expected Shortfall, théorie des
+valeurs extrêmes (GEV, POT/GPD) et backtesting réglementaire.
+
+::: {.qf-card-meta}
+Python · R
+:::
+:::
+
+::: {.qf-card}
+### Dérivés et pricing
+
+Black-Scholes et volatilité implicite, grecques, options asiatiques et à
+barrière, modèles de Heston et de Bates, méthode de Lewis, Monte-Carlo.
+
+::: {.qf-card-meta}
+Python · R
+:::
+:::
+
+::: {.qf-card}
+### Calibration et filtrage
+
+Modèle à volatilité stochastique de Taylor, filtre de Kalman, filtre
+bootstrap et auxiliary particle filter appliqués à la calibration.
+
+::: {.qf-card-meta}
+Python · R
+:::
+:::
+
+::: {.qf-card}
+### Taux et produits de taux
+
+Courbes zéro-coupon et OIS, taux forward, interpolations spline et
+log-linéaires, pricing d'obligations et de swaps de taux.
+
+::: {.qf-card-meta}
+Python
+:::
+:::
+
+::: {.qf-card}
+### Gestion de portefeuille
+
+Optimisation moyenne-variance, portefeuille tangent, risque de liquidité et
+intégration de contraintes ESG.
+
+::: {.qf-card-meta}
+Python
+:::
+:::
+
+::: {.qf-card}
+### Machine learning et économétrie
+
+Régularisation, gradient boosting, sélection de variables, cointégration et
+VECM, réseaux de neurones et NLP.
+
+::: {.qf-card-meta}
+Python · scikit-learn · TensorFlow
+:::
+:::
+:::
+
+## Stack technique
+
+::: {.qf-grid .qf-grid-2}
+::: {.qf-card}
+### Langages et calcul
+
+::: {.qf-tags}
+[Python]{.qf-tag} [R]{.qf-tag} [SQL]{.qf-tag} [LaTeX]{.qf-tag}
+[NumPy]{.qf-tag} [SciPy]{.qf-tag} [pandas]{.qf-tag}
+[statsmodels]{.qf-tag} [scikit-learn]{.qf-tag}
+[TensorFlow / Keras]{.qf-tag} [copulae]{.qf-tag}
+[GeoPandas]{.qf-tag}
+:::
+:::
+
+::: {.qf-card}
+### Méthodes quantitatives
+
+::: {.qf-tags}
+[Monte-Carlo]{.qf-tag} [Maximum de vraisemblance]{.qf-tag}
+[EWMA]{.qf-tag} [GARCH]{.qf-tag} [Copules]{.qf-tag}
+[Théorie des valeurs extrêmes]{.qf-tag} [Filtrage particulaire]{.qf-tag}
+[Filtre de Kalman]{.qf-tag} [Optimisation sous contraintes]{.qf-tag}
+[Backtesting]{.qf-tag} [VECM]{.qf-tag}
+:::
+:::
+
+::: {.qf-card}
+### Outils et diffusion
+
+::: {.qf-tags}
+[Jupyter]{.qf-tag} [Quarto]{.qf-tag} [Dash / Plotly]{.qf-tag}
+[Git & GitHub]{.qf-tag} [Matplotlib]{.qf-tag} [Seaborn]{.qf-tag}
+:::
+:::
+
+::: {.qf-card}
+### Cadres de référence
+
+::: {.qf-tags}
+[Bâle III / CRR2 – CRD5]{.qf-tag} [FRTB]{.qf-tag}
+[Solvabilité II]{.qf-tag} [SFDR]{.qf-tag} [UN Global Compact]{.qf-tag}
+[SBTi]{.qf-tag}
+:::
+:::
+:::
+
+## En quelques mots
+
+Après un parcours en gestion des risques bancaires, je me spécialise en
+finance de marché. Mon travail combine la rigueur statistique (estimation,
+validation, quantification de l'incertitude) et la compréhension des
+mécanismes de marché (liquidité, volatilité, structure par terme, dépendances
+extrêmes).
+
+Les documents publiés ici s'adressent autant aux professionnels du risque et
+de la recherche quantitative qu'aux étudiants qui abordent ces sujets pour la
+première fois : chaque projet explicite ses hypothèses, ses limites et son
+risque de modèle.
+
+::: {.qf-actions}
+[En savoir plus](about.qmd){.qf-btn .qf-btn-outline}
+[Me contacter](contact.qmd){.qf-btn .qf-btn-outline}
+:::

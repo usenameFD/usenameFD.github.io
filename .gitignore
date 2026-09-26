@@ -51,3 +51,26 @@ Thumbs.db
 /projects/Climate/Carte France/
 
 /.quarto/
+
+# -------------------------
+# Generated analysis artifacts
+# NOTE: never ignore anything under docs/ — that directory IS the published
+# site and must stay versioned for GitHub Pages.
+# -------------------------
+**/.jupyter_cache/
+/_freeze/
+/Output/
+/2A/**/*_cache/
+/2A/**/*_files/
+/3A/**/*_cache/
+/3A/**/*_files/
+/autres/**/*_cache/
+/autres/**/*_files/
+/projects/**/*_cache/
+/projects/**/*_files/
+/00_Assets/**/*_cache/
+/00_Assets/**/*_files/
+/3A/value-at-risk/index.html
+/3A/value-at-risk/index-listing.json
+/3A/Apprentisage-stat/*.aux
+/3A/Apprentisage-stat/*.log

@@ -1,0 +1,666 @@
+/*-- scss:defaults --*/
+
+// ===========================================================================
+//  Franck Deba — quantitative portfolio design system
+//  Shared layer: loaded by both the light and the dark theme.
+//  Keep this file free of hard-coded surface colours: every value that has to
+//  change between light and dark mode is exposed as a CSS custom property in
+//  the rules section below.
+//
+//  Web fonts are loaded from the HTML head (see `include-in-header` in
+//  _quarto.yml); do not add CSS @import rules here.
+// ===========================================================================
+
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-serif: "Source Serif 4", Georgia, "Times New Roman", serif !default;
+$font-family-monospace: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace !default;
+
+$font-size-root: 16px !default;
+$line-height-base: 1.65 !default;
+
+$headings-font-family: $font-family-serif !default;
+$headings-font-weight: 600 !default;
+$headings-line-height: 1.25 !default;
+
+$h1-font-size: 2.05rem !default;
+$h2-font-size: 1.5rem !default;
+$h3-font-size: 1.2rem !default;
+$h4-font-size: 1.03rem !default;
+
+// Institutional navy / azure palette
+$brand-navy: #0a2342;
+$brand-navy-soft: #123c63;
+$brand-azure: #1b6ca8;
+$brand-azure-light: #5fa4d6;
+
+$primary: $brand-navy !default;
+$secondary: #5a6875 !default;
+$success: #1f7a5a !default;
+$danger: #a83232 !default;
+$info: $brand-azure !default;
+
+$link-color: $brand-azure !default;
+$link-hover-color: $brand-navy-soft !default;
+
+$border-radius: 0.375rem !default;
+$border-radius-sm: 0.25rem !default;
+$border-radius-lg: 0.5rem !default;
+
+$navbar-padding-y: 0.7rem !default;
+$table-cell-padding-y: 0.55rem !default;
+$table-cell-padding-x: 0.75rem !default;
+
+$code-font-size: 0.855em !default;
+
+/*-- scss:rules --*/
+
+// ---------------------------------------------------------------------------
+// Design tokens (light values; overridden for dark mode further down)
+// ---------------------------------------------------------------------------
+:root {
+  --qf-navy: #0a2342;
+  --qf-navy-soft: #123c63;
+  --qf-azure: #1b6ca8;
+  --qf-azure-light: #5fa4d6;
+
+  --qf-ink: #16202b;
+  --qf-muted: #5a6875;
+  --qf-surface: #ffffff;
+  --qf-surface-alt: #f2f6fa;
+  --qf-canvas: #f7f9fb;
+  --qf-border: #dde4ec;
+  --qf-border-strong: #c3cdd9;
+  --qf-shadow: 0 1px 2px rgba(16, 32, 48, 0.05), 0 6px 18px rgba(16, 32, 48, 0.06);
+  --qf-shadow-hover: 0 2px 4px rgba(16, 32, 48, 0.07), 0 12px 28px rgba(16, 32, 48, 0.1);
+
+  --qf-accent-soft: #e8f0f8;
+  --qf-positive: #1f7a5a;
+  --qf-negative: #a83232;
+
+  --qf-space-xs: 0.35rem;
+  --qf-space-sm: 0.6rem;
+  --qf-space-md: 1rem;
+  --qf-space-lg: 1.75rem;
+  --qf-space-xl: 3rem;
+}
+
+body.quarto-dark,
+[data-bs-theme="dark"] {
+  --qf-ink: #e3eaf2;
+  --qf-muted: #9aa9b8;
+  --qf-surface: #17212e;
+  --qf-surface-alt: #1d2938;
+  --qf-canvas: #0f1722;
+  --qf-border: #2b3949;
+  --qf-border-strong: #3c4d61;
+  --qf-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);
+  --qf-shadow-hover: 0 2px 6px rgba(0, 0, 0, 0.5), 0 14px 32px rgba(0, 0, 0, 0.45);
+
+  --qf-azure: #6fb2e8;
+  --qf-azure-light: #9bcbf0;
+  --qf-accent-soft: #1b2b3d;
+}
+
+// ---------------------------------------------------------------------------
+// Base typography
+// ---------------------------------------------------------------------------
+body {
+  font-feature-settings: "cv05" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main.content {
+  padding-bottom: var(--qf-space-xl);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.01em;
+  padding-left: 0; // undo legacy indentation
+}
+
+h2 {
+  margin-top: 2.4rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--qf-border);
+}
+
+h3 {
+  margin-top: 1.8rem;
+}
+
+.lead,
+p.lead {
+  font-size: 1.1rem;
+  color: var(--qf-muted);
+  line-height: 1.6;
+}
+
+// ---------------------------------------------------------------------------
+// Navbar & footer
+// ---------------------------------------------------------------------------
+.navbar {
+  border-bottom: 1px solid var(--qf-border);
+  box-shadow: none;
+}
+
+.navbar-brand > img {
+  max-height: 28px;
+  width: auto;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+}
+
+.navbar .navbar-nav .nav-link.active {
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 0 currentColor;
+}
+
+.nav-footer {
+  border-top: 1px solid var(--qf-border);
+  font-size: 0.875rem;
+}
+
+.nav-footer a {
+  text-decoration: none;
+}
+
+.nav-footer a:hover {
+  text-decoration: underline;
+}
+
+// ---------------------------------------------------------------------------
+// Hero (homepage)
+// ---------------------------------------------------------------------------
+.qf-hero {
+  margin: 0 0 var(--qf-space-xl);
+  padding: 2.5rem 0 2.25rem;
+  border-bottom: 1px solid var(--qf-border);
+}
+
+.qf-hero .qf-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--qf-azure);
+}
+
+.qf-hero h1 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.9rem, 4.2vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.qf-hero .qf-hero-sub {
+  max-width: 62ch;
+  margin: 0 0 1.1rem;
+  font-size: 1.08rem;
+  color: var(--qf-muted);
+}
+
+.qf-hero .qf-hero-body {
+  max-width: 68ch;
+  margin: 0 0 1.75rem;
+}
+
+// ---------------------------------------------------------------------------
+// Buttons / calls to action
+// ---------------------------------------------------------------------------
+.qf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.25rem 0 0;
+}
+
+.qf-btn,
+a.qf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--qf-navy);
+  border-radius: 0.375rem;
+  background: var(--qf-navy);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.qf-btn:hover,
+a.qf-btn:hover {
+  background: var(--qf-navy-soft);
+  border-color: var(--qf-navy-soft);
+  color: #fff;
+  text-decoration: none;
+}
+
+.qf-btn-outline,
+a.qf-btn-outline {
+  background: transparent;
+  color: var(--qf-ink);
+  border-color: var(--qf-border-strong);
+}
+
+.qf-btn-outline:hover,
+a.qf-btn-outline:hover {
+  background: var(--qf-accent-soft);
+  border-color: var(--qf-azure);
+  color: var(--qf-ink);
+}
+
+body.quarto-dark .qf-btn,
+[data-bs-theme="dark"] .qf-btn {
+  background: var(--qf-azure);
+  border-color: var(--qf-azure);
+  color: #07121d;
+}
+
+body.quarto-dark .qf-btn:hover,
+[data-bs-theme="dark"] .qf-btn:hover {
+  background: var(--qf-azure-light);
+  border-color: var(--qf-azure-light);
+  color: #07121d;
+}
+
+body.quarto-dark .qf-btn-outline,
+[data-bs-theme="dark"] .qf-btn-outline {
+  background: transparent;
+  color: var(--qf-ink);
+  border-color: var(--qf-border-strong);
+}
+
+// ---------------------------------------------------------------------------
+// Card grid (used by the homepage, the notes hub and the repository inventory)
+// ---------------------------------------------------------------------------
+.qf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.15rem;
+  margin: 1.4rem 0 2rem;
+}
+
+.qf-grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.qf-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.15rem 1.25rem;
+  background: var(--qf-surface);
+  border: 1px solid var(--qf-border);
+  border-radius: 0.5rem;
+  box-shadow: var(--qf-shadow);
+  transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.qf-card:hover {
+  box-shadow: var(--qf-shadow-hover);
+  border-color: var(--qf-border-strong);
+  transform: translateY(-2px);
+}
+
+.qf-card > :first-child {
+  margin-top: 0;
+}
+
+.qf-card > :last-child {
+  margin-bottom: 0;
+}
+
+.qf-card h3,
+.qf-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1.02rem;
+  font-weight: 600;
+  border: 0;
+}
+
+.qf-card p {
+  margin-bottom: 0.6rem;
+  font-size: 0.93rem;
+  color: var(--qf-muted);
+}
+
+.qf-card a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.qf-card a:hover {
+  text-decoration: underline;
+}
+
+.qf-card .qf-card-meta {
+  margin-top: auto;
+  padding-top: 0.7rem;
+  font-size: 0.79rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--qf-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qf-card,
+  .qf-btn {
+    transition: none;
+  }
+
+  .qf-card:hover {
+    transform: none;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Inline tag / pill list
+// ---------------------------------------------------------------------------
+.qf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qf-tag {
+  display: inline-block;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid var(--qf-border);
+  border-radius: 999px;
+  background: var(--qf-surface-alt);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--qf-muted);
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// Key-figure strip
+// ---------------------------------------------------------------------------
+.qf-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--qf-border);
+  border-bottom: 1px solid var(--qf-border);
+}
+
+.qf-fact .qf-fact-value {
+  display: block;
+  font-family: $font-family-serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--qf-ink);
+}
+
+.qf-fact .qf-fact-label {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: var(--qf-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Project metadata block (project pages)
+// ---------------------------------------------------------------------------
+.qf-meta {
+  margin: 0 0 2rem;
+  padding: 1rem 1.25rem;
+  background: var(--qf-surface-alt);
+  border: 1px solid var(--qf-border);
+  border-left: 3px solid var(--qf-azure);
+  border-radius: 0.375rem;
+  font-size: 0.92rem;
+}
+
+.qf-meta dl {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, auto) 1fr;
+  gap: 0.35rem 1rem;
+  margin: 0;
+}
+
+.qf-meta dt {
+  font-weight: 600;
+  color: var(--qf-muted);
+}
+
+.qf-meta dd {
+  margin: 0;
+}
+
+.qf-meta table {
+  width: 100%;
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.qf-meta table th,
+.qf-meta table td {
+  border: 0;
+  padding: 0.2rem 1rem 0.2rem 0;
+}
+
+@media (max-width: 575.98px) {
+  .qf-meta dl {
+    grid-template-columns: 1fr;
+    gap: 0 0;
+  }
+
+  .qf-meta dd {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Quarto listings
+// ---------------------------------------------------------------------------
+.quarto-listing {
+  margin-top: 1.5rem;
+}
+
+.quarto-grid-item.card {
+  border: 1px solid var(--qf-border);
+  border-radius: 0.5rem;
+  background: var(--qf-surface);
+  box-shadow: var(--qf-shadow);
+  overflow: hidden;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.quarto-grid-item.card:hover {
+  box-shadow: var(--qf-shadow-hover);
+  border-color: var(--qf-border-strong);
+  transform: translateY(-2px);
+}
+
+.quarto-grid-item .card-img-top,
+.quarto-grid-item img.thumbnail-image {
+  width: 100%;
+  height: 168px;
+  object-fit: cover;
+  object-position: top center;
+  background: var(--qf-surface-alt);
+  border-bottom: 1px solid var(--qf-border);
+}
+
+.quarto-grid-item .card-title,
+.quarto-grid-item .listing-title {
+  font-family: $font-family-serif;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.quarto-grid-item .card-text,
+.quarto-grid-item .listing-description {
+  font-size: 0.9rem;
+  color: var(--qf-muted);
+}
+
+.quarto-grid-item .listing-categories .listing-category,
+.quarto-category {
+  border: 1px solid var(--qf-border);
+  border-radius: 999px;
+  background: var(--qf-surface-alt);
+  padding: 0.1rem 0.55rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--qf-muted);
+  opacity: 1;
+}
+
+.quarto-listing-category .category {
+  font-size: 0.88rem;
+}
+
+.quarto-listing-category .category.active {
+  font-weight: 600;
+  color: var(--qf-azure);
+}
+
+// Table listings
+.quarto-listing-table table {
+  font-size: 0.92rem;
+}
+
+// ---------------------------------------------------------------------------
+// Tables, figures, code
+// ---------------------------------------------------------------------------
+.table {
+  --bs-table-bg: transparent;
+}
+
+table {
+  font-variant-numeric: tabular-nums;
+}
+
+// Tables must scroll inside the content column rather than widen the page.
+main.content table,
+.cell-output-display > table,
+.quarto-figure > figure > table,
+div.tableContainer {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+figure img,
+.figure img,
+p > img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption,
+.figure-caption {
+  font-size: 0.85rem;
+  color: var(--qf-muted);
+}
+
+div.sourceCode {
+  border: 1px solid var(--qf-border);
+  border-radius: 0.375rem;
+}
+
+pre code {
+  font-size: 0.855rem;
+  line-height: 1.55;
+}
+
+.callout {
+  border-radius: 0.375rem;
+}
+
+// Math should never overflow on small screens
+.math.display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2rem 0;
+}
+
+// MathJax replaces `.math.display` with its own container, so the scroll
+// behaviour has to be applied there as well.
+mjx-container[display="true"],
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+}
+
+mjx-container[display="true"] > mjx-math {
+  max-width: none;
+}
+
+// ---------------------------------------------------------------------------
+// About page (trestles template)
+// ---------------------------------------------------------------------------
+.quarto-about-trestles .about-entity .about-image {
+  border-radius: 0.5rem;
+  border: 1px solid var(--qf-border);
+}
+
+.quarto-about-trestles .about-entity .about-link {
+  border-radius: 0.375rem;
+  border-color: var(--qf-border-strong);
+}
+
+// ---------------------------------------------------------------------------
+// Accessibility & print
+// ---------------------------------------------------------------------------
+a:focus-visible,
+button:focus-visible,
+.qf-btn:focus-visible {
+  outline: 2px solid var(--qf-azure);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.visually-hidden-focusable:focus {
+  outline: 2px solid var(--qf-azure);
+}
+
+@media print {
+  .navbar,
+  .nav-footer,
+  #quarto-margin-sidebar,
+  .quarto-listing-category,
+  #TOC {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 85%;
+    word-break: break-all;
+  }
+}

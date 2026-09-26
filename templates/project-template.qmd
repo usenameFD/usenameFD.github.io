@@ -1,0 +1,140 @@
+---
+# ===========================================================================
+#  MODÈLE DE FICHE PROJET
+#  Copier ce fichier dans projects/<slug>.qmd, renseigner les métadonnées
+#  ci-dessous, puis supprimer les sections qui ne s'appliquent pas.
+#
+#  Les champs utilisés par la page de listing sont : title, description,
+#  categories, image, image-alt, order et featured. Les autres champs
+#  documentent le projet et sont repris manuellement dans le corps de page.
+# ===========================================================================
+
+title: "Titre du projet"
+subtitle: "Sous-titre précisant l'angle d'analyse"
+
+# Une phrase, affichée telle quelle sur la carte du listing.
+description: "Description professionnelle du projet en une phrase."
+
+# Facultatif : à renseigner uniquement si une date figure dans la source.
+# Ne jamais inventer de date.
+# date: AAAA-MM-JJ
+# date-modified: AAAA-MM-JJ
+
+# Vocabulaire existant : Risque de marché, Risque de crédit, Risque de
+# liquidité, Dérivés & pricing, Volatilité stochastique, Filtrage,
+# Taux & fixed income, Gestion de portefeuille, Finance durable,
+# Risque climatique, Économétrie, Séries temporelles, Machine learning,
+# NLP, Dépendance, Valeurs extrêmes, Stratégies quantitatives,
+# Données géospatiales.
+categories:
+  - Catégorie principale
+  - Catégorie secondaire
+
+# Position dans le listing (croissante). Utilisée à la place de la date
+# pour l'ordre d'affichage.
+order: 99
+
+# Vignette : réutiliser une figure existante du projet. Ne jamais fabriquer
+# de graphique et ne jamais réexécuter un notebook pour en produire un.
+image: ../assets/thumbnails/nom-du-fichier.png
+image-alt: "Description factuelle de la figure, pour les lecteurs d'écran"
+
+project-status: "Terminé"      # Terminé | En cours | Exploratoire
+featured: false                # true pour l'afficher sur la page d'accueil
+draft: false                   # true pour exclure la page du site
+
+# URL de dépôt VÉRIFIÉE, ou champ supprimé si aucun dépôt n'est confirmé.
+github: "https://github.com/usenameFD/NOM_DU_DEPOT"
+
+# Chemins relatifs à projects/
+notebook: "DOSSIER/notebook.ipynb"
+report: "DOSSIER/rapport.pdf"
+
+technologies: [Python, NumPy, pandas]
+methods: [Méthode 1, Méthode 2]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Catégorie principale · Catégorie secondaire
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Livrables
+:   Notebook, module Python, rapport
+:::
+
+## Vue d'ensemble
+
+Problème financier ou quantitatif traité, objectif poursuivi, résultat
+principal et intérêt pratique. Trois paragraphes au maximum.
+
+## Contexte financier
+
+En quoi le problème compte pour la gestion des risques, le trading,
+l'investissement, la construction de portefeuille, le pricing, la
+réglementation, la prévision ou la validation de modèles.
+
+## Méthodologie
+
+Modèles, hypothèses, méthodes statistiques, algorithmes, techniques
+d'estimation, calibration, mesures de risque et méthodes de validation.
+
+## Cadre mathématique
+
+Équations écrites en LaTeX natif, avec définition explicite de la notation.
+
+$$
+\mathrm{VaR}_\alpha = F_L^{-1}(\alpha)
+$$
+
+Ne pas inclure d'équation à visée décorative.
+
+## Données
+
+Sources, période d'observation, variables, retraitements, valeurs manquantes,
+contraintes de licence et limites connues. Ne jamais exposer de données
+privées ou sous licence restrictive.
+
+## Implémentation
+
+Langage, bibliothèques importantes, organisation du code, méthodes numériques,
+performance et reproductibilité.
+
+## Résultats
+
+Résultats **déjà existants** : métriques, graphiques, tableaux, simulations,
+backtests, diagnostics. Ne jamais relancer un calcul pour produire cette
+section.
+
+[Consulter le notebook complet](DOSSIER/notebook.ipynb)
+
+## Interprétation
+
+Signification financière et quantitative des résultats.
+
+## Limites et risque de modèle
+
+Hypothèses, limites des données, incertitude d'estimation, limites
+méthodologiques, contraintes d'implémentation et risque de modèle.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [NumPy]{.qf-tag} [pandas]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook complet](DOSSIER/notebook.ipynb)
+- [Voir le code source](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/DOSSIER/module.py)
+- [Consulter le dépôt GitHub](https://github.com/usenameFD/NOM_DU_DEPOT)
+- [Télécharger le rapport (PDF)](DOSSIER/rapport.pdf)
+
+---
+
+[← Retour aux projets](index.qmd)

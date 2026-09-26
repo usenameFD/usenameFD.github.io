@@ -1,0 +1,110 @@
+---
+title: "Curriculum vitæ"
+pagetitle: "CV — Franck Deba"
+description-meta: >-
+  Curriculum vitæ de Franck Deba, ingénieur data scientist diplômé de l'ENSAI,
+  spécialisé en finance de marché et gestion des risques quantitatifs.
+toc: false
+---
+
+::: {.qf-actions}
+[Télécharger le CV (PDF)](CV/Franck_DEBA_Resume.pdf){.qf-btn}
+[Profil LinkedIn](https://www.linkedin.com/in/deba-franck){.qf-btn .qf-btn-outline}
+[Profil GitHub](https://github.com/usenameFD){.qf-btn .qf-btn-outline}
+:::
+
+## Profil
+
+Ingénieur data scientist diplômé de l'**ENSAI**, actuellement étudiant du
+**M2 Modélisation Aléatoire** (M2MO, ex-DEA Laure-Élie). Spécialisation en
+finance de marché après un parcours en gestion des risques bancaires.
+
+Domaines de travail : mesures de risque et backtesting, modèles à volatilité
+stochastique et méthodes de filtrage, structures de dépendance et copules,
+courbes de taux et pricing de dérivés, allocation de portefeuille sous
+contraintes, risque climatique et apprentissage statistique appliqué aux
+marchés.
+
+## Compétences
+
+::: {.qf-grid .qf-grid-2}
+::: {.qf-card}
+### Finance quantitative
+
+::: {.qf-tags}
+[Value-at-Risk]{.qf-tag} [Expected Shortfall]{.qf-tag}
+[Théorie des valeurs extrêmes]{.qf-tag} [Copules]{.qf-tag}
+[CreditVaR]{.qf-tag} [Pricing de dérivés]{.qf-tag}
+[Courbes de taux]{.qf-tag} [Markowitz]{.qf-tag}
+[Risque de liquidité]{.qf-tag} [Risque climatique]{.qf-tag}
+:::
+:::
+
+::: {.qf-card}
+### Modélisation statistique
+
+::: {.qf-tags}
+[Maximum de vraisemblance]{.qf-tag} [GARCH]{.qf-tag} [EWMA]{.qf-tag}
+[VECM & cointégration]{.qf-tag} [Filtre de Kalman]{.qf-tag}
+[Filtrage particulaire]{.qf-tag} [Monte-Carlo]{.qf-tag}
+[Régularisation]{.qf-tag} [Gradient boosting]{.qf-tag}
+[Réseaux de neurones]{.qf-tag}
+:::
+:::
+
+::: {.qf-card}
+### Technique
+
+::: {.qf-tags}
+[Python]{.qf-tag} [R]{.qf-tag} [SQL]{.qf-tag} [LaTeX]{.qf-tag}
+[NumPy]{.qf-tag} [SciPy]{.qf-tag} [pandas]{.qf-tag} [statsmodels]{.qf-tag}
+[scikit-learn]{.qf-tag} [TensorFlow / Keras]{.qf-tag} [PyTorch]{.qf-tag}
+[GeoPandas]{.qf-tag} [Dash / Plotly]{.qf-tag} [Quarto]{.qf-tag}
+[Git]{.qf-tag}
+:::
+:::
+
+::: {.qf-card}
+### Cadres de référence
+
+::: {.qf-tags}
+[Bâle III]{.qf-tag} [CRR2 / CRD5]{.qf-tag} [FRTB]{.qf-tag}
+[Solvabilité II]{.qf-tag} [SFDR]{.qf-tag} [UN Global Compact]{.qf-tag}
+[SBTi]{.qf-tag}
+:::
+:::
+:::
+
+## Formation
+
+| Diplôme | Établissement |
+|---|---|
+| M2 Modélisation Aléatoire (M2MO, ex-DEA Laure-Élie) — en cours | Université Paris Cité |
+| Diplôme d'ingénieur — statistique et ingénierie des données | ENSAI |
+
+## Travaux représentatifs
+
+- [Value-at-Risk et backtesting réglementaire](projects/value-at-risk.qmd)
+- [CreditVaR d'un portefeuille de créances par copules](projects/creditvar-copules.qmd)
+- [Calibration du modèle de Heston par filtrage particulaire](projects/calibration-heston-filtrage.qmd)
+- [Modélisation de courbes de taux](projects/courbes-de-taux.qmd)
+- [Bibliothèque de pricing et application Dash](projects/bibliotheque-pricing-dash.qmd)
+- [Exposition des communes françaises au risque climatique](projects/risque-climatique-communes.qmd)
+
+L'ensemble du portefeuille est consultable sur la
+[page Projets](projects/index.qmd).
+
+## Document complet
+
+Le curriculum vitæ détaillé — expériences professionnelles, projets et
+références — est disponible au format PDF.
+
+::: {.qf-actions}
+[Télécharger le CV (PDF)](CV/Franck_DEBA_Resume.pdf){.qf-btn}
+:::
+
+::: {.callout-note}
+Le contenu de cette page reprend les éléments vérifiables du site et du
+document PDF. Pour toute précision sur mon parcours, la
+[page Contact](contact.qmd) indique comment me joindre.
+:::

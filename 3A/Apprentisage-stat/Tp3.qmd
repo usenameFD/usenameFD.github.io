@@ -1,8 +1,10 @@
 ---
 title: 'Gradient boosting'
+description: "Algorithme SAMME et boosting de gradient : construction additive, fonction de perte et contrôle du surapprentissage."
 jupyter: python3
 date: "2024-10-18"
-
+categories:
+  - Apprentissage statistique
 ---
 
 

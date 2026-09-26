@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-01-06">
+<meta name="description" content="Pricing d’un call sous mouvement brownien géométrique, calcul des grecques et calibration de la volatilité implicite.">
 
-<title>Calibration du modèle Black-Scholes – Franck Deba - Quantitative Research</title>
+<title>Calibration du modèle de Black-Scholes – Franck Deba</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,22 +72,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../img/logo-bg.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-24772959a0e306aba8d7698078628ce7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-ffa9a6279353761231ec249df0a7fdd3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
-  "copy-button": false,
+  "copy-button": true,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
@@ -94,24 +96,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -140,10 +145,15 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Calibration du modèle de Black-Scholes – Franck Deba">
+<meta property="og:description" content="Pricing d’un call sous mouvement brownien géométrique, calcul des grecques et calibration de la volatilité implicite.">
+<meta property="og:site_name" content="Franck Deba">
+<meta name="twitter:title" content="Calibration du modèle de Black-Scholes – Franck Deba">
+<meta name="twitter:description" content="Pricing d’un call sous mouvement brownien géométrique, calcul des grecques et calibration de la volatilité implicite.">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -313,15 +323,15 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo light-content">
-    <img src="../../img/logo-bg.png" alt="" class="navbar-logo dark-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Franck Deba - Quantitative Research</span>
+    <span class="navbar-title">Franck Deba</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -331,21 +341,42 @@ window.Quarto = {
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation Stat.</span></a>
+    <a class="nav-link" href="../../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des Risques</span></a>
+    <a class="nav-link" href="../../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">À propos</span></a>
+    <a class="nav-link" href="../../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -353,8 +384,9 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
@@ -368,10 +400,6 @@ window.Quarto = {
   </ul></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -379,18 +407,26 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Calibration du modèle Black-Scholes</h1>
-</div>
+<h1 class="title">Calibration du modèle de Black-Scholes</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Processus stochastiques</div>
+  </div>
+  </div>
 
+<div>
+  <div class="description">
+    Pricing d’un call sous mouvement brownien géométrique, calcul des grecques et calibration de la volatilité implicite.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
     <div>
-    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 6, 2025</p>
+      <p class="date">6 janvier 2025</p>
     </div>
   </div>
   
@@ -422,7 +458,7 @@ d_2 = d_1 - \sigma \sqrt{T}
 \]</span></p>
 <section id="calcul-dun-call" class="level2">
 <h2 class="anchored" data-anchor-id="calcul-dun-call">1. Calcul d’un call</h2>
-<div id="28764eaa" class="cell">
+<div id="e40b1ba1" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul d'un call</span></span>
@@ -434,7 +470,7 @@ d_2 = d_1 - \sigma \sqrt{T}
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> (np.log(S<span class="op">/</span>K) <span class="op">+</span> (r <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>tau ) <span class="op">/</span> (sigma <span class="op">*</span> np.sqrt(tau))</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> d1 <span class="op">-</span> sigma <span class="op">*</span> np.sqrt(tau)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    call <span class="op">=</span> S<span class="op">*</span>norm.cdf(d1) <span class="op">-</span> K<span class="op">*</span> np.exp( <span class="op">-</span> tau <span class="op">*</span> r) <span class="op">*</span> norm.cdf(d2)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> call</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> call</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Lorsqu’on a pas accès à une formule analytique pour le prix d’une option, on peut utiliser la méthode de Monte-Carlo pour estimer ce prix. Pour cela, on simule un grand nombre de trajectoires du prix de l’actif sous-jacent, et on calcule la valeur de l’option à chaque date de maturité. On fait ensuite la moyenne de ces valeurs pour obtenir une estimation du prix de l’option.</p>
@@ -442,7 +478,7 @@ d_2 = d_1 - \sigma \sqrt{T}
 <p><span class="math display">\[
 S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 \]</span></p>
-<div id="6f1ba1c8" class="cell">
+<div id="0a907b31" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FormulaBSMC(K,r,tau,sigma,M, S0) :</span>
@@ -454,10 +490,10 @@ S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    payoff <span class="op">=</span> np.maximum(S_T <span class="op">-</span> K, <span class="dv">0</span>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    call <span class="op">=</span> np.exp(<span class="op">-</span>r<span class="op">*</span>tau) <span class="op">*</span> np.mean(payoff)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> call</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> call</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="fc4beefa" class="cell">
+<div id="4e655bbf" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du prix d'un call lors t=O, T=6mois, S0= 42, K=40, r=10%, sigma=20%</span></span>
@@ -468,19 +504,19 @@ S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>call_BS <span class="op">=</span> FormulaBS(S0,K,r,tau,sigma)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Le prix d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BS<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Le prix d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BS<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c4de2658" class="cell">
+<div id="7e1cc568" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>M_values <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">5000</span>, <span class="dv">50000</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> M <span class="kw">in</span> M_values:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    call_BSMC <span class="op">=</span> FormulaBSMC(K, r, tau, sigma, M, S0)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix d'un call avec M=</span><span class="sc">{</span>M<span class="sc">}</span><span class="ss">, de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BSMC<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix d'un call avec M=</span><span class="sc">{</span>M<span class="sc">}</span><span class="ss">, de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BSMC<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="2431141a" class="cell">
+<div id="60bfa109" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du prix d'un call lors t=O, T=3mois, S0= 42, K=40, r=10%, sigma=20%</span></span>
@@ -491,7 +527,7 @@ S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> M <span class="kw">in</span> M_values:</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    call_BSMC <span class="op">=</span> FormulaBSMC(K, r, tau, sigma, M, S0)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix d'un call avec M=</span><span class="sc">{</span>M<span class="sc">}</span><span class="ss">, de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BSMC<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix d'un call avec M=</span><span class="sc">{</span>M<span class="sc">}</span><span class="ss">, de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BSMC<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Comme nous pouvons le constater, les deux méthodes permettent d’avoir des résultats similaires. De plus, plus le nombre de simulations est grand, plus la précision de l’estimation est grande.</p>
@@ -521,7 +557,7 @@ Vega = \frac{\partial C}{\partial \sigma}
 Vega = S_t \sqrt{T} N(d_1)
 \]</span></p>
 <p>Cependant, lorsqu’on a pas accès à une formule analytique pour le prix de l’option, on peut utiliser la méthode de Monte-Carlo pour estimer ces greeks. Pour cela, on calcule le prix de l’option pour une petite variation de chaque paramètre, et on fait la différence entre ces deux prix pour obtenir une estimation du greek. On peut également utiliser la méthode des différences finies pour calculer ces greeks.</p>
-<div id="18ba2d68" class="cell">
+<div id="68f6d6a7" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FormulaBSGreeks(S,K,r,tau,sigma):</span>
@@ -532,10 +568,10 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    gamma <span class="op">=</span> (<span class="dv">1</span><span class="op">/</span>(S<span class="op">*</span>sigma<span class="op">*</span>np.sqrt(tau))) <span class="op">*</span> norm.pdf(d1)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    vega <span class="op">=</span> S <span class="op">*</span> np.sqrt(tau) <span class="op">*</span> norm.pdf(d1)</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta, gamma, vega</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta, gamma, vega</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d2f5a6be" class="cell">
+<div id="8a34e1f0" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="dv">100</span></span>
@@ -545,10 +581,10 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.2</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>delta, gamma, vega <span class="op">=</span> FormulaBSGreeks(S<span class="op">=</span>S,K<span class="op">=</span>K,r<span class="op">=</span>r,tau<span class="op">=</span>tau,sigma<span class="op">=</span>sigma)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="ea493fd0" class="cell">
+<div id="eb7bce10" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supposons qu'on a pas la formule des greeks</span></span>
@@ -570,10 +606,10 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta, gamma, vega</span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>delta, gamma, vega <span class="op">=</span> FormulaBSGreeksMC(K,r,tau,sigma,<span class="dv">500</span>, S)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="07277e1a" class="cell">
+<div id="fa10b173" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mérhode de différencee finie basé sur la méthode de Taylor</span></span>
@@ -605,7 +641,7 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta, gamma, vega</span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>delta, gamma, vega <span class="op">=</span> FormulaBSGreeks_FD_num(S,K,r,tau,sigma)</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
@@ -615,7 +651,7 @@ Vega = S_t \sqrt{T} N(d_1)
 <p><span class="math display">\[
 C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 \]</span></p>
-<div id="fb84f65e" class="cell">
+<div id="cd8aba3c" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ImpliedVolBS(S,K,r,tau, Call):</span>
@@ -625,10 +661,10 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> minimize(obj_func, <span class="fl">0.2</span>)</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> res.x[<span class="dv">0</span>]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sigma</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sigma</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="66ec79a0" class="cell">
+<div id="c22c3f43" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité d'une option d'achat à la monnaie de maturité 3 mois et de strike K=S=4.58 sachant que S0=100; r=5%</span></span>
@@ -640,10 +676,10 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>Call <span class="op">=</span> <span class="fl">4.58</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> ImpliedVolBS(S,K,r,tau, Call)</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La volatilité implicite d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La volatilité implicite d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="da66f6da" class="cell">
+<div id="e01eedc9" class="cell">
 <details class="code-fold">
 <summary>Afficher le code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité d'une option d'achat à la monnaie de maturité 6 mois et de strike K=S=5.53 sachant que S0=100; r=5%</span></span>
@@ -655,7 +691,7 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Call <span class="op">=</span> <span class="fl">5.53</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> ImpliedVolBS(S,K,r,tau, Call)</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La volatilité implicite d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La volatilité implicite d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 
@@ -664,26 +700,7 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
-<hero class="hero-banner">
-  <div class="hero-content">
-    <h1 class="hero-title"></h1>
-    <p class="hero-subtitle">
-      Quantitative Risk Analysis • Stochastic Modelling • Asset Pricing • Climate Analytics
-    </p>
-  </div>
-</hero>
-
-<main class="content">
-  
-</main>
-
-<footer class="quant-footer">
-  <p>© 2025 Franck Deba — Quantitative Research Lab</p>
-  <p class="footer-sub">
-    Risk Modelling • Financial Engineering • Machine Learning • Climate Analytics
-  </p>
-</footer>
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -722,12 +739,12 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copié");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copié");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -770,7 +787,7 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -784,6 +801,11 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1098,8 +1120,67 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 
 
+<script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

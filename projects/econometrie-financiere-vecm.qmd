@@ -1,0 +1,218 @@
+---
+title: "Économétrie financière : non-stationnarité, cointégration et pair trading"
+subtitle: "Des moments d'ordre supérieur au modèle vectoriel à correction d'erreur"
+description: "Diagnostic des propriétés statistiques des séries financières — asymétrie, kurtosis, racine unitaire — puis identification d'une relation de cointégration et calibration d'un modèle VECM exploité en stratégie de pair trading."
+categories:
+  - Économétrie
+  - Séries temporelles
+  - Stratégies quantitatives
+order: 11
+image: ../img/vecm.png
+image-alt: "Relation de cointégration entre deux séries de prix et résidu stationnaire exploité en pair trading"
+project-status: "Terminé"
+featured: false
+draft: false
+github: "https://github.com/usenameFD/Quantitative-finance-Projects"
+notebook: "WQU/Financial econometrics 2.ipynb"
+report: "WQU/reports/Financial Econometrics 2.pdf"
+technologies: [Python, pandas, statsmodels, NumPy, Matplotlib]
+methods: [Test de racine unitaire, Test de cointégration, VECM, Tests d'asymétrie et de kurtosis, Sélection de variables]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Économétrie financière · Séries temporelles
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Contexte
+:   Projets de cours — WorldQuant University, *Financial Data* et *Financial Econometrics*
+:::
+
+## Vue d'ensemble
+
+La plupart des erreurs d'inférence en finance quantitative ne viennent pas du
+modèle mais des propriétés de la série qu'on lui donne à digérer : queues
+épaisses, asymétrie, et surtout non-stationnarité, qui produit des régressions
+fallacieuses entre séries sans relation réelle.
+
+Ce projet suit une progression en trois temps. Il diagnostique d'abord les
+propriétés distributionnelles des séries financières — asymétrie, kurtosis — et
+teste la présence d'une racine unitaire. Il évalue ensuite la valeur ajoutée
+d'une source de données alternatives dans un exercice de sélection de
+variables. Il exploite enfin la non-stationnarité de manière constructive : si
+deux séries intégrées partagent une relation d'équilibre de long terme, leur
+écart est stationnaire et peut être arbitré.
+
+## Contexte financier
+
+**Régression fallacieuse.** Deux marches aléatoires indépendantes produisent
+couramment un $R^2$ élevé et des $t$-statistiques significatives. Toute
+stratégie construite sur une telle relation est vide de contenu économique.
+
+**Cointégration.** À l'inverse, deux actifs liés par une relation économique —
+deux sociétés d'un même secteur, un actif et son *proxy* de couverture —
+peuvent être individuellement non stationnaires tout en admettant une
+combinaison linéaire stationnaire. C'est le fondement statistique du *pair
+trading* : l'écart à l'équilibre est un processus à retour à la moyenne dont
+les excursions sont exploitables.
+
+**Moments d'ordre supérieur.** L'asymétrie et la kurtosis conditionnent la
+validité des mesures de risque gaussiennes et le dimensionnement des positions.
+
+## Méthodologie
+
+**1. Diagnostic distributionnel.** Analyse de l'asymétrie puis de la kurtosis
+des rendements, avec test d'hypothèse sur l'excès de kurtosis — définition,
+statistique de test, règle de décision, et discussion des conséquences
+(*damage*) sur l'inférence.
+
+**2. Non-stationnarité.** Tests de racine unitaire, mise en évidence des
+dommages causés par la non-stationnarité et des corrections possibles.
+
+**3. Données alternatives.** Réplication d'une étude de référence puis
+évaluation d'un type particulier de données alternatives, avec critères de
+sélection de variables.
+
+**4. Cointégration et VECM.** Protocole complet : test de stationnarité des
+séries en niveau, test de cointégration, calibration des paramètres du modèle
+vectoriel à correction d'erreur, diagnostic des résidus, analyse des
+conséquences d'une mauvaise spécification, puis mise en œuvre opérationnelle de
+la stratégie.
+
+## Cadre mathématique
+
+**Racine unitaire.** Le test de Dickey-Fuller augmenté teste
+$H_0 : \gamma = 0$ dans
+$$
+\Delta y_t = \alpha + \beta t + \gamma\, y_{t-1}
++ \sum_{i=1}^{p} \delta_i \,\Delta y_{t-i} + \varepsilon_t ,
+$$
+le non-rejet indiquant la présence d'une racine unitaire, donc une série
+$I(1)$.
+
+**Excès de kurtosis.** Sous normalité, l'estimateur
+$\hat{\kappa} = \hat{\mu}_4/\hat{\sigma}^4 - 3$ vérifie asymptotiquement
+$$
+\sqrt{\frac{n}{24}}\;\hat{\kappa} \;\xrightarrow{\;d\;}\; \mathcal{N}(0,1),
+$$
+ce qui fournit directement la statistique de test.
+
+**Cointégration.** Deux séries $y_{1,t}, y_{2,t} \sim I(1)$ sont cointégrées
+s'il existe $\beta$ tel que
+$$
+z_t = y_{1,t} - \beta\, y_{2,t} \sim I(0).
+$$
+Le vecteur $(1, -\beta)^{\top}$ est le vecteur de cointégration et $z_t$
+l'écart à l'équilibre.
+
+**Modèle VECM.** Pour un vecteur $Y_t$ de dimension $d$ :
+$$
+\Delta Y_t = \Pi\, Y_{t-1}
++ \sum_{i=1}^{p-1} \Gamma_i \,\Delta Y_{t-i}
++ \mu + \varepsilon_t ,
+\qquad \Pi = \alpha \beta^{\top},
+$$
+où le rang de $\Pi$ donne le nombre de relations de cointégration, $\beta$
+contient les vecteurs de cointégration et $\alpha$ les **vitesses
+d'ajustement** : chaque coefficient de $\alpha$ mesure la fraction du
+déséquilibre corrigée à chaque période.
+
+**Demi-vie de retour à la moyenne.** Si $z_t$ suit un processus AR(1) de
+coefficient $\phi$, la demi-vie de l'écart est
+$$
+h = -\frac{\ln 2}{\ln \phi},
+$$
+quantité déterminante pour fixer l'horizon de détention d'une position de
+*pair trading*.
+
+## Données
+
+Séries de prix quotidiens d'actifs cotés, récupérées dans l'environnement
+d'analyse d'origine, ainsi que le jeu de données alternatives examiné dans le
+volet *Financial Data*. Ces données ne sont pas rechargées lors de la
+génération du site.
+
+## Implémentation
+
+Trois notebooks complémentaires, appuyés sur `statsmodels` pour les tests de
+racine unitaire, les tests de cointégration et l'estimation du VECM :
+
+| Notebook | Contenu |
+|---|---|
+| *Financial Data 1* | réplication d'une étude de référence, évaluation de données alternatives |
+| *Financial Data 2* | asymétrie, test d'excès de kurtosis, racine unitaire |
+| *Financial Econometrics 2* | cointégration, VECM, diagnostic, déploiement |
+
+La structure du travail sur le VECM suit un protocole explicite — définition,
+description, démonstration, diagnostic, dommages, directions, déploiement — qui
+correspond à la démarche attendue en validation de modèle : on ne présente pas
+seulement le modèle retenu, mais aussi ce qui se passe lorsqu'il est mal
+spécifié.
+
+## Résultats
+
+Statistiques de test, relations de cointégration identifiées, paramètres VECM
+estimés, diagnostics de résidus et mise en œuvre de la stratégie sont détaillés
+dans les notebooks et les rapports associés.
+
+[Cointégration, VECM et pair trading](WQU/Financial econometrics 2.ipynb)
+([rapport PDF](WQU/reports/Financial Econometrics 2.pdf))
+
+[Asymétrie, kurtosis et racine unitaire](WQU/Financial Data 2.ipynb)
+
+[Réplication et données alternatives](WQU/Financial Data 1.ipynb)
+([rapport PDF](WQU/reports/Financial Data 1.pdf))
+
+[Économétrie financière — premier volet (rapport PDF)](WQU/reports/Financial Econometrics 1.pdf)
+
+## Interprétation
+
+La séquence de tests n'est pas une formalité : c'est elle qui distingue une
+relation exploitable d'un artefact statistique. Le coefficient d'ajustement
+$\alpha$ du VECM est l'élément le plus directement opérationnel — il indique à
+quelle vitesse le déséquilibre se résorbe, donc quel horizon de détention et
+quel niveau de levier sont cohérents avec la dynamique estimée.
+
+Le principal enseignement pratique est que la cointégration est une propriété
+**d'échantillon** : elle doit être retestée régulièrement, car une relation
+d'équilibre peut se rompre à la suite d'un changement structurel, auquel cas la
+stratégie de retour à la moyenne se transforme mécaniquement en position
+directionnelle perdante.
+
+## Limites et risque de modèle
+
+- **Instabilité de la relation.** La relation de cointégration peut disparaître
+  lors d'un changement structurel ; un suivi permanent est indispensable.
+- **Puissance des tests.** Les tests de racine unitaire sont peu puissants sur
+  échantillon court et proches de la racine unitaire.
+- **Multiplicité.** La recherche de paires sur un large univers expose au
+  biais de sélection : certaines cointégrations sont trouvées par hasard.
+- **Coûts et exécution.** La rentabilité d'une stratégie de *pair trading*
+  dépend des coûts de transaction et de la disponibilité du titre à
+  l'emprunt, non modélisés ici.
+- **Normalité des résidus.** Les résidus VECM restent hétéroscédastiques, ce
+  qui affecte les intervalles de confiance.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [pandas]{.qf-tag} [statsmodels]{.qf-tag} [NumPy]{.qf-tag}
+[Matplotlib]{.qf-tag}
+:::
+
+## Ressources
+
+- [Cointégration, VECM et pair trading](WQU/Financial econometrics 2.ipynb)
+- [Asymétrie, kurtosis et racine unitaire](WQU/Financial Data 2.ipynb)
+- [Réplication et données alternatives](WQU/Financial Data 1.ipynb)
+- [Consulter le dépôt GitHub](https://github.com/usenameFD/Quantitative-finance-Projects)
+- Note associée : [Synthèse sur les séries temporelles (PDF)](../3A/rapports/rapport_series_temporelles.pdf)
+
+---
+
+[← Retour aux projets](index.qmd)

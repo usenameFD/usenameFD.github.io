@@ -1,10 +1,13 @@
 ---
-title: "APF filter"
+title: "Performance de l'auxiliary particle filter"
+description: "Étude de simulation comparant le filtre bootstrap et l'auxiliary particle filter pour l'estimation de la variance latente du modèle de Heston, selon la moneyness des options observées."
 author: 
   - Franck Deba
   - Samuel Marthely
 date: "2025-02-26"
 number-sections: true
+categories:
+  - Processus stochastiques
 ---
 
 # Méthodes : étude de simulation sur la performance du filtre APF

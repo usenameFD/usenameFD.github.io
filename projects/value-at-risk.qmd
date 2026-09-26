@@ -1,0 +1,252 @@
+---
+title: "Value-at-Risk et backtesting réglementaire"
+subtitle: "Estimation historique, paramétrique, Monte-Carlo et par théorie des valeurs extrêmes"
+description: "Chaîne complète d'estimation et de validation de la VaR et de l'Expected Shortfall d'un portefeuille actions, de l'approche gaussienne à la modélisation des queues par GEV et GPD."
+date: 2024-02-01
+categories:
+  - Risque de marché
+  - Valeurs extrêmes
+order: 1
+image: ../img/var-cover.png
+image-alt: "Distribution des pertes d'un portefeuille et quantile de Value-at-Risk"
+project-status: "Terminé"
+featured: true
+draft: false
+github: "https://github.com/usenameFD/STATISTIQUES-RISQUES-EXTREMES"
+notebook: "VaR/VaR.ipynb"
+report: "../3A/rapports/projet_EVT.pdf"
+technologies: [Python, NumPy, SciPy, pandas, statsmodels, Matplotlib, Dash]
+methods: [VaR historique, VaR paramétrique, Monte-Carlo, EWMA, Expected Shortfall, GEV, POT/GPD, Test de Kupiec]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Risque de marché · Théorie des valeurs extrêmes
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Livrables
+:   Notebook, module Python, note de synthèse, application Dash
+:::
+
+## Vue d'ensemble
+
+La Value-at-Risk est la mesure de risque de marché sur laquelle s'appuient les
+exigences de fonds propres et les limites de trading. Sa fragilité est connue :
+elle dépend entièrement de l'hypothèse faite sur la distribution des pertes, et
+c'est précisément dans la queue de distribution — là où les données sont
+rares — que cette hypothèse est la plus difficile à valider.
+
+Ce projet construit une chaîne complète d'estimation et de validation de la VaR
+et de l'Expected Shortfall sur des rendements d'actions et d'indices cotés :
+estimation par quatre familles de méthodes, tests d'adéquation, quantification
+de l'incertitude d'estimation par bootstrap, puis backtesting statistique des
+dépassements. L'objectif n'est pas d'obtenir « la » VaR, mais de mesurer
+l'écart entre modèles et d'identifier lequel survit au backtesting.
+
+## Contexte financier
+
+Sous Bâle III, la charge en capital au titre du risque de marché dépend d'une
+mesure de risque estimée sur un horizon donné et validée *a posteriori* par un
+exercice de backtesting : un modèle qui produit trop de dépassements est
+pénalisé par un multiplicateur de capital plus élevé. La révision FRTB déplace
+par ailleurs la mesure réglementaire de la VaR vers l'Expected Shortfall, ce
+qui rend la modélisation de la queue de distribution encore plus structurante.
+
+Trois questions pratiques sont traitées ici :
+
+- une VaR gaussienne sous-estime-t-elle significativement le risque sur des
+  rendements d'actions leptokurtiques et asymétriques ?
+- l'incertitude d'estimation de la VaR est-elle du même ordre de grandeur que
+  l'écart entre deux méthodes concurrentes ?
+- la théorie des valeurs extrêmes améliore-t-elle la couverture aux niveaux de
+  confiance élevés (99 % et au-delà) ?
+
+## Méthodologie
+
+Le projet compare quatre familles d'approches.
+
+**1. VaR historique.** Quantile empirique des pertes observées, sans hypothèse
+paramétrique. Un bootstrap non paramétrique fournit un intervalle de confiance
+autour du quantile estimé.
+
+**2. VaR paramétrique.** Trois spécifications emboîtées : gaussienne,
+gaussienne à volatilité EWMA (pondération exponentielle des rendements récents)
+et Student asymétrique estimée par maximum de vraisemblance. L'adéquation de
+chaque loi est contrôlée par QQ-plot, comparaison de densité noyau et test de
+Kolmogorov–Smirnov.
+
+**3. VaR Monte-Carlo.** Simulation de trajectoires de prix sous diffusion,
+calcul des log-rendements à l'horizon et lecture du quantile simulé.
+
+**4. VaR par théorie des valeurs extrêmes.** Deux approches complémentaires :
+
+- *Block maxima* — ajustement d'une loi GEV et de sa sous-famille Gumbel sur
+  les maxima par bloc, avec test du rapport de vraisemblance entre les deux
+  spécifications et diagnostic graphique (Gumbel plot) ;
+- *Peaks over threshold* — ajustement d'une loi de Pareto généralisée sur les
+  excès au-delà d'un seuil, le seuil étant calibré à l'aide du graphique des
+  excès moyens puis validé par test de Kolmogorov–Smirnov.
+
+L'Expected Shortfall est calculée pour chaque spécification, sous forme
+empirique et sous forme analytique lorsqu'elle existe.
+
+**Validation.** Le backtesting repose sur le comptage des exceptions et sur le
+test de couverture inconditionnelle de Kupiec. Une variante adaptative réestime
+la VaR sur fenêtre glissante afin de vérifier la stabilité du modèle dans le
+temps.
+
+## Cadre mathématique
+
+Soit $P(t,\theta)$ la valeur d'un portefeuille $\theta$ à la date $t$. Le
+résultat sur l'horizon $h$ est
+$$
+\mathrm{PnL} = P(t+h,\theta) - P(t,\theta), \qquad L = -\,\mathrm{PnL},
+$$
+et la Value-at-Risk au seuil $\alpha$ est le quantile d'ordre $\alpha$ de la
+perte :
+$$
+\mathbb{P}\bigl(L \leq \mathrm{VaR}_\alpha\bigr) = \alpha ,
+\qquad
+\mathrm{VaR}_\alpha = F_L^{-1}(\alpha).
+$$
+
+Sous hypothèse gaussienne $L \sim \mathcal{N}(\mu,\sigma^2)$ :
+$$
+\mathrm{VaR}_\alpha = \mu + \sigma\,\Phi^{-1}(\alpha),
+\qquad
+\mathrm{ES}_\alpha = \mu + \sigma\,\frac{\varphi\bigl(\Phi^{-1}(\alpha)\bigr)}{1-\alpha},
+$$
+où $\varphi$ et $\Phi$ désignent la densité et la fonction de répartition de la
+loi normale centrée réduite. La variance EWMA utilisée dans la variante
+conditionnelle s'écrit
+$$
+\sigma_t^2 = \lambda\,\sigma_{t-1}^2 + (1-\lambda)\,r_{t-1}^2 ,
+\qquad \lambda \in (0,1).
+$$
+
+Pour l'approche *peaks over threshold*, le théorème de
+Pickands–Balkema–de Haan justifie l'approximation de la loi des excès au-delà
+d'un seuil $u$ élevé par une loi de Pareto généralisée
+$$
+G_{\xi,\beta}(y) = 1 - \Bigl(1 + \xi \frac{y}{\beta}\Bigr)^{-1/\xi},
+\qquad y \geq 0,\; 1 + \xi y/\beta > 0,
+$$
+d'où l'estimateur de VaR
+$$
+\widehat{\mathrm{VaR}}_\alpha
+= u + \frac{\hat\beta}{\hat\xi}
+\left[ \left( \frac{n}{N_u}\,(1-\alpha) \right)^{-\hat\xi} - 1 \right],
+$$
+avec $n$ le nombre total d'observations et $N_u$ le nombre d'excès au-dessus de
+$u$. Le paramètre de forme $\hat\xi$ gouverne l'épaisseur de la queue :
+$\xi > 0$ correspond au domaine d'attraction de Fréchet, typique des
+rendements d'actifs risqués.
+
+Le test de couverture inconditionnelle de Kupiec confronte le taux de
+dépassement observé au taux théorique $p = 1-\alpha$ :
+$$
+\mathrm{LR}_{uc}
+= -2 \ln \frac{(1-p)^{n-x} p^{x}}
+{\bigl(1-\tfrac{x}{n}\bigr)^{n-x}\bigl(\tfrac{x}{n}\bigr)^{x}}
+\;\xrightarrow[\;n \to \infty\;]{}\; \chi^2(1),
+$$
+où $x$ est le nombre d'exceptions sur $n$ observations de test.
+
+## Données
+
+Séries de prix quotidiens d'actions et d'indices cotés, converties en
+log-rendements. L'échantillon est scindé en une fenêtre d'estimation et une
+fenêtre de test disjointe, le backtesting étant réalisé exclusivement sur la
+seconde afin d'éviter tout biais d'échantillonnage.
+
+Les données de marché sont récupérées dans l'environnement d'analyse et ne sont
+pas rejouées lors de la génération de ce site. Les statistiques descriptives et
+les graphiques publiés sont ceux de l'exécution d'origine.
+
+## Implémentation
+
+L'ensemble des estimateurs, tests et diagnostics est regroupé dans un module
+Python unique, [`functions.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/VaR/functions.py),
+qui expose une cinquantaine de fonctions couvrant :
+
+- statistiques descriptives et visualisation des distributions ;
+- estimateurs de VaR (historique, bootstrap, gaussien, EWMA, Student
+  asymétrique, Monte-Carlo) et d'Expected Shortfall ;
+- ajustements GEV, Gumbel et GPD avec tests d'adéquation et de rapport de
+  vraisemblance ;
+- calibration automatique du seuil POT ;
+- backtesting ponctuel et adaptatif.
+
+Le découpage entre un module de calcul testable et un notebook de narration
+permet de rejouer l'analyse sur un autre sous-jacent en ne changeant que le
+ticker et les dates.
+
+## Résultats
+
+Les résultats complets — statistiques descriptives, QQ-plots, densités
+ajustées, graphiques d'excès moyens, courbes de VaR dynamique et tableaux de
+backtesting — sont présentés dans le notebook :
+
+[Consulter le notebook complet](VaR/VaR.ipynb)
+
+La note de synthèse sur la théorie des valeurs extrêmes détaille les choix de
+seuil et les diagnostics d'ajustement :
+
+[Note de synthèse — Théorie des valeurs extrêmes (PDF)](../3A/rapports/projet_EVT.pdf)
+
+## Interprétation
+
+La comparaison met en évidence le compromis classique de la mesure de risque de
+marché. Les approches paramétriques simples sont stables et peu coûteuses, mais
+leur validité dépend d'une hypothèse distributionnelle testable — et
+généralement rejetée sur données d'actions. Les approches historiques et
+bootstrap sont robustes mais sensibles à la profondeur d'historique disponible
+dans la queue. Les approches par valeurs extrêmes exploitent explicitement la
+structure asymptotique des excès et sont donc mieux adaptées aux niveaux de
+confiance élevés, au prix d'un choix de seuil qui doit être justifié et testé.
+
+Le backtesting tranche : c'est le nombre et la répartition temporelle des
+exceptions qui valident ou invalident un modèle, et non son élégance
+analytique.
+
+## Limites et risque de modèle
+
+- **Hypothèse i.i.d.** Les estimateurs historiques et de valeurs extrêmes
+  supposent des rendements indépendants et identiquement distribués. Le
+  regroupement de volatilité viole cette hypothèse ; la variante appliquée aux
+  résidus standardisés atténue le problème sans l'éliminer.
+- **Choix du seuil POT.** L'estimation de $\xi$ et $\beta$ est sensible au
+  seuil retenu : trop bas, l'approximation GPD n'est pas valide ; trop haut,
+  la variance d'estimation explose.
+- **Incertitude d'estimation.** Les intervalles bootstrap montrent que
+  l'incertitude sur la VaR à 99 % n'est pas négligeable devant l'écart entre
+  méthodes.
+- **Risque de liquidité.** L'horizon de détention est supposé réalisable ; la
+  VaR ne capture pas le coût de liquidation en marché tendu (voir le projet
+  [Gestion des risques en asset management](risques-asset-management.qmd)).
+- **Cohérence de la mesure.** La VaR n'est pas sous-additive en général ;
+  l'Expected Shortfall est reportée systématiquement pour cette raison.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [NumPy]{.qf-tag} [SciPy]{.qf-tag} [pandas]{.qf-tag}
+[statsmodels]{.qf-tag} [Matplotlib]{.qf-tag} [Dash]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook complet](VaR/VaR.ipynb)
+- [Voir le code source du module](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/VaR/functions.py)
+- [Consulter le dépôt GitHub — application Dash de gestion des risques extrêmes](https://github.com/usenameFD/STATISTIQUES-RISQUES-EXTREMES)
+- [Télécharger la note de synthèse EVT (PDF)](../3A/rapports/projet_EVT.pdf)
+- Note théorique associée : [La Value-at-Risk](../3A/value-at-risk/var_def.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

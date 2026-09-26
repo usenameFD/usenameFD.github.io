@@ -1,9 +1,12 @@
 ---
 title: "Introduction aux marchés financiers"
+description: "Fonctionnement des marchés d'actions, d'obligations et de produits dérivés : acteurs, types d'ordres et mécanismes de formation des prix."
 sidebar: auto
 date: "2025-05-05"
 author:
   - Franck Deba
+categories:
+  - Marchés & instruments
 ---
 
 Dans le secteur financier, le marché désigne l’endroit où se rencontrent l’offre et la demande de services ou de produits financiers. Il regroupe de nombreux acteurs, notamment les banques, les institutions financières, les entreprises et les particuliers.

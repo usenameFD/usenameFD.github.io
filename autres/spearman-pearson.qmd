@@ -1,6 +1,9 @@
 ---
-title: "Corrélation de Spearman vs corrélation de Pearson"
+title: "Corrélation de Spearman et corrélation de Pearson"
+description: "Pourquoi la corrélation de Pearson ne caractérise pas la dépendance hors du cadre gaussien, et en quoi le rho de Spearman est une mesure de concordance définie par une copule."
 date: "2025-02-07"
+categories:
+  - Dépendance & statistiques
 ---
 
 

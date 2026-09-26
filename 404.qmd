@@ -1,0 +1,17 @@
+---
+title: "Page introuvable"
+pagetitle: "Page introuvable — Franck Deba"
+toc: false
+---
+
+La page demandée n'existe pas ou a été déplacée.
+
+::: {.qf-actions}
+[Accueil](/index.html){.qf-btn}
+[Projets](/projects/index.html){.qf-btn .qf-btn-outline}
+[Notes & recherche](/notes/index.html){.qf-btn .qf-btn-outline}
+[Code](/repositories/index.html){.qf-btn .qf-btn-outline}
+:::
+
+Vous pouvez également utiliser la recherche dans la barre de navigation pour
+retrouver un projet ou une note.

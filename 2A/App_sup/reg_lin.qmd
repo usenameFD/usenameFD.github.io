@@ -1,8 +1,11 @@
 ---
-title: La régression linéaire
+title: "La régression linéaire"
+description: "Modèle linéaire, estimation par moindres carrés, hypothèses et diagnostic de la qualité d'ajustement."
 author:
   - Franck Deba
 date: "2024-06-14"
+categories:
+  - Apprentissage statistique
 ---
 
 # Introduction

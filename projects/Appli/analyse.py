@@ -1,3 +1,5 @@
+import os
+
 from dash import dcc, html, Input, Output
 import numpy as np
 import plotly.graph_objs as go
@@ -5,7 +7,10 @@ from BondSwap.riskFree import RiskFree
 from BondSwap.bond import Bond
 from BondSwap.swap import Swap
 
-api_key = '99b15e0a2f3b3f4571893e831fd555d0'
+# The FRED API key must never be hard-coded in a public repository.
+# Provide it through the FRED_API_KEY environment variable before starting the
+# Dash application, e.g. `setx FRED_API_KEY "<your-key>"` on Windows.
+api_key = os.environ.get("FRED_API_KEY", "")
 date = '31-decembre-2024'
 
 class Analyse:

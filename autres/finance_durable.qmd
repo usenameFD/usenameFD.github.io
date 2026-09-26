@@ -1,7 +1,10 @@
 ---
-title: "Investissement responsable"
+title: "Le cadre de la finance durable"
+description: "Objectifs de la finance durable, indicateurs extra-financiers et cadres réglementaires encadrant l'investissement responsable."
 date: "2025-03-02"
 format: html
+categories:
+  - Finance durable
 ---
 
 # Le cadre de la finance durable

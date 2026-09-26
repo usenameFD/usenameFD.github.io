@@ -1,7 +1,10 @@
 ---
-title: 'Features selection'
+title: 'Sélection de variables'
+description: "Sélection de variables par information mutuelle et par critère d'indépendance de Hilbert-Schmidt (HSIC)."
 jupyter: python3
 date: "2024-10-19"
+categories:
+  - Apprentissage statistique
 ---
 
 
