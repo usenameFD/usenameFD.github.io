@@ -631,6 +631,55 @@ mjx-container[display="true"] > mjx-math {
 }
 
 // ---------------------------------------------------------------------------
+// Experience timeline (CV page)
+// ---------------------------------------------------------------------------
+.qf-timeline {
+  margin: 1.4rem 0 2rem;
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--qf-border);
+}
+
+.qf-timeline h3 {
+  position: relative;
+  margin-top: 1.8rem;
+  margin-bottom: 0.2rem;
+  font-size: 1.04rem;
+  font-weight: 600;
+  border: 0;
+}
+
+.qf-timeline h3:first-of-type {
+  margin-top: 0.2rem;
+}
+
+.qf-timeline h3::before {
+  content: "";
+  position: absolute;
+  left: -1.52rem;
+  top: 0.55em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--qf-azure);
+  box-shadow: 0 0 0 3px var(--qf-canvas);
+}
+
+.qf-timeline .qf-role-meta {
+  margin-bottom: 0.55rem;
+  font-size: 0.83rem;
+  letter-spacing: 0.01em;
+  color: var(--qf-muted);
+}
+
+.qf-timeline ul {
+  margin-bottom: 0.4rem;
+}
+
+.qf-timeline p {
+  margin-bottom: 0.5rem;
+}
+
+// ---------------------------------------------------------------------------
 // Accessibility & print
 // ---------------------------------------------------------------------------
 a:focus-visible,

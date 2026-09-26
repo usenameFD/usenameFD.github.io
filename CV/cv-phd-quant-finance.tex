@@ -1,0 +1,184 @@
+% ===== VARIANT: PhD APPLICATION (QUANTITATIVE FINANCE) =============
+% Academic CV. Research interests and research experience lead;
+% teaching, awards and references retained. Two pages acceptable.
+% ===================================================================
+\input{cv-preamble.tex}
+
+\begin{document}
+
+\cvheader{PhD Candidate --- Quantitative Finance}{Stochastic control \& optimal stopping $\cdot$ Filtering and latent-factor calibration $\cdot$ Numerical methods for PDEs $\cdot$ Risk measures}
+
+%-----------RESEARCH INTERESTS-----------
+\section{Research Interests}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    Stochastic optimal control and Hamilton--Jacobi--Bellman(--Isaacs) equations; optimal stopping and free-boundary problems;
+    calibration and identifiability of latent factor models; sequential Monte Carlo and filtering for stochastic volatility;
+    dependence structures and extreme value theory for portfolio credit risk; numerical analysis of PDEs and
+    neural-network-based solvers.
+  }}
+\end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Master M2MO --- Mod\'elisation Al\'eatoire (Quantitative Finance and Data Science)}{Sep 2025 -- Present}
+    {Universit\'e Paris Cit\'e}{Paris, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Data Science and Risk Management}{Aug 2023 -- Dec 2025}
+    {ENSAI (\'Ecole Nationale de la Statistique et de l'Analyse de l'Information)}{Rennes, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Statistics applied to Economics}{Sep 2021 -- Aug 2023}
+    {ISSEA -- CEMAC}{Yaound\'e, Cameroon}
+  \vspace{3pt}
+  \resumeSubheading
+    {Bachelor's Degree in Mathematics}{Sep 2017 -- Aug 2020}
+    {Double degree --- Higher Teacher Training College \& University of Yaound\'e I}{Yaound\'e, Cameroon}
+\resumeSubHeadingListEnd
+
+%-----------MASTER'S THESIS-----------
+\section{Master's Thesis}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/drc-frtb-cac40.html}{\textbf{Factor-Model Calibration for the Default Risk Charge}} $|$ \emph{47 pp., Universit\'e Paris Cit\'e}} {2026}
+    \resumeItemListStart
+      \resumeItem{\textbf{Question.} Part of the DRC literature implicitly assumes the calibration method is secondary once a Gaussian multi-factor framework is correctly posed. The thesis tests that assumption.}
+      \resumeItem{\textbf{Contribution.} Introduces calibration by maximum likelihood of the model --- to my knowledge a new contribution to DRC modelling --- alongside iterative PCA and Frobenius-norm minimisation, on a portfolio of 37 issuers.}
+      \resumeItem{\textbf{Theory.} Establishes that the likelihood criterion is equivalent to minimising a Kullback--Leibler divergence, whose penalisation geometry is asymmetric: it penalises correlation under-estimation more severely where the target correlation is already high. Discusses non-compactness of the likelihood programme, Heywood cases, and non-identifiability of loadings up to rotation.}
+      \resumeItem{\textbf{Empirics.} Iterative PCA and Frobenius converge to an identical fit; maximum likelihood departs by under 3\% in relative Frobenius error, concentrated almost entirely on the financial sub-group. Marchenko--Pastur independently selects two factors on all three calibration windows.}
+      \resumeItem{\textbf{Inference.} Monte Carlo with 200{,}000 scenarios and confidence intervals by sectioning (Dong \& Nakayama, 2020), appropriate for a step-valued loss distribution.}
+      \resumeItem{\textbf{Diagnostics.} Systematic stationarity (ADF, KPSS) and normality (Shapiro--Wilk, Kolmogorov--Smirnov) testing of factors and residuals, addressing a gap in the reviewed literature.}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------RESEARCH PROJECTS-----------
+\section{Research Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\href{https://github.com/usenameFD/Conjecture-de-Collatz}{\textbf{An Analytic Reformulation of the Collatz Conjecture}} $|$ \emph{Markov chains}} {2026}
+    \resumeItemListStart
+      \resumeItem{Reformulated the conjecture as a uniqueness problem for the stationary measure of a Markov chain}
+      \resumeItem{Characterised admissible stationary measures and verified the characterisation numerically}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/usenameFD/Numerical_methods/blob/main/zermeloNotebook.ipynb}{\textbf{Numerical Resolution of an HJBI PDE --- Zermelo Stochastic Control Problem}} $|$ \emph{Python, PyTorch}} {2026}
+    \resumeItemListStart
+      \resumeItem{Solved a Hamilton--Jacobi--Bellman--Isaacs PDE by finite differences with a semi-smooth Newton method, the equation being non-linear and non-smooth}
+      \resumeItem{Measured the numerical order of convergence against a known closed-form solution, then applied the scheme to a case with no explicit solution}
+      \resumeItem{Developed a Physics-Informed Neural Network solver using automatic differentiation (Esteve-Yag\"ue, 2025); compared three loss formulations and studied sensitivity to the loss weights}
+      \resumeItem{Concluded on the trade-off: provable convergence order for the deterministic scheme against dimensional scalability for the network}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/methodes-numeriques-edp.html}{\textbf{Optimal Stopping and Convergence to the Brownian Bridge}} $|$ \emph{Python}} {2026}
+    \resumeItemListStart
+      \resumeItem{Modelled a card-game brainteaser (Crack, 2014) as an optimal stopping problem solved by backward induction}
+      \resumeItem{Computed the discrete stopping boundary and its convergence to the continuous boundary; asymptotic analysis of the normalised value $V(N,N)/\sqrt{2N}$ following Ekstr\"om \& Vaicenavicius (2020)}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/calibration-heston-filtrage.html}{\textbf{Sequential Monte Carlo for Stochastic Volatility Calibration}} $|$ \emph{Python, R}} {2025}
+    \resumeItemListStart
+      \resumeItem{Heston model written as a state-space system with the exact non-central chi-square transition law of the CIR variance}
+      \resumeItem{Bootstrap and auxiliary particle filters implemented and compared in a simulation study across option moneyness, where the true latent trajectory is known}
+      \resumeItem{Companion study on the Taylor log-SV model: Kalman filtering after linearisation vs.\ bootstrap particle filtering, quantifying the error of the Gaussian approximation of a log-$\chi^2_1$ observation noise}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/creditvar-copules.html}{\textbf{Dependence Structures for Portfolio Credit Risk}} $|$ \emph{Python}} {2025}
+    \resumeItemListStart
+      \resumeItem{Two-step estimation (Sklar): skewed-Student margins by maximum likelihood, then elliptical and Archimedean copulas}
+      \resumeItem{Empirical tail-dependence evidence incompatible with the asymptotic independence implied by the Gaussian copula, with consequences for capital}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/value-at-risk.html}{\textbf{Extreme Value Theory for Risk Measures}} $|$ \emph{Python, R}} {2025}
+    \resumeItemListStart
+      \resumeItem{Block maxima (GEV vs.\ Gumbel, likelihood-ratio testing) and peaks-over-threshold (GPD) with threshold calibration and goodness-of-fit testing}
+      \resumeItem{GARCH-filtered residual approach to relax the i.i.d.\ assumption; backtesting by unconditional-coverage testing}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------RESEARCH & PROFESSIONAL EXPERIENCE-----------
+\section{Research \& Professional Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Quantitative Analyst (Intern)} $|$ \textbf{PwC}}{Apr -- Oct 2026}
+    {Risk Line of Service}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Research internship supporting the Master's thesis on Default Risk Charge modelling under FRTB}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Quantitative Risk Analyst (Intern)} $|$ \textbf{Cr\'edit Agricole}}{Apr -- Sep 2025}
+    {Risk Modeling Department}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Climate stress-testing methodologies using time series and Monte Carlo methods}
+      \resumeItem{Automated backtesting tool in Python (Dash) for model validation}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Intern} $|$ \textbf{Groupe VYV -- Harmonie Mutuelle}}{Jun -- Aug 2024}
+    {Assurance Pr\'evoyance}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Survival analysis (Cox model) and clustering applied to insurance risk profiling}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------TEACHING-----------
+\section{Teaching Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Intern Mathematics Teacher} $|$ \textbf{Ngoa Ekel\'e High School}}{Jan -- May 2022}
+    {Mathematics Department}{Yaound\'e, Cameroon}
+    \resumeItemListStart
+      \resumeItem{Taught mathematics using a competency-based approach}
+      \resumeItem{Designed assessments, analysed student performance and developed targeted remediation strategies}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------DISSEMINATION-----------
+\section{Dissemination}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    Maintains \href{https://usenamefd.github.io/}{\underline{usenamefd.github.io}}, a documented research portfolio presenting the above work with its
+    mathematical framework, data provenance, assumptions and stated limitations, together with open-source implementations.
+  }}
+\end{itemize}
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:} Python (NumPy, SciPy, PyTorch, scikit-learn, statsmodels), R, C++ (basics), SQL, SAS, \LaTeX \\
+    \textbf{Methods:} Stochastic control, HJB/HJBI PDEs, optimal stopping, finite differences (Euler, Crank--Nicolson, PSOR, BDF), semi-smooth Newton, PINNs, sequential Monte Carlo, Kalman filtering, EM, spectral projected gradient, random matrix theory, copulas, extreme value theory
+  }}
+\end{itemize}
+
+%-----------AWARDS & LANGUAGES-----------
+\section{Awards, Certifications \& Languages}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Awards:} National Essay Competition Prize (2019 --- Ministry of External Relations, Cameroon), PK Fokam Prize for Science Students (2017) \\
+    \textbf{Certifications:} AMF (Autorit\'e des March\'es Financiers), Financial Markets (Yale), AI in Finance (World Bank) \\
+    \textbf{Languages:} French (native), English (advanced, B2 --- TOEIC/TOEFL)
+  }}
+\end{itemize}
+
+%-----------REFERENCES-----------
+\section{References}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Adrien Saumard} --- ENSAI, Rennes \\
+    \textbf{Basile De Loynes} --- ENSAI, Rennes \\
+    \textbf{Sim\'eon Fotso} --- \'Ecole Normale Sup\'erieure, Yaound\'e
+  }}
+\end{itemize}
+
+\end{document}

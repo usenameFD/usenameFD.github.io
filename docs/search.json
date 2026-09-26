@@ -1505,6 +1505,13 @@
     "text": "Je suis ingénieur data scientist diplômé de l’ENSAI et je poursuis le M2 Modélisation Aléatoire (M2MO, ex-DEA Laure-Élie) à l’Université Paris Cité. Je me spécialise en finance de marché après un parcours en gestion des risques bancaires.\nMon mémoire de M2, Modélisation du Default Risk Charge — calibration comparée des sensibilités factorielles et application à un portefeuille d’actifs du CAC 40, porte sur la modélisation réglementaire du risque de défaut sous FRTB. Il est présenté en détail dans la fiche Default Risk Charge d’un portefeuille CAC 40.\nCe double parcours oriente ma manière de travailler : je m’intéresse autant à la rigueur statistique — estimation, validation, quantification de l’incertitude — qu’aux mécanismes de marché qui donnent un sens financier aux modèles : liquidité, volatilité, structure par terme des taux, dépendances extrêmes."
   },
   {
+    "objectID": "about.html#expérience",
+    "href": "about.html#expérience",
+    "title": "Franck Deba",
+    "section": "Expérience",
+    "text": "Expérience\nJ’ai travaillé en modélisation quantitative des risques chez PwC (Default Risk Charge sous FRTB), au Crédit Agricole (stress-test climatique, backtesting et validation de modèles) et au sein du Groupe VYV (analyse de survie et segmentation). J’ai également contribué à des travaux de modélisation réglementaire du risque de crédit — scoring sous cadre IRB, marge de prudence sur la PD, segmentation de la LGD.\nLe détail de ces expériences figure sur la page CV."
+  },
+  {
     "objectID": "about.html#ce-que-contient-ce-site",
     "href": "about.html#ce-que-contient-ce-site",
     "title": "Franck Deba",
@@ -1580,6 +1587,27 @@
     "title": "Curriculum vitæ",
     "section": "Mémoire de M2",
     "text": "Mémoire de M2\nModélisation du Default Risk Charge — calibration comparée des sensibilités factorielles et application à un portefeuille d’actifs du CAC 40 Mémoire de stage, M2 Modélisation Aléatoire, Université Paris Cité, 47 pages.\nComparaison de trois méthodes de calibration d’un modèle latent multifactoriel — ACP itérative, minimisation de la norme de Frobenius et maximum de vraisemblance — sur 37 émetteurs du CAC 40, et mesure de leur effet sur le DRC simulé à 99,9 %.\nFiche projet détaillée · Télécharger le mémoire (PDF)"
+  },
+  {
+    "objectID": "cv.html#expérience-professionnelle",
+    "href": "cv.html#expérience-professionnelle",
+    "title": "Curriculum vitæ",
+    "section": "Expérience professionnelle",
+    "text": "Expérience professionnelle\n\n\nAnalyste quantitatif (stage) — PwC\n\nRisk Line of Service · Paris · avril – octobre 2026\n\nModélisation du Default Risk Charge dans le cadre des exigences en fonds propres FRTB. Calibration d’un modèle latent multifactoriel de défaut par trois méthodes concurrentes, simulation Monte-Carlo du quantile à 99,9 % avec intervalles de confiance, et comparaison à l’approche standardisée CRR3.\nVoir la fiche projet →\n\n\nAnalyste quantitatif risques (stage) — Crédit Agricole\n\nDépartement Modélisation des risques · Paris · avril – septembre 2025\n\n\nDéveloppement de méthodologies de stress-test climatique par séries temporelles et méthodes de Monte-Carlo\nConstruction d’un outil automatisé de backtesting en Python (Dash) pour la validation de modèles\nMigration de modèles de SAS vers une plateforme compatible Python\n\n\n\nData scientist (stage) — Groupe VYV, Harmonie Mutuelle\n\nAssurance Prévoyance · Paris · juin – août 2024\n\n\nConstruction de profils d’assurés par classification k-means\nQuantification du risque de consommation prolongée de psychotropes par analyse de survie (modèle de Cox)\nEstimation des dépenses de traitement par profil de risque\n\n\n\nConsultant data science — INSEI\n\nInstitut national supérieur pour l’éducation inclusive · Rennes · avril – mai 2024\n\n\nAnalyse de données d’enquête sur les usages d’outils numériques par ACP et statistiques descriptives"
+  },
+  {
+    "objectID": "cv.html#projets-en-environnement-professionnel",
+    "href": "cv.html#projets-en-environnement-professionnel",
+    "title": "Curriculum vitæ",
+    "section": "Projets en environnement professionnel",
+    "text": "Projets en environnement professionnel\n\n\nScoring de crédit — LCL\nModèle de probabilité de défaut sous cadre réglementaire IRB. Construction de classes homogènes de risque par régression logistique, WOE, discrétisation de Jenks et approches d’apprentissage. Tests statistiques d’hétérogénéité inter-classes et d’homogénéité intra-classe.\n\nNov. 2024 – mars 2025 · Python\n\n\n\nMarge de prudence — équipe quantitative EY\nCalcul de la marge de prudence de type C pour la modélisation de la PD dans le cadre du risque de crédit. Remise en question de la méthodologie bootstrap d’estimation de l’incertitude de modèle et exploration d’alternatives.\n\nNov. 2024 – mars 2025 · Python\n\n\n\nSegmentation LGD — Crédit Mutuel Arkéa\nIdentification des facteurs de risque pour la segmentation de la LGD par forêts aléatoires et gradient boosting. Construction de segments pertinents métier et statistiquement robustes, et comparaison des approches de pondération en nombre et en encours au regard des exigences BCE.\n\nJanv. 2023 – avril 2024 · Python"
+  },
+  {
+    "objectID": "cv.html#enseignement",
+    "href": "cv.html#enseignement",
+    "title": "Curriculum vitæ",
+    "section": "Enseignement",
+    "text": "Enseignement\nProfesseur stagiaire de mathématiques — Lycée de Ngoa Ekelé, Yaoundé (janvier – mai 2022). Enseignement par approche par compétences, conception d’évaluations, analyse des performances et stratégies de remédiation ciblée."
   },
   {
     "objectID": "cv.html#compétences",

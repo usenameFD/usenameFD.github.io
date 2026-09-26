@@ -1,0 +1,127 @@
+% ===== VARIANT: QUANTITATIVE TRADER =================================
+% Angle: derivatives pricing, Monte Carlo, Greeks, systematic strategies,
+% backtesting and fast implementation. Skills placed early; regulatory
+% credit work compressed to a single block.
+% ===================================================================
+\input{cv-preamble.tex}
+
+\begin{document}
+
+\cvheader{Quantitative Trader}{Derivatives pricing $\cdot$ Stochastic volatility $\cdot$ Monte Carlo $\cdot$ Systematic strategies $\cdot$ Risk \& backtesting}
+
+%-----------TECHNICAL SKILLS (front-loaded for trading desks)-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:} Python (NumPy, SciPy, PyTorch, scikit-learn), C++ (basics), R, SQL, SAS \\
+    \textbf{Pricing \& Models:} Black--Scholes, Greeks, Asian \& barrier options, Heston, Bates, CIR, Hull--White, Lewis / Fourier inversion \\
+    \textbf{Numerics:} Monte Carlo, variance control, PDE finite differences (Euler, Crank--Nicolson, PSOR), particle filtering, numerical optimisation \\
+    \textbf{Risk \& Validation:} VaR / Expected Shortfall, extreme value theory (GEV, POT--GPD), Kupiec backtesting, cointegration \\
+    \textbf{Tools:} Dash, Git, Linux, \LaTeX
+  }}
+\end{itemize}
+
+%-----------PROJECTS-----------
+\section{Pricing \& Strategy Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/bibliotheque-pricing-dash.html}{\textbf{Derivatives Pricing Library \& Interactive Dash Application}} $|$ \emph{Python, Monte Carlo, Dash}} {2025}
+    \resumeItemListStart
+      \resumeItem{Object-oriented pricer: European options with closed-form Greeks (delta, gamma, vega, theta, rho) and implied volatility by numerical inversion}
+      \resumeItem{Monte Carlo pricing of path-dependent payoffs: arithmetic Asian options and knock-in/knock-out barrier options, with payoff-density and trajectory diagnostics}
+      \resumeItem{Fixed-income leg: risk-free curve reconstruction, bond, FRA and swap rate pricing from discount factors}
+      \resumeItem{Exposed through a Dash front end for interactive sensitivity exploration}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/options-exotiques-bates-heston.html}{\textbf{Exotic Option Pricing under Heston and Bates}} $|$ \emph{Python, Lewis method}} {2024}
+    \resumeItemListStart
+      \resumeItem{Calibrated Heston (1993) and Bates (1996) to an implied volatility surface via Lewis characteristic-function inversion, sharing one solver so differences isolate the model, not the implementation}
+      \resumeItem{Priced arithmetic Asian options by Monte Carlo under both models to quantify the contribution of jumps at short maturity ($\sim$15 days)}
+      \resumeItem{Calibrated a CIR short-rate model and simulated 12-month Euribor over one year with 100{,}000 Monte Carlo paths}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/market-timing-mlp.html}{\textbf{Systematic Market-Timing Strategy}} $|$ \emph{Python, TensorFlow, Keras Tuner}} {2025}
+    \resumeItemListStart
+      \resumeItem{Multilayer perceptron classifying the sign of forward returns from multi-window past returns; Hyperband hyperparameter search with dropout and early stopping}
+      \resumeItem{Converted signals into long/short positions and backtested cumulative performance against buy-and-hold}
+      \resumeItem{Assessed predictive accuracy and financial performance \emph{separately} --- a high hit rate does not imply positive P\&L when errors concentrate on large moves}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/value-at-risk.html}{\textbf{Value-at-Risk, Expected Shortfall and Backtesting}} $|$ \emph{Python, R}} {2025}
+    \resumeItemListStart
+      \resumeItem{Historical, bootstrap, Gaussian, EWMA, skewed-Student and Monte Carlo VaR, with Expected Shortfall for each specification}
+      \resumeItem{Tail modelling by extreme value theory: block maxima (GEV/Gumbel) and peaks-over-threshold (GPD) with automatic threshold calibration}
+      \resumeItem{Kupiec unconditional-coverage backtesting and adaptive rolling-window recalibration; applied to wheat futures returns in R}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/courbes-de-taux.html}{\textbf{Interest Rate Curves \& Rate Derivatives}} $|$ \emph{Python, Monte Carlo}} {2025}
+    \resumeItemListStart
+      \resumeItem{Zero-coupon curve by bootstrapping; showed that spline vs.\ linear interpolation leaves ZC curves nearly identical but produces materially different forward rates --- and therefore caplet prices}
+      \resumeItem{Calibrated a Hull--White one-factor model and priced caplets, swaptions and a structured product by Monte Carlo}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/econometrie-financiere-vecm.html}{\textbf{Cointegration \& Pair Trading}} $|$ \emph{Python, statsmodels}} {2024}
+    \resumeItemListStart
+      \resumeItem{Unit-root and cointegration testing, VECM calibration, residual diagnostics and deployment as a mean-reversion strategy}
+      \resumeItem{Used adjustment speeds to set holding horizon; flagged structural-break risk turning the trade directional}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Quantitative Analyst (Intern)} $|$ \textbf{PwC}}{Apr -- Oct 2026}
+    {Risk Line of Service}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Modelling of the Default Risk Charge (DRC) under the FRTB capital framework}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Quantitative Risk Analyst (Intern)} $|$ \textbf{Cr\'edit Agricole}}{Apr -- Sep 2025}
+    {Risk Modeling Department}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Climate stress-testing methodologies using time series and Monte Carlo methods}
+      \resumeItem{Built an automated backtesting tool in Python (Dash) for model validation}
+      \resumeItem{Migrated models from SAS to a Python-compatible platform}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Master M2MO --- Quantitative Finance and Data Science}{Sep 2025 -- Present}
+    {Universit\'e Paris Cit\'e}{Paris, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Data Science and Risk Management}{Aug 2023 -- Dec 2025}
+    {ENSAI}{Rennes, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Statistics applied to Economics}{Sep 2021 -- Aug 2023}
+    {ISSEA -- CEMAC}{Yaound\'e, Cameroon}
+  \vspace{3pt}
+  \resumeSubheading
+    {Bachelor's Degree in Mathematics}{Sep 2017 -- Aug 2020}
+    {Higher Teacher Training College \& University of Yaound\'e I}{Yaound\'e, Cameroon}
+\resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications, Awards \& Languages}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Certifications:} AMF (Autorit\'e des March\'es Financiers), Financial Markets (Yale), AI in Finance (World Bank) \\
+    \textbf{Awards:} National Essay Competition Prize (2019), PK Fokam Prize for Science Students (2017) \\
+    \textbf{Languages:} French (native), English (advanced, B2 --- TOEIC/TOEFL)
+  }}
+\end{itemize}
+
+\end{document}

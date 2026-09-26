@@ -47,6 +47,17 @@ l'incertitude — qu'aux mécanismes de marché qui donnent un sens financier au
 modèles : liquidité, volatilité, structure par terme des taux, dépendances
 extrêmes.
 
+## Expérience
+
+J'ai travaillé en modélisation quantitative des risques chez **PwC** (Default
+Risk Charge sous FRTB), au **Crédit Agricole** (stress-test climatique,
+backtesting et validation de modèles) et au sein du **Groupe VYV** (analyse de
+survie et segmentation). J'ai également contribué à des travaux de modélisation
+réglementaire du risque de crédit — scoring sous cadre IRB, marge de prudence
+sur la PD, segmentation de la LGD.
+
+Le détail de ces expériences figure sur la [page CV](cv.qmd).
+
 ## Ce que contient ce site
 
 Le site est organisé en deux couches complémentaires.
@@ -89,7 +100,6 @@ exemples concrets et des pistes de réflexion adaptées aux problématiques
 actuelles.
 
 ## Axes de travail
-
 ::: {.qf-grid}
 ::: {.qf-card}
 ### Mesure et validation des risques

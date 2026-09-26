@@ -1,0 +1,307 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\usepackage{paracol}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{0.9in}
+\addtolength{\topmargin}{-.3in}
+\addtolength{\textheight}{0.9in}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    filecolor=blue,      
+    pdfpagemode=FullScreen
+}
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1 \vspace{-2pt}}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Franck Deba} \\[0.4em]
+    {\small \textit{Data Scientist – Quantitative Finance}} \\
+    {\small Research interests: Telecommunications, Blockchain, stochastic control, numerical methods, risk modeling, derivatives pricing}
+\end{center}
+ 
+\vspace{0.5pt}
+\small
+\raisebox{-0.1\height}{\faPhone}~+33 (0)6 05 77 47 51 \hspace{1em}
+\raisebox{-0.2\height}{\faEnvelope}~\href{mailto:debafranck@gmail.com}{\underline{debafranck@gmail.com}} \hspace{1em}
+\raisebox{-0.2\height}{\faLinkedin}~\href{https://linkedin.com/in/deba-franck}{\underline{deba-franck}} \hspace{1em}
+\raisebox{-0.2\height}{\faGithub}~\href{https://github.com/usenameFD}{\underline{usenameFD}} \hspace{1em}
+\raisebox{-0.2\height}{\faGlobe}~\href{https://usenamefd.github.io/}{\underline{usenamefd.github.io}}
+\vspace{-8pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Master M2MO}{Sep 2025 -- Present}
+    {Quantitative Finance and Data Science}{Université Paris Cité, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Data Science and Risk Management}{Aug 2023 -- Dec 2025}
+    {ENSAI}{Rennes, France}
+  \vspace{3pt}
+  % \resumeSubheading
+  %   {MSc in Financial Engineering (Online)}{Oct 2024 -- Present}
+  %   {WorldQuant University}{Louisiana, USA}
+  % \vspace{3pt}
+  \resumeSubheading
+    {MSc in Statistics applied to Economics}{Sep 2021 -- Aug 2023}
+    {ISSEA - CEMAC}{Yaoundé, Cameroon}
+  \vspace{3pt}
+  \resumeSubheading
+    {Bachelor's Degree in Mathematics}{Sep 2017 -- Aug 2020}
+    {Double degree Higher Teacher Training College \& University of Yaoundé I}{Yaoundé, Cameroon}
+\resumeSubHeadingListEnd
+
+%-----------RESEARCH PROJECTS (academic focus)-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+\resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/drc-frtb-cac40.html}{\textbf{Default Risk Charge -- Factor Model Calibration (M2 Thesis, 47 pp.)}} $|$ \emph{Python, Monte Carlo}} {2026}
+    \resumeItemListStart
+      \resumeItem{Compared three calibration methods for the latent multi-factor default model underlying the DRC (FRTB/CRR3): iterative PCA, Frobenius-norm minimisation and maximum likelihood -- the latter a new contribution to DRC modelling}
+      \resumeItem{Showed the likelihood criterion is equivalent to minimising a Kullback-Leibler divergence, whose asymmetric penalisation concentrates its effect on the most correlated issuer block}
+      \resumeItem{Monte Carlo DRC at the 99.9\% one-year quantile on 37 CAC 40 issuers, with confidence intervals by sectioning; benchmarked against the CRR3 standardised approach}
+      \resumeItem{Marchenko-Pastur independently selects two factors, matching the regulatory minimum; systematic ADF, KPSS, Shapiro-Wilk and Kolmogorov-Smirnov testing of factors and residuals}
+    \resumeItemListEnd
+
+\resumeProjectHeading
+    {\href{https://github.com/usenameFD/Conjecture-de-Collatz}{\textbf{Conjecture de Collatz}}} {2026}
+    \resumeItemListStart
+      \resumeItem{Reformulation of the Collatz Conjecture into a unicity problem of the stationary measure of a Markov Chain}
+      \resumeItem{Numerical verification of the characterisation of admissible stationary measures}
+    \resumeItemListEnd
+
+    \resumeProjectHeading
+    {\href{https://github.com/usenameFD/Numerical_methods/blob/main/M\%C3\%A9thode_Num\%C3\%A9rique.pdf}{\textbf{Optimal Stopping Time in a Card Game}}} {2026}
+    \resumeItemListStart
+      \resumeItem{Modeling of the brainteaser Card Game presented in \textit{Heard on the street} by Crack, T.F (2014) in an optimal stopping problem}
+      \resumeItem{Derived a numerical resolution with backward optimization}
+      \resumeItem{Analysed the convergence of the normalized problem based on Ekström E. (2020)}
+    \resumeItemListEnd
+    
+  \resumeProjectHeading
+    {\href{https://github.com/usenameFD/Numerical_methods/blob/main/zermeloNotebook.ipynb}{\textbf{Numerical Resolution of HJBI PDE – Zermelo Stochastic Control Problem}} $|$ \emph{Python, PyTorch}} {2026}
+    \resumeItemListStart
+      \resumeItem{Solved a Hamilton–Jacobi–Bellman–Isaacs (HJBI) PDE arising in a stochastic optimal control problem}
+      \resumeItem{Implemented a finite-difference scheme combined with a semi-smooth Newton method}
+      \resumeItem{Developed a Physics-Informed Neural Network (PINN) solver using automatic differentiation (Esteve-Yagüe, 2025)}
+      \resumeItem{Compared accuracy, convergence and robustness (PINN promising for high dimensions)}
+    \resumeItemListEnd
+
+  % \resumeProjectHeading
+  %   {\href{https://usenamefd.github.io/3A/proc_stochastique/APF_filter.html}{\textbf{Stochastic Volatility Calibration – Heston Model}} $|$ \emph{Python, Fourier Methods}} {2025}
+  %   \resumeItemListStart
+  %     \resumeItem{Implemented Heston option pricing using Fourier transform methods}
+  %     \resumeItem{Calibrated the model using Bootstrap and Auxiliary Particle Filter approaches}
+  %     \resumeItem{Analysed calibration stability and parameter identifiability}
+  %   \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/Yield\%20Curve/Projet_courbe_taux.html}{\textbf{Interest Rate Modeling \& Derivatives Pricing}} $|$ \emph{Python, Monte Carlo, Dash}} {2025}
+    \resumeItemListStart
+      \resumeItem{Constructed zero-coupon yield curves via bootstrapping and spline interpolation}
+      \resumeItem{Calibrated Hull-White one‑factor model on swaption market data}
+      \resumeItem{Implemented Monte Carlo pricer for exotic interest rate options}
+      \resumeItem{Built a Dash interface for asset management optimization and index replication (CAC40)}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/Copulus/copule.html}{\textbf{Multi-Asset Risk Modeling – Copulas \& CreditVaR}} $|$ \emph{Python, Monte Carlo}} {2025}
+    \resumeItemListStart
+      \resumeItem{Computed Credit Value‑at‑Risk (CreditVaR) for a bond portfolio using Monte Carlo simulation}
+      \resumeItem{Modeled tail dependencies between risk factors using Gaussian and t‑Copulas}
+    \resumeItemListEnd
+
+    \resumeProjectHeading
+    {\href{https://usenamefd.github.io/3A/rapports/projet_EVT.pdf}{\textbf{Parametric VaR modeling and backtesting on wheat future}} $|$ \emph{R}} {2025}
+    \resumeItemListStart
+      \resumeItem{Modeling VaR with a GDP on wheat future contrat returns}
+      \resumeItem{Implemented a bactesting procedure of the VaR based on statistical tests}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/usenameFD/Stock-Price-Prediction/blob/main/Time_Series__English_\%20(1).pdf}{\textbf{Time Series Analysis – VAR-GARCH, LSTM, Prophet}} $|$ \emph{Python, Dash}} {2024}
+    \resumeItemListStart
+      \resumeItem{Modeled Adobe stock returns using VAR with FARIMA-GARCH volatility}
+      \resumeItem{Implemented LSTM and Prophet for multi-horizon price prediction}
+      \resumeItem{Deployed results via an interactive Dash dashboard}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------APPLIED PROJECTS (industry-oriented)-----------
+\section{Applied Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{Credit Scoring – LCL} $|$ \emph{Python, Logistic Regression, WOE}} {Nov 2024 -- Mar 2025}
+    \resumeItemListStart
+      \resumeItem{Built a credit scoring model for default probability estimation under IRB regulatory framework}
+      \resumeItem{Constructed Homogeneous Risk Classes using logistic regression, WOE, Jenks and ML approaches}
+      \resumeItem{Performed statistical tests for grade heterogeneity and within-grade homogeneity}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Margin of Conservatism – EY Quantitative Team} $|$ \emph{Python, Bootstrap}} {Nov 2024 -- Mar 2025}
+    \resumeItemListStart
+      \resumeItem{Computed Margin of Conservatism type C for PD modeling under credit risk framework}
+      \resumeItem{Challenged bootstrap methodology for model uncertainty estimation and explored alternatives}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{LGD Segmentation – Crédit Mutuel Arkéa} $|$ \emph{Random Forest, XGBoost}} {Jan 2023 -- Apr 2024}
+    \resumeItemListStart
+      \resumeItem{Identified risk drivers for LGD segmentation using Random Forest and XGBoost}
+      \resumeItem{Built business-relevant and statistically robust segments}
+      \resumeItem{Challenged number‑weighted vs. outstanding‑weighted LGD approaches under ECB requirements}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------PROFESSIONAL EXPERIENCE-----------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+    \resumeSubheading
+    {\textbf{Quantitative Analyst (Intern)} $|$ \textbf{PwC}}{Apr -- Oct 2026}
+    {Risk Line of Service}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Modeling of the Default Risk Charge (DRC) accounting for the FRTB capital requirement (see Projects above)}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Quantitative Risk Analyst (Intern)} $|$ \textbf{Crédit Agricole}}{Apr -- Sep 2025}
+    {Risk Modeling Department}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Developed climate stress-testing methodologies using time series and Monte Carlo methods}
+      \resumeItem{Built an automated backtesting tool in Python (Dash) for model validation}
+      \resumeItem{Migrated models from SAS to a Python‑compatible CEOS platform}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Intern} $|$ \textbf{Groupe VYV - Harmonie Mutuelle}}{Jun -- Aug 2024}
+    {Assurance Prévoyance}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Built profiles of insured individuals using k‑means clustering}
+      \resumeItem{Quantified risk of prolonged psychotropic drug use via survival analysis (Cox model)}
+      \resumeItem{Estimated treatment expenditures by risk profile}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Consultant} $|$ \textbf{INSEI}}{Apr -- May 2024}
+    {National Institute for Inclusive Education}{Rennes, France}
+    \resumeItemListStart
+      \resumeItem{Analyzed educator survey data on digital tool usage using PCA and descriptive statistics}
+      \resumeItem{Collaborated with researchers to enhance data analysis and outcomes}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------TEACHING EXPERIENCE-----------
+\section{Teaching Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Intern Math Teacher} $|$ \textbf{Ngoa Ekelé High School}}{Jan -- May 2022}
+    {Mathematics Department}{Yaoundé, Cameroon}
+    \resumeItemListStart
+      \resumeItem{Taught mathematics using a competency‑based approach}
+      \resumeItem{Designed assessments and analyzed student performance}
+      \resumeItem{Developed targeted remediation strategies}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS & AWARDS-----------
+\section{Certifications \& Awards}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Certifications:} AMF (Autorité des Marchés Financiers), AI in Finance (World Bank), Financial Markets (Yale) \\
+    \textbf{Awards:} National Essay Competition Prize (2019 – Ministry of External Relations, Cameroon), PK Fokam Prize for Science Students (2017)
+  }}
+\end{itemize}
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:} Python (NumPy, SciPy, PyTorch, Scikit-learn), C++ (basics), R, SAS, SQL \\
+    \textbf{Tools \& Methods:} Dash, Git, LaTeX, Linux, Monte Carlo, PDE (finite differences), numerical optimization, calibration (Heston, Hull-White), bootstrap, particle filtering
+  }}
+\end{itemize}
+
+%-----------LANGUAGES-----------
+\section{Languages}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{French:} Native \\
+    \textbf{English:} Advanced (B2 – TOEIC/TOEFL certified)
+  }}
+\end{itemize}
+
+%-----------REFERENCES-----------
+\section{References}
+\textbf{Adrien Saumard} - ENSAI, Rennes \\
+\textbf{Basile De Loynes} – ENSAI, Rennes \\
+\textbf{Siméon Fotso} – Ecole Normale Suérieure, Yaoundé \\
+
+\end{document}

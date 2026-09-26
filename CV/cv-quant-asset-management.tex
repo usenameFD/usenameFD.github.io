@@ -1,0 +1,132 @@
+% ===== VARIANT: QUANTITATIVE ASSET MANAGEMENT =======================
+% Angle: portfolio construction, index replication, liquidity, ESG,
+% asset allocation and performance. Pricing kept but subordinated.
+% ===================================================================
+\input{cv-preamble.tex}
+
+\begin{document}
+
+\cvheader{Quantitative Analyst --- Asset Management}{Portfolio construction $\cdot$ Index replication $\cdot$ Liquidity risk $\cdot$ ESG integration $\cdot$ Asset pricing}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Master M2MO --- Quantitative Finance and Data Science}{Sep 2025 -- Present}
+    {Universit\'e Paris Cit\'e}{Paris, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Data Science and Risk Management}{Aug 2023 -- Dec 2025}
+    {ENSAI}{Rennes, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Statistics applied to Economics}{Sep 2021 -- Aug 2023}
+    {ISSEA -- CEMAC}{Yaound\'e, Cameroon}
+  \vspace{3pt}
+  \resumeSubheading
+    {Bachelor's Degree in Mathematics}{Sep 2017 -- Aug 2020}
+    {Higher Teacher Training College \& University of Yaound\'e I}{Yaound\'e, Cameroon}
+\resumeSubHeadingListEnd
+
+%-----------PORTFOLIO PROJECTS-----------
+\section{Portfolio \& Asset Management Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/risques-asset-management.html}{\textbf{Integrated Risk Framework for an Asset Manager}} $|$ \emph{Python}} {2025}
+    \resumeItemListStart
+      \resumeItem{Mean--variance portfolio construction under a target-return constraint, with annualised return/volatility estimation and correlation analysis}
+      \resumeItem{Liquidity run-off profiles under four configurations (normal vs.\ stressed, with and without behavioural deformation), used to derive an \emph{optimal portfolio size} consistent with redemption constraints}
+      \resumeItem{Fixed-income sleeve: bond valuation with recovery, rate sensitivity, Z-VaR vs.\ full-repricing VaR, and joint rate/credit-spread VaR via the credit triangle}
+      \resumeItem{Stress testing of portfolio value and liquidity characteristics}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/courbes-de-taux.html}{\textbf{Index Replication \& Interest Rate Modelling (CAC 40)}} $|$ \emph{Python, Dash}} {2025}
+    \resumeItemListStart
+      \resumeItem{Built a long-only replicating portfolio by tracking-error minimisation with position caps; out-of-sample backtest on tracking error, information ratio, beta and correlation}
+      \resumeItem{Zero-coupon curve construction by bootstrapping and spline interpolation; Hull--White calibration and Monte Carlo pricing of rate derivatives}
+      \resumeItem{Delivered through a Dash interface for allocation and replication analysis}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/univers-investissement-esg.html}{\textbf{ESG Investment Universe Construction}} $|$ \emph{Python, pandas}} {2025}
+    \resumeItemListStart
+      \resumeItem{Two-stage methodology: normative exclusion (UN Global Compact) and sectoral exclusion of controversial activities, then best-in-class selection}
+      \resumeItem{Median E, S and G scores of a reference ESG index used as benchmarks; simultaneous filtering on all three pillars, preventing compensation between dimensions}
+      \resumeItem{Tracked coverage ratio at each filter to quantify the diversification cost of the ESG constraint}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/bibliotheque-pricing-dash.html}{\textbf{Asset Pricing \& Allocation Toolkit}} $|$ \emph{Python, Dash}} {2025}
+    \resumeItemListStart
+      \resumeItem{Markowitz optimisation and tangency portfolio from empirical covariance, with correlation heatmaps}
+      \resumeItem{Option pricing with Greeks, Asian and barrier payoffs; bond, FRA and swap valuation from a reconstructed risk-free curve}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/creditvar-copules.html}{\textbf{Multi-Asset Dependence \& CreditVaR}} $|$ \emph{Python, Monte Carlo}} {2025}
+    \resumeItemListStart
+      \resumeItem{Monte Carlo CreditVaR at 99\% for a portfolio of bank receivables, from market-implied default probabilities and estimated recovery distributions}
+      \resumeItem{Dependence modelled with elliptical (Gaussian, Student) and Archimedean (Gumbel, Clayton, Frank) copulas; dependogram evidence of upper-tail dependence that a Gaussian copula cannot reproduce}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/econometrie-financiere-vecm.html}{\textbf{Time Series \& Relative-Value Modelling}} $|$ \emph{Python, R, Dash}} {2024}
+    \resumeItemListStart
+      \resumeItem{Cointegration testing and VECM calibration exploited as a mean-reversion (pair trading) strategy}
+      \resumeItem{VAR with FARIMA--GARCH volatility, LSTM and Prophet for multi-horizon equity forecasting, deployed via Dash}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Quantitative Analyst (Intern)} $|$ \textbf{PwC}}{Apr -- Oct 2026}
+    {Risk Line of Service}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Modelling of the Default Risk Charge (DRC) under the FRTB capital framework, on an equity portfolio of CAC 40 issuers}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Quantitative Risk Analyst (Intern)} $|$ \textbf{Cr\'edit Agricole}}{Apr -- Sep 2025}
+    {Risk Modeling Department}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Developed climate stress-testing methodologies using time series and Monte Carlo methods}
+      \resumeItem{Built an automated backtesting tool in Python (Dash) for model validation}
+      \resumeItem{Migrated models from SAS to a Python-compatible platform}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Intern} $|$ \textbf{Groupe VYV -- Harmonie Mutuelle}}{Jun -- Aug 2024}
+    {Assurance Pr\'evoyance}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Built insured-population profiles by k-means clustering and estimated expenditure by risk profile}
+      \resumeItem{Quantified risk of prolonged treatment via survival analysis (Cox model)}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:} Python (NumPy, SciPy, pandas, scikit-learn, PyTorch), R, SQL, SAS, C++ (basics) \\
+    \textbf{Portfolio \& Risk:} Mean--variance optimisation, tangency portfolio, tracking-error minimisation, liquidity run-off, VaR / Expected Shortfall, copulas, extreme value theory \\
+    \textbf{Frameworks:} FRTB / CRR3, Basel III, IRB, SFDR, UN Global Compact, SBTi \\
+    \textbf{Tools:} Dash, Git, Linux, \LaTeX
+  }}
+\end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications, Awards \& Languages}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Certifications:} AMF (Autorit\'e des March\'es Financiers), Financial Markets (Yale), AI in Finance (World Bank) \\
+    \textbf{Awards:} National Essay Competition Prize (2019), PK Fokam Prize for Science Students (2017) \\
+    \textbf{Languages:} French (native), English (advanced, B2 --- TOEIC/TOEFL)
+  }}
+\end{itemize}
+
+\end{document}

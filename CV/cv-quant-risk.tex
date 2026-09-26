@@ -1,0 +1,143 @@
+% ===== VARIANT: QUANTITATIVE RISK ANALYST ===========================
+% Angle: regulatory capital, PD/LGD/DRC, VaR/ES, stress testing and
+% model validation. Strongest evidenced profile — regulatory work first.
+% ===================================================================
+\input{cv-preamble.tex}
+
+\begin{document}
+
+\cvheader{Quantitative Risk Analyst}{FRTB \& Default Risk Charge $\cdot$ IRB credit risk (PD, LGD, MoC) $\cdot$ VaR / ES \& backtesting $\cdot$ Stress testing $\cdot$ Model validation}
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Quantitative Analyst (Intern)} $|$ \textbf{PwC}}{Apr -- Oct 2026}
+    {Risk Line of Service}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Modelling of the Default Risk Charge (DRC) under the FRTB capital framework}
+      \resumeItem{Latent multi-factor default model calibrated by three competing methods; Monte Carlo DRC at the 99.9\% one-year quantile with sectioning confidence intervals, as required by supervisory guidance}
+      \resumeItem{Benchmarked the internal model against the CRR3 standardised approach (rating $\rightarrow$ CQS $\rightarrow$ risk weight)}
+      \resumeItem{Demonstrated that a validation policy relying on the point DRC alone can stay silent on real calibration differences, and identified what it should monitor instead}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Quantitative Risk Analyst (Intern)} $|$ \textbf{Cr\'edit Agricole}}{Apr -- Sep 2025}
+    {Risk Modeling Department}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Developed climate stress-testing methodologies using time series and Monte Carlo methods}
+      \resumeItem{Built an automated backtesting tool in Python (Dash) for model validation}
+      \resumeItem{Migrated models from SAS to a Python-compatible platform}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Intern} $|$ \textbf{Groupe VYV -- Harmonie Mutuelle}}{Jun -- Aug 2024}
+    {Assurance Pr\'evoyance}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Risk profiling by k-means clustering; survival analysis (Cox model) for prolonged-treatment risk and expenditure estimation}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------REGULATORY MODELLING-----------
+\section{Regulatory Modelling Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{Credit Scoring --- LCL} $|$ \emph{Python, Logistic Regression, WOE}} {Nov 2024 -- Mar 2025}
+    \resumeItemListStart
+      \resumeItem{Credit scoring model for default probability estimation under the IRB regulatory framework}
+      \resumeItem{Homogeneous Risk Classes built with logistic regression, WOE, Jenks discretisation and machine-learning approaches}
+      \resumeItem{Statistical tests for grade heterogeneity and within-grade homogeneity}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Margin of Conservatism --- EY Quantitative Team} $|$ \emph{Python, Bootstrap}} {Nov 2024 -- Mar 2025}
+    \resumeItemListStart
+      \resumeItem{Computed Margin of Conservatism type C for PD modelling under the credit risk framework}
+      \resumeItem{Challenged the bootstrap methodology for model uncertainty estimation and explored alternatives}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{LGD Segmentation --- Cr\'edit Mutuel Ark\'ea} $|$ \emph{Random Forest, XGBoost}} {Jan 2023 -- Apr 2024}
+    \resumeItemListStart
+      \resumeItem{Identified risk drivers for LGD segmentation; built business-relevant and statistically robust segments}
+      \resumeItem{Challenged number-weighted vs.\ outstanding-weighted LGD approaches under ECB requirements}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------RISK MEASUREMENT PROJECTS-----------
+\section{Risk Measurement Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/value-at-risk.html}{\textbf{VaR, Expected Shortfall and Backtesting}} $|$ \emph{Python, R}} {2025}
+    \resumeItemListStart
+      \resumeItem{Four families of estimators: historical (with bootstrap confidence intervals), parametric (Gaussian, EWMA, skewed-Student by maximum likelihood), Monte Carlo, and extreme value theory}
+      \resumeItem{EVT by block maxima (GEV vs.\ Gumbel with likelihood-ratio testing) and peaks-over-threshold (GPD) with automatic threshold calibration and KS validation}
+      \resumeItem{AR(1)--GARCH(1,1) filtering with GPD on standardised residuals to address volatility clustering}
+      \resumeItem{Kupiec unconditional-coverage backtesting and adaptive rolling recalibration}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/creditvar-copules.html}{\textbf{CreditVaR of a Receivables Portfolio}} $|$ \emph{Python, Monte Carlo}} {2025}
+    \resumeItemListStart
+      \resumeItem{Market-implied default probabilities, estimated recovery-rate distributions and copula-based dependence between risk factors}
+      \resumeItem{Dependogram evidence of upper-tail dependence that a Gaussian copula cannot reproduce --- the mechanism behind the underestimation of joint defaults}
+      \resumeItem{Monte Carlo CreditVaR at 99\%}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/risques-asset-management.html}{\textbf{Liquidity, Rate and Counterparty Risk of a Portfolio}} $|$ \emph{Python}} {2025}
+    \resumeItemListStart
+      \resumeItem{Liquidity run-off profiles under normal and stressed conditions, with and without behavioural deformation; derived an optimal portfolio size}
+      \resumeItem{Bond VaR by sensitivity (Z-VaR) vs.\ full repricing, and joint rate/credit-spread VaR via the credit triangle}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/risque-climatique-communes.html}{\textbf{Physical Climate Risk Exposure Index}} $|$ \emph{Python, GeoPandas}} {2025}
+    \resumeItemListStart
+      \resumeItem{Built a municipality-level exposure index combining recognised natural-disaster hazards and population density, discretised by Jenks natural breaks and mapped}
+      \resumeItem{Cross-referenced with physical risk indicators from regionalised climate projections}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Master M2MO --- Quantitative Finance and Data Science}{Sep 2025 -- Present}
+    {Universit\'e Paris Cit\'e}{Paris, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Data Science and Risk Management}{Aug 2023 -- Dec 2025}
+    {ENSAI}{Rennes, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Statistics applied to Economics}{Sep 2021 -- Aug 2023}
+    {ISSEA -- CEMAC}{Yaound\'e, Cameroon}
+  \vspace{3pt}
+  \resumeSubheading
+    {Bachelor's Degree in Mathematics}{Sep 2017 -- Aug 2020}
+    {Higher Teacher Training College \& University of Yaound\'e I}{Yaound\'e, Cameroon}
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Regulatory:} FRTB / CRR3 (DRC, standardised approach), Basel III, IRB (PD, LGD, Margin of Conservatism), ECB guidelines, climate stress testing \\
+    \textbf{Methods:} VaR / Expected Shortfall, extreme value theory (GEV, POT--GPD), GARCH, copulas, Monte Carlo, bootstrap, logistic regression, WOE, Random Forest, XGBoost, survival analysis \\
+    \textbf{Languages:} Python (NumPy, SciPy, pandas, scikit-learn, statsmodels), R, SAS, SQL, C++ (basics) \\
+    \textbf{Tools:} Dash, Git, Linux, \LaTeX
+  }}
+\end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications, Awards \& Languages}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Certifications:} AMF (Autorit\'e des March\'es Financiers), Financial Markets (Yale), AI in Finance (World Bank) \\
+    \textbf{Awards:} National Essay Competition Prize (2019), PK Fokam Prize for Science Students (2017) \\
+    \textbf{Languages:} French (native), English (advanced, B2 --- TOEIC/TOEFL)
+  }}
+\end{itemize}
+
+\end{document}

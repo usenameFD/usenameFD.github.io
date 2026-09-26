@@ -40,6 +40,105 @@ simulé à 99,9 %.
 [Fiche projet détaillée](projects/drc-frtb-cac40.qmd) ·
 [Télécharger le mémoire (PDF)](M2MO/DRC/report/memoire_m2mo_Franck_Deba.pdf)
 
+## Expérience professionnelle
+
+::: {.qf-timeline}
+
+### Analyste quantitatif (stage) — PwC {.qf-role}
+
+::: {.qf-role-meta}
+Risk Line of Service · Paris · avril – octobre 2026
+:::
+
+Modélisation du *Default Risk Charge* dans le cadre des exigences en fonds
+propres FRTB. Calibration d'un modèle latent multifactoriel de défaut par trois
+méthodes concurrentes, simulation Monte-Carlo du quantile à 99,9 % avec
+intervalles de confiance, et comparaison à l'approche standardisée CRR3.
+
+[Voir la fiche projet →](projects/drc-frtb-cac40.qmd)
+
+### Analyste quantitatif risques (stage) — Crédit Agricole {.qf-role}
+
+::: {.qf-role-meta}
+Département Modélisation des risques · Paris · avril – septembre 2025
+:::
+
+- Développement de méthodologies de stress-test climatique par séries
+  temporelles et méthodes de Monte-Carlo
+- Construction d'un outil automatisé de backtesting en Python (Dash) pour la
+  validation de modèles
+- Migration de modèles de SAS vers une plateforme compatible Python
+
+### Data scientist (stage) — Groupe VYV, Harmonie Mutuelle {.qf-role}
+
+::: {.qf-role-meta}
+Assurance Prévoyance · Paris · juin – août 2024
+:::
+
+- Construction de profils d'assurés par classification k-means
+- Quantification du risque de consommation prolongée de psychotropes par
+  analyse de survie (modèle de Cox)
+- Estimation des dépenses de traitement par profil de risque
+
+### Consultant data science — INSEI {.qf-role}
+
+::: {.qf-role-meta}
+Institut national supérieur pour l'éducation inclusive · Rennes · avril – mai 2024
+:::
+
+- Analyse de données d'enquête sur les usages d'outils numériques par ACP et
+  statistiques descriptives
+
+:::
+
+## Projets en environnement professionnel
+
+::: {.qf-grid}
+::: {.qf-card}
+### Scoring de crédit — LCL
+
+Modèle de probabilité de défaut sous cadre réglementaire IRB. Construction de
+classes homogènes de risque par régression logistique, WOE, discrétisation de
+Jenks et approches d'apprentissage. Tests statistiques d'hétérogénéité
+inter-classes et d'homogénéité intra-classe.
+
+::: {.qf-card-meta}
+Nov. 2024 – mars 2025 · Python
+:::
+:::
+
+::: {.qf-card}
+### Marge de prudence — équipe quantitative EY
+
+Calcul de la marge de prudence de type C pour la modélisation de la PD dans le
+cadre du risque de crédit. Remise en question de la méthodologie bootstrap
+d'estimation de l'incertitude de modèle et exploration d'alternatives.
+
+::: {.qf-card-meta}
+Nov. 2024 – mars 2025 · Python
+:::
+:::
+
+::: {.qf-card}
+### Segmentation LGD — Crédit Mutuel Arkéa
+
+Identification des facteurs de risque pour la segmentation de la LGD par forêts
+aléatoires et gradient boosting. Construction de segments pertinents
+métier et statistiquement robustes, et comparaison des approches de pondération
+en nombre et en encours au regard des exigences BCE.
+
+::: {.qf-card-meta}
+Janv. 2023 – avril 2024 · Python
+:::
+:::
+:::
+
+## Enseignement
+
+**Professeur stagiaire de mathématiques** — Lycée de Ngoa Ekelé, Yaoundé
+(janvier – mai 2022). Enseignement par approche par compétences, conception
+d'évaluations, analyse des performances et stratégies de remédiation ciblée.
+
 ## Compétences
 
 ::: {.qf-grid .qf-grid-2}

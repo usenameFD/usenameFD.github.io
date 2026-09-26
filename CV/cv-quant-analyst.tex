@@ -1,0 +1,148 @@
+% ===== VARIANT: QUANTITATIVE ANALYST (generalist, industry) =========
+% Angle: balanced model development + validation + delivery. Experience
+% leads; projects show breadth across market, credit and rates.
+% ===================================================================
+\input{cv-preamble.tex}
+
+\begin{document}
+
+\cvheader{Quantitative Analyst}{Model development \& validation $\cdot$ Market and credit risk $\cdot$ Derivatives pricing $\cdot$ Python delivery}
+
+%-----------EXPERIENCE-----------
+\section{Professional Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {\textbf{Quantitative Analyst (Intern)} $|$ \textbf{PwC}}{Apr -- Oct 2026}
+    {Risk Line of Service}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Modelling of the Default Risk Charge (DRC) under the FRTB capital framework}
+      \resumeItem{Built a latent multi-factor model with three competing calibration methods, Monte Carlo simulation with confidence intervals, and a standardised-approach benchmark}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Quantitative Risk Analyst (Intern)} $|$ \textbf{Cr\'edit Agricole}}{Apr -- Sep 2025}
+    {Risk Modeling Department}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Developed climate stress-testing methodologies using time series and Monte Carlo methods}
+      \resumeItem{Built an automated backtesting tool in Python (Dash) for model validation}
+      \resumeItem{Migrated models from SAS to a Python-compatible platform}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Intern} $|$ \textbf{Groupe VYV -- Harmonie Mutuelle}}{Jun -- Aug 2024}
+    {Assurance Pr\'evoyance}{Paris, France}
+    \resumeItemListStart
+      \resumeItem{Built insured-population profiles using k-means clustering}
+      \resumeItem{Quantified risk of prolonged psychotropic drug use via survival analysis (Cox model) and estimated treatment expenditure by profile}
+    \resumeItemListEnd
+
+  \resumeSubheading
+    {\textbf{Data Science Consultant} $|$ \textbf{INSEI}}{Apr -- May 2024}
+    {National Institute for Inclusive Education}{Rennes, France}
+    \resumeItemListStart
+      \resumeItem{Analysed educator survey data on digital tool usage using PCA and descriptive statistics}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------CLIENT / APPLIED PROJECTS-----------
+\section{Applied Modelling Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\textbf{Credit Scoring --- LCL} $|$ \emph{Python, Logistic Regression, WOE}} {Nov 2024 -- Mar 2025}
+    \resumeItemListStart
+      \resumeItem{Built a credit scoring model for default probability estimation under the IRB regulatory framework}
+      \resumeItem{Constructed Homogeneous Risk Classes using logistic regression, WOE, Jenks and machine-learning approaches}
+      \resumeItem{Statistical testing of grade heterogeneity and within-grade homogeneity}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{Margin of Conservatism --- EY Quantitative Team} $|$ \emph{Python, Bootstrap}} {Nov 2024 -- Mar 2025}
+    \resumeItemListStart
+      \resumeItem{Computed Margin of Conservatism type C for PD modelling under the credit risk framework}
+      \resumeItem{Challenged the bootstrap methodology for model uncertainty estimation and explored alternatives}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\textbf{LGD Segmentation --- Cr\'edit Mutuel Ark\'ea} $|$ \emph{Random Forest, XGBoost}} {Jan 2023 -- Apr 2024}
+    \resumeItemListStart
+      \resumeItem{Identified risk drivers for LGD segmentation; built business-relevant and statistically robust segments}
+      \resumeItem{Challenged number-weighted vs.\ outstanding-weighted LGD approaches under ECB requirements}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------QUANTITATIVE PROJECTS-----------
+\section{Quantitative Projects}
+\resumeSubHeadingListStart
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/value-at-risk.html}{\textbf{VaR, Expected Shortfall and Regulatory Backtesting}} $|$ \emph{Python, R}} {2025}
+    \resumeItemListStart
+      \resumeItem{Historical, bootstrap, Gaussian, EWMA, skewed-Student and Monte Carlo VaR with matching Expected Shortfall}
+      \resumeItem{Tail modelling by extreme value theory (GEV block maxima and POT--GPD with automatic threshold calibration); AR(1)--GARCH(1,1) residual-based variant}
+      \resumeItem{Kupiec unconditional-coverage backtesting and adaptive recalibration; wheat-futures application in R}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/courbes-de-taux.html}{\textbf{Interest Rate Modelling \& Derivatives Pricing}} $|$ \emph{Python, Monte Carlo, Dash}} {2025}
+    \resumeItemListStart
+      \resumeItem{Zero-coupon curve by bootstrapping and spline interpolation; quantified the impact of the interpolation choice on forward rates and caplet prices}
+      \resumeItem{Hull--White one-factor calibration and Monte Carlo pricing of caplets, swaptions and a structured product}
+      \resumeItem{Dash interface for asset management optimisation and CAC 40 index replication}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/creditvar-copules.html}{\textbf{CreditVaR with Copula Dependence}} $|$ \emph{Python, Monte Carlo}} {2025}
+    \resumeItemListStart
+      \resumeItem{Monte Carlo CreditVaR at 99\% from market-implied default probabilities and estimated recovery distributions}
+      \resumeItem{Tail dependence modelled with Gaussian, Student and Archimedean copulas}
+    \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://usenamefd.github.io/projects/calibration-heston-filtrage.html}{\textbf{Stochastic Volatility Calibration --- Heston}} $|$ \emph{Python, Fourier methods}} {2025}
+    \resumeItemListStart
+      \resumeItem{Heston pricing by Fourier inversion; calibration via bootstrap and auxiliary particle filters}
+      \resumeItem{Analysed calibration stability and parameter identifiability by moneyness}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Master M2MO --- Quantitative Finance and Data Science}{Sep 2025 -- Present}
+    {Universit\'e Paris Cit\'e}{Paris, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Data Science and Risk Management}{Aug 2023 -- Dec 2025}
+    {ENSAI}{Rennes, France}
+  \vspace{3pt}
+  \resumeSubheading
+    {MSc in Statistics applied to Economics}{Sep 2021 -- Aug 2023}
+    {ISSEA -- CEMAC}{Yaound\'e, Cameroon}
+  \vspace{3pt}
+  \resumeSubheading
+    {Bachelor's Degree in Mathematics}{Sep 2017 -- Aug 2020}
+    {Higher Teacher Training College \& University of Yaound\'e I}{Yaound\'e, Cameroon}
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages:} Python (NumPy, SciPy, pandas, scikit-learn, statsmodels, PyTorch), R, SAS, SQL, C++ (basics) \\
+    \textbf{Methods:} Monte Carlo, calibration (Heston, Hull--White), particle filtering, bootstrap, PDE finite differences, numerical optimisation, copulas, extreme value theory, survival analysis \\
+    \textbf{Frameworks:} FRTB / CRR3, Basel III, IRB, ECB guidelines \\
+    \textbf{Tools:} Dash, Git, Linux, \LaTeX
+  }}
+\end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications, Awards \& Languages}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Certifications:} AMF (Autorit\'e des March\'es Financiers), Financial Markets (Yale), AI in Finance (World Bank) \\
+    \textbf{Awards:} National Essay Competition Prize (2019), PK Fokam Prize for Science Students (2017) \\
+    \textbf{Languages:} French (native), English (advanced, B2 --- TOEIC/TOEFL)
+  }}
+\end{itemize}
+
+\end{document}
