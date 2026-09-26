@@ -24,10 +24,26 @@ project:
     - "2A/**/*.qmd"
     - "3A/**/*.qmd"
     - "autres/*.qmd"
+    # --- M2MO (Master's work: DRC thesis + numerical methods) ---------------
+    - "M2MO/DRC/DRC_CAC40_Application (1).ipynb"
+    - "M2MO/Numerical_methods/*.ipynb"
     # --- Never published ----------------------------------------------------
     - "!Brouillon.ipynb"
     - "!00_Assets/markets_intro.ipynb"
     - "!templates/"
+    # Near-duplicate factor-count variants: results are published as CSV instead.
+    - "!M2MO/DRC/2Factors.ipynb"
+    - "!M2MO/DRC/2Factors shrinked.ipynb"
+    - "!M2MO/DRC/3Factors.ipynb"
+    - "!M2MO/DRC/3Factors shrinked.ipynb"
+    - "!M2MO/DRC/4Factors.ipynb"
+    - "!M2MO/DRC/5Factors.ipynb"
+    # These notebooks use bare `---` horizontal rules in markdown cells, which
+    # Quarto parses as YAML front matter and rejects. They are left untouched
+    # and linked from GitHub instead of being rendered here.
+    - "!M2MO/Numerical_methods/edp_european_option.ipynb"
+    - "!M2MO/Numerical_methods/edp_american_option.ipynb"
+    - "!M2MO/Numerical_methods/zermeloNotebook.ipynb"
   resources:
     - "assets/**"
     - "img/**"
@@ -37,6 +53,13 @@ project:
     - "3A/rapports/rapport_series_temporelles.pdf"
     - "projects/WQU/reports/*.pdf"
     - "2A/App_sup/arbres_&_forets_aleatoires.html"
+    # M2MO deliverables: reports and result files only, never the raw inputs.
+    - "M2MO/DRC/report/*.pdf"
+    - "M2MO/DRC/output/*.csv"
+    - "M2MO/Numerical_methods/*.pdf"
+    - "M2MO/Conjecture-de-Collatz/*.pdf"
+    - "!M2MO/DRC/data/**"
+    - "!M2MO/**/__pycache__/**"
     # Internship / third-party reports kept in the repo but not republished.
     - "!3A/rapports/PFE_EY.pdf"
 

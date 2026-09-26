@@ -246,6 +246,7 @@ analytique.
 - [Consulter le dépôt GitHub — application Dash de gestion des risques extrêmes](https://github.com/usenameFD/STATISTIQUES-RISQUES-EXTREMES)
 - [Télécharger la note de synthèse EVT (PDF)](../3A/rapports/projet_EVT.pdf)
 - Note théorique associée : [La Value-at-Risk](../3A/value-at-risk/var_def.qmd)
+- Projet connexe : [Default Risk Charge d'un portefeuille CAC 40](drc-frtb-cac40.qmd) — le volet défaut du dispositif FRTB, complémentaire de la VaR de marché
 
 ---
 

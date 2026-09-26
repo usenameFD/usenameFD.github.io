@@ -218,6 +218,7 @@ détermine la valeur d'un produit structuré indexé sur l'Euribor.
 - [Consulter le dépôt GitHub](https://github.com/usenameFD/Quantitative-finance-Projects)
 - Projet connexe : [Calibration du modèle de Heston par filtrage particulaire](calibration-heston-filtrage.qmd)
 - Projet connexe : [Bibliothèque de pricing et application Dash](bibliotheque-pricing-dash.qmd)
+- Projet connexe : [Méthodes numériques pour l'évaluation d'options](methodes-numeriques-edp.qmd)
 
 ---
 

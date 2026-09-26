@@ -555,6 +555,20 @@ C(u,v) = \psi^{-1}\bigl(\psi(u) + \psi(v)\bigr),
 <h2 class="anchored" data-anchor-id="interprétation">Interprétation</h2>
 <p>Le dépendogramme constitue le point de bascule de l’analyse : il montre une concentration des observations dans le coin supérieur de l’hypercube unité, c’est-à-dire une dépendance de queue, que la copule gaussienne ne peut pas reproduire par construction. Retenir une copule à dépendance de queue non nulle augmente mécaniquement la probabilité des scénarios de défaut joint et donc la CreditVaR, à corrélation apparente inchangée.</p>
 <p>Pour un validateur de modèle, la leçon est directe : le choix de la famille de copule est une hypothèse de modèle de premier ordre, dont l’impact sur le capital dépasse largement celui d’un raffinement des marges.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Avertissement</span>Divergence assumée avec le modèle réglementaire de DRC
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La conclusion ci-dessus — la copule gaussienne sous-estime les défauts joints extrêmes — entre en tension directe avec le cadre imposé par la réglementation. Le modèle interne de <em>Default Risk Charge</em> étudié dans mon <a href="../projects/drc-frtb-cac40.html">mémoire de M2</a> repose sur un modèle latent <strong>gaussien</strong> multifactoriel, c’est-à-dire exactement la structure dont ce projet montre qu’elle annule la dépendance de queue.</p>
+<p>Les deux résultats sont valides dans leur cadre : ici la copule est un <strong>choix de modélisation</strong> guidé par les données, là-bas c’est une <strong>contrainte réglementaire</strong>. Deux autres hypothèses divergent également entre les deux travaux : les probabilités de défaut sont ici <strong>implicites</strong> (risque-neutres) alors que le DRC utilise des PD <strong>historiques</strong> avec plancher CRR3 de 3 pb ; et le taux de recouvrement est ici <strong>aléatoire</strong> alors que le DRC retient <span class="math inline">\(\mathrm{LGD} = 100\,\%\)</span> conformément au traitement CRR3 des actions. L’écart de capital induit par ces choix n’a pas été quantifié.</p>
+</div>
+</div>
 </section>
 <section id="limites-et-risque-de-modèle" class="level2">
 <h2 class="anchored" data-anchor-id="limites-et-risque-de-modèle">Limites et risque de modèle</h2>
@@ -581,6 +595,7 @@ C(u,v) = \psi^{-1}\bigl(\psi(u) + \psi(v)\bigr),
 <li><a href="../3A/rapports/Copulas.pdf">Télécharger le rapport (PDF)</a></li>
 <li>Note théorique associée : <a href="../autres/spearman-pearson.html">Corrélation de Spearman et corrélation de Pearson</a></li>
 <li>Projet connexe : <a href="../projects/value-at-risk.html">Value-at-Risk et backtesting réglementaire</a></li>
+<li>Projet connexe : <a href="../projects/drc-frtb-cac40.html">Default Risk Charge d’un portefeuille CAC 40</a></li>
 </ul>
 <hr>
 <p><a href="../projects/index.html">← Retour aux projets</a></p>

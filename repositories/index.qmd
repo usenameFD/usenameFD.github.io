@@ -186,13 +186,16 @@ Gestion d'actifs
 ::: {.qf-card}
 ### Numerical_methods
 
-Implémentations de méthodes numériques utilisées en finance quantitative.
+Méthodes numériques pour les EDP et le contrôle optimal : différences finies
+pour l'EDP de Black-Scholes, contrainte américaine par PSOR, arrêt optimal et
+résolution d'une équation HJBI par schéma de Newton semi-lisse et par PINNs.
 
 ::: {.qf-tags}
-[Jupyter]{.qf-tag} [Python]{.qf-tag}
+[Jupyter]{.qf-tag} [Python]{.qf-tag} [TensorFlow]{.qf-tag}
 :::
 
-[Dépôt GitHub](https://github.com/usenameFD/Numerical_methods)
+[Dépôt GitHub](https://github.com/usenameFD/Numerical_methods) ·
+[Projet associé](../projects/methodes-numeriques-edp.qmd)
 
 ::: {.qf-card-meta}
 Méthodes numériques
@@ -203,13 +206,15 @@ Méthodes numériques
 ### Conjecture-de-Collatz
 
 Reformulation analytique de la conjecture de Collatz par les chaînes de Markov
-et la caractérisation des lois stationnaires.
+et la caractérisation des lois stationnaires. Article rédigé dans le cadre du
+M2 Modélisation Aléatoire.
 
 ::: {.qf-tags}
 [Mathématiques]{.qf-tag} [Chaînes de Markov]{.qf-tag}
 :::
 
-[Dépôt GitHub](https://github.com/usenameFD/Conjecture-de-Collatz)
+[Dépôt GitHub](https://github.com/usenameFD/Conjecture-de-Collatz) ·
+[Article (PDF)](../M2MO/Conjecture-de-Collatz/collatz_article.pdf)
 
 ::: {.qf-card-meta}
 Probabilités
@@ -225,6 +230,7 @@ directement avec ce site :
 
 | Module | Contenu |
 |---|---|
+| [`M2MO/DRC/code/`](https://github.com/usenameFD/usenameFD.github.io/tree/main/M2MO/DRC/code) | bibliothèque complète du mémoire DRC : modèles factoriels, gradient projeté spectral, moteur Monte-Carlo, approche standardisée CRR3 |
 | [`projects/VaR/functions.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/VaR/functions.py) | estimateurs de VaR et d'ES, ajustements GEV et GPD, backtesting |
 | [`projects/Copulus/var.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Copulus/var.py) | classe `Var` : estimation, valeurs extrêmes, VaR dynamique |
 | [`projects/Calibration/heston.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Calibration/heston.py) | pricing Heston, filtre bootstrap et auxiliary particle filter |

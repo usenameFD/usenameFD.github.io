@@ -210,6 +210,26 @@ Pour un validateur de modèle, la leçon est directe : le choix de la famille de
 copule est une hypothèse de modèle de premier ordre, dont l'impact sur le
 capital dépasse largement celui d'un raffinement des marges.
 
+::: {.callout-warning}
+## Divergence assumée avec le modèle réglementaire de DRC
+
+La conclusion ci-dessus — la copule gaussienne sous-estime les défauts joints
+extrêmes — entre en tension directe avec le cadre imposé par la réglementation.
+Le modèle interne de *Default Risk Charge* étudié dans mon
+[mémoire de M2](drc-frtb-cac40.qmd) repose sur un modèle latent **gaussien**
+multifactoriel, c'est-à-dire exactement la structure dont ce projet montre
+qu'elle annule la dépendance de queue.
+
+Les deux résultats sont valides dans leur cadre : ici la copule est un **choix
+de modélisation** guidé par les données, là-bas c'est une **contrainte
+réglementaire**. Deux autres hypothèses divergent également entre les deux
+travaux : les probabilités de défaut sont ici **implicites** (risque-neutres)
+alors que le DRC utilise des PD **historiques** avec plancher CRR3 de 3 pb ; et
+le taux de recouvrement est ici **aléatoire** alors que le DRC retient
+$\mathrm{LGD} = 100\,\%$ conformément au traitement CRR3 des actions. L'écart de
+capital induit par ces choix n'a pas été quantifié.
+:::
+
 ## Limites et risque de modèle
 
 - **Portefeuille de petite dimension.** L'exercice porte sur deux
@@ -242,6 +262,7 @@ capital dépasse largement celui d'un raffinement des marges.
 - [Télécharger le rapport (PDF)](../3A/rapports/Copulas.pdf)
 - Note théorique associée : [Corrélation de Spearman et corrélation de Pearson](../autres/spearman-pearson.qmd)
 - Projet connexe : [Value-at-Risk et backtesting réglementaire](value-at-risk.qmd)
+- Projet connexe : [Default Risk Charge d'un portefeuille CAC 40](drc-frtb-cac40.qmd)
 
 ---
 

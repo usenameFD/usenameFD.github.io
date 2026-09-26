@@ -15,15 +15,30 @@ toc: false
 
 ## Profil
 
-Ingénieur data scientist diplômé de l'**ENSAI**, actuellement étudiant du
-**M2 Modélisation Aléatoire** (M2MO, ex-DEA Laure-Élie). Spécialisation en
-finance de marché après un parcours en gestion des risques bancaires.
+Ingénieur data scientist diplômé de l'**ENSAI**, **M2 Modélisation Aléatoire**
+(M2MO, ex-DEA Laure-Élie) à l'Université Paris Cité. Spécialisation en finance
+de marché après un parcours en gestion des risques bancaires.
 
-Domaines de travail : mesures de risque et backtesting, modèles à volatilité
+Domaines de travail : modélisation réglementaire du risque de défaut (*Default
+Risk Charge* sous FRTB), mesures de risque et backtesting, modèles à volatilité
 stochastique et méthodes de filtrage, structures de dépendance et copules,
-courbes de taux et pricing de dérivés, allocation de portefeuille sous
-contraintes, risque climatique et apprentissage statistique appliqué aux
-marchés.
+courbes de taux et pricing de dérivés, méthodes numériques pour les EDP,
+allocation de portefeuille sous contraintes, risque climatique et apprentissage
+statistique appliqué aux marchés.
+
+## Mémoire de M2
+
+**Modélisation du Default Risk Charge — calibration comparée des sensibilités
+factorielles et application à un portefeuille d'actifs du CAC 40**
+Mémoire de stage, M2 Modélisation Aléatoire, Université Paris Cité, 47 pages.
+
+Comparaison de trois méthodes de calibration d'un modèle latent multifactoriel
+— ACP itérative, minimisation de la norme de Frobenius et maximum de
+vraisemblance — sur 37 émetteurs du CAC 40, et mesure de leur effet sur le DRC
+simulé à 99,9 %.
+
+[Fiche projet détaillée](projects/drc-frtb-cac40.qmd) ·
+[Télécharger le mémoire (PDF)](M2MO/DRC/report/memoire_m2mo_Franck_Deba.pdf)
 
 ## Compétences
 
@@ -32,7 +47,8 @@ marchés.
 ### Finance quantitative
 
 ::: {.qf-tags}
-[Value-at-Risk]{.qf-tag} [Expected Shortfall]{.qf-tag}
+[Default Risk Charge]{.qf-tag} [Value-at-Risk]{.qf-tag}
+[Expected Shortfall]{.qf-tag}
 [Théorie des valeurs extrêmes]{.qf-tag} [Copules]{.qf-tag}
 [CreditVaR]{.qf-tag} [Pricing de dérivés]{.qf-tag}
 [Courbes de taux]{.qf-tag} [Markowitz]{.qf-tag}
@@ -68,7 +84,7 @@ marchés.
 ### Cadres de référence
 
 ::: {.qf-tags}
-[Bâle III]{.qf-tag} [CRR2 / CRD5]{.qf-tag} [FRTB]{.qf-tag}
+[Bâle III]{.qf-tag} [CRR2 / CRD5]{.qf-tag} [CRR3]{.qf-tag} [FRTB]{.qf-tag}
 [Solvabilité II]{.qf-tag} [SFDR]{.qf-tag} [UN Global Compact]{.qf-tag}
 [SBTi]{.qf-tag}
 :::
@@ -84,11 +100,12 @@ marchés.
 
 ## Travaux représentatifs
 
+- [Default Risk Charge d'un portefeuille CAC 40](projects/drc-frtb-cac40.qmd)
 - [Value-at-Risk et backtesting réglementaire](projects/value-at-risk.qmd)
 - [CreditVaR d'un portefeuille de créances par copules](projects/creditvar-copules.qmd)
 - [Calibration du modèle de Heston par filtrage particulaire](projects/calibration-heston-filtrage.qmd)
 - [Modélisation de courbes de taux](projects/courbes-de-taux.qmd)
-- [Bibliothèque de pricing et application Dash](projects/bibliotheque-pricing-dash.qmd)
+- [Méthodes numériques pour l'évaluation d'options](projects/methodes-numeriques-edp.qmd)
 - [Exposition des communes françaises au risque climatique](projects/risque-climatique-communes.qmd)
 
 L'ensemble du portefeuille est consultable sur la

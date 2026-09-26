@@ -540,7 +540,7 @@ s \simeq \lambda\,(1 - R) .
 <li><strong>Markowitz.</strong> L’optimisation moyenne-variance est très sensible aux rendements espérés estimés ; sans régularisation ni contraintes, les poids obtenus sont instables.</li>
 <li><strong>Écoulement.</strong> Les hypothèses de déformation reposent sur des paramètres comportementaux qui ne sont pas directement observables.</li>
 <li><strong>Approximation au premier ordre.</strong> La Z-VaR ignore la convexité ; elle sous-estime le risque pour de fortes variations de taux.</li>
-<li><strong>Recouvrement constant.</strong> Le taux de 40 % est une convention de place, pas une estimation ; sa variabilité est traitée dans le projet <a href="../projects/creditvar-copules.html">CreditVaR par copules</a>.</li>
+<li><strong>Recouvrement constant.</strong> Le taux de 40 % est une convention de place, pas une estimation ; sa variabilité est traitée dans le projet <a href="../projects/creditvar-copules.html">CreditVaR par copules</a>. Attention à la traçabilité : ce 40 % est une convention <strong>obligataire</strong> appliquée au nominal, distincte du <span class="math inline">\(\mathrm{LGD} = 100\,\%\)</span> retenu pour les <strong>actions</strong> dans mon <a href="../projects/drc-frtb-cac40.html">mémoire sur le DRC</a>, conformément à la fourchette CRR3 de 60-100 % applicable à cette classe d’actifs.</li>
 <li><strong>Corrélation taux / spread.</strong> Elle est supposée stable, alors qu’elle change de signe selon les régimes (fuite vers la qualité).</li>
 </ul>
 </section>

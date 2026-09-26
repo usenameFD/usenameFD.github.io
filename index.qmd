@@ -30,19 +30,20 @@ listing:
 # Franck Deba {#hero-title}
 
 ::: {.qf-hero-sub}
-Ingénieur data scientist (ENSAI), étudiant du M2 Modélisation Aléatoire
+Ingénieur data scientist (ENSAI), M2 Modélisation Aléatoire
 (M2MO, ex-DEA Laure-Élie). Je conçois, calibre et valide des modèles
-quantitatifs pour le risque de marché, le pricing de dérivés et la gestion de
-portefeuille.
+quantitatifs pour le risque de marché, le risque de défaut, le pricing de
+dérivés et la gestion de portefeuille.
 :::
 
 ::: {.qf-hero-body}
-Ce site rassemble mes travaux quantitatifs : mesures de risque et backtesting,
-modèles à volatilité stochastique et filtrage, structures de dépendance par
-copules, courbes de taux, allocation de portefeuille sous contraintes, risque
-climatique et apprentissage statistique appliqué aux marchés. Chaque projet
-présente le problème financier traité, la méthodologie, le cadre mathématique
-et un lien direct vers l'implémentation complète.
+Ce site rassemble mes travaux quantitatifs : modélisation du *Default Risk
+Charge* sous FRTB, mesures de risque et backtesting, modèles à volatilité
+stochastique et filtrage, structures de dépendance par copules, courbes de
+taux, allocation de portefeuille sous contraintes, risque climatique et
+apprentissage statistique appliqué aux marchés. Chaque projet présente le
+problème financier traité, la méthodologie, le cadre mathématique, la
+traçabilité des hypothèses et un lien direct vers l'implémentation complète.
 :::
 
 ::: {.qf-actions}
@@ -61,11 +62,22 @@ disponible sur la [page Projets](projects/index.qmd).
 ::: {#featured-projects}
 :::
 
-[Voir les 13 projets →](projects/index.qmd)
+[Voir les 15 projets →](projects/index.qmd)
 
 ## Domaines d'expertise
 
 ::: {.qf-grid}
+::: {.qf-card}
+### Risque de défaut et réglementation
+
+*Default Risk Charge* sous FRTB / CRR3, modèles latents multifactoriels,
+calibration de la dépendance de défaut et approche standardisée.
+
+::: {.qf-card-meta}
+Python · Mémoire de M2
+:::
+:::
+
 ::: {.qf-card}
 ### Risque de marché
 
@@ -131,6 +143,18 @@ VECM, réseaux de neurones et NLP.
 Python · scikit-learn · TensorFlow
 :::
 :::
+
+::: {.qf-card}
+### Méthodes numériques
+
+Différences finies pour l'EDP de Black-Scholes, contrainte américaine par PSOR,
+arrêt optimal, équations HJB et réseaux de neurones informés par l'équation
+(PINNs).
+
+::: {.qf-card-meta}
+Python · TensorFlow
+:::
+:::
 :::
 
 ## Stack technique
@@ -173,9 +197,9 @@ Python · scikit-learn · TensorFlow
 ### Cadres de référence
 
 ::: {.qf-tags}
-[Bâle III / CRR2 – CRD5]{.qf-tag} [FRTB]{.qf-tag}
-[Solvabilité II]{.qf-tag} [SFDR]{.qf-tag} [UN Global Compact]{.qf-tag}
-[SBTi]{.qf-tag}
+[Bâle III / CRR2 – CRD5]{.qf-tag} [CRR3]{.qf-tag} [FRTB]{.qf-tag}
+[Default Risk Charge]{.qf-tag} [Solvabilité II]{.qf-tag} [SFDR]{.qf-tag}
+[UN Global Compact]{.qf-tag} [SBTi]{.qf-tag}
 :::
 :::
 :::
@@ -187,6 +211,10 @@ finance de marché. Mon travail combine la rigueur statistique (estimation,
 validation, quantification de l'incertitude) et la compréhension des
 mécanismes de marché (liquidité, volatilité, structure par terme, dépendances
 extrêmes).
+
+Mon mémoire de M2 porte sur la **modélisation du Default Risk Charge** : la
+calibration comparée des sensibilités factorielles d'un modèle latent
+multifactoriel et son application à un portefeuille d'émetteurs du CAC 40.
 
 Les documents publiés ici s'adressent autant aux professionnels du risque et
 de la recherche quantitative qu'aux étudiants qui abordent ces sujets pour la

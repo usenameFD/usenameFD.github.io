@@ -143,4 +143,35 @@ Séquences, attention, vision et extraction d'entités nommées.
 
 [Fiche projet →](projects/deep-learning-nlp.qmd)
 :::
+
+::: {.qf-card}
+### PINNs et équations HJBI
+
+Réseaux de neurones informés par l'équation, comparés à un schéma de
+différences finies.
+
+[Fiche projet →](projects/methodes-numeriques-edp.qmd)
+:::
+:::
+
+## 5. Analyse numérique
+
+::: {.qf-grid}
+::: {.qf-card}
+### EDP et arrêt optimal
+
+Schémas d'Euler et Crank-Nicolson, PSOR, frontière d'arrêt optimal et pont
+brownien.
+
+[Fiche projet →](projects/methodes-numeriques-edp.qmd)
+:::
+
+::: {.qf-card}
+### Modèle factoriel et Marchenko-Pastur
+
+Sélection du nombre de facteurs par théorie des matrices aléatoires, dans le
+cadre du mémoire sur le DRC.
+
+[Fiche projet →](projects/drc-frtb-cac40.qmd)
+:::
 :::

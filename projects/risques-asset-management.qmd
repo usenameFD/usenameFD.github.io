@@ -200,7 +200,11 @@ l'usage de la sensibilité seule en scénario de stress.
   sous-estime le risque pour de fortes variations de taux.
 - **Recouvrement constant.** Le taux de 40 % est une convention de place, pas
   une estimation ; sa variabilité est traitée dans le projet
-  [CreditVaR par copules](creditvar-copules.qmd).
+  [CreditVaR par copules](creditvar-copules.qmd). Attention à la traçabilité :
+  ce 40 % est une convention **obligataire** appliquée au nominal, distincte du
+  $\mathrm{LGD} = 100\,\%$ retenu pour les **actions** dans mon
+  [mémoire sur le DRC](drc-frtb-cac40.qmd), conformément à la fourchette CRR3
+  de 60-100 % applicable à cette classe d'actifs.
 - **Corrélation taux / spread.** Elle est supposée stable, alors qu'elle change
   de signe selon les régimes (fuite vers la qualité).
 

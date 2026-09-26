@@ -62,6 +62,26 @@ profond et traitement du langage naturel.
 
 ::: {.qf-grid}
 ::: {.qf-card}
+### Mémoire de M2 — Default Risk Charge
+
+Calibration comparée des sensibilités factorielles et application à un
+portefeuille d'actifs du CAC 40 (47 p.).
+
+[Télécharger le PDF →](../M2MO/DRC/report/memoire_m2mo_Franck_Deba.pdf) ·
+[Fiche projet →](../projects/drc-frtb-cac40.qmd)
+:::
+
+::: {.qf-card}
+### Méthodes numériques
+
+Différences finies, schémas implicites et explicites, contrainte américaine et
+analyse de convergence.
+
+[Télécharger le PDF →](../M2MO/Numerical_methods/Methode_Numerique.pdf) ·
+[Fiche projet →](../projects/methodes-numeriques-edp.qmd)
+:::
+
+::: {.qf-card}
 ### Théorie des valeurs extrêmes
 
 Note de synthèse sur la modélisation des queues de distribution appliquée à la
@@ -85,6 +105,15 @@ CreditVaR d'un portefeuille de créances.
 Rapport d'analyse et de prévision de séries financières.
 
 [Télécharger le PDF →](../3A/rapports/rapport_series_temporelles.pdf)
+:::
+
+::: {.qf-card}
+### Navigation de Zermelo
+
+Résolution d'une équation HJBI par différences finies et par réseaux de
+neurones informés par l'équation.
+
+[Télécharger le PDF →](<../M2MO/Numerical_methods/EDP_resolution du probleme de navigation Zemelo.pdf>)
 :::
 :::
 

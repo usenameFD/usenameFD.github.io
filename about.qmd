@@ -30,10 +30,16 @@ toc: false
 
 ## Parcours
 
-Je suis ingénieur data scientist diplômé de l'**ENSAI** et actuellement
-étudiant du **M2 Modélisation Aléatoire** (M2MO, ex-DEA Laure-Élie). Je me
-spécialise en finance de marché après un parcours en gestion des risques
-bancaires.
+Je suis ingénieur data scientist diplômé de l'**ENSAI** et je poursuis le
+**M2 Modélisation Aléatoire** (M2MO, ex-DEA Laure-Élie) à l'Université Paris
+Cité. Je me spécialise en finance de marché après un parcours en gestion des
+risques bancaires.
+
+Mon mémoire de M2, *Modélisation du Default Risk Charge — calibration comparée
+des sensibilités factorielles et application à un portefeuille d'actifs du
+CAC 40*, porte sur la modélisation réglementaire du risque de défaut sous FRTB.
+Il est présenté en détail dans la fiche
+[Default Risk Charge d'un portefeuille CAC 40](projects/drc-frtb-cac40.qmd).
 
 Ce double parcours oriente ma manière de travailler : je m'intéresse autant à
 la rigueur statistique — estimation, validation, quantification de
@@ -88,8 +94,8 @@ actuelles.
 ::: {.qf-card}
 ### Mesure et validation des risques
 
-VaR, Expected Shortfall, théorie des valeurs extrêmes, backtesting et
-réglementation prudentielle.
+Default Risk Charge sous FRTB, VaR, Expected Shortfall, théorie des valeurs
+extrêmes, backtesting et réglementation prudentielle.
 :::
 
 ::: {.qf-card}

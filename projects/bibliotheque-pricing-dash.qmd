@@ -10,7 +10,7 @@ order: 7
 image: ../assets/thumbnails/options.png
 image-alt: "Trajectoires de prix simulées par Monte-Carlo avec le niveau de barrière superposé"
 project-status: "Terminé"
-featured: true
+featured: false
 draft: false
 github: "https://github.com/usenameFD/Asset-management-Dash"
 notebook: "main_options.ipynb"

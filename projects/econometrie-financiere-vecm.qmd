@@ -212,6 +212,7 @@ directionnelle perdante.
 - [Réplication et données alternatives](WQU/Financial Data 1.ipynb)
 - [Consulter le dépôt GitHub](https://github.com/usenameFD/Quantitative-finance-Projects)
 - Note associée : [Synthèse sur les séries temporelles (PDF)](../3A/rapports/rapport_series_temporelles.pdf)
+- Projet connexe : [Default Risk Charge d'un portefeuille CAC 40](drc-frtb-cac40.qmd) — mêmes tests ADF et KPSS appliqués à la stationnarité des facteurs latents
 
 ---
 

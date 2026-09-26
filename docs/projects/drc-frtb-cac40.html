@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Mémoire de M2 : trois méthodes de calibration d’un modèle latent multifactoriel — ACP itérative, norme de Frobenius et maximum de vraisemblance — comparées sur 37 émetteurs du CAC 40, puis traduites en Default Risk Charge simulé à 99,9 %.">
+
+<title>Default Risk Charge d’un portefeuille CAC 40 – Franck Deba</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Default Risk Charge d’un portefeuille CAC 40 – Franck Deba">
+<meta property="og:description" content="Mémoire de M2 : trois méthodes de calibration d’un modèle latent multifactoriel — ACP itérative, norme de Frobenius et maximum de vraisemblance — comparées sur 37 émetteurs du CAC 40, puis traduites en Default Risk Charge simulé à 99,9 %.">
+<meta property="og:image" content="https://usenameFD.github.io/assets/thumbnails/drc-cac40.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="450">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:alt" content="Trajectoire annuelle du DRC simulé de 2008 à 2025 pour les trois méthodes de calibration, avec bandes de confiance">
+<meta name="twitter:title" content="Default Risk Charge d’un portefeuille CAC 40 – Franck Deba">
+<meta name="twitter:description" content="Mémoire de M2 : trois méthodes de calibration d’un modèle latent multifactoriel — ACP itérative, norme de Frobenius et maximum de vraisemblance — comparées sur 37 émetteurs du CAC 40, puis traduites en Default Risk Charge simulé à 99,9 %.">
+<meta name="twitter:image" content="https://usenameFD.github.io/assets/thumbnails/drc-cac40.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="450">
+<meta name="twitter:image-width" content="1000">
+<meta name="twitter:image:alt" content="Trajectoire annuelle du DRC simulé de 2008 à 2025 pour les trois méthodes de calibration, avec bandes de confiance">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Franck Deba</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#vue-densemble" id="toc-vue-densemble" class="nav-link active" data-scroll-target="#vue-densemble">Vue d’ensemble</a></li>
+  <li><a href="#contexte-financier" id="toc-contexte-financier" class="nav-link" data-scroll-target="#contexte-financier">Contexte financier</a></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a>
+  <ul class="collapse">
+  <li><a href="#modèle-latent" id="toc-modèle-latent" class="nav-link" data-scroll-target="#modèle-latent">Modèle latent</a></li>
+  <li><a href="#trois-méthodes-de-calibration-chapitre-2" id="toc-trois-méthodes-de-calibration-chapitre-2" class="nav-link" data-scroll-target="#trois-méthodes-de-calibration-chapitre-2">Trois méthodes de calibration (chapitre 2)</a></li>
+  <li><a href="#protocole-empirique-chapitre-3" id="toc-protocole-empirique-chapitre-3" class="nav-link" data-scroll-target="#protocole-empirique-chapitre-3">Protocole empirique (chapitre 3)</a></li>
+  </ul></li>
+  <li><a href="#cadre-mathématique" id="toc-cadre-mathématique" class="nav-link" data-scroll-target="#cadre-mathématique">Cadre mathématique</a></li>
+  <li><a href="#données-et-hypothèses-traçabilité" id="toc-données-et-hypothèses-traçabilité" class="nav-link" data-scroll-target="#données-et-hypothèses-traçabilité">Données et hypothèses — traçabilité</a></li>
+  <li><a href="#implémentation" id="toc-implémentation" class="nav-link" data-scroll-target="#implémentation">Implémentation</a></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a>
+  <ul class="collapse">
+  <li><a href="#drc-estimé-sur-les-trois-fenêtres-de-référence" id="toc-drc-estimé-sur-les-trois-fenêtres-de-référence" class="nav-link" data-scroll-target="#drc-estimé-sur-les-trois-fenêtres-de-référence">DRC estimé sur les trois fenêtres de référence</a></li>
+  <li><a href="#structure-de-corrélation-reconstruite" id="toc-structure-de-corrélation-reconstruite" class="nav-link" data-scroll-target="#structure-de-corrélation-reconstruite">Structure de corrélation reconstruite</a></li>
+  <li><a href="#dynamique-sur-fenêtres-glissantes" id="toc-dynamique-sur-fenêtres-glissantes" class="nav-link" data-scroll-target="#dynamique-sur-fenêtres-glissantes">Dynamique sur fenêtres glissantes</a></li>
+  </ul></li>
+  <li><a href="#interprétation" id="toc-interprétation" class="nav-link" data-scroll-target="#interprétation">Interprétation</a></li>
+  <li><a href="#cohérence-avec-les-autres-travaux-du-portfolio" id="toc-cohérence-avec-les-autres-travaux-du-portfolio" class="nav-link" data-scroll-target="#cohérence-avec-les-autres-travaux-du-portfolio">Cohérence avec les autres travaux du portfolio</a></li>
+  <li><a href="#limites-et-risque-de-modèle" id="toc-limites-et-risque-de-modèle" class="nav-link" data-scroll-target="#limites-et-risque-de-modèle">Limites et risque de modèle</a></li>
+  <li><a href="#technologies" id="toc-technologies" class="nav-link" data-scroll-target="#technologies">Technologies</a></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références">Références</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Default Risk Charge d’un portefeuille CAC 40</h1>
+<p class="subtitle lead">Calibration comparée des sensibilités factorielles sous FRTB / CRR3</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Risque de crédit</div>
+    <div class="quarto-category">Réglementation</div>
+    <div class="quarto-category">Risque de marché</div>
+    <div class="quarto-category">Dépendance</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Mémoire de M2 : trois méthodes de calibration d’un modèle latent multifactoriel — ACP itérative, norme de Frobenius et maximum de vraisemblance — comparées sur 37 émetteurs du CAC 40, puis traduites en Default Risk Charge simulé à 99,9 %.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="qf-meta">
+<dl>
+<dt>Catégorie</dt>
+<dd>
+Risque de crédit · Réglementation prudentielle
+</dd>
+<dt>Statut</dt>
+<dd>
+Terminé — mémoire de fin d’études
+</dd>
+<dt>Langages</dt>
+<dd>
+Python
+</dd>
+<dt>Source primaire</dt>
+<dd>
+<em>Modélisation du Default Risk Charge — Calibration comparée des sensibilités factorielles et application à un portefeuille d’actifs du CAC 40</em>, mémoire de stage, M2 Modélisation Aléatoire, Université Paris Cité, 2025-2026 (47 p.)
+</dd>
+</dl>
+</div>
+<section id="vue-densemble" class="level2">
+<h2 class="anchored" data-anchor-id="vue-densemble">Vue d’ensemble</h2>
+<p>Le <em>Default Risk Charge</em> (DRC) est la composante de la revue fondamentale du portefeuille de négociation (FRTB) qui capitalise le risque de défaut soudain d’un émetteur — un risque que la VaR de marché, calibrée sur des variations de prix à 10 jours, ne capture pas. Un modèle interne de DRC repose sur un modèle latent gaussien multifactoriel dont la pièce maîtresse est la <strong>structure de dépendance des défauts</strong>.</p>
+<p>Une hypothèse implicite traverse une partie de la littérature : le choix de la méthode de calibration serait secondaire dès lors que le cadre théorique gaussien multifactoriel est correctement posé. Ce mémoire en propose une lecture plus nuancée, en comparant trois méthodes de calibration — <strong>ACP itérative</strong>, <strong>minimisation de la norme de Frobenius</strong> et <strong>maximum de vraisemblance</strong> — sur un portefeuille équipondéré de 37 émetteurs du CAC 40, puis en mesurant si les écarts de calibration survivent jusqu’au DRC réglementaire.</p>
+<p>La calibration par maximum de vraisemblance constitue, à ma connaissance, un apport nouveau à la modélisation du DRC.</p>
+</section>
+<section id="contexte-financier" class="level2">
+<h2 class="anchored" data-anchor-id="contexte-financier">Contexte financier</h2>
+<p>Le DRC répond à une limite structurelle du dispositif de risque de marché : entre deux dates d’observation, un émetteur peut faire défaut sans que sa volatilité de prix n’ait signalé quoi que ce soit. Le texte impose donc une mesure distincte — un quantile à <strong>99,9 % sur horizon un an</strong> — et au moins <strong>deux facteurs systématiques</strong> dans le modèle de dépendance.</p>
+<p>Trois enjeux opérationnels structurent le travail.</p>
+<p><strong>L’ambiguïté réglementaire sur la « période de tension ».</strong> Le texte prescrit une calibration en période de stress sans définir de procédure d’identification comparable à celle du risque de marché général. Cette ambiguïté, documentée par Laurent, Sestier et Thomas (2016), transfère au modélisateur un degré de liberté à fort impact prudentiel : il faut donc mesurer la sensibilité du DRC au choix de la fenêtre.</p>
+<p><strong>Le critère de calibration comme choix de modèle.</strong> Ajuster un modèle contre une matrice de corrélation cible calculée à part n’est pas équivalent à l’ajuster contre sa propre vraisemblance. La distinction est théorique au chapitre 2 ; la question est de savoir si elle est mesurable au chapitre 3.</p>
+<p><strong>Ce qu’une politique de validation doit surveiller.</strong> Si les écarts de calibration se concentrent sur certains blocs d’émetteurs, un dispositif de validation qui ne contrôlerait que le DRC ponctuel resterait aveugle à des différences pourtant réelles.</p>
+</section>
+<section id="méthodologie" class="level2">
+<h2 class="anchored" data-anchor-id="méthodologie">Méthodologie</h2>
+<section id="modèle-latent" class="level3">
+<h3 class="anchored" data-anchor-id="modèle-latent">Modèle latent</h3>
+<p>Pour chaque émetteur <span class="math inline">\(k\)</span>, une variable latente est décomposée en une composante systématique et une composante idiosyncratique. Le défaut survient lorsque cette variable franchit un seuil déterminé par la probabilité de défaut marginale, et la perte de portefeuille agrège les expositions des émetteurs en défaut.</p>
+</section>
+<section id="trois-méthodes-de-calibration-chapitre-2" class="level3">
+<h3 class="anchored" data-anchor-id="trois-méthodes-de-calibration-chapitre-2">Trois méthodes de calibration (chapitre 2)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Méthode</th>
+<th>Critère ajusté</th>
+<th>Traitement de <span class="math inline">\(\Sigma_Z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>ACP itérative</strong></td>
+<td>correspondance à la cible <span class="math inline">\(C_0\)</span>, par diagonalisations successives de la corrélation corrigée de sa diagonale</td>
+<td>fixé à <span class="math inline">\(I_J\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Frobenius</strong></td>
+<td><span class="math inline">\(\lVert C_0 - C(\beta,\Sigma_Z)\rVert_F\)</span> sous contrainte</td>
+<td>fixé à <span class="math inline">\(I_J\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Maximum de vraisemblance</strong></td>
+<td>vraisemblance gaussienne du modèle (algorithme EM)</td>
+<td>fixé à <span class="math inline">\(I_J\)</span> pour la comparaison ; estimable conjointement</td>
+</tr>
+</tbody>
+</table>
+<p>Frobenius et maximum de vraisemblance <strong>partagent le même solveur</strong> — un gradient projeté spectral avec projection ligne à ligne sur l’ellipsoïde <span class="math inline">\(\lVert\beta_k\rVert_{\Sigma_Z} \le 1\)</span> — et ne diffèrent que par la fonction objectif. Tout écart observé est donc la signature d’un changement de critère, non d’une différence d’implémentation.</p>
+</section>
+<section id="protocole-empirique-chapitre-3" class="level3">
+<h3 class="anchored" data-anchor-id="protocole-empirique-chapitre-3">Protocole empirique (chapitre 3)</h3>
+<ul>
+<li><strong>Portefeuille</strong> : constituants du CAC 40, poids <span class="math inline">\(w_k = 1/K\)</span> avec <span class="math inline">\(K = 37\)</span>. La réplication d’indice est <strong>délibérément écartée</strong> afin d’isoler l’effet de la méthode de calibration de celui, distinct, d’une construction de portefeuille par optimisation.</li>
+<li><strong>Trois sous-périodes contrastées</strong> : crise 2008 (P1), période médiane 2013-2014 (P2), crise sanitaire 2020-2021 (P3).</li>
+<li><strong>Nombre de facteurs</strong> : <span class="math inline">\(J \in \{2, 3\}\)</span> pour la comparaison principale, le critère de Marchenko-Pastur étant rapporté séparément comme diagnostic.</li>
+<li><strong>Estimateur de la cible</strong> : corrélation empirique brute <em>et</em> version shrinkée, afin de tester la robustesse à ce choix annexe.</li>
+<li><strong>Tests statistiques systématiques</strong> : stationnarité (ADF, KPSS) et normalité (Shapiro-Wilk, Kolmogorov-Smirnov) des facteurs et des résidus, pour chaque méthode et chaque période — réponse à une limite méthodologique commune à la littérature recensée au chapitre 1.</li>
+<li><strong>Benchmark standardisé</strong> : approche CRR3 par pondérations forfaitaires, invariante par construction au choix de période.</li>
+</ul>
+</section>
+</section>
+<section id="cadre-mathématique" class="level2">
+<h2 class="anchored" data-anchor-id="cadre-mathématique">Cadre mathématique</h2>
+<p><strong>Variable latente et défaut.</strong> Pour l’émetteur <span class="math inline">\(k\)</span>, <span class="math display">\[
+X_k = \beta_k^{\top} Z + \sigma_k \varepsilon_k,
+\qquad
+Z \sim \mathcal{N}(0, \Sigma_Z),
+\qquad
+\varepsilon_k \sim \mathcal{N}(0,1) \ \text{i.i.d.},
+\]</span> avec la contrainte de normalisation <span class="math inline">\(\operatorname{Var}(X_k) = 1\)</span>, soit <span class="math inline">\(\sigma_k = \sqrt{1 - \beta_k^{\top}\Sigma_Z\beta_k}\)</span>. Le défaut est l’événement <span class="math display">\[
+D_k = \mathbf{1}\{X_k &lt; c_k\},
+\qquad
+c_k = \Phi^{-1}(\mathrm{PD}_k).
+\]</span></p>
+<p><strong>Perte et charge.</strong> Avec <span class="math inline">\(\mathrm{JTD}_k\)</span> l’exposition en cas de défaut et <span class="math inline">\(\mathrm{LGD}_k\)</span> la perte en cas de défaut, <span class="math display">\[
+L = \sum_{k=1}^{K} \mathrm{JTD}_k \, \mathrm{LGD}_k \, D_k ,
+\qquad
+\mathrm{DRC} = \mathrm{VaR}^{\text{1 an}}_{99,9\%}(L)
+= \inf\{ q \in \mathbb{R} : \mathbb{P}(L \le q) \ge 0{,}999 \}.
+\]</span></p>
+<p><strong>Corrélation implicite.</strong> Le modèle induit <span class="math display">\[
+C(\beta, \Sigma_Z) = \beta\,\Sigma_Z\,\beta^{\top} + \operatorname{diag}(\sigma^2),
+\]</span> que les deux premières méthodes rapprochent d’une cible <span class="math inline">\(C_0\)</span> estimée en amont.</p>
+<p><strong>Équivalence vraisemblance / Kullback-Leibler.</strong> Maximiser la vraisemblance gaussienne revient à minimiser <span class="math display">\[
+\mathrm{KL}\bigl(\mathcal{N}(0,C_0)\,\|\,\mathcal{N}(0,\Sigma_X(\beta))\bigr)
+= \tfrac{1}{2}\Bigl[
+\operatorname{tr}\bigl(\Sigma_X(\beta)^{-1} C_0\bigr)
+- \ln \det\bigl(\Sigma_X(\beta)^{-1} C_0\bigr) - K \Bigr].
+\]</span> Le terme <span class="math inline">\(\operatorname{tr}(\Sigma_X(\beta)^{-1}C_0)\)</span> <strong>pénalise plus sévèrement une sous-estimation de la corrélation là où la cible en porte déjà beaucoup</strong>, alors que la norme de Frobenius traite symétriquement tous les écarts. C’est cette différence de géométrie qui produit l’essentiel des résultats empiriques.</p>
+<p><strong>Intervalle de confiance par <em>sectioning</em>.</strong> Le superviseur demande un intervalle de confiance à 95 % sur le DRC (BCE, 2025, §128-129). Le portefeuille étant équipondéré, <span class="math inline">\(L\)</span> ne prend que <span class="math inline">\(K+1 = 38\)</span> valeurs distinctes, toutes multiples de <span class="math inline">\(1/37\)</span> : le quantile est <strong>constant par paliers</strong> et l’estimation directe d’un intervalle est délicate. L’approche de Dong et Nakayama (2020) est retenue : le budget de <span class="math inline">\(M\)</span> scénarios est divisé en <span class="math inline">\(b\)</span> sections de taille <span class="math inline">\(m = M/b\)</span>, l’intervalle étant centré sur l’estimateur global <span class="math inline">\(\widehat{\mathrm{DRC}}_M\)</span> — et non sur la moyenne des sections, ce qui évite le biais de petit échantillon : <span class="math display">\[
+S_b^2 = \frac{1}{b-1}\sum_{\ell=1}^{b}
+\bigl(\widehat{\mathrm{DRC}}_\ell - \widehat{\mathrm{DRC}}_M\bigr)^2,
+\qquad
+\Bigl[\widehat{\mathrm{DRC}}_M \pm t_{b-1,\alpha}\, S_b/\sqrt{b}\Bigr].
+\]</span></p>
+</section>
+<section id="données-et-hypothèses-traçabilité" class="level2">
+<h2 class="anchored" data-anchor-id="données-et-hypothèses-traçabilité">Données et hypothèses — traçabilité</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Élément</th>
+<th>Valeur retenue</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Univers</td>
+<td>37 émetteurs du CAC 40 + indice <code>^FCHI</code></td>
+<td><code>M2MO/DRC/data/raw_prices.csv</code>, cours de clôture depuis 2005</td>
+</tr>
+<tr class="even">
+<td>Pondération</td>
+<td><span class="math inline">\(w_k = 1/K\)</span>, <span class="math inline">\(\mathrm{JTD}_k = V_0/37\)</span>, <span class="math inline">\(V_0 = 1\)</span></td>
+<td>mémoire, §3.1.1 et §3.3.1</td>
+</tr>
+<tr class="odd">
+<td>LGD</td>
+<td><span class="math inline">\(\mathrm{LGD}_k = 1\)</span> (100 %)</td>
+<td>CRR3, fourchette actions 60-100 %</td>
+</tr>
+<tr class="even">
+<td>PD</td>
+<td>PD historiques par notation, <strong>plancher CRR3 de 3 pb</strong></td>
+<td>mémoire, tableau 3.1</td>
+</tr>
+<tr class="odd">
+<td>Notations</td>
+<td><strong>fictives</strong> — assignées pour les besoins de l’exercice</td>
+<td>mémoire, §3.1 et §4.3 (limite 2)</td>
+</tr>
+<tr class="even">
+<td>Simulations</td>
+<td><span class="math inline">\(M = 200\,000\)</span>, <span class="math inline">\(m = 10\,000\)</span>, <span class="math inline">\(b = 20\)</span> sections, IC 95 %</td>
+<td>mémoire, §3.3.1</td>
+</tr>
+<tr class="odd">
+<td>Fenêtres</td>
+<td>P1 2008, P2 2013-2014, P3 2020-2021</td>
+<td>mémoire, §3.1.2</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Sigma_Z\)</span></td>
+<td>figé à <span class="math inline">\(I_J\)</span> pour les trois méthodes</td>
+<td>mémoire, §4.3 (limite 3)</td>
+</tr>
+<tr class="odd">
+<td>Panel glissant</td>
+<td>fenêtres annuelles 2008 → 2025, <span class="math inline">\(J \in \{2,3,4,5\}\)</span>, avec et sans shrinkage</td>
+<td><code>M2MO/DRC/output/*.csv</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Notations de crédit fictives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les notations assignées aux 37 émetteurs sont <strong>fictives</strong> (mémoire, §4.3). Les niveaux de DRC rapportés ci-dessous sont donc des résultats <strong>méthodologiques</strong>, destinés à comparer des méthodes de calibration entre elles. Ils ne constituent en aucun cas une estimation de l’exigence en fonds propres d’un portefeuille réel, ni une évaluation de la qualité de crédit des émetteurs du CAC 40.</p>
+</div>
+</div>
+</section>
+<section id="implémentation" class="level2">
+<h2 class="anchored" data-anchor-id="implémentation">Implémentation</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>baseFactorModel.py</code></td>
+<td>classe abstraite : standardisation, spectre, sélection du nombre de facteurs, et les quatre routines de calibration (<code>frobenius</code>, <code>pca_iterative</code>, <code>em</code>, <code>ml</code>)</td>
+</tr>
+<tr class="even">
+<td><code>spgSolver.py</code></td>
+<td>gradient projeté spectral, projection sur ellipsoïdes ligne à ligne, objectifs et gradients Frobenius et vraisemblance</td>
+</tr>
+<tr class="odd">
+<td><code>pCAFactorModel.py</code>, <code>autoEncoderFactorModel.py</code></td>
+<td>extraction des facteurs par ACP et par auto-encodeur non linéaire (Keras)</td>
+</tr>
+<tr class="even">
+<td><code>drcModel.py</code></td>
+<td>moteur Monte-Carlo par batchs, Cholesky de <span class="math inline">\(\Sigma_Z\)</span>, quantile 99,9 % et marge d’erreur</td>
+</tr>
+<tr class="odd">
+<td><code>drcStandard.py</code></td>
+<td>approche standardisée CRR3 : mapping notation → CQS → pondération de risque</td>
+</tr>
+<tr class="even">
+<td><code>multiPeriodComparator.py</code>, <code>moving_drc.py</code></td>
+<td>panel méthode × période et DRC sur fenêtres glissantes</td>
+</tr>
+<tr class="odd">
+<td><code>dataLoader.py</code>, <code>indexReplicator.py</code></td>
+<td>chargement/découpage des prix, réplication d’indice par minimisation de la <em>tracking error</em></td>
+</tr>
+<tr class="even">
+<td><code>governance.py</code>, <code>correlation_calibrator.py</code>, <code>portfolio_manager.py</code></td>
+<td>variante orientée production (voir la note de cohérence ci-dessous)</td>
+</tr>
+</tbody>
+</table>
+<p>Le notebook d’application reprend chapitre par chapitre la structure du mémoire. Quatre correctifs de code y sont explicitement documentés (filtre de données par sous-période, garanties de monotonie de l’EM, indexation des batchs Monte-Carlo, mutation silencieuse dans le comparateur multi-périodes).</p>
+</section>
+<section id="résultats" class="level2">
+<h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
+<p>Les résultats ci-dessous sont <strong>repris tels quels</strong> du mémoire et des fichiers de sortie ; aucun calcul n’est relancé par ce site.</p>
+<section id="drc-estimé-sur-les-trois-fenêtres-de-référence" class="level3">
+<h3 class="anchored" data-anchor-id="drc-estimé-sur-les-trois-fenêtres-de-référence">DRC estimé sur les trois fenêtres de référence</h3>
+<p>Estimateur <span class="math inline">\(\widehat{\mathrm{DRC}}_M\)</span> en % du notionnel, 200 000 simulations, <em>sectioning</em> à <span class="math inline">\(b = 20\)</span> (mémoire, tableau 3.5) :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Configuration</th>
+<th><span class="math inline">\(J\)</span></th>
+<th>ACP</th>
+<th>Frobenius</th>
+<th>MLE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P1</strong> — crise 2008</td>
+<td>2</td>
+<td>13,51 ± 0,91</td>
+<td>13,51 ± 1,08</td>
+<td>13,51 ± 0,96</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3</td>
+<td>13,51 ± 1,08</td>
+<td>13,51 ± 1,08</td>
+<td>13,51 ± 1,36</td>
+</tr>
+<tr class="odd">
+<td><strong>P2</strong> — période médiane</td>
+<td>2</td>
+<td>10,81 ± 0,96</td>
+<td>10,81 ± 0,82</td>
+<td>10,81 ± 0,87</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3</td>
+<td>10,81 ± 0,96</td>
+<td>10,81 ± 1,46</td>
+<td>10,81 ± 1,46</td>
+</tr>
+<tr class="odd">
+<td><strong>P3</strong> — crise sanitaire</td>
+<td>2</td>
+<td>16,21 ± 1,08</td>
+<td>16,21 ± 1,36</td>
+<td>16,21 ± 1,39</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3</td>
+<td>16,21 ± 1,16</td>
+<td>16,21 ± 1,23</td>
+<td>16,21 ± 1,29</td>
+</tr>
+<tr class="odd">
+<td><strong>P3 shrinkée</strong></td>
+<td>2</td>
+<td><strong>13,21</strong> ± 1,08</td>
+<td><strong>13,21</strong> ± 1,36</td>
+<td><strong>16,21</strong> ± 1,39</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>3</td>
+<td>16,21 ± 1,16</td>
+<td>16,21 ± 1,23</td>
+<td>16,21 ± 1,29</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="structure-de-corrélation-reconstruite" class="level3">
+<h3 class="anchored" data-anchor-id="structure-de-corrélation-reconstruite">Structure de corrélation reconstruite</h3>
+<ul>
+<li>ACP itérative et Frobenius convergent vers une <strong>erreur de Frobenius identique à la quatrième décimale</strong> — résultat également observé par Laurent et al.&nbsp;(2016) sur leur propre panel.</li>
+<li>L’écart de Frobenius du maximum de vraisemblance est <strong>inférieur à 3 % en relatif</strong> dans toutes les configurations testées.</li>
+<li>Cet écart se concentre sur le <strong>sous-groupe financier</strong> (4 émetteurs sur 37), où le maximum de vraisemblance reconstruit systématiquement une corrélation plus élevée : <strong>0,69 contre 0,65</strong> en crise 2008, <strong>0,74 contre 0,69</strong> en période médiane, <strong>0,88 contre 0,81</strong> en période covid. Sur le reste du portefeuille, les trois méthodes sont quasi identiques.</li>
+<li><strong>Aucun cas de Heywood</strong> n’a été rencontré à <span class="math inline">\(J = 2\)</span> et <span class="math inline">\(J = 3\)</span> ; le ratio paramètres/observations <span class="math inline">\(K \times J / T\)</span> reste modéré (0,28 à <span class="math inline">\(J=2\)</span>, 0,43 à <span class="math inline">\(J=3\)</span>, avec <span class="math inline">\(K = 37\)</span>, <span class="math inline">\(T \approx 261\)</span>).</li>
+<li>Le critère de <strong>Marchenko-Pastur désigne deux facteurs</strong> comme statistiquement significatifs sur les trois fenêtres — nombre qui coïncide avec le minimum réglementaire, sans que cette coïncidence ait été recherchée.</li>
+</ul>
+</section>
+<section id="dynamique-sur-fenêtres-glissantes" class="level3">
+<h3 class="anchored" data-anchor-id="dynamique-sur-fenêtres-glissantes">Dynamique sur fenêtres glissantes</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/thumbnails/drc-cac40.png" class="img-fluid figure-img" alt="Trois courbes de DRC simulé (Frobenius, MLE, ACP itérative) sur des fenêtres annuelles de 2008 à 2025, chacune entourée d'une bande de confiance"></p>
+<figcaption>DRC simulé par méthode sur fenêtres annuelles glissantes, de 2008 à 2025, avec bandes de confiance</figcaption>
+</figure>
+</div>
+<p>Le panel annuel 2008-2025 prolonge les trois fenêtres de référence. Les niveaux restent des multiples de <span class="math inline">\(1/37\)</span> : 13,51 % (5 défauts) en 2008, 8,11 % (3 défauts) en 2025, avec des pics au-dessus de 16 % en 2011 et 2020. Fichiers de sortie complets, par nombre de facteurs et avec/sans shrinkage :</p>
+<ul>
+<li><a href="../M2MO/DRC/output/2Factor_drc.csv">2 facteurs</a> · <a href="../M2MO/DRC/output/2Factor_drc_s.csv">2 facteurs shrinkés</a></li>
+<li><a href="../M2MO/DRC/output/3Factor_drc.csv">3 facteurs</a> · <a href="../M2MO/DRC/output/3Factor_drc_s.csv">3 facteurs shrinkés</a></li>
+<li><a href="../M2MO/DRC/output/4Factor_drc.csv">4 facteurs</a> · <a href="../M2MO/DRC/output/5Factor_drc.csv">5 facteurs</a></li>
+</ul>
+<p><a href="../M2MO/DRC/DRC_CAC40_Application (1).html">Consulter le notebook d’application complet</a></p>
+<p><a href="../M2MO/DRC/report/memoire_m2mo_Franck_Deba.pdf">Télécharger le mémoire (PDF, 47 p.)</a> · <a href="../M2MO/DRC/report/presentation_Deba_Franck.pdf">Support de soutenance (PDF)</a></p>
+</section>
+</section>
+<section id="interprétation" class="level2">
+<h2 class="anchored" data-anchor-id="interprétation">Interprétation</h2>
+<p>Trois enseignements se dégagent.</p>
+<p><strong>La granularité du portefeuille masque les écarts de calibration.</strong> La perte agrégée ne prenant que 38 valeurs possibles, un écart de corrélation ne se répercute sur le DRC que s’il suffit à déplacer le quantile d’un palier à l’autre. Le DRC ponctuel est identique entre les trois méthodes dans <strong>cinq configurations sur six</strong>. L’unique exception — P3 shrinkée à <span class="math inline">\(J=2\)</span>, 13,21 % pour ACP et Frobenius contre 16,21 % pour le maximum de vraisemblance — survient précisément sur la fenêtre et le sous-groupe où l’écart de corrélation entre les deux paradigmes est le plus marqué.</p>
+<p><strong>Le maximum de vraisemblance est robuste au choix de l’estimateur de la cible.</strong> ACP et Frobenius sont sensibles au passage de la corrélation empirique brute à sa version shrinkée ; le maximum de vraisemblance ne l’est pas, parce qu’il n’ajuste pas contre une cible calculée en amont. C’est cette propriété, et non un gain d’ajustement global, qui produit l’unique écart de DRC observé.</p>
+<p><strong>Conséquence pour la validation de modèles.</strong> Une politique de validation qui ne surveillerait que le DRC ponctuel peut rester silencieuse face à des différences de calibration réelles et mesurables sur la matrice de corrélation. Ce qu’il faut surveiller, ce sont les <strong>blocs d’émetteurs les plus corrélés</strong> — où les écarts se concentrent — et la <strong>robustesse à des choix méthodologiques annexes</strong> comme l’estimation de la cible elle-même.</p>
+</section>
+<section id="cohérence-avec-les-autres-travaux-du-portfolio" class="level2">
+<h2 class="anchored" data-anchor-id="cohérence-avec-les-autres-travaux-du-portfolio">Cohérence avec les autres travaux du portfolio</h2>
+<p>Cette section signale explicitement les divergences d’hypothèses entre ce mémoire et mes autres travaux, plutôt que de les harmoniser silencieusement.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Avertissement</span>Divergences assumées
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>1. Structure de dépendance — gaussienne contre copules à dépendance de queue.</strong> Le DRC repose sur un modèle latent gaussien, c’est-à-dire une copule gaussienne, dont la dépendance de queue est nulle : <span class="math inline">\(\lambda_L = \lambda_U = 0\)</span>. Or mon projet <a href="../projects/creditvar-copules.html">CreditVaR par copules</a> rejette empiriquement cette propriété — le dépendogramme construit sur deux émetteurs bancaires français met en évidence une dépendance de queue marquée, et oriente vers une copule de Student ou de Gumbel. <strong>Les deux conclusions sont valides dans leur cadre respectif</strong> : le cadre gaussien est ici une contrainte réglementaire, pas un choix de modélisation, et le mémoire l’identifie lui-même comme une limite (§4.3). L’écart de capital induit par ce choix n’a pas été quantifié ; c’est un prolongement naturel.</p>
+<p><strong>2. Perte en cas de défaut — 100 %, 40 %, ou aléatoire.</strong> Trois traitements coexistent dans ce portfolio, chacun justifié par son cadre : <span class="math inline">\(\mathrm{LGD} = 100\,\%\)</span> ici (actions, fourchette CRR3 de 60-100 %) ; <strong>40 %</strong> en valorisation obligataire dans <a href="../projects/risques-asset-management.html">Gestion des risques en asset management</a> (convention de place appliquée au nominal) ; et une <strong>loi de recouvrement estimée</strong> dans <a href="../projects/creditvar-copules.html">CreditVaR par copules</a>. La divergence tient à la classe d’instrument et à la finalité — réglementaire contre économique — et non à une incohérence de méthode.</p>
+<p><strong>3. Probabilités de défaut — historiques contre implicites.</strong> Le DRC utilise des PD <strong>historiques</strong> par notation avec plancher CRR3 de 3 pb ; le projet copules extrait des PD <strong>implicites</strong> des prix de marché, donc risque-neutres. Les secondes incorporent une prime de risque et ne sont pas directement utilisables pour une mesure de capital sur horizon un an.</p>
+<p><strong>4. Estimateur de corrélation — deux pistes dans le même dépôt.</strong> Le dossier <code>M2MO/DRC/code</code> contient deux traitements distincts, hérités de deux étapes du travail : la calibration <strong>par sous-période</strong> avec shrinkage utilisée dans le mémoire, et une variante <strong>EWMA</strong> (RiskMetrics, <span class="math inline">\(\lambda = 0{,}94\)</span>, 120 jours) présente dans <code>correlation_calibrator.py</code> et documentée dans <code>docs/</code>, accompagnée d’un JTD dynamique (<span class="math inline">\(\text{titres} \times \text{prix}_t\)</span>) au lieu de l’exposition équipondérée du mémoire. <strong>Les résultats publiés ici proviennent exclusivement de la première piste.</strong> La seconde n’a pas été utilisée pour produire les chiffres du tableau 3.5.</p>
+</div>
+</div>
+<p><strong>Complémentarités.</strong> Le DRC (quantile 99,9 % à un an sur le risque de défaut) et la <a href="../projects/value-at-risk.html">VaR de marché</a> (quantile 99 % à 1-10 jours sur les variations de prix) mesurent deux risques disjoints du même portefeuille : leur juxtaposition est la logique même du FRTB. Le contrôle de l’erreur Monte-Carlo par <em>sectioning</em> employé ici est par ailleurs une alternative au bootstrap sur quantile utilisé dans le projet VaR. Enfin, les tests ADF et KPSS mobilisés pour valider la stationnarité des facteurs relèvent du même appareil que le projet <a href="../projects/econometrie-financiere-vecm.html">Économétrie financière</a>.</p>
+</section>
+<section id="limites-et-risque-de-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="limites-et-risque-de-modèle">Limites et risque de modèle</h2>
+<p>Reprises du mémoire, §4.3 :</p>
+<ol type="1">
+<li><strong>Granularité du portefeuille.</strong> Avec 37 émetteurs, le DRC ponctuel est identique entre méthodes dans cinq configurations sur six. L’univers du CAC 40 plafonnant à 40 constituants, il est difficile d’élargir le portefeuille pour réduire cette granularité.</li>
+<li><strong>Notations et probabilités de défaut fictives.</strong> Les notations assignées aux 37 émetteurs sont conventionnelles.</li>
+<li><strong>Traitement de <span class="math inline">\(\Sigma_Z\)</span> et nature des facteurs.</strong> La comparaison est menée à <span class="math inline">\(\Sigma_Z = I_J\)</span> figée. Les facteurs sont latents et non exogènes : l’indétermination par rotation interdit toute interprétation économique directe des sensibilités <span class="math inline">\(\beta\)</span> calibrées.</li>
+<li><strong>Hypothèses distributionnelles non testées.</strong> L’hypothèse i.i.d. n’a pas été testée sur les fenêtres retenues, et aucune procédure d’identification de la période de tension comparable à celle prescrite pour le risque de marché général n’a été appliquée.</li>
+<li><strong>Identifiabilité.</strong> Ni Frobenius ni le maximum de vraisemblance n’identifient <span class="math inline">\(\beta\)</span> de façon unique : les écarts documentés portent exclusivement sur la matrice reconstruite, seul objet identifié par les données.</li>
+<li><strong>Domaine non compact.</strong> Le programme de maximum de vraisemblance admet en théorie des cas de Heywood (variance spécifique tendant vers zéro) ; cette fragilité ne s’est pas matérialisée aux configurations testées.</li>
+</ol>
+<p><strong>Prolongements identifiés</strong> (§4.4) : appliquer la calibration par maximum de vraisemblance en présence de <strong>facteurs exogènes</strong> construits à partir d’indices boursiers globaux et régionaux ; reprendre la méthodologie sur un portefeuille <strong>plus granulaire</strong> ; estimer <span class="math inline">\(\Sigma_Z\)</span> <strong>conjointement</strong> avec <span class="math inline">\(\beta\)</span>.</p>
+</section>
+<section id="technologies" class="level2">
+<h2 class="anchored" data-anchor-id="technologies">Technologies</h2>
+<div class="qf-tags">
+<p><span class="qf-tag">Python</span> <span class="qf-tag">NumPy</span> <span class="qf-tag">SciPy</span> <span class="qf-tag">pandas</span> <span class="qf-tag">statsmodels</span> <span class="qf-tag">TensorFlow / Keras</span> <span class="qf-tag">Matplotlib</span> <span class="qf-tag">LaTeX</span></p>
+</div>
+</section>
+<section id="références" class="level2">
+<h2 class="anchored" data-anchor-id="références">Références</h2>
+<ul>
+<li>Laurent, J.-P., Sestier, M. et Thomas, S. (2016). <em>Trading book and credit risk: how fundamental is the Basel review?</em></li>
+<li>Dong, H. et Nakayama, M. K. (2020). <em>A tutorial on quantile estimation via Monte Carlo</em> — méthode du <em>sectioning</em>.</li>
+<li>Banque centrale européenne (2025), §128-129 — intervalle de confiance exigé sur le DRC.</li>
+<li>BCBS, <em>Minimum capital requirements for market risk</em> ; CRR3, dispositions relatives au DRC non-titrisations.</li>
+<li>Andersen, L., Sidenius, J. et Basu, S. (2003). <em>All your hedges in one basket</em>.</li>
+<li>Marchenko, V. A. et Pastur, L. A. — distribution spectrale des matrices de covariance empiriques.</li>
+</ul>
+</section>
+<section id="ressources" class="level2">
+<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<ul>
+<li><a href="../M2MO/DRC/report/memoire_m2mo_Franck_Deba.pdf">Mémoire complet (PDF, 47 p.)</a></li>
+<li><a href="../M2MO/DRC/report/presentation_Deba_Franck.pdf">Support de soutenance (PDF)</a></li>
+<li><a href="../M2MO/DRC/DRC_CAC40_Application (1).html">Notebook d’application — chapitre 3</a></li>
+<li><a href="../M2MO/DRC/output/5Factor_drc.csv">Résultats du panel glissant (CSV)</a></li>
+<li>Note associée : <a href="../3A/reglementation_prudentielle.html">La réglementation prudentielle</a></li>
+<li>Projet connexe : <a href="../projects/creditvar-copules.html">CreditVaR d’un portefeuille de créances par copules</a></li>
+<li>Projet connexe : <a href="../projects/value-at-risk.html">Value-at-Risk et backtesting réglementaire</a></li>
+</ul>
+<hr>
+<p><a href="../projects/index.html">← Retour aux projets</a></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

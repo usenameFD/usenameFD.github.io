@@ -74,3 +74,5 @@ Thumbs.db
 /3A/value-at-risk/index-listing.json
 /3A/Apprentisage-stat/*.aux
 /3A/Apprentisage-stat/*.log
+/M2MO/**/*_cache/
+/M2MO/**/*_files/

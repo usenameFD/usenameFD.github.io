@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://usenameFD.github.io/M2MO/Numerical_methods/arret_optimal.html</loc>
+    <lastmod>2026-09-26T06:18:42.381Z</lastmod>
+  </url>
+  <url>
     <loc>https://usenameFD.github.io/autres/spearman-pearson.html</loc>
-    <lastmod>2026-09-26T05:51:39.375Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/autres/ISR.html</loc>
-    <lastmod>2026-09-26T05:23:18.808Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/risque_def.html</loc>
-    <lastmod>2026-09-26T05:23:18.806Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/proc_stochastique/modele_log_sv-part2.html</loc>
-    <lastmod>2026-09-26T05:23:54.241Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/proc_stochastique/modele_heston.html</loc>
-    <lastmod>2026-09-26T05:23:54.241Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/proc_stochastique/APF_filter.html</loc>
-    <lastmod>2026-09-26T05:23:54.270Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/Apprentisage-stat/Tp4.html</loc>
-    <lastmod>2026-09-26T05:23:54.243Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/Apprentisage-stat/Tp2.html</loc>
-    <lastmod>2026-09-26T05:23:54.241Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/2A/App_sup/reg_lin.html</loc>
-    <lastmod>2026-09-26T05:23:54.269Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/WQU/timingStock_HPO.html</loc>
@@ -78,91 +82,99 @@
   </url>
   <url>
     <loc>https://usenameFD.github.io/notes/index.html</loc>
-    <lastmod>2026-09-26T05:24:52.058Z</lastmod>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/value-at-risk.html</loc>
-    <lastmod>2026-09-26T05:52:46.797Z</lastmod>
+    <lastmod>2026-09-26T14:59:08.675Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/risques-asset-management.html</loc>
-    <lastmod>2026-09-26T04:59:42.055Z</lastmod>
+    <lastmod>2026-09-26T14:59:08.676Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/options-exotiques-bates-heston.html</loc>
-    <lastmod>2026-09-26T05:02:56.808Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/econometrie-financiere-vecm.html</loc>
-    <lastmod>2026-09-26T05:11:38.112Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/creditvar-copules.html</loc>
-    <lastmod>2026-09-26T04:58:50.826Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/calibration-heston-filtrage.html</loc>
-    <lastmod>2026-09-26T05:01:04.476Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/index.html</loc>
-    <lastmod>2026-09-26T06:07:16.690Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/index_gdr.html</loc>
-    <lastmod>2026-09-26T05:28:42.904Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/contact.html</loc>
-    <lastmod>2026-09-26T05:26:31.272Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/about.html</loc>
-    <lastmod>2026-09-26T05:27:39.069Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/index.html</loc>
-    <lastmod>2026-09-26T04:49:34.156Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/cv.html</loc>
-    <lastmod>2026-09-26T05:26:04.147Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/index_stat.html</loc>
-    <lastmod>2026-09-26T05:29:05.224Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/bibliotheque-pricing-dash.html</loc>
-    <lastmod>2026-09-26T05:11:38.109Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/courbes-de-taux.html</loc>
-    <lastmod>2026-09-26T05:11:38.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://usenameFD.github.io/projects/deep-learning-nlp.html</loc>
-    <lastmod>2026-09-26T05:11:38.157Z</lastmod>
+    <lastmod>2026-09-26T14:59:08.682Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/market-timing-mlp.html</loc>
-    <lastmod>2026-09-26T05:08:47.945Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/drc-frtb-cac40.html</loc>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/creditvar-copules.html</loc>
+    <lastmod>2026-09-26T14:59:08.675Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/calibration-heston-filtrage.html</loc>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/index.html</loc>
+    <lastmod>2026-09-26T06:31:56.760Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/index_gdr.html</loc>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/contact.html</loc>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/about.html</loc>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/index.html</loc>
+    <lastmod>2026-09-26T14:59:08.674Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/cv.html</loc>
+    <lastmod>2026-09-26T14:59:08.719Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/index_stat.html</loc>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/bibliotheque-pricing-dash.html</loc>
+    <lastmod>2026-09-26T14:59:08.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/courbes-de-taux.html</loc>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/deep-learning-nlp.html</loc>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/econometrie-financiere-vecm.html</loc>
+    <lastmod>2026-09-26T14:59:08.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/projects/methodes-numeriques-edp.html</loc>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/risque-climatique-communes.html</loc>
-    <lastmod>2026-09-26T05:11:38.111Z</lastmod>
+    <lastmod>2026-09-26T13:19:40.421Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/univers-investissement-esg.html</loc>
-    <lastmod>2026-09-26T05:11:38.110Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/volatilite-stochastique-taylor.html</loc>
-    <lastmod>2026-09-26T05:01:53.281Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/repositories/index.html</loc>
-    <lastmod>2026-09-26T05:25:35.264Z</lastmod>
+    <lastmod>2026-09-26T14:59:08.742Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/projects/Climate/Notebooks/02_ExpoClimatCommune.html</loc>
@@ -202,38 +214,42 @@
   </url>
   <url>
     <loc>https://usenameFD.github.io/00_Assets/markets_intro.html</loc>
-    <lastmod>2026-09-26T05:23:18.778Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/Apprentisage-stat/Tp1.html</loc>
-    <lastmod>2026-09-26T05:23:54.269Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/Apprentisage-stat/Tp3.html</loc>
-    <lastmod>2026-09-26T05:23:54.243Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/bilan_entreprise.html</loc>
-    <lastmod>2026-09-26T05:23:18.804Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/proc_stochastique/modele_bs.html</loc>
-    <lastmod>2026-09-26T05:23:54.212Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/proc_stochastique/modele_log_sv-part1.html</loc>
-    <lastmod>2026-09-26T05:24:17.195Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.763Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/reglementation_prudentielle.html</loc>
-    <lastmod>2026-09-26T05:23:18.806Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/3A/value-at-risk/var_def.html</loc>
-    <lastmod>2026-09-26T05:23:18.807Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
   </url>
   <url>
     <loc>https://usenameFD.github.io/autres/finance_durable.html</loc>
-    <lastmod>2026-09-26T05:23:18.808Z</lastmod>
+    <lastmod>2026-09-26T06:31:56.762Z</lastmod>
+  </url>
+  <url>
+    <loc>https://usenameFD.github.io/M2MO/DRC/DRC_CAC40_Application (1).html</loc>
+    <lastmod>2026-09-11T18:11:05.909Z</lastmod>
   </url>
 </urlset>

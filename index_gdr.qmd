@@ -88,6 +88,19 @@ Probabilités de défaut implicites, recouvrement et dépendance de queue.
 :::
 :::
 
+### 2.3 Risque de défaut sous FRTB
+
+::: {.qf-grid}
+::: {.qf-card}
+### Default Risk Charge — CAC 40
+
+Mémoire de M2 : calibration comparée des sensibilités factorielles et DRC
+simulé à 99,9 % sur 37 émetteurs.
+
+[Fiche projet →](projects/drc-frtb-cac40.qmd)
+:::
+:::
+
 ## 3. Risque climatique
 
 ::: {.qf-grid}

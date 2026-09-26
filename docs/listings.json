@@ -25,6 +25,7 @@
   {
     "listing": "/projects/index.html",
     "items": [
+      "/projects/drc-frtb-cac40.html",
       "/projects/value-at-risk.html",
       "/projects/creditvar-copules.html",
       "/projects/risques-asset-management.html",
@@ -37,16 +38,17 @@
       "/projects/risque-climatique-communes.html",
       "/projects/econometrie-financiere-vecm.html",
       "/projects/market-timing-mlp.html",
-      "/projects/deep-learning-nlp.html"
+      "/projects/deep-learning-nlp.html",
+      "/projects/methodes-numeriques-edp.html"
     ]
   },
   {
     "listing": "/index.html",
     "items": [
+      "/projects/drc-frtb-cac40.html",
       "/projects/value-at-risk.html",
       "/projects/creditvar-copules.html",
       "/projects/calibration-heston-filtrage.html",
-      "/projects/bibliotheque-pricing-dash.html",
       "/projects/courbes-de-taux.html",
       "/projects/risque-climatique-communes.html"
     ]
