@@ -1,0 +1,216 @@
+---
+title: "Parcours — Gestion des risques"
+subtitle: "Du bilan d'entreprise aux mesures de risque et à la calibration de modèles"
+pagetitle: "Parcours gestion des risques — Franck Deba"
+description-meta: >-
+  Parcours guidé en gestion des risques : analyse financière, réglementation
+  prudentielle, Value-at-Risk, risque climatique, calibration de modèles
+  stochastiques, asset management et finance durable.
+toc: true
+toc-location: right
+---
+
+Ce parcours propose une lecture guidée des contenus liés au **risk
+management**, organisée selon les principaux piliers méthodologiques de la
+discipline. Chaque entrée renvoie soit vers une note théorique, soit vers une
+fiche projet détaillée.
+
+Pour une liste complète et filtrable, voir la [page Projets](projects/index.qmd)
+et la page [Notes & recherche](notes/index.qmd).
+
+## 1. Analyse financière
+
+::: {.qf-grid}
+::: {.qf-card}
+### Bilan et compte de résultat
+
+Lecture des états financiers et critères de santé financière.
+
+[Accéder au document →](3A/bilan_entreprise.qmd)
+:::
+
+::: {.qf-card}
+### Réglementation prudentielle
+
+CRR2, CRD5 et Solvabilité II.
+
+[Accéder au document →](3A/reglementation_prudentielle.qmd)
+:::
+
+::: {.qf-card}
+### Marchés financiers
+
+Actions, obligations et produits dérivés : acteurs et mécanismes.
+
+[Accéder au document →](00_Assets/markets_intro.qmd)
+:::
+:::
+
+## 2. Risques financiers
+
+### 2.1 Notions générales
+
+::: {.qf-grid}
+::: {.qf-card}
+### Définition du risque financier
+
+Risque, incertitude et typologie des risques bancaires.
+
+[Accéder au document →](3A/risque_def.qmd)
+:::
+:::
+
+### 2.2 Mesures de risque — Value-at-Risk
+
+::: {.qf-grid}
+::: {.qf-card}
+### Théorie de la VaR
+
+Principes, hypothèses, portefeuilles linéaires et non linéaires.
+
+[Note théorique →](3A/value-at-risk/var_def.qmd)
+:::
+
+::: {.qf-card}
+### VaR, ES et valeurs extrêmes
+
+Estimation historique, paramétrique, Monte-Carlo et TVE, avec backtesting.
+
+[Fiche projet →](projects/value-at-risk.qmd)
+:::
+
+::: {.qf-card}
+### CreditVaR et copules
+
+Probabilités de défaut implicites, recouvrement et dépendance de queue.
+
+[Fiche projet →](projects/creditvar-copules.qmd)
+:::
+:::
+
+### 2.3 Risque de défaut sous FRTB
+
+::: {.qf-grid}
+::: {.qf-card}
+### Default Risk Charge — CAC 40
+
+Mémoire de M2 : calibration comparée des sensibilités factorielles et DRC
+simulé à 99,9 % sur 37 émetteurs.
+
+[Fiche projet →](projects/drc-frtb-cac40.qmd)
+:::
+:::
+
+## 3. Risque climatique
+
+::: {.qf-grid}
+::: {.qf-card}
+### Exposition des communes françaises
+
+Indice d'exposition, discrétisation de Jenks et cartographie.
+
+[Fiche projet →](projects/risque-climatique-communes.qmd)
+:::
+:::
+
+## 4. Calibration de modèles stochastiques
+
+### 4.1 Modèles classiques
+
+::: {.qf-grid}
+::: {.qf-card}
+### Modèle de Black-Scholes
+
+Pricing, grecques et volatilité implicite.
+
+[Accéder au document →](3A/proc_stochastique/modele_bs.qmd)
+:::
+:::
+
+### 4.2 Volatilité stochastique
+
+::: {.qf-grid}
+::: {.qf-card}
+### Modèle de Taylor — filtrage
+
+Filtre de Kalman et filtrage particulaire sur la log-volatilité latente.
+
+[Fiche projet →](projects/volatilite-stochastique-taylor.qmd)
+:::
+
+::: {.qf-card}
+### Modèle de Heston — filtrage
+
+Filtre bootstrap et auxiliary particle filter sur prix d'options.
+
+[Fiche projet →](projects/calibration-heston-filtrage.qmd)
+:::
+:::
+
+### 4.3 Modèles avancés
+
+::: {.qf-grid}
+::: {.qf-card}
+### Courbes de taux
+
+Courbe zéro-coupon, taux forward, caplets, swaptions et Hull-White.
+
+[Fiche projet →](projects/courbes-de-taux.qmd)
+:::
+
+::: {.qf-card}
+### Options exotiques
+
+Calibration Heston et Bates par la méthode de Lewis, options asiatiques, CIR.
+
+[Fiche projet →](projects/options-exotiques-bates-heston.qmd)
+:::
+:::
+
+## 5. Gestion d'actifs
+
+::: {.qf-grid}
+::: {.qf-card}
+### Risques d'un portefeuille
+
+Markowitz, stress tests, profils d'écoulement de liquidité et VaR obligataire.
+
+[Fiche projet →](projects/risques-asset-management.qmd)
+:::
+
+::: {.qf-card}
+### Bibliothèque de pricing et Dash
+
+Options, obligations, swaps et allocation dans une application interactive.
+
+[Fiche projet →](projects/bibliotheque-pricing-dash.qmd)
+:::
+:::
+
+## 6. Finance durable
+
+::: {.qf-grid}
+::: {.qf-card}
+### Univers d'investissement ESG
+
+Exclusion normative et sectorielle, sélection best-in-class.
+
+[Fiche projet →](projects/univers-investissement-esg.qmd)
+:::
+
+::: {.qf-card}
+### Investissement socialement responsable
+
+Définition de l'ISR et approches de gestion responsable.
+
+[Accéder au document →](autres/ISR.qmd)
+:::
+
+::: {.qf-card}
+### Cadre de la finance durable
+
+Objectifs, indicateurs et cadres réglementaires.
+
+[Accéder au document →](autres/finance_durable.qmd)
+:::
+:::

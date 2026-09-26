@@ -1,0 +1,233 @@
+---
+title: "Bibliothèque de pricing et application Dash"
+subtitle: "Options vanilles et exotiques, obligations, swaps et allocation de portefeuille"
+description: "Bibliothèque Python orientée objet pour le pricing d'options européennes, asiatiques et à barrière, la valorisation d'obligations et de swaps et l'optimisation de portefeuille, exposée via une application Dash interactive."
+categories:
+  - Dérivés & pricing
+  - Taux & fixed income
+  - Gestion de portefeuille
+order: 7
+image: ../assets/thumbnails/options.png
+image-alt: "Trajectoires de prix simulées par Monte-Carlo avec le niveau de barrière superposé"
+project-status: "Terminé"
+featured: false
+draft: false
+github: "https://github.com/usenameFD/Asset-management-Dash"
+notebook: "main_options.ipynb"
+technologies: [Python, NumPy, SciPy, pandas, Matplotlib, Plotly, Dash]
+methods: [Black-Scholes, Volatilité implicite, Grecques, Monte-Carlo, Options asiatiques, Options à barrière, Courbe zéro-coupon, Markowitz]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Dérivés & pricing · Taux · Allocation
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Livrables
+:   Bibliothèque Python, notebook de démonstration, application Dash
+:::
+
+## Vue d'ensemble
+
+Un modèle isolé dans un notebook n'est pas un outil. Ce projet transforme un
+ensemble de méthodes de valorisation en une **bibliothèque Python structurée**,
+testable et réutilisable, puis l'expose à travers une application Dash qui
+permet de faire varier interactivement les paramètres de marché et d'observer
+l'effet sur les prix, les sensibilités et l'allocation.
+
+Le périmètre couvre trois familles d'instruments — options equity, produits de
+taux vanilles, portefeuilles d'actifs — unifiées par une même architecture
+orientée objet.
+
+## Contexte financier
+
+L'outillage est la contrainte pratique de tout desk quantitatif : un pricer
+doit être cohérent entre instruments, auditable et suffisamment rapide pour
+être utilisé en itératif.
+
+Trois besoins structurent le projet :
+
+- **valoriser et couvrir** des options equity, ce qui suppose des grecques
+  fiables et une volatilité implicite inversée proprement ;
+- **valoriser des instruments de taux** à partir d'une courbe zéro-coupon
+  extraite de données officielles, et non d'un taux unique fictif ;
+- **allouer** un portefeuille selon un objectif de rendement, en mesurant le
+  risque par la matrice de covariance empirique.
+
+## Méthodologie
+
+**1. Options equity.** Une classe abstraite `Option` porte les éléments
+communs — $d_1$, $d_2$, gamma et vega, identiques pour un call et un put — et
+les sous-classes `CallOption` et `PutOption` implémentent le prix, le delta, le
+thêta et le rho. La volatilité implicite est obtenue par inversion numérique de
+la formule de Black-Scholes.
+
+**2. Grecques.** Deux visualiseurs dédiés produisent les profils de
+sensibilité : `OptionGreekPlotter` pour les coupes unidimensionnelles et
+`OptionGreekPlotter3D` pour les surfaces sur la grille (strike, maturité).
+
+**3. Options exotiques.** Les payoffs *path-dependent* sont valorisés par
+Monte-Carlo : `AsianOption` pour la moyenne arithmétique et `BarrierOption`
+pour les barrières activantes et désactivantes, avec tracé des trajectoires
+simulées et de la densité des payoffs, ainsi que la probabilité de payoff nul.
+
+**4. Produits de taux.** La classe `RiskFree` reconstruit une courbe sans
+risque à partir de données officielles — Banque de France pour la zone euro,
+FRED pour les États-Unis — et interpole aux maturités cibles. `Bond` valorise
+une obligation à coupons, `Swap` calcule les facteurs d'actualisation
+$B(t,T)$, les taux FRA et le taux de swap.
+
+**5. Allocation.** `PortfolioAnalysis` récupère les données, calcule les
+rendements quotidiens et mensuels, affiche la matrice de corrélation, résout le
+programme de Markowitz sous contrainte de rendement cible et détermine le
+portefeuille tangent.
+
+**6. Interface.** L'ensemble est exposé dans une application Dash, qui
+transforme la bibliothèque en outil interactif.
+
+## Cadre mathématique
+
+**Black-Scholes.** Pour un call européen,
+$$
+C = S\,\Phi(d_1) - K e^{-rT}\,\Phi(d_2),
+\qquad
+d_1 = \frac{\ln(S/K) + \left(r + \tfrac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}},
+\qquad
+d_2 = d_1 - \sigma\sqrt{T}.
+$$
+
+**Grecques.** Certaines sensibilités ne dépendent pas du sens de l'option :
+$$
+\Gamma = \frac{\varphi(d_1)}{S\sigma\sqrt{T}},
+\qquad
+\mathcal{V} = S\,\varphi(d_1)\sqrt{T},
+$$
+tandis que le delta, le thêta et le rho diffèrent entre call et put — ce qui
+justifie exactement le découpage classe abstraite / sous-classes retenu dans
+l'implémentation.
+
+**Volatilité implicite.** $\sigma_{\text{imp}}$ résout
+$C_{\text{BS}}(\sigma) = C_{\text{marché}}$. La fonction étant strictement
+croissante en $\sigma$ (vega $> 0$), la racine est unique et l'inversion
+numérique converge.
+
+**Option à barrière.** Pour un *down-and-out call* de barrière $B$ :
+$$
+C^{\text{DO}} = e^{-rT}\,
+\mathbb{E}^{\mathbb{Q}}\!\left[
+(S_T - K)^{+}\,
+\mathbf{1}_{\left\{ \min_{0 \leq t \leq T} S_t > B \right\}}
+\right],
+$$
+estimé par simulation sur une grille temporelle discrète. La discrétisation
+introduit un biais connu : le minimum discret surestime le minimum continu, ce
+qui surévalue légèrement l'option *out*.
+
+**Produits de taux.** À partir des facteurs d'actualisation $B(t,T_i)$ :
+$$
+\mathrm{FRA}(t;T_1,T_2) = \frac{1}{T_2 - T_1}\left( \frac{B(t,T_1)}{B(t,T_2)} - 1 \right),
+\qquad
+K^{\text{swap}} = \frac{B(t,T_0) - B(t,T_n)}{\sum_{i=1}^{n} \delta_i\,B(t,T_i)} .
+$$
+
+**Allocation.**
+$$
+\min_{w}\; w^{\top}\Sigma\,w
+\quad \text{s.c.}\quad w^{\top}\mu = \mu_{\text{cible}},\;\; w^{\top}\mathbf{1} = 1,
+$$
+le portefeuille tangent maximisant le ratio de Sharpe
+$(w^{\top}\mu - r_f)/\sqrt{w^{\top}\Sigma w}$.
+
+## Données
+
+- Courbe zéro-coupon publiée par la Banque de France (zone euro) ;
+- Séries FRED pour la courbe américaine, accessibles via une clé d'API
+  fournie par l'utilisateur au moyen d'une variable d'environnement ;
+- Chaînes d'options et historiques de cours pour la calibration de la
+  volatilité implicite et l'allocation.
+
+::: {.callout-important}
+## Gestion des identifiants
+
+L'application requiert une clé d'API FRED. Celle-ci doit être fournie par la
+variable d'environnement `FRED_API_KEY` et ne doit jamais être inscrite dans le
+code source.
+:::
+
+## Implémentation
+
+Architecture par responsabilité, chaque module restant utilisable seul :
+
+| Module | Rôle |
+|---|---|
+| `Options/option.py` | classe abstraite, $d_1$, $d_2$, gamma, vega |
+| `Options/callOption.py`, `putOption.py` | prix, delta, thêta, rho |
+| `Options/blackScholes.py` | formules fermées et volatilité implicite |
+| `Options/asianOption.py`, `barrierOption.py` | pricing Monte-Carlo path-dependent |
+| `Options/optionGreekPlotter*.py` | profils et surfaces de sensibilité |
+| `Options/optionsdata.py` | chargement et retraitement des chaînes d'options |
+| `BondSwap/riskFree.py` | reconstruction et interpolation de la courbe sans risque |
+| `BondSwap/bond.py`, `swap.py` | valorisation obligation, FRA, swap |
+| `PortfolioAnalysis/portfolioAnalysis.py` | corrélations, optimisation, portefeuille tangent |
+| `Appli/analyse.py`, `main.py` | vues et lancement de l'application Dash |
+
+## Résultats
+
+Le notebook de démonstration parcourt les quatre volets — options européennes,
+grecques, options asiatiques, options à barrière — avec pour chacun les prix
+obtenus, les profils de sensibilité et les distributions simulées.
+
+[Consulter le notebook de démonstration](main_options.ipynb)
+
+## Interprétation
+
+La valeur du projet tient moins à chaque formule prise isolément qu'à la
+cohérence de l'ensemble : le même objet de courbe sans risque alimente le
+pricing obligataire, le calcul du taux de swap et l'actualisation des payoffs
+equity. Cette cohérence est précisément ce qui manque aux implémentations
+dispersées en notebooks, et c'est elle qui rend l'outil utilisable en
+production.
+
+L'interface Dash change par ailleurs la nature de l'analyse : passer d'un
+tableau de prix statique à l'exploration interactive des sensibilités rend
+immédiatement visibles des comportements — explosion du gamma à la monnaie
+près de l'échéance, effondrement du prix d'une option *out* au voisinage de la
+barrière — qui restent abstraits sur une sortie textuelle.
+
+## Limites et risque de modèle
+
+- **Volatilité constante.** Le cœur equity repose sur Black-Scholes ; le smile
+  n'est pas modélisé et les exotiques sont valorisées avec une volatilité
+  unique.
+- **Biais de discrétisation.** Le monitoring discret de la barrière biaise le
+  prix ; une correction de continuité serait nécessaire.
+- **Interpolation de courbe.** Le choix de la méthode d'interpolation influence
+  les taux forward, et donc la valorisation des swaps.
+- **Markowitz.** Les poids optimaux sont très sensibles aux rendements espérés
+  estimés ; aucune régularisation n'est appliquée.
+- **Dépendance aux sources externes.** La reconstruction de la courbe dépend de
+  la disponibilité et du format des publications officielles.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [NumPy]{.qf-tag} [SciPy]{.qf-tag} [pandas]{.qf-tag}
+[Matplotlib]{.qf-tag} [Plotly]{.qf-tag} [Dash]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook de démonstration](main_options.ipynb)
+- [Consulter le dépôt GitHub — application Dash de pricing et gestion d'actifs](https://github.com/usenameFD/Asset-management-Dash)
+- [Voir le code source des modules de pricing](https://github.com/usenameFD/usenameFD.github.io/tree/main/projects/Options)
+- Dépôt du projet collectif associé : [Asset-Pricing-and-Management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
+- Projet connexe : [Modélisation de courbes de taux](courbes-de-taux.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

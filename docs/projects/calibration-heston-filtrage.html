@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Estimation de la volatilité instantanée non observée du modèle de Heston par filtrage particulaire, et étude de simulation comparant les performances du filtre bootstrap et de l’APF selon la moneyness.">
+
+<title>Calibration du modèle de Heston par filtrage particulaire – Franck Deba</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Calibration du modèle de Heston par filtrage particulaire – Franck Deba">
+<meta property="og:description" content="Estimation de la volatilité instantanée non observée du modèle de Heston par filtrage particulaire, et étude de simulation comparant les performances du filtre bootstrap et de l’APF selon la moneyness.">
+<meta property="og:image" content="https://usenameFD.github.io/img/heston.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="714">
+<meta property="og:image:width" content="1604">
+<meta property="og:image:alt" content="Trajectoire de volatilité instantanée simulée sous le modèle de Heston">
+<meta name="twitter:title" content="Calibration du modèle de Heston par filtrage particulaire – Franck Deba">
+<meta name="twitter:description" content="Estimation de la volatilité instantanée non observée du modèle de Heston par filtrage particulaire, et étude de simulation comparant les performances du filtre bootstrap et de l’APF selon la moneyness.">
+<meta name="twitter:image" content="https://usenameFD.github.io/img/heston.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="714">
+<meta name="twitter:image-width" content="1604">
+<meta name="twitter:image:alt" content="Trajectoire de volatilité instantanée simulée sous le modèle de Heston">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Franck Deba</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#vue-densemble" id="toc-vue-densemble" class="nav-link active" data-scroll-target="#vue-densemble">Vue d’ensemble</a></li>
+  <li><a href="#contexte-financier" id="toc-contexte-financier" class="nav-link" data-scroll-target="#contexte-financier">Contexte financier</a></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a></li>
+  <li><a href="#cadre-mathématique" id="toc-cadre-mathématique" class="nav-link" data-scroll-target="#cadre-mathématique">Cadre mathématique</a></li>
+  <li><a href="#données" id="toc-données" class="nav-link" data-scroll-target="#données">Données</a></li>
+  <li><a href="#implémentation" id="toc-implémentation" class="nav-link" data-scroll-target="#implémentation">Implémentation</a></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a></li>
+  <li><a href="#interprétation" id="toc-interprétation" class="nav-link" data-scroll-target="#interprétation">Interprétation</a></li>
+  <li><a href="#limites-et-risque-de-modèle" id="toc-limites-et-risque-de-modèle" class="nav-link" data-scroll-target="#limites-et-risque-de-modèle">Limites et risque de modèle</a></li>
+  <li><a href="#technologies" id="toc-technologies" class="nav-link" data-scroll-target="#technologies">Technologies</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Calibration du modèle de Heston par filtrage particulaire</h1>
+<p class="subtitle lead">Filtre bootstrap et auxiliary particle filter sur prix d’options</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Dérivés &amp; pricing</div>
+    <div class="quarto-category">Volatilité stochastique</div>
+    <div class="quarto-category">Filtrage</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Estimation de la volatilité instantanée non observée du modèle de Heston par filtrage particulaire, et étude de simulation comparant les performances du filtre bootstrap et de l’APF selon la moneyness.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">26 février 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="qf-meta">
+<dl>
+<dt>Catégorie</dt>
+<dd>
+Dérivés &amp; pricing · Volatilité stochastique
+</dd>
+<dt>Statut</dt>
+<dd>
+Terminé
+</dd>
+<dt>Langages</dt>
+<dd>
+Python, R
+</dd>
+<dt>Travail</dt>
+<dd>
+Notebook de calibration (Python) et étude de simulation (R), avec S. Marthely pour l’étude APF
+</dd>
+</dl>
+</div>
+<section id="vue-densemble" class="level2">
+<h2 class="anchored" data-anchor-id="vue-densemble">Vue d’ensemble</h2>
+<p>Dans le modèle de Heston, la variance instantanée <span class="math inline">\(v_t\)</span> est un processus stochastique <strong>non observable</strong> : seuls les prix du sous-jacent et des options sont visibles. Calibrer le modèle revient donc à résoudre simultanément deux problèmes — estimer un état caché et estimer les paramètres qui gouvernent sa dynamique.</p>
+<p>Ce projet traite le problème par <strong>filtrage particulaire</strong>. Il implémente le filtre bootstrap et l’<em>auxiliary particle filter</em> (APF) sur le modèle de Heston discrétisé, puis conduit une étude de simulation comparant les deux filtres selon la moneyness des options utilisées comme observations : à la monnaie (ATM), dans la monnaie (ITM) et en portefeuille mixte.</p>
+</section>
+<section id="contexte-financier" class="level2">
+<h2 class="anchored" data-anchor-id="contexte-financier">Contexte financier</h2>
+<p>Le modèle de Black-Scholes suppose une volatilité constante, ce que le <em>smile</em> de volatilité implicite contredit directement. Le modèle de Heston introduit une variance stochastique à retour à la moyenne, corrélée au rendement du sous-jacent, ce qui lui permet de reproduire à la fois le smile et son asymétrie.</p>
+<p>Son adoption en salle de marché pose toutefois une question pratique : comment estimer un état non observé à partir de prix bruités, et avec quelle précision selon les instruments retenus pour la calibration ? La réponse conditionne directement la qualité du <em>hedging</em> en vega et la valorisation des produits exotiques sensibles à la dynamique de volatilité.</p>
+</section>
+<section id="méthodologie" class="level2">
+<h2 class="anchored" data-anchor-id="méthodologie">Méthodologie</h2>
+<p><strong>1. Pricing de référence.</strong> Prix du call européen sous Heston par la forme semi-analytique (fonction caractéristique), puis contrôle par Monte-Carlo avec schéma d’Euler sur le système couplé prix / variance.</p>
+<p><strong>2. Modèle espace-état.</strong> Le modèle de Heston discrétisé est réécrit sous forme d’un modèle à espace d’états : la variance instantanée constitue l’état caché, le prix d’option observé constitue l’observation bruitée.</p>
+<p><strong>3. Filtrage.</strong> Deux filtres particulaires sont implémentés :</p>
+<ul>
+<li>le <strong>filtre bootstrap</strong>, qui propage les particules selon la densité de transition puis les repondère par la vraisemblance d’observation ;</li>
+<li>l’<strong>auxiliary particle filter</strong>, qui introduit une étape de présélection des particules en fonction de leur compatibilité anticipée avec l’observation suivante, afin de limiter la dégénérescence des poids.</li>
+</ul>
+<p>Une variante modifiée de l’APF est également testée.</p>
+<p><strong>4. Étude de simulation.</strong> Les deux filtres sont comparés sur des jeux de données simulés, pour trois configurations d’options : <span class="math inline">\(K = S\)</span> (ATM), <span class="math inline">\(K = 0{,}95\,S\)</span> et un portefeuille mixte mêlant options dans et hors de la monnaie. La comparaison est menée en erreur quadratique moyenne sur la trajectoire de variance reconstituée.</p>
+</section>
+<section id="cadre-mathématique" class="level2">
+<h2 class="anchored" data-anchor-id="cadre-mathématique">Cadre mathématique</h2>
+<p><strong>Dynamique de Heston.</strong> Sous la probabilité risque-neutre, <span class="math display">\[
+\begin{cases}
+\mathrm{d}S_s = S_s\left( r\,\mathrm{d}s + \sqrt{v_s}\,\mathrm{d}W_s^1 \right) \\[2pt]
+\mathrm{d}v_s = \kappa(\beta - v_s)\,\mathrm{d}s + \sigma \sqrt{v_s}\,\mathrm{d}W_s^2 \\[2pt]
+\mathrm{d}W_s^1\,\mathrm{d}W_s^2 = \rho\,\mathrm{d}s
+\end{cases}
+\]</span> où <span class="math inline">\(\kappa &gt; 0\)</span> est la vitesse de retour à la moyenne, <span class="math inline">\(\beta &gt; 0\)</span> le niveau de variance de long terme, <span class="math inline">\(\sigma\)</span> la volatilité de la variance et <span class="math inline">\(\rho \in [-1,1]\)</span> la corrélation entre les deux browniens. La variance suit le processus de Cox-Ingersoll-Ross introduit en 1985 pour les taux courts ; la condition de Feller <span class="math inline">\(2\kappa\beta &gt; \sigma^2\)</span> garantit sa stricte positivité.</p>
+<p><strong>Densité de transition exacte.</strong> Le processus CIR admet une densité de transition non centrée du chi-deux : <span class="math display">\[
+p(v_t \mid v_{t-1}) = 2c\,\chi^2\!\left(2c\,v_t;\; 2q + 2;\; 2c\,e^{-\kappa \Delta} v_{t-1}\right),
+\]</span> avec <span class="math display">\[
+c = \frac{2\kappa}{\sigma^2\left(1 - e^{-\kappa \Delta}\right)},
+\qquad
+q = \frac{2\kappa\beta}{\sigma^2} - 1 .
+\]</span> Simuler directement selon cette loi évite le biais de discrétisation du schéma d’Euler, en particulier lorsque la variance s’approche de zéro.</p>
+<p><strong>Filtrage particulaire.</strong> Le filtre bootstrap approche la loi filtrée <span class="math inline">\(p(v_t \mid y_{1:t})\)</span> par un système de particules pondérées <span class="math inline">\(\{v_t^{(i)}, w_t^{(i)}\}_{i=1}^M\)</span> : <span class="math display">\[
+v_t^{(i)} \sim p\bigl(v_t \mid v_{t-1}^{(i)}\bigr),
+\qquad
+w_t^{(i)} \propto w_{t-1}^{(i)}\, p\bigl(y_t \mid v_t^{(i)}\bigr).
+\]</span> L’APF modifie l’échantillonnage en introduisant une variable auxiliaire <span class="math inline">\(k\)</span> qui présélectionne les particules selon <span class="math display">\[
+p\bigl(k,\, v_t \mid y_{1:t}\bigr)
+\;\propto\;
+p\bigl(y_t \mid \mu_t^{(k)}\bigr)\, w_{t-1}^{(k)}\, p\bigl(v_t \mid v_{t-1}^{(k)}\bigr),
+\]</span> où <span class="math inline">\(\mu_t^{(k)}\)</span> est une valeur représentative (moyenne ou mode) de la loi de transition issue de la particule <span class="math inline">\(k\)</span>. Cette anticipation réduit la variance des poids lorsque la vraisemblance d’observation est très informative.</p>
+<p><strong>Dégénérescence.</strong> Le rééchantillonnage est déclenché sur la taille effective d’échantillon <span class="math display">\[
+\mathrm{ESS}_t = \Bigl(\textstyle\sum_{i=1}^M (w_t^{(i)})^2\Bigr)^{-1}.
+\]</span></p>
+</section>
+<section id="données" class="level2">
+<h2 class="anchored" data-anchor-id="données">Données</h2>
+<p>Séries simulées sous le modèle de Heston avec des paramètres fixés, ce qui permet de disposer de la <strong>trajectoire de variance vraie</strong> et donc de mesurer objectivement l’erreur de filtrage — ce qui serait impossible sur données réelles. Le volet calibration sur prix d’options observés s’appuie sur les données de marché conservées dans <code>3A/proc_stochastique/data/</code>.</p>
+</section>
+<section id="implémentation" class="level2">
+<h2 class="anchored" data-anchor-id="implémentation">Implémentation</h2>
+<p>Le module <a href="https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Calibration/heston.py"><code>heston.py</code></a> regroupe :</p>
+<ul>
+<li><code>heston(...)</code> — prix de call européen sous Heston ;</li>
+<li><code>SimHeston(...)</code> — simulation conjointe prix / variance ;</li>
+<li><code>Bootstrap_Heston(...)</code> — filtre bootstrap ;</li>
+<li><code>APF(...)</code> et <code>APF_modified(...)</code> — <em>auxiliary particle filter</em> et sa variante ;</li>
+<li><code>resample_particles(...)</code> — étape de rééchantillonnage.</li>
+</ul>
+<p>L’étude de simulation comparative est menée en R, avec la fonction de pricing <code>Heston_Call_Function.R</code> et les résultats sérialisés dans <code>3A/proc_stochastique/results_sim/</code> (configurations ATM, ITM et mixte).</p>
+</section>
+<section id="résultats" class="level2">
+<h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
+<p>Les trajectoires filtrées, les superpositions avec l’état vrai et les erreurs quadratiques moyennes par configuration sont présentées dans les documents suivants :</p>
+<p><a href="../projects/Calibration/HestonModel.html">Consulter le notebook de calibration</a></p>
+<p><a href="../3A/proc_stochastique/APF_filter.html">Étude de simulation — performance du filtre APF</a></p>
+<p><a href="../3A/proc_stochastique/modele_heston.html">Pricing et calibration du modèle de Heston</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../3A/proc_stochastique/data/bootstrap_filter.png" class="img-fluid figure-img" alt="Trajectoire de variance estimée par le filtre bootstrap superposée à la trajectoire simulée de référence"></p>
+<figcaption>Trajectoire de variance estimée par filtre bootstrap superposée à l’état simulé vrai</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../3A/proc_stochastique/data/APF_filter.png" class="img-fluid figure-img" alt="Trajectoire de variance estimée par l'auxiliary particle filter superposée à la trajectoire simulée de référence"></p>
+<figcaption>Trajectoire de variance estimée par auxiliary particle filter superposée à l’état simulé vrai</figcaption>
+</figure>
+</div>
+</section>
+<section id="interprétation" class="level2">
+<h2 class="anchored" data-anchor-id="interprétation">Interprétation</h2>
+<p>L’intérêt de l’APF est conditionnel, et l’étude de simulation sert précisément à identifier ce conditionnement. Lorsque la vraisemblance d’observation est très piquée — options à la monnaie, dont le prix réagit fortement à la variance — le filtre bootstrap gaspille des particules dans des régions incompatibles avec l’observation, et la présélection de l’APF apporte un gain net. Lorsque l’observation est peu informative sur la variance, l’avantage se réduit et le surcoût algorithmique de l’APF n’est plus justifié.</p>
+<p>Le choix des instruments de calibration n’est donc pas neutre : il détermine l’information disponible sur l’état caché autant que l’algorithme employé pour l’extraire.</p>
+</section>
+<section id="limites-et-risque-de-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="limites-et-risque-de-modèle">Limites et risque de modèle</h2>
+<ul>
+<li><strong>Paramètres supposés connus.</strong> L’étude de filtrage suppose les paramètres <span class="math inline">\((\kappa, \beta, \sigma, \rho)\)</span> fixés ; l’estimation jointe état-paramètres est un problème sensiblement plus difficile.</li>
+<li><strong>Discrétisation.</strong> Le schéma d’Euler sur le processus CIR peut produire des variances négatives ; l’usage de la loi de transition exacte est préférable mais plus coûteux.</li>
+<li><strong>Dégénérescence des poids.</strong> Elle croît avec l’horizon et avec la dimension de l’état ; le rééchantillonnage la retarde sans la supprimer.</li>
+<li><strong>Données simulées.</strong> Les performances mesurées sur données simulées sont optimistes par rapport à un cadre réel où le modèle est mal spécifié.</li>
+<li><strong>Condition de Feller.</strong> Sa violation dégrade fortement le comportement numérique des filtres au voisinage de zéro.</li>
+</ul>
+</section>
+<section id="technologies" class="level2">
+<h2 class="anchored" data-anchor-id="technologies">Technologies</h2>
+<div class="qf-tags">
+<p><span class="qf-tag">Python</span> <span class="qf-tag">R</span> <span class="qf-tag">NumPy</span> <span class="qf-tag">SciPy</span> <span class="qf-tag">Matplotlib</span></p>
+</div>
+</section>
+<section id="ressources" class="level2">
+<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<ul>
+<li><a href="../projects/Calibration/HestonModel.html">Consulter le notebook de calibration</a></li>
+<li><a href="https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Calibration/heston.py">Voir le code source du module <code>heston.py</code></a></li>
+<li><a href="../3A/proc_stochastique/APF_filter.html">Étude de simulation — filtre APF</a></li>
+<li><a href="../3A/proc_stochastique/modele_heston.html">Pricing et calibration du modèle de Heston</a></li>
+<li>Projet connexe : <a href="../projects/volatilite-stochastique-taylor.html">Volatilité stochastique de Taylor — Kalman et filtrage particulaire</a></li>
+<li>Projet connexe : <a href="../projects/options-exotiques-bates-heston.html">Pricing d’options exotiques sous Heston, Bates et CIR</a></li>
+</ul>
+<hr>
+<p><a href="../projects/index.html">← Retour aux projets</a></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,9 @@
+ticker,shares,rating,sector
+AAPL,100,A,Technology
+MSFT,75,A,Technology
+GOOGL,50,AA,Technology
+JPM,200,A,Financials
+GS,150,BBB,Financials
+WMT,120,AA,Consumer
+JNJ,80,AA,Healthcare
+KO,90,BBB,Consumer

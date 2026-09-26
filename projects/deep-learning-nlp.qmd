@@ -1,0 +1,215 @@
+---
+title: "Apprentissage profond et traitement du langage naturel"
+subtitle: "Séquences, attention, vision et extraction d'information sur flux d'actualités"
+description: "Travaux d'apprentissage profond couvrant la classification de séquences par GRU bidirectionnel et mécanisme d'attention, la vision multispectrale, et un pipeline NLP d'extraction d'entités nommées sur un flux d'actualités."
+categories:
+  - Machine learning
+  - NLP
+order: 13
+image: ../assets/thumbnails/deep-learning.png
+image-alt: "Bandes spectrales d'une image satellite et canal de luminosité nocturne utilisés comme entrées du modèle"
+project-status: "Terminé"
+featured: false
+draft: false
+github: "https://github.com/usenameFD/Deep-Learning-NLP"
+notebook: "DeepLearning/DL.ipynb"
+technologies: [Python, PyTorch, TensorFlow, Keras, spaCy, NLTK, NumPy, pandas, Matplotlib]
+methods: [Plongements lexicaux, GRU bidirectionnel, Mécanisme d'attention, Réseaux convolutifs, Reconnaissance d'entités nommées, Analyse syntaxique]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Machine learning · Traitement du langage naturel
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Livrables
+:   Deux notebooks (apprentissage profond, traitement du langage naturel)
+:::
+
+## Vue d'ensemble
+
+Ces deux travaux constituent le socle méthodologique en apprentissage profond
+sur lequel s'appuient mes projets d'application financière. Ils portent
+volontairement sur des données non financières, ce qui permet de travailler les
+architectures elles-mêmes — modélisation de séquences, attention, convolution,
+extraction d'information — sur des jeux de données où le signal est fort et le
+diagnostic possible.
+
+Le premier volet couvre la classification de séquences, la vision et la
+modélisation de séries temporelles ; le second construit un pipeline complet de
+traitement du langage naturel sur un flux d'actualités, de l'acquisition des
+articles à l'analyse des relations entre entités.
+
+## Contexte financier
+
+La pertinence pour la finance quantitative est indirecte mais réelle :
+
+- **Séquences et attention.** Les architectures séquentielles et le mécanisme
+  d'attention sont directement transposables aux séries financières
+  multivariées, où la question centrale est la même : quelles dates passées
+  comptent pour la prédiction courante ?
+- **Extraction d'information sur actualités.** L'identification d'entités
+  (entreprises, dirigeants, lieux, organisations) et de leurs relations dans un
+  flux d'actualités est le socle technique des signaux de *news analytics*,
+  utilisés pour le suivi de réputation, la détection d'événements de crédit et
+  la construction d'indicateurs de sentiment.
+- **Données alternatives géospatiales.** L'exploitation d'imagerie satellite
+  multispectrale pour estimer des variables socio-économiques relève des
+  mêmes méthodes que celles employées pour les données alternatives en gestion
+  d'actifs.
+
+## Méthodologie
+
+### Volet 1 — Apprentissage profond
+
+**Classification de séquences (noms / verbes).** Chargement des données,
+construction de plongements lexicaux, prétraitement, puis comparaison
+systématique d'architectures via une boucle d'entraînement et d'évaluation.
+Deux modèles sont approfondis :
+
+- un **GRU bidirectionnel**, qui lit la séquence dans les deux sens pour
+  disposer du contexte gauche et droit ;
+- un modèle à **mécanisme d'attention**, dont les poids sont visualisés afin
+  d'interpréter les positions sur lesquelles le modèle se concentre.
+
+Une comparaison finale des architectures clôt ce volet.
+
+**Classification d'images.** Travail de vision sur un jeu d'images
+alimentaires.
+
+**Projet libre.** Modélisation de séries temporelles, puis estimation d'un
+niveau de pauvreté à partir d'imagerie satellite multispectrale — bandes
+visibles, infrarouges, thermique et luminosité nocturne.
+
+### Volet 2 — Traitement du langage naturel
+
+Pipeline complet sur un flux d'actualités :
+
+1. acquisition des articles par écoute d'un flux RSS et mise à jour
+   incrémentale d'une base existante ;
+2. exploration du code HTML et extraction du contenu, sauvegarde locale des
+   images ;
+3. **reconnaissance d'entités nommées**, puis analyse des vingt entités les
+   plus fréquentes par type ;
+4. analyse des **co-occurrences** d'entités, au niveau du document puis au
+   niveau de la phrase ;
+5. **caractérisation des relations** entre paires d'entités par les verbes qui
+   les relient, appliquée à plusieurs paires fréquentes ;
+6. discussion de l'apport de l'arbre de dépendance syntaxique pour affiner
+   l'extraction de relations.
+
+## Cadre mathématique
+
+**Unité récurrente à portes (GRU).** À chaque pas de temps,
+$$
+\begin{aligned}
+z_t &= \sigma\!\left(W_z x_t + U_z h_{t-1}\right), &
+r_t &= \sigma\!\left(W_r x_t + U_r h_{t-1}\right), \\
+\tilde{h}_t &= \tanh\!\left(W x_t + U (r_t \odot h_{t-1})\right), &
+h_t &= (1 - z_t)\odot h_{t-1} + z_t \odot \tilde{h}_t ,
+\end{aligned}
+$$
+où $z_t$ est la porte de mise à jour et $r_t$ la porte de réinitialisation. La
+version bidirectionnelle concatène les états obtenus dans les deux sens de
+lecture :
+$h_t = [\overrightarrow{h}_t \,;\, \overleftarrow{h}_t]$.
+
+**Mécanisme d'attention.** La représentation de la séquence est une moyenne
+pondérée de ses états cachés, les poids étant appris :
+$$
+e_t = v^{\top}\tanh\!\left(W h_t + b\right),
+\qquad
+\alpha_t = \frac{\exp(e_t)}{\sum_{s} \exp(e_s)},
+\qquad
+c = \sum_{t} \alpha_t\, h_t .
+$$
+Les $\alpha_t$ sont directement interprétables : ils indiquent la contribution
+de chaque position à la décision, ce qui en fait un outil de diagnostic autant
+que de modélisation.
+
+**Co-occurrence d'entités.** Pour deux entités $a$ et $b$, la force
+d'association dans un corpus se mesure par l'information mutuelle ponctuelle
+$$
+\mathrm{PMI}(a,b) = \log \frac{\mathbb{P}(a,b)}{\mathbb{P}(a)\,\mathbb{P}(b)},
+$$
+qui corrige la fréquence brute de la popularité marginale de chaque entité.
+
+## Données
+
+- Corpus annoté pour la classification de séquences ;
+- Jeu d'images alimentaires (Food-7) ;
+- Imagerie satellite multispectrale et données de luminosité nocturne ;
+- Flux RSS d'actualités collecté et base d'articles construite pour le volet
+  NLP.
+
+Les entités nommées apparaissant dans les exemples du notebook NLP proviennent
+d'articles de presse publics et n'ont qu'une valeur illustrative.
+
+## Implémentation
+
+Deux notebooks indépendants, tous deux disponibles dans le dépôt
+`Deep-Learning-NLP` :
+
+| Notebook | Contenu |
+|---|---|
+| `DL.ipynb` | séquences, GRU bidirectionnel, attention, vision, séries temporelles, imagerie satellite |
+| `NLP.ipynb` | acquisition RSS, extraction HTML, entités nommées, co-occurrences, relations |
+
+## Résultats
+
+[Notebook d'apprentissage profond](DeepLearning/DL.ipynb)
+
+[Notebook de traitement du langage naturel](DeepLearning/NLP.ipynb)
+
+## Interprétation
+
+La visualisation des poids d'attention constitue l'élément le plus transposable
+à un contexte financier : elle transforme un modèle opaque en modèle
+partiellement auditable, en rendant visible la partie de l'entrée qui porte la
+décision. C'est exactement l'exigence posée par la validation de modèles
+lorsqu'une méthode d'apprentissage est employée sur un usage sensible.
+
+Le volet NLP montre, quant à lui, que la difficulté d'un pipeline d'extraction
+d'information ne réside pas dans le modèle mais dans la chaîne qui l'entoure :
+acquisition, nettoyage du HTML, normalisation des entités et gestion des
+doublons représentent l'essentiel du travail, et déterminent la qualité du
+signal final bien plus que le choix du modèle de reconnaissance d'entités.
+
+## Limites et risque de modèle
+
+- **Transposition au domaine financier.** Les performances obtenues sur des
+  corpus généralistes ne se transposent pas telles quelles à un corpus
+  financier, qui possède son vocabulaire et ses entités propres.
+- **Volume de données.** Les architectures profondes exigent des volumes
+  rarement disponibles sur séries financières.
+- **Interprétabilité partielle.** Les poids d'attention indiquent où le modèle
+  regarde, pas pourquoi il décide.
+- **Normalisation des entités.** Sans résolution d'entités robuste, une même
+  société apparaît sous plusieurs formes et fausse les statistiques de
+  co-occurrence.
+- **Reproductibilité.** L'entraînement dépend de l'initialisation aléatoire et
+  du matériel utilisé.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [PyTorch]{.qf-tag} [TensorFlow / Keras]{.qf-tag}
+[spaCy]{.qf-tag} [NLTK]{.qf-tag} [NumPy]{.qf-tag} [pandas]{.qf-tag}
+[Matplotlib]{.qf-tag}
+:::
+
+## Ressources
+
+- [Notebook d'apprentissage profond](DeepLearning/DL.ipynb)
+- [Notebook de traitement du langage naturel](DeepLearning/NLP.ipynb)
+- [Consulter le dépôt GitHub](https://github.com/usenameFD/Deep-Learning-NLP)
+- Projet connexe : [Market timing par perceptron multicouche](market-timing-mlp.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

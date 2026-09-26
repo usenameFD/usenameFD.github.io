@@ -1,0 +1,177 @@
+---
+title: "Parcours — Modélisation statistique"
+subtitle: "Des valeurs extrêmes à l'apprentissage profond appliqué aux marchés"
+pagetitle: "Parcours modélisation statistique — Franck Deba"
+description-meta: >-
+  Parcours guidé en modélisation statistique appliquée à la finance : théorie
+  des valeurs extrêmes, séries financières, apprentissage supervisé,
+  apprentissage profond et traitement du langage naturel.
+toc: true
+toc-location: right
+---
+
+Ce parcours propose une lecture guidée des contenus de **modélisation
+statistique**, du diagnostic des séries financières aux méthodes
+d'apprentissage.
+
+Pour une liste complète et filtrable, voir la [page Projets](projects/index.qmd)
+et la page [Notes & recherche](notes/index.qmd).
+
+## 1. Dépendance et valeurs extrêmes
+
+::: {.qf-grid}
+::: {.qf-card}
+### Théorie des valeurs extrêmes
+
+Note de synthèse sur la modélisation des queues de distribution.
+
+[Télécharger le PDF →](3A/rapports/projet_EVT.pdf)
+:::
+
+::: {.qf-card}
+### Spearman et Pearson
+
+Mesures de concordance, invariance et lien avec les copules.
+
+[Accéder au document →](autres/spearman-pearson.qmd)
+:::
+
+::: {.qf-card}
+### Copules et CreditVaR
+
+Structures de dépendance et agrégation de risques de crédit.
+
+[Fiche projet →](projects/creditvar-copules.qmd)
+:::
+:::
+
+## 2. Analyse des séries financières
+
+::: {.qf-grid}
+::: {.qf-card}
+### Non-stationnarité, cointégration et VECM
+
+Tests de racine unitaire, cointégration et stratégie de pair trading.
+
+[Fiche projet →](projects/econometrie-financiere-vecm.qmd)
+:::
+
+::: {.qf-card}
+### Volatilité stochastique
+
+Modèle log-SV de Taylor estimé par filtrage.
+
+[Fiche projet →](projects/volatilite-stochastique-taylor.qmd)
+:::
+
+::: {.qf-card}
+### Séries temporelles
+
+Rapport d'analyse et de prévision de séries financières.
+
+[Télécharger le PDF →](3A/rapports/rapport_series_temporelles.pdf)
+:::
+:::
+
+## 3. Apprentissage supervisé
+
+::: {.qf-grid}
+::: {.qf-card}
+### Régression linéaire
+
+Modèle linéaire, estimation et diagnostic.
+
+[Accéder au document →](2A/App_sup/reg_lin.qmd)
+:::
+
+::: {.qf-card}
+### Régression ridge et lasso
+
+Régularisation et compromis biais-variance.
+
+[Accéder au document →](3A/Apprentisage-stat/Tp1.qmd)
+:::
+
+::: {.qf-card}
+### Kernel trick et SVM
+
+Régression ridge à noyau et machines à vecteurs de support.
+
+[Accéder au document →](3A/Apprentisage-stat/Tp2.qmd)
+:::
+
+::: {.qf-card}
+### Gradient boosting
+
+Algorithme SAMME et boosting de gradient.
+
+[Accéder au document →](3A/Apprentisage-stat/Tp3.qmd)
+:::
+
+::: {.qf-card}
+### Sélection de variables
+
+Information mutuelle et critère HSIC.
+
+[Accéder au document →](3A/Apprentisage-stat/Tp4.qmd)
+:::
+
+::: {.qf-card}
+### CART et forêts aléatoires
+
+Arbres de décision et méthodes d'ensemble.
+
+[Consulter le document HTML →](2A/App_sup/arbres_&_forets_aleatoires.html)
+:::
+:::
+
+## 4. Apprentissage profond et NLP
+
+::: {.qf-grid}
+::: {.qf-card}
+### Market timing par MLP
+
+Classification du signe du rendement futur et backtest de la stratégie.
+
+[Fiche projet →](projects/market-timing-mlp.qmd)
+:::
+
+::: {.qf-card}
+### Deep learning et NLP
+
+Séquences, attention, vision et extraction d'entités nommées.
+
+[Fiche projet →](projects/deep-learning-nlp.qmd)
+:::
+
+::: {.qf-card}
+### PINNs et équations HJBI
+
+Réseaux de neurones informés par l'équation, comparés à un schéma de
+différences finies.
+
+[Fiche projet →](projects/methodes-numeriques-edp.qmd)
+:::
+:::
+
+## 5. Analyse numérique
+
+::: {.qf-grid}
+::: {.qf-card}
+### EDP et arrêt optimal
+
+Schémas d'Euler et Crank-Nicolson, PSOR, frontière d'arrêt optimal et pont
+brownien.
+
+[Fiche projet →](projects/methodes-numeriques-edp.qmd)
+:::
+
+::: {.qf-card}
+### Modèle factoriel et Marchenko-Pastur
+
+Sélection du nombre de facteurs par théorie des matrices aléatoires, dans le
+cadre du mémoire sur le DRC.
+
+[Fiche projet →](projects/drc-frtb-cac40.qmd)
+:::
+:::

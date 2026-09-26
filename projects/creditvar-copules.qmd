@@ -1,0 +1,269 @@
+---
+title: "CreditVaR d'un portefeuille de créances par copules"
+subtitle: "Probabilités de défaut implicites, taux de recouvrement et dépendance de queue"
+description: "Estimation par Monte-Carlo de la CreditVaR à 99 % d'un portefeuille de créances bancaires, en modélisant séparément les marges de risque et la structure de dépendance par copules elliptiques et archimédiennes."
+date: 2025-03-24
+categories:
+  - Risque de crédit
+  - Risque de marché
+  - Dépendance
+order: 2
+image: ../assets/thumbnails/copulas.png
+image-alt: "Densité de copule empirique estimée par noyau comparée à la densité théorique de la copule gaussienne ajustée"
+project-status: "Terminé"
+featured: true
+draft: false
+github: "https://github.com/usenameFD/Risk-Management"
+notebook: "Copulus/copule.ipynb"
+report: "../3A/rapports/Copulas.pdf"
+technologies: [Python, NumPy, SciPy, copulae, pandas, Matplotlib]
+methods: [Probabilités de défaut implicites, Taux de recouvrement, Copules elliptiques, Copules archimédiennes, Tau de Kendall, Monte-Carlo, CreditVaR]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Risque de crédit · Structures de dépendance
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Travail
+:   Projet collectif — J. G. Aboula Edang, F. D. Deba Wandji, M. Kougoum Moko Mani
+:::
+
+## Vue d'ensemble
+
+La perte d'un portefeuille de créances ne dépend pas seulement de la qualité de
+crédit de chaque contrepartie prise isolément : elle dépend surtout de la
+probabilité que plusieurs contreparties se dégradent *en même temps*. C'est
+cette dépendance jointe, et non la somme des risques individuels, qui détermine
+le capital économique.
+
+Ce projet estime la **CreditVaR à 99 %** d'un portefeuille composé de créances
+sur deux banques françaises (BNP Paribas et Société Générale). La démarche
+sépare explicitement les trois briques du risque : probabilités de défaut
+implicites, distribution des taux de recouvrement, et structure de dépendance
+entre facteurs de risque modélisée par copules.
+
+## Contexte financier
+
+Trois raisons rendent l'exercice représentatif de la pratique de la gestion du
+risque de crédit :
+
+- **Les probabilités de défaut doivent être cohérentes avec le marché.** Les
+  extraire des instruments cotés (spreads) plutôt que d'un historique de
+  notations garantit une mesure *risque-neutre* cohérente avec la valorisation.
+- **Le recouvrement est aléatoire.** Traiter le taux de recouvrement comme une
+  constante — 40 % par convention — masque une part importante de la
+  variabilité de la perte en cas de défaut.
+- **La corrélation linéaire ne suffit pas.** Deux grandes banques d'un même
+  pays partagent des facteurs de risque systémiques ; leur dépendance se
+  concentre dans les queues, là où la corrélation de Pearson est la moins
+  informative.
+
+C'est exactement le mécanisme qui a rendu les modèles de portefeuille de crédit
+à copule gaussienne inadaptés lors de la crise de 2007-2008.
+
+## Méthodologie
+
+Le travail est organisé en cinq étapes.
+
+**1. Probabilités de défaut implicites.** Extraction des probabilités de défaut
+à partir des prix de marché des instruments de crédit des deux émetteurs.
+
+**2. Distribution des taux de recouvrement.** Caractérisation de la loi du taux
+de recouvrement de chaque créance, avec estimation et comparaison graphique des
+densités.
+
+**3. Analyse exploratoire des facteurs de risque.** Les actions BNP Paribas et
+Société Générale servent de facteurs de risque observables : statistiques
+descriptives des rendements et log-rendements, évolution des cours,
+histogrammes et densités. Les lois marginales des log-rendements sont ensuite
+ajustées.
+
+**4. Structure de dépendance.** Elle est d'abord caractérisée par des critères
+non paramétriques — coefficient de Spearman, tau de Kendall et
+**dépendogramme** — puis modélisée par copules paramétriques :
+
+| Famille | Type | Dépendance de queue |
+|---|---|---|
+| Gaussienne | elliptique | aucune |
+| Student | elliptique | symétrique |
+| Gumbel | archimédienne | queue supérieure |
+| Clayton | archimédienne | queue inférieure |
+| Frank | archimédienne | aucune |
+
+Pour chaque famille, la densité de copule empirique estimée par noyau est
+confrontée à la densité théorique induite par les paramètres ajustés.
+
+**5. CreditVaR par Monte-Carlo.** Les scénarios joints simulés à partir de la
+copule retenue, combinés aux probabilités de défaut et aux lois de
+recouvrement, permettent de construire la distribution de perte du portefeuille
+et d'en extraire le quantile à 99 %.
+
+## Cadre mathématique
+
+**Perte de portefeuille.** Pour $d$ créances d'exposition $\mathrm{EAD}_i$,
+d'indicatrice de défaut $D_i$ et de taux de recouvrement $R_i$ :
+$$
+L = \sum_{i=1}^{d} \mathrm{EAD}_i \,(1 - R_i)\, D_i ,
+\qquad
+\mathrm{CreditVaR}_\alpha = F_L^{-1}(\alpha) .
+$$
+
+**Défaut implicite.** Sous intensité de défaut $\lambda$ constante et taux de
+recouvrement $R$, la relation approchée du triangle de crédit lie le spread
+$s$ à l'intensité :
+$$
+s \simeq \lambda\,(1-R),
+\qquad
+\mathbb{P}(\tau > t) = e^{-\lambda t}.
+$$
+
+**Séparation marges / dépendance.** Le théorème de Sklar garantit l'existence
+d'une unique copule $C$ telle que
+$$
+F(x_1,\dots,x_d) = C\bigl(F_1(x_1),\dots,F_d(x_d)\bigr)
+$$
+pour des marges continues, ce qui justifie l'estimation en deux temps.
+
+**Mesures de concordance.** Elles s'écrivent directement en fonction de la
+copule et sont invariantes par transformation strictement croissante des
+marges :
+$$
+\rho_S = 12 \int_0^1\!\!\int_0^1 C(u,v)\,\mathrm{d}u\,\mathrm{d}v - 3,
+\qquad
+\tau = 4 \int_0^1\!\!\int_0^1 C(u,v)\,\mathrm{d}C(u,v) - 1 .
+$$
+
+**Copules archimédiennes.** Elles sont engendrées par une fonction $\psi$ :
+$$
+C(u,v) = \psi^{-1}\bigl(\psi(u) + \psi(v)\bigr),
+$$
+avec $\psi(t) = (-\ln t)^{\theta}$ pour Gumbel et
+$\psi(t) = \tfrac{1}{\theta}\left(t^{-\theta} - 1\right)$ pour Clayton.
+
+**Dépendance de queue.** 
+$$
+\lambda_L = \lim_{u \to 0^+} \frac{C(u,u)}{u},
+\qquad
+\lambda_U = \lim_{u \to 1^-} \frac{1 - 2u + C(u,u)}{1 - u}.
+$$
+La copule gaussienne vérifie $\lambda_L = \lambda_U = 0$ dès que $\rho < 1$ :
+sous cette hypothèse, deux contreparties sont asymptotiquement indépendantes
+dans les extrêmes. Le dépendogramme construit sur les données rejette cette
+propriété et met en évidence une dépendance marquée dans la queue supérieure,
+ce qui oriente vers une copule de Student ou de Gumbel.
+
+## Données
+
+- Prix et spreads de marché des instruments de crédit de BNP Paribas et Société
+  Générale, utilisés pour extraire les probabilités de défaut implicites ;
+- Historique de cours quotidiens des actions des deux émetteurs, converti en
+  log-rendements (`projects/Copulus/data.txt`) ;
+- Hypothèses de taux de recouvrement documentées dans le rapport.
+
+## Implémentation
+
+Deux modules Python soutiennent l'analyse :
+
+- [`skew_student.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Copulus/skew_student.py) —
+  densité, fonction de répartition, fonction quantile, log-vraisemblance,
+  optimisation des paramètres et simulation de la loi de Student asymétrique
+  utilisée pour les marges ;
+- [`var.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Copulus/var.py) —
+  classe `Var` regroupant le chargement des données, le découpage
+  apprentissage/test, les estimateurs de VaR (historique, bootstrap, gaussien,
+  Student, diffusion), les ajustements GEV/Gumbel/GPD, la calibration
+  automatique de seuil, la VaR dynamique et le backtesting.
+
+L'ajustement des copules s'appuie sur la bibliothèque `copulae`.
+
+## Résultats
+
+Le notebook présente les probabilités de défaut implicites extraites, les
+densités de taux de recouvrement, les statistiques descriptives et lois
+marginales ajustées, les mesures de concordance, le dépendogramme, la
+comparaison des cinq familles de copules et la CreditVaR à 99 % obtenue par
+Monte-Carlo.
+
+[Consulter le notebook complet](Copulus/copule.ipynb)
+
+Le rapport détaille la construction théorique et les justifications de
+modélisation :
+
+[Télécharger le rapport (PDF)](../3A/rapports/Copulas.pdf)
+
+## Interprétation
+
+Le dépendogramme constitue le point de bascule de l'analyse : il montre une
+concentration des observations dans le coin supérieur de l'hypercube unité,
+c'est-à-dire une dépendance de queue, que la copule gaussienne ne peut pas
+reproduire par construction. Retenir une copule à dépendance de queue non nulle
+augmente mécaniquement la probabilité des scénarios de défaut joint et donc la
+CreditVaR, à corrélation apparente inchangée.
+
+Pour un validateur de modèle, la leçon est directe : le choix de la famille de
+copule est une hypothèse de modèle de premier ordre, dont l'impact sur le
+capital dépasse largement celui d'un raffinement des marges.
+
+::: {.callout-warning}
+## Divergence assumée avec le modèle réglementaire de DRC
+
+La conclusion ci-dessus — la copule gaussienne sous-estime les défauts joints
+extrêmes — entre en tension directe avec le cadre imposé par la réglementation.
+Le modèle interne de *Default Risk Charge* étudié dans mon
+[mémoire de M2](drc-frtb-cac40.qmd) repose sur un modèle latent **gaussien**
+multifactoriel, c'est-à-dire exactement la structure dont ce projet montre
+qu'elle annule la dépendance de queue.
+
+Les deux résultats sont valides dans leur cadre : ici la copule est un **choix
+de modélisation** guidé par les données, là-bas c'est une **contrainte
+réglementaire**. Deux autres hypothèses divergent également entre les deux
+travaux : les probabilités de défaut sont ici **implicites** (risque-neutres)
+alors que le DRC utilise des PD **historiques** avec plancher CRR3 de 3 pb ; et
+le taux de recouvrement est ici **aléatoire** alors que le DRC retient
+$\mathrm{LGD} = 100\,\%$ conformément au traitement CRR3 des actions. L'écart de
+capital induit par ces choix n'a pas été quantifié.
+:::
+
+## Limites et risque de modèle
+
+- **Portefeuille de petite dimension.** L'exercice porte sur deux
+  contreparties ; l'extension en grande dimension exige des structures
+  hiérarchiques ou factorielles.
+- **Émetteurs très corrélés.** Deux grandes banques françaises partagent des
+  facteurs systémiques ; les conclusions ne se transposent pas telles quelles à
+  un portefeuille diversifié sectoriellement.
+- **Probabilités risque-neutre.** Les probabilités implicites incorporent une
+  prime de risque et ne sont pas des probabilités historiques ; les utiliser
+  pour une mesure de capital économique nécessite un ajustement.
+- **Stationnarité.** La structure de dépendance est supposée constante sur la
+  fenêtre d'estimation, alors qu'elle varie avec le régime de marché.
+- **Estimation en deux étapes.** La méthode IFM (marges puis copule) est plus
+  simple mais moins efficace qu'une estimation jointe, et l'incertitude des
+  marges se propage à la copule.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [NumPy]{.qf-tag} [SciPy]{.qf-tag} [copulae]{.qf-tag}
+[pandas]{.qf-tag} [Matplotlib]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook complet](Copulus/copule.ipynb)
+- [Voir le code source du module `var.py`](https://github.com/usenameFD/usenameFD.github.io/blob/main/projects/Copulus/var.py)
+- [Consulter le dépôt GitHub associé](https://github.com/usenameFD/Risk-Management)
+- [Télécharger le rapport (PDF)](../3A/rapports/Copulas.pdf)
+- Note théorique associée : [Corrélation de Spearman et corrélation de Pearson](../autres/spearman-pearson.qmd)
+- Projet connexe : [Value-at-Risk et backtesting réglementaire](value-at-risk.qmd)
+- Projet connexe : [Default Risk Charge d'un portefeuille CAC 40](drc-frtb-cac40.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

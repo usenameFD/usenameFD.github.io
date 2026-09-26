@@ -1,0 +1,78 @@
+# -------------------------
+# Positron / RStudio files
+# -------------------------
+.Rproj.user/
+*.Rproj
+.Rhistory
+.RData
+.Ruserdata
+
+# -------------------------
+# Quarto build artifacts
+# -------------------------
+.quarto/
+_site/
+**/*.quarto_ipynb
+
+# -------------------------
+# Python virtual environments
+# -------------------------
+.venv/
+venv/
+
+# -------------------------
+# Python cache
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# -------------------------
+# Jupyter Notebook artifacts
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# OS / system files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Editor metadata
+# -------------------------
+.vscode/       # in case you open project with VS Code
+.idea/         # JetBrains products
+
+# -------------------------
+# Project-specific ignores
+# -------------------------
+/projects/Climate/Carte France/
+
+/.quarto/
+
+# -------------------------
+# Generated analysis artifacts
+# NOTE: never ignore anything under docs/ — that directory IS the published
+# site and must stay versioned for GitHub Pages.
+# -------------------------
+**/.jupyter_cache/
+/_freeze/
+/Output/
+/2A/**/*_cache/
+/2A/**/*_files/
+/3A/**/*_cache/
+/3A/**/*_files/
+/autres/**/*_cache/
+/autres/**/*_files/
+/projects/**/*_cache/
+/projects/**/*_files/
+/00_Assets/**/*_cache/
+/00_Assets/**/*_files/
+/3A/value-at-risk/index.html
+/3A/value-at-risk/index-listing.json
+/3A/Apprentisage-stat/*.aux
+/3A/Apprentisage-stat/*.log
+/M2MO/**/*_cache/
+/M2MO/**/*_files/

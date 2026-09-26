@@ -1,0 +1,76 @@
+---
+title: "Contact"
+subtitle: "Discussion de projets, opportunités et collaborations"
+pagetitle: "Contact — Franck Deba"
+description-meta: >-
+  Contacter Franck Deba, professionnel de la finance quantitative :
+  e-mail, LinkedIn et GitHub.
+toc: false
+---
+
+Je suis ouvert aux échanges sur la recherche quantitative, la modélisation des
+risques, le pricing de dérivés et les projets de data science appliquée à la
+finance — qu'il s'agisse d'opportunités professionnelles, de collaborations
+académiques ou de questions sur les travaux publiés ici.
+
+::: {.qf-grid}
+::: {.qf-card}
+### E-mail
+
+Voie la plus directe pour une demande détaillée.
+
+[debafranck@gmail.com](mailto:debafranck@gmail.com)
+
+::: {.qf-card-meta}
+Réponse sous quelques jours
+:::
+:::
+
+::: {.qf-card}
+### LinkedIn
+
+Parcours professionnel et mise en relation.
+
+[linkedin.com/in/deba-franck](https://www.linkedin.com/in/deba-franck)
+
+::: {.qf-card-meta}
+Réseau professionnel
+:::
+:::
+
+::: {.qf-card}
+### GitHub
+
+Code source, notebooks et dépôts publics.
+
+[github.com/usenameFD](https://github.com/usenameFD)
+
+::: {.qf-card-meta}
+Implémentations
+:::
+:::
+:::
+
+## Avant de m'écrire
+
+- Le **code source** de la plupart des projets est accessible depuis la
+  [page Code](repositories/index.qmd) ; chaque fiche projet renvoie
+  directement vers le notebook ou le dépôt correspondant.
+- Les **notes théoriques** qui sous-tendent les projets sont regroupées dans la
+  section [Notes & recherche](notes/index.qmd).
+- Mon **CV** est téléchargeable depuis la [page CV](cv.qmd).
+
+## Signaler une erreur
+
+Les travaux publiés ici sont des travaux d'étude et de recherche appliquée. Si
+vous relevez une erreur de méthode, de calcul ou de référence, je serai
+reconnaissant qu'elle me soit signalée — par e-mail, ou en ouvrant une *issue*
+sur le [dépôt du site](https://github.com/usenameFD/usenameFD.github.io).
+
+::: {.callout-important}
+## Avertissement
+
+Les contenus de ce site sont publiés à titre informatif et pédagogique. Ils ne
+constituent ni un conseil en investissement, ni une recommandation, ni une
+offre d'achat ou de vente d'instruments financiers.
+:::

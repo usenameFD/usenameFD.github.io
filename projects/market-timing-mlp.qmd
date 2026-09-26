@@ -1,0 +1,230 @@
+---
+title: "Market timing par perceptron multicouche"
+subtitle: "Classification du signe du rendement futur d'AAPL et backtest de la stratégie"
+description: "Réseau de neurones dense entraîné à prédire le signe du rendement à 120 jours d'Apple à partir de rendements passés sur plusieurs fenêtres, avec optimisation d'hyperparamètres Hyperband et backtest de la stratégie directionnelle associée."
+date: 2025-11-18
+categories:
+  - Machine learning
+  - Stratégies quantitatives
+order: 12
+image: ../assets/thumbnails/financial-data.png
+image-alt: "Série de rendements d'action utilisée comme variable d'entrée du modèle de classification"
+project-status: "Terminé — document publié en mode source"
+featured: false
+draft: false
+notebook: "WQU/timingStock_HPO.qmd"
+technologies: [Python, TensorFlow, Keras, Keras Tuner, scikit-learn, pandas, Matplotlib]
+methods: [Perceptron multicouche, Dropout, Entropie croisée binaire, Hyperband, EarlyStopping, Backtest]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Machine learning · Stratégies directionnelles
+
+Statut
+:   Terminé — publié sans exécution
+
+Langages
+:   Python
+
+Contexte
+:   Projet de cours — WorldQuant University, *Deep Learning in Finance*
+:::
+
+::: {.callout-note}
+## Publication sans exécution
+
+Ce document télécharge des données de marché depuis Yahoo! Finance et entraîne
+un réseau de neurones. Il est publié **en mode source** : le code est affiché,
+mais il n'est jamais exécuté lors de la génération du site. Aucune donnée n'est
+téléchargée et aucun modèle n'est réentraîné. Les sorties d'origine ne sont donc
+pas reproduites sur cette page.
+:::
+
+## Vue d'ensemble
+
+Peut-on prédire le **signe** du rendement futur d'une action, et si oui, cette
+capacité prédictive se traduit-elle en performance financière ?
+
+Le projet traite ces deux questions séparément — c'est précisément son intérêt
+méthodologique. Un perceptron multicouche est entraîné à classifier le signe du
+rendement à 120 jours d'Apple à partir de rendements passés calculés sur
+plusieurs fenêtres. Sa performance **prédictive** est mesurée par l'exactitude
+sur échantillon de test, et sa performance **financière** est évaluée
+séparément par un backtest de la stratégie directionnelle associée.
+
+## Contexte financier
+
+Le *market timing* est le cas d'usage le plus exposé au risque de
+surajustement de toute la finance quantitative : le rapport signal sur bruit
+des rendements d'actions est faible, l'échantillon utilisable est court au
+regard du nombre de paramètres d'un réseau, et les fenêtres glissantes créent
+une forte autocorrélation entre observations.
+
+Deux précautions structurent donc le projet :
+
+- **dissocier performance prédictive et performance financière** — un modèle
+  légèrement meilleur que le hasard peut être rentable si ses erreurs sont bien
+  réparties, et un modèle précis peut être non rentable si ses erreurs se
+  concentrent sur les mouvements de forte amplitude ;
+- **contrôler la complexité** — par du *dropout*, un arrêt anticipé et une
+  recherche d'hyperparamètres explicite plutôt qu'un réglage manuel implicite.
+
+## Méthodologie
+
+**1. Variables.** Les entrées sont les rendements passés d'AAPL calculés sur
+cinq fenêtres distinctes. La variable cible est le signe du rendement des 120
+jours suivants, codé en variable binaire.
+
+**2. Échantillonnage et mise à l'échelle.** Découpage apprentissage / test
+puis normalisation des variables explicatives.
+
+**3. Architecture.** Réseau dense à trois couches cachées (25, 15 et 10 unités)
+suivies chacune d'une couche de *dropout*, et une couche de sortie à une unité.
+Activation ReLU sur les couches cachées, sigmoïde en sortie.
+
+**4. Entraînement.** Fonction de perte d'entropie croisée binaire, métrique
+d'exactitude binaire, arrêt anticipé (*EarlyStopping*) surveillant l'exactitude
+en validation avec une patience de 20 époques, sur un maximum de 200 époques et
+des lots de taille 32.
+
+**5. Optimisation d'hyperparamètres.** Recherche par **Hyperband** via Keras
+Tuner sur le nombre d'unités de chaque couche dense (de 1 à 25, par pas de 5)
+et le taux de *dropout* (0,2 ou 0,3). La fonction d'activation est fixée et
+n'est pas optimisée.
+
+**6. Backtest.** La prédiction est convertie en position longue ($+1$) si la
+probabilité estimée dépasse $0{,}5$, courte ($-1$) sinon. La performance
+cumulée de la stratégie est comparée à celle d'une position acheteuse
+permanente.
+
+## Cadre mathématique
+
+**Cible binaire.** Pour un horizon $h = 120$ jours,
+$$
+y_t = \mathbf{1}\left\{ r_{t \to t+h} > 0 \right\},
+\qquad
+r_{t \to t+h} = \frac{S_{t+h} - S_t}{S_t}.
+$$
+
+**Modèle.** Le réseau enchaîne trois transformations affines suivies
+d'activations :
+$$
+h^{(1)} = \mathrm{ReLU}\!\left(W^{(1)}x + b^{(1)}\right),
+\quad
+h^{(\ell)} = \mathrm{ReLU}\!\left(W^{(\ell)}\tilde{h}^{(\ell-1)} + b^{(\ell)}\right),
+$$
+$$
+\hat{p} = \sigma\!\left(W^{(4)}\tilde{h}^{(3)} + b^{(4)}\right),
+\qquad
+\sigma(z) = \frac{1}{1 + e^{-z}},
+$$
+où $\tilde{h}$ désigne la sortie après *dropout*.
+
+**Perte.** L'entropie croisée binaire est l'opposé de la log-vraisemblance d'un
+modèle de Bernoulli :
+$$
+\mathcal{L} = -\frac{1}{n}\sum_{i=1}^{n}
+\Bigl[ y_i \ln \hat{p}_i + (1 - y_i)\ln\left(1 - \hat{p}_i\right) \Bigr].
+$$
+
+**Dropout.** Chaque unité est mise à zéro avec probabilité $p$ pendant
+l'entraînement :
+$$
+\tilde{h}_j = \frac{m_j}{1-p}\,h_j,
+\qquad m_j \sim \mathrm{Bernoulli}(1-p),
+$$
+ce qui agit comme une régularisation en moyennant implicitement un ensemble de
+sous-réseaux.
+
+**Stratégie.** La position et le rendement de stratégie s'écrivent
+$$
+\pi_t = 2\,\mathbf{1}\{\hat{p}_t > 0{,}5\} - 1,
+\qquad
+r_t^{\text{strat}} = \pi_t \cdot r_{t \to t+h},
+$$
+et la performance cumulée
+$\prod_t \left(1 + r_t^{\text{strat}}\right) - 1$ est comparée à celle du
+sous-jacent.
+
+## Données
+
+Cours quotidiens de clôture d'Apple (AAPL) depuis le 1{^er} janvier 1980,
+obtenus via l'API Yahoo! Finance dans l'environnement d'analyse d'origine. Les
+observations comportant des valeurs manquantes sont écartées, ce qui réduit
+sensiblement la taille effective de l'échantillon.
+
+Le code est écrit pour fonctionner sur n'importe quel titre en changeant
+simplement le *ticker*.
+
+## Implémentation
+
+Deux variantes du même document sont conservées :
+
+- [`timingStock.qmd`](WQU/timingStock.qmd) — version de base à architecture
+  fixée ;
+- [`timingStock_HPO.qmd`](WQU/timingStock_HPO.qmd) — version avec recherche
+  d'hyperparamètres par Hyperband.
+
+Les essais de la recherche d'hyperparamètres sont conservés dans le répertoire
+`Output/` du dépôt.
+
+## Résultats
+
+Les sorties d'origine — courbes d'apprentissage, exactitude en test,
+performance cumulée de la stratégie — figurent dans l'environnement d'analyse.
+Conformément à la politique d'exécution du site, elles ne sont pas régénérées
+ici : le document est publié en affichant son code source.
+
+[Consulter le document avec recherche d'hyperparamètres](WQU/timingStock_HPO.qmd)
+
+[Consulter la version de base](WQU/timingStock.qmd)
+
+## Interprétation
+
+La séparation explicite entre évaluation prédictive et évaluation financière
+est la contribution méthodologique la plus importante du projet. Une exactitude
+« correcte » en validation ne garantit rien sur le plan économique : la
+performance d'une stratégie directionnelle dépend de la **corrélation entre la
+justesse des prédictions et l'amplitude des mouvements**, et non du taux de
+bonnes réponses.
+
+L'horizon de 120 jours combiné à une cible calculée sur fenêtre glissante crée
+par ailleurs un fort chevauchement entre observations : l'exactitude mesurée
+sur échantillon de test est donc plus optimiste qu'elle ne le paraît, car les
+observations ne sont pas indépendantes.
+
+## Limites et risque de modèle
+
+- **Chevauchement des observations.** La cible à 120 jours sur données
+  quotidiennes induit une autocorrélation forte ; le découpage
+  apprentissage/test devrait être chronologique et purgé.
+- **Échantillon effectif réduit.** La suppression des observations incomplètes
+  diminue fortement la taille de l'échantillon utilisable.
+- **Titre unique.** Les résultats obtenus sur AAPL ne se généralisent pas ;
+  une validation multi-titres serait nécessaire.
+- **Coûts de transaction absents.** Le backtest ne modélise ni frais, ni
+  *slippage*, ni contrainte d'emprunt de titres pour la position vendeuse.
+- **Non-déterminisme.** L'entraînement d'un réseau reste sensible à
+  l'initialisation et à l'ordre des lots.
+- **Stationnarité.** La relation entre rendements passés et rendement futur
+  est supposée stable sur plus de quarante ans d'historique.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [TensorFlow]{.qf-tag} [Keras]{.qf-tag}
+[Keras Tuner]{.qf-tag} [scikit-learn]{.qf-tag} [pandas]{.qf-tag}
+[Matplotlib]{.qf-tag}
+:::
+
+## Ressources
+
+- [Document avec recherche d'hyperparamètres](WQU/timingStock_HPO.qmd)
+- [Version de base](WQU/timingStock.qmd)
+- Projet connexe : [Économétrie financière — non-stationnarité, cointégration et pair trading](econometrie-financiere-vecm.qmd)
+- Projet connexe : [Apprentissage profond et traitement du langage naturel](deep-learning-nlp.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)

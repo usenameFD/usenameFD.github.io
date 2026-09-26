@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Bibliothèque Python orientée objet pour le pricing d’options européennes, asiatiques et à barrière, la valorisation d’obligations et de swaps et l’optimisation de portefeuille, exposée via une application Dash interactive.">
+
+<title>Bibliothèque de pricing et application Dash – Franck Deba</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Bibliothèque de pricing et application Dash – Franck Deba">
+<meta property="og:description" content="Bibliothèque Python orientée objet pour le pricing d’options européennes, asiatiques et à barrière, la valorisation d’obligations et de swaps et l’optimisation de portefeuille, exposée via une application Dash interactive.">
+<meta property="og:image" content="https://usenameFD.github.io/assets/thumbnails/options.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="547">
+<meta property="og:image:width" content="850">
+<meta property="og:image:alt" content="Trajectoires de prix simulées par Monte-Carlo avec le niveau de barrière superposé">
+<meta name="twitter:title" content="Bibliothèque de pricing et application Dash – Franck Deba">
+<meta name="twitter:description" content="Bibliothèque Python orientée objet pour le pricing d’options européennes, asiatiques et à barrière, la valorisation d’obligations et de swaps et l’optimisation de portefeuille, exposée via une application Dash interactive.">
+<meta name="twitter:image" content="https://usenameFD.github.io/assets/thumbnails/options.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="547">
+<meta name="twitter:image-width" content="850">
+<meta name="twitter:image:alt" content="Trajectoires de prix simulées par Monte-Carlo avec le niveau de barrière superposé">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Franck Deba</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#vue-densemble" id="toc-vue-densemble" class="nav-link active" data-scroll-target="#vue-densemble">Vue d’ensemble</a></li>
+  <li><a href="#contexte-financier" id="toc-contexte-financier" class="nav-link" data-scroll-target="#contexte-financier">Contexte financier</a></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a></li>
+  <li><a href="#cadre-mathématique" id="toc-cadre-mathématique" class="nav-link" data-scroll-target="#cadre-mathématique">Cadre mathématique</a></li>
+  <li><a href="#données" id="toc-données" class="nav-link" data-scroll-target="#données">Données</a></li>
+  <li><a href="#implémentation" id="toc-implémentation" class="nav-link" data-scroll-target="#implémentation">Implémentation</a></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a></li>
+  <li><a href="#interprétation" id="toc-interprétation" class="nav-link" data-scroll-target="#interprétation">Interprétation</a></li>
+  <li><a href="#limites-et-risque-de-modèle" id="toc-limites-et-risque-de-modèle" class="nav-link" data-scroll-target="#limites-et-risque-de-modèle">Limites et risque de modèle</a></li>
+  <li><a href="#technologies" id="toc-technologies" class="nav-link" data-scroll-target="#technologies">Technologies</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bibliothèque de pricing et application Dash</h1>
+<p class="subtitle lead">Options vanilles et exotiques, obligations, swaps et allocation de portefeuille</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Dérivés &amp; pricing</div>
+    <div class="quarto-category">Taux &amp; fixed income</div>
+    <div class="quarto-category">Gestion de portefeuille</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Bibliothèque Python orientée objet pour le pricing d’options européennes, asiatiques et à barrière, la valorisation d’obligations et de swaps et l’optimisation de portefeuille, exposée via une application Dash interactive.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="qf-meta">
+<dl>
+<dt>Catégorie</dt>
+<dd>
+Dérivés &amp; pricing · Taux · Allocation
+</dd>
+<dt>Statut</dt>
+<dd>
+Terminé
+</dd>
+<dt>Langages</dt>
+<dd>
+Python
+</dd>
+<dt>Livrables</dt>
+<dd>
+Bibliothèque Python, notebook de démonstration, application Dash
+</dd>
+</dl>
+</div>
+<section id="vue-densemble" class="level2">
+<h2 class="anchored" data-anchor-id="vue-densemble">Vue d’ensemble</h2>
+<p>Un modèle isolé dans un notebook n’est pas un outil. Ce projet transforme un ensemble de méthodes de valorisation en une <strong>bibliothèque Python structurée</strong>, testable et réutilisable, puis l’expose à travers une application Dash qui permet de faire varier interactivement les paramètres de marché et d’observer l’effet sur les prix, les sensibilités et l’allocation.</p>
+<p>Le périmètre couvre trois familles d’instruments — options equity, produits de taux vanilles, portefeuilles d’actifs — unifiées par une même architecture orientée objet.</p>
+</section>
+<section id="contexte-financier" class="level2">
+<h2 class="anchored" data-anchor-id="contexte-financier">Contexte financier</h2>
+<p>L’outillage est la contrainte pratique de tout desk quantitatif : un pricer doit être cohérent entre instruments, auditable et suffisamment rapide pour être utilisé en itératif.</p>
+<p>Trois besoins structurent le projet :</p>
+<ul>
+<li><strong>valoriser et couvrir</strong> des options equity, ce qui suppose des grecques fiables et une volatilité implicite inversée proprement ;</li>
+<li><strong>valoriser des instruments de taux</strong> à partir d’une courbe zéro-coupon extraite de données officielles, et non d’un taux unique fictif ;</li>
+<li><strong>allouer</strong> un portefeuille selon un objectif de rendement, en mesurant le risque par la matrice de covariance empirique.</li>
+</ul>
+</section>
+<section id="méthodologie" class="level2">
+<h2 class="anchored" data-anchor-id="méthodologie">Méthodologie</h2>
+<p><strong>1. Options equity.</strong> Une classe abstraite <code>Option</code> porte les éléments communs — <span class="math inline">\(d_1\)</span>, <span class="math inline">\(d_2\)</span>, gamma et vega, identiques pour un call et un put — et les sous-classes <code>CallOption</code> et <code>PutOption</code> implémentent le prix, le delta, le thêta et le rho. La volatilité implicite est obtenue par inversion numérique de la formule de Black-Scholes.</p>
+<p><strong>2. Grecques.</strong> Deux visualiseurs dédiés produisent les profils de sensibilité : <code>OptionGreekPlotter</code> pour les coupes unidimensionnelles et <code>OptionGreekPlotter3D</code> pour les surfaces sur la grille (strike, maturité).</p>
+<p><strong>3. Options exotiques.</strong> Les payoffs <em>path-dependent</em> sont valorisés par Monte-Carlo : <code>AsianOption</code> pour la moyenne arithmétique et <code>BarrierOption</code> pour les barrières activantes et désactivantes, avec tracé des trajectoires simulées et de la densité des payoffs, ainsi que la probabilité de payoff nul.</p>
+<p><strong>4. Produits de taux.</strong> La classe <code>RiskFree</code> reconstruit une courbe sans risque à partir de données officielles — Banque de France pour la zone euro, FRED pour les États-Unis — et interpole aux maturités cibles. <code>Bond</code> valorise une obligation à coupons, <code>Swap</code> calcule les facteurs d’actualisation <span class="math inline">\(B(t,T)\)</span>, les taux FRA et le taux de swap.</p>
+<p><strong>5. Allocation.</strong> <code>PortfolioAnalysis</code> récupère les données, calcule les rendements quotidiens et mensuels, affiche la matrice de corrélation, résout le programme de Markowitz sous contrainte de rendement cible et détermine le portefeuille tangent.</p>
+<p><strong>6. Interface.</strong> L’ensemble est exposé dans une application Dash, qui transforme la bibliothèque en outil interactif.</p>
+</section>
+<section id="cadre-mathématique" class="level2">
+<h2 class="anchored" data-anchor-id="cadre-mathématique">Cadre mathématique</h2>
+<p><strong>Black-Scholes.</strong> Pour un call européen, <span class="math display">\[
+C = S\,\Phi(d_1) - K e^{-rT}\,\Phi(d_2),
+\qquad
+d_1 = \frac{\ln(S/K) + \left(r + \tfrac{1}{2}\sigma^2\right)T}{\sigma\sqrt{T}},
+\qquad
+d_2 = d_1 - \sigma\sqrt{T}.
+\]</span></p>
+<p><strong>Grecques.</strong> Certaines sensibilités ne dépendent pas du sens de l’option : <span class="math display">\[
+\Gamma = \frac{\varphi(d_1)}{S\sigma\sqrt{T}},
+\qquad
+\mathcal{V} = S\,\varphi(d_1)\sqrt{T},
+\]</span> tandis que le delta, le thêta et le rho diffèrent entre call et put — ce qui justifie exactement le découpage classe abstraite / sous-classes retenu dans l’implémentation.</p>
+<p><strong>Volatilité implicite.</strong> <span class="math inline">\(\sigma_{\text{imp}}\)</span> résout <span class="math inline">\(C_{\text{BS}}(\sigma) = C_{\text{marché}}\)</span>. La fonction étant strictement croissante en <span class="math inline">\(\sigma\)</span> (vega <span class="math inline">\(&gt; 0\)</span>), la racine est unique et l’inversion numérique converge.</p>
+<p><strong>Option à barrière.</strong> Pour un <em>down-and-out call</em> de barrière <span class="math inline">\(B\)</span> : <span class="math display">\[
+C^{\text{DO}} = e^{-rT}\,
+\mathbb{E}^{\mathbb{Q}}\!\left[
+(S_T - K)^{+}\,
+\mathbf{1}_{\left\{ \min_{0 \leq t \leq T} S_t &gt; B \right\}}
+\right],
+\]</span> estimé par simulation sur une grille temporelle discrète. La discrétisation introduit un biais connu : le minimum discret surestime le minimum continu, ce qui surévalue légèrement l’option <em>out</em>.</p>
+<p><strong>Produits de taux.</strong> À partir des facteurs d’actualisation <span class="math inline">\(B(t,T_i)\)</span> : <span class="math display">\[
+\mathrm{FRA}(t;T_1,T_2) = \frac{1}{T_2 - T_1}\left( \frac{B(t,T_1)}{B(t,T_2)} - 1 \right),
+\qquad
+K^{\text{swap}} = \frac{B(t,T_0) - B(t,T_n)}{\sum_{i=1}^{n} \delta_i\,B(t,T_i)} .
+\]</span></p>
+<p><strong>Allocation.</strong> <span class="math display">\[
+\min_{w}\; w^{\top}\Sigma\,w
+\quad \text{s.c.}\quad w^{\top}\mu = \mu_{\text{cible}},\;\; w^{\top}\mathbf{1} = 1,
+\]</span> le portefeuille tangent maximisant le ratio de Sharpe <span class="math inline">\((w^{\top}\mu - r_f)/\sqrt{w^{\top}\Sigma w}\)</span>.</p>
+</section>
+<section id="données" class="level2">
+<h2 class="anchored" data-anchor-id="données">Données</h2>
+<ul>
+<li>Courbe zéro-coupon publiée par la Banque de France (zone euro) ;</li>
+<li>Séries FRED pour la courbe américaine, accessibles via une clé d’API fournie par l’utilisateur au moyen d’une variable d’environnement ;</li>
+<li>Chaînes d’options et historiques de cours pour la calibration de la volatilité implicite et l’allocation.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Gestion des identifiants
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>L’application requiert une clé d’API FRED. Celle-ci doit être fournie par la variable d’environnement <code>FRED_API_KEY</code> et ne doit jamais être inscrite dans le code source.</p>
+</div>
+</div>
+</section>
+<section id="implémentation" class="level2">
+<h2 class="anchored" data-anchor-id="implémentation">Implémentation</h2>
+<p>Architecture par responsabilité, chaque module restant utilisable seul :</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Module</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Options/option.py</code></td>
+<td>classe abstraite, <span class="math inline">\(d_1\)</span>, <span class="math inline">\(d_2\)</span>, gamma, vega</td>
+</tr>
+<tr class="even">
+<td><code>Options/callOption.py</code>, <code>putOption.py</code></td>
+<td>prix, delta, thêta, rho</td>
+</tr>
+<tr class="odd">
+<td><code>Options/blackScholes.py</code></td>
+<td>formules fermées et volatilité implicite</td>
+</tr>
+<tr class="even">
+<td><code>Options/asianOption.py</code>, <code>barrierOption.py</code></td>
+<td>pricing Monte-Carlo path-dependent</td>
+</tr>
+<tr class="odd">
+<td><code>Options/optionGreekPlotter*.py</code></td>
+<td>profils et surfaces de sensibilité</td>
+</tr>
+<tr class="even">
+<td><code>Options/optionsdata.py</code></td>
+<td>chargement et retraitement des chaînes d’options</td>
+</tr>
+<tr class="odd">
+<td><code>BondSwap/riskFree.py</code></td>
+<td>reconstruction et interpolation de la courbe sans risque</td>
+</tr>
+<tr class="even">
+<td><code>BondSwap/bond.py</code>, <code>swap.py</code></td>
+<td>valorisation obligation, FRA, swap</td>
+</tr>
+<tr class="odd">
+<td><code>PortfolioAnalysis/portfolioAnalysis.py</code></td>
+<td>corrélations, optimisation, portefeuille tangent</td>
+</tr>
+<tr class="even">
+<td><code>Appli/analyse.py</code>, <code>main.py</code></td>
+<td>vues et lancement de l’application Dash</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="résultats" class="level2">
+<h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
+<p>Le notebook de démonstration parcourt les quatre volets — options européennes, grecques, options asiatiques, options à barrière — avec pour chacun les prix obtenus, les profils de sensibilité et les distributions simulées.</p>
+<p><a href="../projects/main_options.html">Consulter le notebook de démonstration</a></p>
+</section>
+<section id="interprétation" class="level2">
+<h2 class="anchored" data-anchor-id="interprétation">Interprétation</h2>
+<p>La valeur du projet tient moins à chaque formule prise isolément qu’à la cohérence de l’ensemble : le même objet de courbe sans risque alimente le pricing obligataire, le calcul du taux de swap et l’actualisation des payoffs equity. Cette cohérence est précisément ce qui manque aux implémentations dispersées en notebooks, et c’est elle qui rend l’outil utilisable en production.</p>
+<p>L’interface Dash change par ailleurs la nature de l’analyse : passer d’un tableau de prix statique à l’exploration interactive des sensibilités rend immédiatement visibles des comportements — explosion du gamma à la monnaie près de l’échéance, effondrement du prix d’une option <em>out</em> au voisinage de la barrière — qui restent abstraits sur une sortie textuelle.</p>
+</section>
+<section id="limites-et-risque-de-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="limites-et-risque-de-modèle">Limites et risque de modèle</h2>
+<ul>
+<li><strong>Volatilité constante.</strong> Le cœur equity repose sur Black-Scholes ; le smile n’est pas modélisé et les exotiques sont valorisées avec une volatilité unique.</li>
+<li><strong>Biais de discrétisation.</strong> Le monitoring discret de la barrière biaise le prix ; une correction de continuité serait nécessaire.</li>
+<li><strong>Interpolation de courbe.</strong> Le choix de la méthode d’interpolation influence les taux forward, et donc la valorisation des swaps.</li>
+<li><strong>Markowitz.</strong> Les poids optimaux sont très sensibles aux rendements espérés estimés ; aucune régularisation n’est appliquée.</li>
+<li><strong>Dépendance aux sources externes.</strong> La reconstruction de la courbe dépend de la disponibilité et du format des publications officielles.</li>
+</ul>
+</section>
+<section id="technologies" class="level2">
+<h2 class="anchored" data-anchor-id="technologies">Technologies</h2>
+<div class="qf-tags">
+<p><span class="qf-tag">Python</span> <span class="qf-tag">NumPy</span> <span class="qf-tag">SciPy</span> <span class="qf-tag">pandas</span> <span class="qf-tag">Matplotlib</span> <span class="qf-tag">Plotly</span> <span class="qf-tag">Dash</span></p>
+</div>
+</section>
+<section id="ressources" class="level2">
+<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<ul>
+<li><a href="../projects/main_options.html">Consulter le notebook de démonstration</a></li>
+<li><a href="https://github.com/usenameFD/Asset-management-Dash">Consulter le dépôt GitHub — application Dash de pricing et gestion d’actifs</a></li>
+<li><a href="https://github.com/usenameFD/usenameFD.github.io/tree/main/projects/Options">Voir le code source des modules de pricing</a></li>
+<li>Dépôt du projet collectif associé : <a href="https://github.com/Niyo-D-JC/Asset-Pricing-and-Management">Asset-Pricing-and-Management</a></li>
+<li>Projet connexe : <a href="../projects/courbes-de-taux.html">Modélisation de courbes de taux</a></li>
+</ul>
+<hr>
+<p><a href="../projects/index.html">← Retour aux projets</a></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

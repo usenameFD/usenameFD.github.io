@@ -1,0 +1,46 @@
+---
+title: "Projets quantitatifs"
+subtitle: "Risque, pricing, allocation et modélisation statistique appliquée aux marchés"
+pagetitle: "Projets quantitatifs — Franck Deba"
+description-meta: >-
+  Portefeuille de projets en finance quantitative : Value-at-Risk et
+  backtesting, copules, volatilité stochastique, courbes de taux, allocation de
+  portefeuille, risque climatique et machine learning.
+toc: false
+listing:
+  - id: all-projects
+    contents:
+      - "*.qmd"
+      - "!WQU/*.qmd"
+    type: grid
+    grid-columns: 3
+    fields: [image, title, description, categories]
+    image-height: "170px"
+    image-placeholder: ../img/logo.svg
+    sort: "order"
+    sort-ui: false
+    filter-ui: true
+    categories: numbered
+    page-size: 24
+---
+
+Chaque fiche présente un projet complet : le problème financier traité, la
+méthodologie, le cadre mathématique, les données, l'implémentation, les
+résultats obtenus, leur interprétation et les limites du modèle. Un lien direct
+renvoie systématiquement vers le notebook ou le code source correspondant.
+
+Utilisez le champ de recherche ou les catégories affichées en marge pour
+filtrer le portefeuille.
+
+::: {.callout-note collapse="true"}
+## Reproductibilité et exécution
+
+Les résultats affichés proviennent des exécutions d'origine conservées dans les
+notebooks et les rapports. La génération du site **ne relance aucun calcul** :
+aucune simulation, aucune calibration et aucun téléchargement de données de
+marché n'est déclenché lors du rendu. Les chiffres publiés sont donc ceux des
+analyses initiales.
+:::
+
+::: {#all-projects}
+:::

@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Réseau de neurones dense entraîné à prédire le signe du rendement à 120 jours d’Apple à partir de rendements passés sur plusieurs fenêtres, avec optimisation d’hyperparamètres Hyperband et backtest de la stratégie directionnelle associée.">
+
+<title>Market timing par perceptron multicouche – Franck Deba</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f240385ca98af0d70cb39273adabb3c4.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7285b84119b075fff0e417633199fe7f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-cfecc74b9b186a15b627211779eb758e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-d8182fae9e9a9430364c9fbc59b93c8f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": true,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer",
+    "search-label": "Recherche"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Market timing par perceptron multicouche – Franck Deba">
+<meta property="og:description" content="Réseau de neurones dense entraîné à prédire le signe du rendement à 120 jours d’Apple à partir de rendements passés sur plusieurs fenêtres, avec optimisation d’hyperparamètres Hyperband et backtest de la stratégie directionnelle associée.">
+<meta property="og:image" content="https://usenameFD.github.io/assets/thumbnails/financial-data.png">
+<meta property="og:site_name" content="Franck Deba">
+<meta property="og:image:height" content="268">
+<meta property="og:image:width" content="370">
+<meta property="og:image:alt" content="Série de rendements d'action utilisée comme variable d'entrée du modèle de classification">
+<meta name="twitter:title" content="Market timing par perceptron multicouche – Franck Deba">
+<meta name="twitter:description" content="Réseau de neurones dense entraîné à prédire le signe du rendement à 120 jours d’Apple à partir de rendements passés sur plusieurs fenêtres, avec optimisation d’hyperparamètres Hyperband et backtest de la stratégie directionnelle associée.">
+<meta name="twitter:image" content="https://usenameFD.github.io/assets/thumbnails/financial-data.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="268">
+<meta name="twitter:image-width" content="370">
+<meta name="twitter:image:alt" content="Série de rendements d'action utilisée comme variable d'entrée du modèle de classification">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo light-content">
+    <img src="../img/logo-bg.png" alt="Logo de Franck Deba" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Franck Deba</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Recherche"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html"> 
+<span class="menu-text">Projets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html"> 
+<span class="menu-text">Notes &amp; recherche</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html"> 
+<span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-profil" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Profil</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-profil">    
+        <li>
+    <a class="dropdown-item" href="../about.html">
+ <span class="dropdown-text">À propos</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../cv.html">
+ <span class="dropdown-text">CV</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../contact.html">
+ <span class="dropdown-text">Contact</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools tools-wide">
+    <a href="https://github.com/usenameFD" title="Profil GitHub de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil GitHub de Franck Deba"><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/deba-franck" title="Profil LinkedIn de Franck Deba" class="quarto-navigation-tool px-1" aria-label="Profil LinkedIn de Franck Deba"><i class="bi bi-linkedin"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Basculer le mode sombre"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#vue-densemble" id="toc-vue-densemble" class="nav-link active" data-scroll-target="#vue-densemble">Vue d’ensemble</a></li>
+  <li><a href="#contexte-financier" id="toc-contexte-financier" class="nav-link" data-scroll-target="#contexte-financier">Contexte financier</a></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a></li>
+  <li><a href="#cadre-mathématique" id="toc-cadre-mathématique" class="nav-link" data-scroll-target="#cadre-mathématique">Cadre mathématique</a></li>
+  <li><a href="#données" id="toc-données" class="nav-link" data-scroll-target="#données">Données</a></li>
+  <li><a href="#implémentation" id="toc-implémentation" class="nav-link" data-scroll-target="#implémentation">Implémentation</a></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a></li>
+  <li><a href="#interprétation" id="toc-interprétation" class="nav-link" data-scroll-target="#interprétation">Interprétation</a></li>
+  <li><a href="#limites-et-risque-de-modèle" id="toc-limites-et-risque-de-modèle" class="nav-link" data-scroll-target="#limites-et-risque-de-modèle">Limites et risque de modèle</a></li>
+  <li><a href="#technologies" id="toc-technologies" class="nav-link" data-scroll-target="#technologies">Technologies</a></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Market timing par perceptron multicouche</h1>
+<p class="subtitle lead">Classification du signe du rendement futur d’AAPL et backtest de la stratégie</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Machine learning</div>
+    <div class="quarto-category">Stratégies quantitatives</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Réseau de neurones dense entraîné à prédire le signe du rendement à 120 jours d’Apple à partir de rendements passés sur plusieurs fenêtres, avec optimisation d’hyperparamètres Hyperband et backtest de la stratégie directionnelle associée.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Date de publication</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">18 novembre 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="qf-meta">
+<dl>
+<dt>Catégorie</dt>
+<dd>
+Machine learning · Stratégies directionnelles
+</dd>
+<dt>Statut</dt>
+<dd>
+Terminé — publié sans exécution
+</dd>
+<dt>Langages</dt>
+<dd>
+Python
+</dd>
+<dt>Contexte</dt>
+<dd>
+Projet de cours — WorldQuant University, <em>Deep Learning in Finance</em>
+</dd>
+</dl>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Publication sans exécution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ce document télécharge des données de marché depuis Yahoo! Finance et entraîne un réseau de neurones. Il est publié <strong>en mode source</strong> : le code est affiché, mais il n’est jamais exécuté lors de la génération du site. Aucune donnée n’est téléchargée et aucun modèle n’est réentraîné. Les sorties d’origine ne sont donc pas reproduites sur cette page.</p>
+</div>
+</div>
+<section id="vue-densemble" class="level2">
+<h2 class="anchored" data-anchor-id="vue-densemble">Vue d’ensemble</h2>
+<p>Peut-on prédire le <strong>signe</strong> du rendement futur d’une action, et si oui, cette capacité prédictive se traduit-elle en performance financière ?</p>
+<p>Le projet traite ces deux questions séparément — c’est précisément son intérêt méthodologique. Un perceptron multicouche est entraîné à classifier le signe du rendement à 120 jours d’Apple à partir de rendements passés calculés sur plusieurs fenêtres. Sa performance <strong>prédictive</strong> est mesurée par l’exactitude sur échantillon de test, et sa performance <strong>financière</strong> est évaluée séparément par un backtest de la stratégie directionnelle associée.</p>
+</section>
+<section id="contexte-financier" class="level2">
+<h2 class="anchored" data-anchor-id="contexte-financier">Contexte financier</h2>
+<p>Le <em>market timing</em> est le cas d’usage le plus exposé au risque de surajustement de toute la finance quantitative : le rapport signal sur bruit des rendements d’actions est faible, l’échantillon utilisable est court au regard du nombre de paramètres d’un réseau, et les fenêtres glissantes créent une forte autocorrélation entre observations.</p>
+<p>Deux précautions structurent donc le projet :</p>
+<ul>
+<li><strong>dissocier performance prédictive et performance financière</strong> — un modèle légèrement meilleur que le hasard peut être rentable si ses erreurs sont bien réparties, et un modèle précis peut être non rentable si ses erreurs se concentrent sur les mouvements de forte amplitude ;</li>
+<li><strong>contrôler la complexité</strong> — par du <em>dropout</em>, un arrêt anticipé et une recherche d’hyperparamètres explicite plutôt qu’un réglage manuel implicite.</li>
+</ul>
+</section>
+<section id="méthodologie" class="level2">
+<h2 class="anchored" data-anchor-id="méthodologie">Méthodologie</h2>
+<p><strong>1. Variables.</strong> Les entrées sont les rendements passés d’AAPL calculés sur cinq fenêtres distinctes. La variable cible est le signe du rendement des 120 jours suivants, codé en variable binaire.</p>
+<p><strong>2. Échantillonnage et mise à l’échelle.</strong> Découpage apprentissage / test puis normalisation des variables explicatives.</p>
+<p><strong>3. Architecture.</strong> Réseau dense à trois couches cachées (25, 15 et 10 unités) suivies chacune d’une couche de <em>dropout</em>, et une couche de sortie à une unité. Activation ReLU sur les couches cachées, sigmoïde en sortie.</p>
+<p><strong>4. Entraînement.</strong> Fonction de perte d’entropie croisée binaire, métrique d’exactitude binaire, arrêt anticipé (<em>EarlyStopping</em>) surveillant l’exactitude en validation avec une patience de 20 époques, sur un maximum de 200 époques et des lots de taille 32.</p>
+<p><strong>5. Optimisation d’hyperparamètres.</strong> Recherche par <strong>Hyperband</strong> via Keras Tuner sur le nombre d’unités de chaque couche dense (de 1 à 25, par pas de 5) et le taux de <em>dropout</em> (0,2 ou 0,3). La fonction d’activation est fixée et n’est pas optimisée.</p>
+<p><strong>6. Backtest.</strong> La prédiction est convertie en position longue (<span class="math inline">\(+1\)</span>) si la probabilité estimée dépasse <span class="math inline">\(0{,}5\)</span>, courte (<span class="math inline">\(-1\)</span>) sinon. La performance cumulée de la stratégie est comparée à celle d’une position acheteuse permanente.</p>
+</section>
+<section id="cadre-mathématique" class="level2">
+<h2 class="anchored" data-anchor-id="cadre-mathématique">Cadre mathématique</h2>
+<p><strong>Cible binaire.</strong> Pour un horizon <span class="math inline">\(h = 120\)</span> jours, <span class="math display">\[
+y_t = \mathbf{1}\left\{ r_{t \to t+h} &gt; 0 \right\},
+\qquad
+r_{t \to t+h} = \frac{S_{t+h} - S_t}{S_t}.
+\]</span></p>
+<p><strong>Modèle.</strong> Le réseau enchaîne trois transformations affines suivies d’activations : <span class="math display">\[
+h^{(1)} = \mathrm{ReLU}\!\left(W^{(1)}x + b^{(1)}\right),
+\quad
+h^{(\ell)} = \mathrm{ReLU}\!\left(W^{(\ell)}\tilde{h}^{(\ell-1)} + b^{(\ell)}\right),
+\]</span> <span class="math display">\[
+\hat{p} = \sigma\!\left(W^{(4)}\tilde{h}^{(3)} + b^{(4)}\right),
+\qquad
+\sigma(z) = \frac{1}{1 + e^{-z}},
+\]</span> où <span class="math inline">\(\tilde{h}\)</span> désigne la sortie après <em>dropout</em>.</p>
+<p><strong>Perte.</strong> L’entropie croisée binaire est l’opposé de la log-vraisemblance d’un modèle de Bernoulli : <span class="math display">\[
+\mathcal{L} = -\frac{1}{n}\sum_{i=1}^{n}
+\Bigl[ y_i \ln \hat{p}_i + (1 - y_i)\ln\left(1 - \hat{p}_i\right) \Bigr].
+\]</span></p>
+<p><strong>Dropout.</strong> Chaque unité est mise à zéro avec probabilité <span class="math inline">\(p\)</span> pendant l’entraînement : <span class="math display">\[
+\tilde{h}_j = \frac{m_j}{1-p}\,h_j,
+\qquad m_j \sim \mathrm{Bernoulli}(1-p),
+\]</span> ce qui agit comme une régularisation en moyennant implicitement un ensemble de sous-réseaux.</p>
+<p><strong>Stratégie.</strong> La position et le rendement de stratégie s’écrivent <span class="math display">\[
+\pi_t = 2\,\mathbf{1}\{\hat{p}_t &gt; 0{,}5\} - 1,
+\qquad
+r_t^{\text{strat}} = \pi_t \cdot r_{t \to t+h},
+\]</span> et la performance cumulée <span class="math inline">\(\prod_t \left(1 + r_t^{\text{strat}}\right) - 1\)</span> est comparée à celle du sous-jacent.</p>
+</section>
+<section id="données" class="level2">
+<h2 class="anchored" data-anchor-id="données">Données</h2>
+<p>Cours quotidiens de clôture d’Apple (AAPL) depuis le 1{^er} janvier 1980, obtenus via l’API Yahoo! Finance dans l’environnement d’analyse d’origine. Les observations comportant des valeurs manquantes sont écartées, ce qui réduit sensiblement la taille effective de l’échantillon.</p>
+<p>Le code est écrit pour fonctionner sur n’importe quel titre en changeant simplement le <em>ticker</em>.</p>
+</section>
+<section id="implémentation" class="level2">
+<h2 class="anchored" data-anchor-id="implémentation">Implémentation</h2>
+<p>Deux variantes du même document sont conservées :</p>
+<ul>
+<li><a href="../projects/WQU/timingStock.html"><code>timingStock.qmd</code></a> — version de base à architecture fixée ;</li>
+<li><a href="../projects/WQU/timingStock_HPO.html"><code>timingStock_HPO.qmd</code></a> — version avec recherche d’hyperparamètres par Hyperband.</li>
+</ul>
+<p>Les essais de la recherche d’hyperparamètres sont conservés dans le répertoire <code>Output/</code> du dépôt.</p>
+</section>
+<section id="résultats" class="level2">
+<h2 class="anchored" data-anchor-id="résultats">Résultats</h2>
+<p>Les sorties d’origine — courbes d’apprentissage, exactitude en test, performance cumulée de la stratégie — figurent dans l’environnement d’analyse. Conformément à la politique d’exécution du site, elles ne sont pas régénérées ici : le document est publié en affichant son code source.</p>
+<p><a href="../projects/WQU/timingStock_HPO.html">Consulter le document avec recherche d’hyperparamètres</a></p>
+<p><a href="../projects/WQU/timingStock.html">Consulter la version de base</a></p>
+</section>
+<section id="interprétation" class="level2">
+<h2 class="anchored" data-anchor-id="interprétation">Interprétation</h2>
+<p>La séparation explicite entre évaluation prédictive et évaluation financière est la contribution méthodologique la plus importante du projet. Une exactitude « correcte » en validation ne garantit rien sur le plan économique : la performance d’une stratégie directionnelle dépend de la <strong>corrélation entre la justesse des prédictions et l’amplitude des mouvements</strong>, et non du taux de bonnes réponses.</p>
+<p>L’horizon de 120 jours combiné à une cible calculée sur fenêtre glissante crée par ailleurs un fort chevauchement entre observations : l’exactitude mesurée sur échantillon de test est donc plus optimiste qu’elle ne le paraît, car les observations ne sont pas indépendantes.</p>
+</section>
+<section id="limites-et-risque-de-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="limites-et-risque-de-modèle">Limites et risque de modèle</h2>
+<ul>
+<li><strong>Chevauchement des observations.</strong> La cible à 120 jours sur données quotidiennes induit une autocorrélation forte ; le découpage apprentissage/test devrait être chronologique et purgé.</li>
+<li><strong>Échantillon effectif réduit.</strong> La suppression des observations incomplètes diminue fortement la taille de l’échantillon utilisable.</li>
+<li><strong>Titre unique.</strong> Les résultats obtenus sur AAPL ne se généralisent pas ; une validation multi-titres serait nécessaire.</li>
+<li><strong>Coûts de transaction absents.</strong> Le backtest ne modélise ni frais, ni <em>slippage</em>, ni contrainte d’emprunt de titres pour la position vendeuse.</li>
+<li><strong>Non-déterminisme.</strong> L’entraînement d’un réseau reste sensible à l’initialisation et à l’ordre des lots.</li>
+<li><strong>Stationnarité.</strong> La relation entre rendements passés et rendement futur est supposée stable sur plus de quarante ans d’historique.</li>
+</ul>
+</section>
+<section id="technologies" class="level2">
+<h2 class="anchored" data-anchor-id="technologies">Technologies</h2>
+<div class="qf-tags">
+<p><span class="qf-tag">Python</span> <span class="qf-tag">TensorFlow</span> <span class="qf-tag">Keras</span> <span class="qf-tag">Keras Tuner</span> <span class="qf-tag">scikit-learn</span> <span class="qf-tag">pandas</span> <span class="qf-tag">Matplotlib</span></p>
+</div>
+</section>
+<section id="ressources" class="level2">
+<h2 class="anchored" data-anchor-id="ressources">Ressources</h2>
+<ul>
+<li><a href="../projects/WQU/timingStock_HPO.html">Document avec recherche d’hyperparamètres</a></li>
+<li><a href="../projects/WQU/timingStock.html">Version de base</a></li>
+<li>Projet connexe : <a href="../projects/econometrie-financiere-vecm.html">Économétrie financière — non-stationnarité, cointégration et pair trading</a></li>
+<li>Projet connexe : <a href="../projects/deep-learning-nlp.html">Apprentissage profond et traitement du langage naturel</a></li>
+</ul>
+<hr>
+<p><a href="../projects/index.html">← Retour aux projets</a></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copié");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copié");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/usenameFD\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Franck Deba — Quantitative Research</p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../projects/index.html">
+<p>Projets</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../notes/index.html">
+<p>Notes &amp; recherche</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../repositories/index.html">
+<p>Code</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../cv.html">
+<p>CV</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../contact.html">
+<p>Contact</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/usenameFD">
+      <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/deba-franck">
+      <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:debafranck@gmail.com">
+      <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

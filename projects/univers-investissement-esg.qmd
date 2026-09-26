@@ -1,0 +1,205 @@
+---
+title: "Construction d'un univers d'investissement ESG"
+subtitle: "Exclusion normative, exclusion sectorielle et sélection best-in-class"
+description: "Construction pas à pas d'un univers d'investissement responsable : exclusion des émetteurs non conformes au Pacte mondial, exclusion des activités controversées, puis filtrage best-in-class sur les notes E, S et G."
+categories:
+  - Finance durable
+  - Gestion de portefeuille
+order: 9
+image: ../assets/thumbnails/esg.png
+image-alt: "Distribution des notes environnementales, sociales et de gouvernance de l'univers d'investissement analysé"
+project-status: "Terminé"
+featured: false
+draft: false
+notebook: "Responsible Investment/esg.ipynb"
+technologies: [Python, pandas, NumPy, Matplotlib, openpyxl]
+methods: [Exclusion normative, Exclusion sectorielle, Best-in-class, Benchmark médian, Analyse de couverture]
+---
+
+::: {.qf-meta}
+Catégorie
+:   Finance durable · Construction d'univers
+
+Statut
+:   Terminé
+
+Langages
+:   Python
+
+Livrables
+:   Notebook, notes méthodologiques sur l'ISR et la finance durable
+:::
+
+## Vue d'ensemble
+
+« Investissement responsable » recouvre des pratiques très hétérogènes, allant
+de l'exclusion de quelques secteurs à une intégration systématique de critères
+extra-financiers dans la construction de portefeuille. Sans méthodologie
+explicite et reproductible, le label ne dit rien du portefeuille sous-jacent.
+
+Ce projet formalise la construction d'un univers d'investissement ESG en deux
+étapes documentées et auditables : une phase d'**exclusion** — normative puis
+sectorielle — suivie d'une phase d'**intégration** consistant à retenir, parmi
+les émetteurs restants, ceux dont les notes environnementale, sociale et de
+gouvernance dépassent des seuils de référence.
+
+## Contexte financier
+
+Le règlement SFDR impose aux sociétés de gestion de documenter précisément leur
+méthodologie extra-financière et de publier les principales incidences
+négatives de leurs investissements. Cela déplace la question ESG d'un registre
+déclaratif vers un registre quantitatif et vérifiable.
+
+Trois difficultés structurent l'exercice :
+
+- **Hétérogénéité des notations.** Les notes ESG de fournisseurs différents sont
+  faiblement corrélées entre elles, contrairement aux notations de crédit. Le
+  choix du fournisseur est donc une décision de modèle.
+- **Réduction de l'univers.** Chaque filtre réduit l'univers investissable et
+  donc les possibilités de diversification ; l'arbitrage entre exigence
+  extra-financière et risque de concentration doit être mesuré.
+- **Biais sectoriels.** Une sélection *best-in-class* appliquée sans
+  neutralisation sectorielle introduit mécaniquement des paris sectoriels, car
+  les niveaux de notation diffèrent structurellement selon les secteurs.
+
+## Méthodologie
+
+**Étape 1 — Exclusions.**
+
+- *Exclusion normative* : retrait des entreprises non signataires du Pacte
+  mondial des Nations unies (UN Global Compact) ou identifiées comme n'en
+  respectant pas les principes.
+- *Exclusion sectorielle* : retrait des entreprises exerçant des activités
+  controversées.
+
+**Étape 2 — Intégration ESG.**
+
+- Identification des entreprises composant l'indice CAC 40 ESG et récupération
+  de leurs notes E, S et G.
+- Calcul des **médianes** de ces notes sur l'indice, utilisées comme
+  *benchmarks* de référence.
+- Filtrage des entreprises issues de l'étape 1 dont les notes E, S et G sont
+  chacune supérieures au benchmark correspondant.
+
+Le choix de la médiane plutôt que de la moyenne est délibéré : les
+distributions de notes ESG sont asymétriques et comportent des valeurs
+extrêmes, ce qui rendrait un seuil fondé sur la moyenne instable.
+
+## Cadre mathématique
+
+Soit $\mathcal{U}$ l'univers initial et, pour un émetteur $i$, les notes
+$(E_i, S_i, G_i)$. L'univers investissable s'écrit comme l'intersection de
+trois contraintes :
+$$
+\mathcal{U}^{\star}
+= \Bigl\{\, i \in \mathcal{U} \;:\;
+\underbrace{\mathrm{UNGC}_i = 1}_{\text{normatif}},\;\;
+\underbrace{\mathrm{Contro}_i = 0}_{\text{sectoriel}},\;\;
+\underbrace{E_i > m_E,\; S_i > m_S,\; G_i > m_G}_{\text{best-in-class}}
+\,\Bigr\},
+$$
+où $m_E$, $m_S$ et $m_G$ désignent les médianes des notes sur l'indice de
+référence :
+$$
+m_E = \mathrm{med}\bigl\{ E_j : j \in \mathcal{B} \bigr\},
+\qquad \mathcal{B} = \text{CAC 40 ESG}.
+$$
+
+Le **taux de couverture** de l'univers après filtrage,
+$$
+\pi = \frac{|\mathcal{U}^{\star}|}{|\mathcal{U}|},
+$$
+mesure la sévérité cumulée des filtres. C'est l'indicateur central de
+l'arbitrage entre exigence extra-financière et capacité de diversification :
+l'exigence conjointe sur les trois piliers est nettement plus restrictive que
+l'exigence sur un score agrégé, puisqu'elle interdit toute compensation entre
+dimensions.
+
+## Données
+
+L'analyse mobilise plusieurs jeux de données extra-financières :
+
+| Jeu de données | Usage |
+|---|---|
+| Univers d'investissement mondial | périmètre initial |
+| UN Global Compact | exclusion normative |
+| Activités controversées | exclusion sectorielle |
+| CAC 40 ESG | construction des benchmarks |
+| Notes E, S, G détaillées | filtrage best-in-class |
+| Empreinte carbone, SBTi | indicateurs climatiques complémentaires |
+| Produits et services durables | mesure d'implication positive |
+
+::: {.callout-warning}
+## Licence des données
+
+Ces extractions proviennent de bases extra-financières commerciales utilisées
+dans un cadre académique. Elles sont conservées dans le dépôt pour la
+reproductibilité de l'analyse d'origine mais ne sont pas redistribuables et ne
+sont pas republiées sur ce site. Les résultats présentés ne constituent ni un
+conseil en investissement ni une évaluation officielle des émetteurs cités.
+:::
+
+## Implémentation
+
+Traitement en `pandas` : normalisation des identifiants d'émetteurs,
+rapprochement des différentes sources extra-financières, application
+séquentielle des filtres avec comptage des exclusions à chaque étape, puis
+calcul des benchmarks et sélection finale.
+
+Le suivi du nombre d'émetteurs restants après chaque filtre est
+intentionnellement explicite : c'est la seule manière de rendre la méthodologie
+auditable.
+
+## Résultats
+
+Le notebook détaille, étape par étape, la composition de l'univers, le nombre
+d'émetteurs exclus à chaque filtre, les médianes de notes retenues comme
+benchmarks et la composition finale de l'univers investissable.
+
+[Consulter le notebook complet](Responsible Investment/esg.ipynb)
+
+## Interprétation
+
+La construction montre que l'essentiel de la réduction d'univers provient de
+l'étape *best-in-class* appliquée simultanément aux trois piliers, et non des
+exclusions normatives et sectorielles, qui écartent un nombre relativement
+faible d'émetteurs.
+
+Cela a une conséquence directe sur la gestion : le paramètre déterminant n'est
+pas la liste d'exclusion — souvent mise en avant dans la communication — mais
+le niveau et la forme du seuil de sélection. Un seuil fondé sur un score ESG
+agrégé serait sensiblement moins contraignant, car il autoriserait la
+compensation entre une bonne gouvernance et une performance environnementale
+médiocre.
+
+## Limites et risque de modèle
+
+- **Dépendance au fournisseur.** Les notes ESG sont peu corrélées entre
+  fournisseurs ; l'univers obtenu dépend fortement de la source retenue.
+- **Biais sectoriel.** Aucune neutralisation sectorielle n'est appliquée, ce
+  qui introduit des paris sectoriels implicites.
+- **Absence d'optimisation.** L'exercice construit un univers investissable ; il
+  ne résout pas le programme d'allocation sous contrainte ESG, qui constituerait
+  l'étape suivante.
+- **Caractère statique.** L'analyse est réalisée à une date donnée, sans étude
+  de la stabilité temporelle des notes ni du *turnover* induit.
+- **Couverture.** Les émetteurs non notés sont exclus de fait, ce qui introduit
+  un biais de taille au détriment des petites capitalisations.
+
+## Technologies
+
+::: {.qf-tags}
+[Python]{.qf-tag} [pandas]{.qf-tag} [NumPy]{.qf-tag} [Matplotlib]{.qf-tag}
+[openpyxl]{.qf-tag}
+:::
+
+## Ressources
+
+- [Consulter le notebook complet](Responsible Investment/esg.ipynb)
+- Note associée : [Investissement socialement responsable — de quoi parle-t-on ?](../autres/ISR.qmd)
+- Note associée : [Investissement responsable et finance durable](../autres/finance_durable.qmd)
+- Projet connexe : [Exposition des communes françaises au risque climatique](risque-climatique-communes.qmd)
+
+---
+
+[← Retour aux projets](index.qmd)
